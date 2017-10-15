@@ -1,0 +1,16 @@
+.cardStatus{
+    display: flex;
+    align-items: center;
+}
+
+.cardStatus mat-icon{
+    padding: 0.2em;
+}
+
+mat-card-actions{
+    justify-content: space-between;
+}
+
+mat-card{
+    width: 20%;
+}
