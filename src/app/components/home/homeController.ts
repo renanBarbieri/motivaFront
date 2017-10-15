@@ -7,4 +7,24 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   title = 'Home Component';
+  articles: any[] = [
+    {
+      "name": "Douglas  Pace"
+    },
+    {
+      "name": "Mcleod  Mueller"
+    },
+    {
+      "name": "Douglas  Pace"
+    },
+    {
+      "name": "Mcleod  Mueller"
+    },
+    {
+      "name": "Douglas  Pace"
+    },
+    {
+      "name": "Mcleod  Mueller"
+    },
+  ];
 }

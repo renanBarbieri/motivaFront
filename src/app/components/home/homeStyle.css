@@ -16,3 +16,7 @@
 .rightSideBar{
     background-color: red;
 }
+
+.cardList{
+    overflow: scroll;
+}

@@ -5,7 +5,9 @@
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar></app-toolbar>
       <div class="content">
-        <app-card></app-card>
+          <div class="cardList" fxLayout="row">
+              <app-card *ngFor="let article of articles"></app-card>
+          </div>
       </div>
   </div>
   <div class="rightSideBar">
