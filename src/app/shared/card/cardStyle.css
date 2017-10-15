@@ -7,6 +7,12 @@
     padding: 0.2em;
 }
 
+.cardDate{
+    color: rgba(0,0,0,.54);
+    font-size: 12px;
+    align-self: center;
+}
+
 mat-card-actions{
     justify-content: space-between;
 }
