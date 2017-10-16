@@ -19,12 +19,6 @@ export class HomeComponent {
     },
     {
       "name": "Mcleod  Mueller"
-    },
-    {
-      "name": "Douglas  Pace"
-    },
-    {
-      "name": "Mcleod  Mueller"
-    },
+    }
   ];
 }
