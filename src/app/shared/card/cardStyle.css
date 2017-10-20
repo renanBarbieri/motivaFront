@@ -1,0 +1,23 @@
+.cardStatus{
+    display: flex;
+    align-items: center;
+}
+
+.cardStatus mat-icon{
+    padding: 0.2em;
+}
+
+.cardDate{
+    color: rgba(0,0,0,.54);
+    font-size: 12px;
+    align-self: center;
+}
+
+mat-card-content{
+    justify-content: space-between;
+}
+
+mat-card{
+    width: 12em;
+    margin: 1em;
+}

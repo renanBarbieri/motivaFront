@@ -1,0 +1,27 @@
+.pageContent{
+    flex: 1 1 100%;
+}
+
+.leftSideBar{
+    padding: 1%;
+    background-color: gray;
+}
+
+.content{
+    background-color: whitesmoke;
+    flex: 1 1 100%;
+    padding: 2%;
+}
+
+.rightSideBar{
+    background-color: red;
+}
+
+.cardList{
+    
+}
+
+.viewMore mat-icon{
+    align-self: center;
+    font-size: 60px
+}
