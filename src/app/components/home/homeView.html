@@ -5,12 +5,10 @@
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar></app-toolbar>
       <div class="content">
-          <div layout-wrap fxLayout="row">
-              <app-card *ngFor="let article of articles"></app-card>
-              <!-- <div class="viewMore">
-                  <mat-icon>keyboard_arrow_right</mat-icon>
-              </div> -->
-          </div>
+        <app-topic-articles></app-topic-articles>
+        <app-topic-articles></app-topic-articles>
+        <app-topic-articles></app-topic-articles>
+        <app-topic-articles></app-topic-articles>
       </div>
   </div>
   <div class="rightSideBar">

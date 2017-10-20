@@ -6,19 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./homeStyle.css']
 })
 export class HomeComponent {
-  title = 'Home Component';
-  articles: any[] = [
-    {
-      "name": "Douglas  Pace"
-    },
-    {
-      "name": "Mcleod  Mueller"
-    },
-    {
-      "name": "Douglas  Pace"
-    },
-    {
-      "name": "Mcleod  Mueller"
-    }
-  ];
+  
 }
