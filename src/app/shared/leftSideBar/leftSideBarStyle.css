@@ -2,3 +2,15 @@
     width: 12em;
     justify-content: center;
 }
+
+.profilePic{
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+    margin: 1em;
+    flex: 1 1 100%;
+}
+
+.leftSideContent{
+    align-items: center;
+}
