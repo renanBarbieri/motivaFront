@@ -18,7 +18,8 @@ import {
   MatToolbarModule,
   MatIconModule,
   MatProgressBarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule
 } from '@angular/material';
 
 @NgModule({
@@ -40,7 +41,8 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatProgressBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [HomeComponent]

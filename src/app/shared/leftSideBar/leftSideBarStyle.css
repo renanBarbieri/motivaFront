@@ -31,3 +31,7 @@
 .listMenu mat-icon{
     margin: 0.2em
 }
+
+mat-grid-tile {
+    background: lightblue;
+}
