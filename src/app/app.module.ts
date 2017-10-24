@@ -16,7 +16,9 @@ import {
   MatButtonToggleModule,
   MatChipsModule,
   MatToolbarModule,
-  MatIconModule
+  MatIconModule,
+  MatProgressBarModule,
+  MatTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -36,7 +38,9 @@ import {
     MatButtonToggleModule,
     MatChipsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [HomeComponent]
