@@ -19,3 +19,15 @@
     margin: 0.2em;
     width: 10em;
 }
+
+.listMenuItem{
+    align-items: center;
+}
+
+.listMenu{
+    width: 12em
+}
+
+.listMenu mat-icon{
+    margin: 0.2em
+}
