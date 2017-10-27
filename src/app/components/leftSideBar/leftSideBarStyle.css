@@ -1,0 +1,37 @@
+.chipLevel{
+    width: 12em;
+    justify-content: center;
+}
+
+.profilePic{
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+    margin: 1em;
+    flex: 1 1 100%;
+}
+
+.leftSideContent{
+    align-items: center;
+}
+
+.userProgress{
+    margin: 0.2em;
+    width: 10em;
+}
+
+.listMenuItem{
+    align-items: center;
+}
+
+.listMenu{
+    width: 12em
+}
+
+.listMenu mat-icon{
+    margin: 0.2em
+}
+
+mat-grid-tile {
+    background: lightblue;
+}

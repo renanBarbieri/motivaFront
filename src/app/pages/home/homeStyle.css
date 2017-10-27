@@ -4,7 +4,6 @@
 
 .leftSideBar{
     padding: 1%;
-    background-color: gray;
 }
 
 .content{
@@ -15,10 +14,6 @@
 
 .rightSideBar{
     background-color: red;
-}
-
-.cardList{
-    
 }
 
 .viewMore mat-icon{
