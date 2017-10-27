@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import HomePresenterImpl from "../../presentation/presenter/HomePresenterImpl";
-import HomeViewImpl from "../../presentation/view/home/HomeViewImpl";
-import UsuarioViewModel from "../../presentation/model/UsuarioViewModel";
-import {HomeView} from "../../presentation/view/home/HomeView";
-import {HomePresenter} from "../../presentation/presenter/HomePresenter";
+import HomeView from "../../../app2/presentation/view/HomeView";
+import HomeViewModel from "../../../app2/presentation/model/HomeViewModel";
+import HomeController from "../../../app2/presentation/controller/HomeController";
+import {HomePresenter} from "../../../app2/presentation/presenter/HomePresenter";
+import HomePresenterImpl from "../../../app2/presentation/presenter/impl/HomePresenterImpl";
 
 @Component({
   selector: 'app-left-sidebar',
@@ -11,11 +11,12 @@ import {HomePresenter} from "../../presentation/presenter/HomePresenter";
   styleUrls: ['./leftSideBarStyle.css']
 })
 export class LeftSideBarComponent implements OnInit{
-
   private homeView: HomeView;
+  private homeController: HomeController;
   private homePresenter: HomePresenter;
-  private usuario: UsuarioViewModel;
-  private menus = [
+  
+  homeViewModel: HomeViewModel;
+  menus: any[] = [
     {
       name: 'Meu Perfil',
       icon: 'account_circle',
@@ -31,14 +32,24 @@ export class LeftSideBarComponent implements OnInit{
   ];
 
   constructor(){
-    this.homeView = new HomeViewImpl();
+    this.homeView = new HomeView();
+    this.homeViewModel = this.homeView.homeViewModel;
+    
     this.homePresenter = new HomePresenterImpl();
     this.homePresenter.setView(this.homeView);
+    
+    this.homeController = new HomeController();
+    this.homeController.setPresenter(this.homePresenter);
   }
 
   ngOnInit(){
-    this.homePresenter.getDadosUsuario().then(() => {
-      this.usuario = this.homeView.getDadosUsuario();
-    });
+    try {
+      this.homeController.getDadosUsuario();
+    } catch (err){
+      console.log(err);
+    }
+    //   .then(() => {
+    //   this.usuario = this.homeViewModel.usuario;
+    // });
   }
 }

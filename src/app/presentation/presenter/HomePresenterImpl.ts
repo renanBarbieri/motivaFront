@@ -5,7 +5,6 @@ import {HomePresenter} from "./HomePresenter";
 import GetDadosUsuarioInteractorImpl from "../../interaction/GetDadosUsuarioInteractorImpl";
 import UsuarioViewModel from "../model/UsuarioViewModel";
 
-
 export default class HomePresenterImpl implements HomePresenter{
 
   private view: HomeView;
