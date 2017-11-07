@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import HomeView from "../../../app2/presentation/view/HomeView";
-import HomeViewModel from "../../../app2/presentation/model/HomeViewModel";
-import HomeController from "../../../app2/presentation/controller/HomeController";
-import {HomePresenter} from "../../../app2/presentation/presenter/HomePresenter";
-import HomePresenterImpl from "../../../app2/presentation/presenter/impl/HomePresenterImpl";
+import HomeView from "../../../app3/presentation/view/HomeView";
+import HomeController from "../../../app3/presentation/controller/HomeController";
+import HomePresenter from "../../../app3/presentation/presenter/HomePresenter";
+import HomeViewModel from "../../../app3/presentation/viewmodel/HomeViewModel";
 
 @Component({
   selector: 'app-left-sidebar',
@@ -33,13 +32,9 @@ export class LeftSideBarComponent implements OnInit{
 
   constructor(){
     this.homeView = new HomeView();
+    this.homePresenter = new HomePresenter(this.homeView);
+    this.homeController = new HomeController(this.homePresenter);
     this.homeViewModel = this.homeView.homeViewModel;
-    
-    this.homePresenter = new HomePresenterImpl();
-    this.homePresenter.setView(this.homeView);
-    
-    this.homeController = new HomeController();
-    this.homeController.setPresenter(this.homePresenter);
   }
 
   ngOnInit(){
@@ -48,8 +43,5 @@ export class LeftSideBarComponent implements OnInit{
     } catch (err){
       console.log(err);
     }
-    //   .then(() => {
-    //   this.usuario = this.homeViewModel.usuario;
-    // });
   }
 }
