@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import HomeView from "../../../app3/presentation/view/HomeView";
 import HomeController from "../../../app3/presentation/controller/HomeController";
-import HomePresenter from "../../../app3/presentation/presenter/HomePresenter";
 import HomeViewModel from "../../../app3/presentation/viewmodel/HomeViewModel";
+import {HomePresenter} from "../../../app3/presentation/presenter/HomePresenter";
+import HomePresenterImpl from "../../../app3/presentation/presenter/impl/HomePresenterImpl";
 
 @Component({
   selector: 'app-left-sidebar',
@@ -32,7 +33,7 @@ export class LeftSideBarComponent implements OnInit{
 
   constructor(){
     this.homeView = new HomeView();
-    this.homePresenter = new HomePresenter(this.homeView);
+    this.homePresenter = new HomePresenterImpl(this.homeView);
     this.homeController = new HomeController(this.homePresenter);
     this.homeViewModel = this.homeView.homeViewModel;
   }
