@@ -1,100 +1,91 @@
 import Nivel from './Nivel';
 import Recompensa from './Recompensa';
 import Tag from './Tag';
+import {Entity} from "./Entity";
 
-export default class Usuario {
-    private _id: String;
-    private _nome: String;
-    private _descricao: String;
-    private _username: String;
-    private _avatar: String;
-    private _email: String;
-    private _experiencia: Number;
-    private _facebook: String;
-    private _github: String;
-    private _linkedin: String;
-    private _nivel: Nivel;
-    private _recompensas: Recompensa[];
-    private _interesses: Tag[];
+export default class Usuario extends Entity{
+  private _nome: string;
+  private _descricao: string;
+  private _username: string;
+  private _avatar: string;
+  private _email: string;
+  private _experiencia: number;
+  private _facebook: string;
+  private _github: string;
+  private _linkedin: string;
+  private _nivel: Nivel;
+  private _recompensas: Recompensa[];
+  private _interesses: Tag[];
 
-
-  get id(): String {
-    return this._id;
-  }
-
-  set id(value: String) {
-    this._id = value;
-  }
-
-  get nome(): String {
+  get nome(): string {
     return this._nome;
   }
 
-  set nome(value: String) {
+  set nome(value: string) {
     this._nome = value;
   }
 
-  get descricao(): String {
+  get descricao(): string {
     return this._descricao;
   }
 
-  set descricao(value: String) {
+  set descricao(value: string) {
     this._descricao = value;
   }
 
-  get username(): String {
+  get username(): string {
     return this._username;
   }
 
-  set username(value: String) {
+  set username(value: string) {
     this._username = value;
   }
 
-  get avatar(): String {
+  get avatar(): string {
     return this._avatar;
   }
 
-  set avatar(value: String) {
+  set avatar(value: string) {
     this._avatar = value;
   }
 
-  get email(): String {
+  get email(): string {
     return this._email;
   }
 
-  set email(value: String) {
+  set email(value: string) {
     this._email = value;
   }
 
-  get experiencia(): Number {
+  get experiencia(): number {
     return this._experiencia;
   }
 
-  set experiencia(value: Number) {
+  set experiencia(value: number) {
     this._experiencia = value;
   }
 
-  get facebook(): String {
+  get facebook(): string {
     return this._facebook;
   }
 
-  set facebook(value: String) {
+  set facebook(value: string) {
     this._facebook = value;
   }
 
-  get github(): String {
+  get github(): string {
     return this._github;
   }
 
-  set github(value: String) {
+  set github(value: string) {
     this._github = value;
   }
 
-  get linkedin(): String {
+  get linkedin(): string {
     return this._linkedin;
   }
 
-  set linkedin(value: String) {
+  set linkedin(value: string) {
     this._linkedin = value;
   }
 

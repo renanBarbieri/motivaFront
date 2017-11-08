@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import HomeView from "../../../app3/presentation/view/HomeView";
-import HomeController from "../../../app3/presentation/controller/HomeController";
-import HomeViewModel from "../../../app3/presentation/viewmodel/HomeViewModel";
-import {HomePresenter} from "../../../app3/presentation/presenter/HomePresenter";
-import HomePresenterImpl from "../../../app3/presentation/presenter/impl/HomePresenterImpl";
+import HomeView from "../../presentation/view/HomeView";
+import HomeController from "../../presentation/controller/HomeController";
+import HomeViewModel from "../../presentation/viewmodel/HomeViewModel";
+import {HomePresenter} from "../../presentation/presenter/HomePresenter";
+import HomePresenterImpl from "../../presentation/presenter/impl/HomePresenterImpl";
 
 @Component({
   selector: 'app-left-sidebar',

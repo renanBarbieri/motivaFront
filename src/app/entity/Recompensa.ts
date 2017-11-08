@@ -1,30 +1,21 @@
-export default class Recompensa {
-    private _id: String;
-    private _nome: String;
-    private _imagem: String;
-
-
-  get id(): String {
-    return this._id;
-  }
-
-  set id(value: String) {
-    this._id = value;
-  }
-
-  get nome(): String {
+import {Entity} from "./Entity";
+export default class Recompensa extends Entity{
+  private _nome: string;
+  private _imagem: string;
+  
+  get nome(): string {
     return this._nome;
   }
-
-  set nome(value: String) {
+  
+  set nome(value: string) {
     this._nome = value;
   }
-
-  get imagem(): String {
+  
+  get imagem(): string {
     return this._imagem;
   }
-
-  set imagem(value: String) {
+  
+  set imagem(value: string) {
     this._imagem = value;
   }
 }

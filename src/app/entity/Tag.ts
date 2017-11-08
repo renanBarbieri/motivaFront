@@ -1,21 +1,13 @@
-export default class Tag {
-    private _id: String;
-    private _nome: String;
+import {Entity} from "./Entity";
 
+export default class Tag extends Entity{
+  private _nome: string;
 
-  get id(): String {
-    return this._id;
-  }
-
-  set id(value: String) {
-    this._id = value;
-  }
-
-  get nome(): String {
+  get nome(): string {
     return this._nome;
   }
 
-  set nome(value: String) {
+  set nome(value: string) {
     this._nome = value;
   }
 }

@@ -1,39 +1,31 @@
-export default class Nivel {
-    private _id: String;
-    private _nome: String;
-    private _descricao: String;
-    private _experiencia: Number;
+import {Entity} from "./Entity";
 
-
-  get id(): String {
-    return this._id;
-  }
-
-  set id(value: String) {
-    this._id = value;
-  }
-
-  get nome(): String {
+export default class Nivel extends Entity {
+  private _nome: string;
+  private _descricao: string;
+  private _experiencia: number;
+  
+  get nome(): string {
     return this._nome;
   }
-
-  set nome(value: String) {
+  
+  set nome(value: string) {
     this._nome = value;
   }
-
-  get descricao(): String {
+  
+  get descricao(): string {
     return this._descricao;
   }
-
-  set descricao(value: String) {
+  
+  set descricao(value: string) {
     this._descricao = value;
   }
-
-  get experiencia(): Number {
+  
+  get experiencia(): number {
     return this._experiencia;
   }
-
-  set experiencia(value: Number) {
+  
+  set experiencia(value: number) {
     this._experiencia = value;
   }
 }

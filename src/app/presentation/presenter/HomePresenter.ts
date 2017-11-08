@@ -1,6 +1,3 @@
-import { HomeView } from '../view/home/HomeView';
+import {GetDadosUsuarioOutputBoundary} from "../../interaction/GetDadosUsuarioOutputBoundary";
 
-export interface HomePresenter {
-    setView(view: HomeView);
-    getDadosUsuario();
-}
+export interface HomePresenter extends GetDadosUsuarioOutputBoundary{}

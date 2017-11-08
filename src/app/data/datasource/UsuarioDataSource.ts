@@ -1,4 +1,5 @@
-import {DataSource} from "./DataSource";
-import UserDataModel from "../model/UsuarioDataModel";
+import Usuario from "../../entity/Usuario";
 
-export interface UsuarioDataSource extends DataSource<UserDataModel>{}
+export interface UsuarioDataSource{
+  get(id: string): Promise<Usuario>;
+}
