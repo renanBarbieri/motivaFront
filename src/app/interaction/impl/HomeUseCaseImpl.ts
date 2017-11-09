@@ -1,9 +1,12 @@
-import {HomeUseCase} from "../HomeUseCase";
-import {UsuarioDataSource} from "../../data/datasource/UsuarioDataSource";
-import UsuarioRepository from "../../data/repository/UsuarioRepository";
-import {GetDadosUsuarioRequestData} from "../GetDadosUsuarioInputBoundary";
-import {GetDadosUsuarioOutputBoundary, GetDadosUsuarioResponseData} from "../GetDadosUsuarioOutputBoundary";
-import Usuario from "../../entity/Usuario";
+import {HomeUseCase} from "@app/interaction/HomeUseCase";
+import {UsuarioDataSource} from "@app/data/datasource/UsuarioDataSource";
+import UsuarioRepository from "@app/data/repository/UsuarioRepository";
+import {GetDadosUsuarioRequestData} from "@app/interaction/GetDadosUsuarioInputBoundary";
+import {
+  GetDadosUsuarioOutputBoundary,
+  GetDadosUsuarioResponseData
+} from "@app/interaction/GetDadosUsuarioOutputBoundary";
+import Usuario from "@app/entity/Usuario";
 
 export default class HomeUseCaseImpl implements HomeUseCase{
   private usuarioRepository: UsuarioDataSource;

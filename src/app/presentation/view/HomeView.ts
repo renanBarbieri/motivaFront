@@ -1,4 +1,4 @@
-import HomeViewModel from "../viewmodel/HomeViewModel";
+import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
 
 export default class HomeView{
   

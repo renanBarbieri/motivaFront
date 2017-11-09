@@ -1,4 +1,4 @@
-import Usuario from "../../entity/Usuario";
+import Usuario from "@app/entity/Usuario";
 
 export interface UsuarioDataSource{
   get(id: string): Promise<Usuario>;

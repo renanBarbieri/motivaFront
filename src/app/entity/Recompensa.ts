@@ -1,4 +1,5 @@
 import {Entity} from "./Entity";
+
 export default class Recompensa extends Entity{
   private _nome: string;
   private _imagem: string;

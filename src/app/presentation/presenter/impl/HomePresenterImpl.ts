@@ -1,7 +1,7 @@
-import HomeView from "../../view/HomeView";
-import {GetDadosUsuarioResponseData} from "../../../interaction/GetDadosUsuarioOutputBoundary";
-import HomeViewModel from "../../viewmodel/HomeViewModel";
-import {HomePresenter} from "../HomePresenter";
+import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
+import HomeView from "@app/presentation/view/HomeView";
+import {GetDadosUsuarioResponseData} from "@app/interaction/GetDadosUsuarioOutputBoundary";
+import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
 
 export default class HomePresenterImpl implements HomePresenter{
   private view: HomeView;

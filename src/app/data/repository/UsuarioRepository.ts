@@ -1,6 +1,6 @@
-import {UsuarioDataSource} from "../datasource/UsuarioDataSource";
-import UsuarioApiDataSource from "../datasource/impl/UsuarioApiDataSource";
-import Usuario from "../../entity/Usuario";
+import {UsuarioDataSource} from "@app/data/datasource/UsuarioDataSource";
+import UsuarioApiDataSource from "@app/data/datasource/impl/UsuarioApiDataSource";
+import Usuario from "@app/entity/Usuario";
 
 export default class UsuarioRepository implements UsuarioDataSource{
   

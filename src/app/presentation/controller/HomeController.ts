@@ -1,7 +1,7 @@
-import {GetDadosUsuarioRequestData} from "../../interaction/GetDadosUsuarioInputBoundary";
-import {HomeUseCase} from "../../interaction/HomeUseCase";
-import HomeUseCaseImpl from "../../interaction/impl/HomeUseCaseImpl";
-import {HomePresenter} from "../presenter/HomePresenter";
+import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
+import {HomeUseCase} from "@app/interaction/HomeUseCase";
+import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
+import {GetDadosUsuarioRequestData} from "@app/interaction/GetDadosUsuarioInputBoundary";
 
 export default class HomeController{
   

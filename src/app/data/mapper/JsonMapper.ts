@@ -1,4 +1,4 @@
-import {Entity} from "../../entity/Entity";
+import {Entity} from "@app/entity/Entity";
 
 export interface JSONMapper<T extends Entity>{
   toEntity(json: any): T;

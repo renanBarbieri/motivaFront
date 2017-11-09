@@ -1,5 +1,5 @@
 import {JSONMapper} from "./JsonMapper";
-import Usuario from "../../entity/Usuario";
+import Usuario from "@app/entity/Usuario";
 
 export default class UsuarioJsonMapper implements JSONMapper<Usuario>{
   toEntity(json: any): Usuario {

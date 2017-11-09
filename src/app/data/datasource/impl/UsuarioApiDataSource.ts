@@ -1,5 +1,5 @@
 import {UsuarioDataSource} from "../UsuarioDataSource";
-import Usuario from "../../../entity/Usuario";
+import Usuario from "@app/entity/Usuario";
 
 export default class UsuarioApiDataSource implements UsuarioDataSource{
 
