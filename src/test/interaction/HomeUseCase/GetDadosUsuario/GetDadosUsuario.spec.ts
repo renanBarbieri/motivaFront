@@ -1,12 +1,12 @@
-import {HomeUseCase} from "../../../../app/interaction/HomeUseCase";
-import HomeUseCaseImpl from "../../../../app/interaction/impl/HomeUseCaseImpl";
-import Usuario from "../../../../app/entity/Usuario";
+import {HomeUseCase} from "@app/interaction/HomeUseCase";
+import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
+import Usuario from "@app/entity/Usuario";
+import UsuarioRepository from "@app/data/repository/UsuarioRepository";
+import {GetDadosUsuarioRequestData} from "@app/interaction/GetDadosUsuarioInputBoundary";
 import {
   GetDadosUsuarioOutputBoundary,
   GetDadosUsuarioResponseData
-} from "../../../../app/interaction/GetDadosUsuarioOutputBoundary";
-import {GetDadosUsuarioRequestData} from "../../../../app/interaction/GetDadosUsuarioInputBoundary";
-import UsuarioRepository from "../../../../app/data/repository/UsuarioRepository";
+} from "@app/interaction/GetDadosUsuarioOutputBoundary";
 
 describe('Teste dos casos de uso GetDadosUsuario', () => {
   
