@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-topic-articles',
@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./topicArticlesStyle.css']
 })
 export class TopicArticlesComponent {
-  topicName = 'Cálculo Numérico';
+  @Input()
+  topicName: string;
   articles: any[] = [
     {
       "name": "Douglas  Pace"
