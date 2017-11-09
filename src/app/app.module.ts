@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HomeComponent } from './pages/home/homeController';
-import { ToolbarComponent } from './components/toolbar/toolbarController';
-import { CardComponent } from './components/card/cardController';
-import { TopicArticlesComponent } from './components/topicArticles/topicArticlesController';
-import { LeftSideBarComponent } from './components/leftSideBar/leftSideBarController';
+import { HomeComponent } from './ui/pages/home/homeController';
+import { ToolbarComponent } from './ui/components/toolbar/toolbarController';
+import { CardComponent } from './ui/components/card/cardController';
+import { TopicArticlesComponent } from './ui/components/topicArticles/topicArticlesController';
+import { LeftSideBarComponent } from './ui/components/leftSideBar/leftSideBarController';
 
-import { 
-  MatCardModule, 
-  MatButtonModule, 
+import {
+  MatCardModule,
+  MatButtonModule,
   MatButtonToggleModule,
   MatChipsModule,
   MatToolbarModule,

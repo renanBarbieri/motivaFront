@@ -14,15 +14,17 @@ export default class HomeUseCaseImpl implements HomeUseCase{
   constructor(){
     this.usuarioRepository = new UsuarioRepository();
   }
-  
+
   async getUsuario(requestData: GetDadosUsuarioRequestData, presenter: GetDadosUsuarioOutputBoundary) {
     let responseData: GetDadosUsuarioResponseData = new GetDadosUsuarioResponseData();
     try{
       const idUsuario = requestData.idUsuario;
       const usuario: Usuario = await this.usuarioRepository.get(idUsuario);
-      
+
       responseData.username = usuario.username;
-      
+      responseData.levelCompleted = usuario.nivel.experiencia;
+      responseData.levelName = usuario.nivel.nome;
+
       presenter.getDadosUsuarioSuccess(responseData);
     }
     catch (err){

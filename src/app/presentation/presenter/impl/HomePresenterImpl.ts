@@ -9,15 +9,17 @@ export default class HomePresenterImpl implements HomePresenter{
   constructor(view: HomeView) {
     this.view = view;
   }
-  
+
   getDadosUsuarioSuccess(responseData: GetDadosUsuarioResponseData) {
     let homeViewModel: HomeViewModel = this.view.homeViewModel;
-  
+
     homeViewModel.username = responseData.username;
-  
+    homeViewModel.levelCompleted = responseData.levelCompleted;
+    homeViewModel.levelName = responseData.levelName;
+
     this.view.updateViewModel(homeViewModel);
   }
-  
+
   getDadosUsuarioError(errorData: any) {
     this.view.showErrorAlert(errorData.message);
   }

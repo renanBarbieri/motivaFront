@@ -6,4 +6,6 @@ export interface GetDadosUsuarioOutputBoundary{ //TODO: rename -> GetDadosUsuari
 
 export class GetDadosUsuarioResponseData{
   public username: string;
+  public levelCompleted: number;
+  public levelName: string;
 }
