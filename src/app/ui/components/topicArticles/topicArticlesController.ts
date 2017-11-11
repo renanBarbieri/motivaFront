@@ -9,6 +9,6 @@ import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 export class TopicArticlesComponent {
   @Input()
   topicName: string;
-  @Input()
-  articles: CardViewModel[];
+  // @Input()
+  // articles: CardViewModel[];
 }

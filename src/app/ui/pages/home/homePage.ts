@@ -28,4 +28,9 @@ export class HomeComponent implements OnInit{
     }
   }
 
+  topics(): IterableIterator<string>{
+    return this.homeViewModel.topicsList.keys()
+  }
+
+
 }

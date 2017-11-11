@@ -29,6 +29,7 @@ export default class HomePresenterImpl implements HomePresenter{
 
   getTopicosInsteresseSuccess(responseData: GetTopicosInteresseResponseData) {
     let homeViewModel: HomeViewModel = this.view.homeViewModel;
+    homeViewModel.topicsList = new Map();
     responseData.topicListData.forEach((value: string[], key: string) => {
       let cardList: CardViewModel[] = [];
       value.forEach((article: string) => {
@@ -38,6 +39,8 @@ export default class HomePresenterImpl implements HomePresenter{
       });
       homeViewModel.topicsList.set(key, cardList)
     });
+
+    this.view.updateViewModel(homeViewModel)
 
   }
 

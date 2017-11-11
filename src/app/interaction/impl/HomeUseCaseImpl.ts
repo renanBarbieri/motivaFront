@@ -47,10 +47,9 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     let responseData: GetTopicosInteresseResponseData = new GetTopicosInteresseResponseData();
     try{
       const idUsuario = requestData.idUsuario;
-      const article: Article = await this.articleRepository.get(idUsuario);
-
+      // const article: Article = await this.articleRepository.get(idUsuario);
       let articles: string[] = ["nome 1", "nome 2", "nome 3", "nome 4"];
-
+      responseData.topicListData = new Map();
       responseData.topicListData.set("Primeiro Tópico", articles);
       responseData.topicListData.set("Segundo Tópico", articles);
       responseData.topicListData.set("Terceiro Tópico", articles);

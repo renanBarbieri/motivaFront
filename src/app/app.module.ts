@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HomeComponent } from './ui/pages/home/homeController';
+import { HomeComponent } from './ui/pages/home/homePage';
 import { ToolbarComponent } from './ui/components/toolbar/toolbarController';
 import { CardComponent } from './ui/components/card/cardController';
 import { TopicArticlesComponent } from './ui/components/topicArticles/topicArticlesController';
