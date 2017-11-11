@@ -1,21 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import HomeView from "@app/presentation/view/HomeView";
-import HomeController from "@app/presentation/controller/HomeController";
-import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
-import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
-import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImpl";
-
+import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-left-sidebar',
   templateUrl: './leftSideBarView.html',
   styleUrls: ['./leftSideBarStyle.css']
 })
-export class LeftSideBarComponent implements OnInit{
-  private homeView: HomeView;
-  private homeController: HomeController;
-  private homePresenter: HomePresenter;
-  
-  homeViewModel: HomeViewModel;
+export class LeftSideBarComponent{
+
+  @Input()
+  username: string;
+
+  @Input()
+  levelCompleted: string;
+
+  @Input()
+  levelName: string;
+
   menus: any[] = [
     {
       name: 'Meu Perfil',
@@ -30,19 +29,4 @@ export class LeftSideBarComponent implements OnInit{
       icon: 'settings',
     }
   ];
-
-  constructor(){
-    this.homeView = new HomeView();
-    this.homePresenter = new HomePresenterImpl(this.homeView);
-    this.homeController = new HomeController(this.homePresenter);
-    this.homeViewModel = this.homeView.homeViewModel;
-  }
-
-  ngOnInit(){
-    try {
-      this.homeController.getDadosUsuario();
-    } catch (err){
-      console.log(err);
-    }
-  }
 }
