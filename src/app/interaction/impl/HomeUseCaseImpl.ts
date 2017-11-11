@@ -12,12 +12,17 @@ import {
   GetTopicosInteresseOutputBoundary,
   GetTopicosInteresseResponseData
 } from "@app/interaction/GetTopicosInteresseOutputBoundary";
+import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
+import ArticleRepository from "@app/data/repository/ArticleRepository";
+import Article from "@app/entity/Article";
 
 export default class HomeUseCaseImpl implements HomeUseCase{
   private usuarioRepository: UsuarioDataSource;
+  private articleRepository: ArticleDataSource;
 
   constructor(){
     this.usuarioRepository = new UsuarioRepository();
+    this.articleRepository = new ArticleRepository();
   }
 
   async getUsuario(requestData: GetDadosUsuarioRequestData, presenter: GetDadosUsuarioOutputBoundary) {
@@ -41,7 +46,17 @@ export default class HomeUseCaseImpl implements HomeUseCase{
   async getTopicos(requestData: GetTopicosInteresseRequestData, presenter: GetTopicosInteresseOutputBoundary) {
     let responseData: GetTopicosInteresseResponseData = new GetTopicosInteresseResponseData();
     try{
+      const idUsuario = requestData.idUsuario;
+      const article: Article = await this.articleRepository.get(idUsuario);
 
+      let articles: string[] = ["nome 1", "nome 2", "nome 3", "nome 4"];
+
+      responseData.topicListData.set("Primeiro Tópico", articles);
+      responseData.topicListData.set("Segundo Tópico", articles);
+      responseData.topicListData.set("Terceiro Tópico", articles);
+      responseData.topicListData.set("Quarto Tópico", articles);
+
+      presenter.getTopicosInsteresseSuccess(responseData);
     }
     catch (err){
       presenter.getTopicosInsteresseError(err)

@@ -42,5 +42,6 @@ export default class HomePresenterImpl implements HomePresenter{
   }
 
   getTopicosInsteresseError(errorData: any) {
+    this.view.showErrorAlert(errorData.message);
   }
 }
