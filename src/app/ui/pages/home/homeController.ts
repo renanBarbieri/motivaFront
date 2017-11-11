@@ -12,22 +12,17 @@ import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImp
 })
 export class HomeComponent implements OnInit{
   private homeView: HomeView;
-  private homeController: HomeController;
-  private homePresenter: HomePresenter;
 
   homeViewModel: HomeViewModel;
 
   constructor(){
     this.homeView = new HomeView();
-    this.homePresenter = new HomePresenterImpl(this.homeView);
-    this.homeController = new HomeController(this.homePresenter);
     this.homeViewModel = this.homeView.homeViewModel;
   }
 
   ngOnInit(){
     try {
-      this.homeController.getDadosUsuario();
-      this.homeController.getTopicosDeInteresse()
+      this.homeView.onViewInit()
     } catch (err){
       console.log(err);
     }
