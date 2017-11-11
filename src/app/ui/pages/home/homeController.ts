@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(){
     try {
       this.homeController.getDadosUsuario();
+      this.homeController.getTopicosDeInteresse()
     } catch (err){
       console.log(err);
     }

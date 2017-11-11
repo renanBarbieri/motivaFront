@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 @Component({
   selector: 'app-topic-articles',
@@ -8,18 +9,6 @@ import {Component, Input} from '@angular/core';
 export class TopicArticlesComponent {
   @Input()
   topicName: string;
-  articles: any[] = [
-    {
-      "name": "Douglas  Pace"
-    },
-    {
-      "name": "Mcleod  Mueller"
-    },
-    {
-      "name": "Douglas  Pace"
-    },
-    {
-      "name": "Mcleod  Mueller"
-    }
-  ];
+  @Input()
+  articles: CardViewModel[];
 }

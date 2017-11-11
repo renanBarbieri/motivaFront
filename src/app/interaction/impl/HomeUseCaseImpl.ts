@@ -7,6 +7,11 @@ import {
   GetDadosUsuarioResponseData
 } from "@app/interaction/GetDadosUsuarioOutputBoundary";
 import Usuario from "@app/entity/Usuario";
+import {GetTopicosInteresseRequestData} from "@app/interaction/GetTopicosInteresseInputBoundary";
+import {
+  GetTopicosInteresseOutputBoundary,
+  GetTopicosInteresseResponseData
+} from "@app/interaction/GetTopicosInteresseOutputBoundary";
 
 export default class HomeUseCaseImpl implements HomeUseCase{
   private usuarioRepository: UsuarioDataSource;
@@ -29,6 +34,17 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     }
     catch (err){
       presenter.getDadosUsuarioError(err);
+    }
+  }
+
+
+  async getTopicos(requestData: GetTopicosInteresseRequestData, presenter: GetTopicosInteresseOutputBoundary) {
+    let responseData: GetTopicosInteresseResponseData = new GetTopicosInteresseResponseData();
+    try{
+
+    }
+    catch (err){
+      presenter.getTopicosInsteresseError(err)
     }
   }
 }

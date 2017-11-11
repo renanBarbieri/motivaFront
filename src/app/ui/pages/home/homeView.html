@@ -3,16 +3,19 @@
       <app-left-sidebar
         username="{{homeViewModel.username}}"
         levelCompleted="{{homeViewModel.levelCompleted}}"
-        levelName="{{homeViewModel.levelName}}"
-      ></app-left-sidebar>
+        levelName="{{homeViewModel.levelName}}">
+
+      </app-left-sidebar>
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar></app-toolbar>
       <div class="content">
-        <app-topic-articles topicName="Avaliação de Desempenho"></app-topic-articles>
-        <app-topic-articles topicName="Cálculo Numérico"></app-topic-articles>
-        <app-topic-articles topicName="Inteligência Artificial"></app-topic-articles>
-        <app-topic-articles topicName="Desenvolvimento Ágil"></app-topic-articles>
+        <div *ngFor="let topic of homeViewModel.topicsList">
+          <app-topic-articles
+            topicName="{{topic.key}}"
+            articles="{{topic.value}}">
+          </app-topic-articles>
+        </div>
       </div>
   </div>
   <div class="rightSideBar">
