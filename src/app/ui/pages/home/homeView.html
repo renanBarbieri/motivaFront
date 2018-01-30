@@ -1,0 +1,25 @@
+<div class="pageContent" fxLayout="row">
+  <div class="leftSideBar" fxLayout="column" fxFlex="16%">
+      <app-left-sidebar
+        username="{{homeViewModel.username}}"
+        levelCompleted="{{homeViewModel.levelCompleted}}"
+        levelName="{{homeViewModel.levelName}}">
+
+      </app-left-sidebar>
+  </div>
+  <div class="pageCenter" fxLayout="column" fxFlex="84%">
+      <app-toolbar></app-toolbar>
+      <div class="content">
+        {{homeViewModel.topicsList.entries()}}
+        <!--<div *ngFor="let topic of topics()homeViewModel.topicsList.entries()">-->
+          <!--<app-topic-articles-->
+            <!--topicName="{{article.key}}"-->
+            <!--articles="{{article.value}}">-->
+          <!--</app-topic-articles>-->
+        <!--</div>-->
+      </div>
+  </div>
+  <div class="rightSideBar">
+
+  </div>
+</div>

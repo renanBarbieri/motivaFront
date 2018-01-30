@@ -1,60 +1,60 @@
 import {HomeUseCase} from "@app/interaction/HomeUseCase";
 import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
-import Usuario from "@app/entity/Usuario";
-import UsuarioRepository from "@app/data/repository/UsuarioRepository";
-import {GetDadosUsuarioRequestData} from "@app/interaction/GetDadosUsuarioInputBoundary";
+import Usuario from "@app/entity/User";
+import UsuarioRepository from "@app/data/repository/UserRepository";
+import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 import {
-  GetDadosUsuarioOutputBoundary,
-  GetDadosUsuarioResponseData
-} from "@app/interaction/GetDadosUsuarioOutputBoundary";
+  GetUserDataResponseHandler,
+  GetUserDataResponseData
+} from "@app/interaction/GetUserDataResponseHandler";
 
 describe('Teste dos casos de uso GetDadosUsuario', () => {
-  
+
   let homeUseCase: HomeUseCase;
   let presenterSpy: PresenterSpy;
-  
-  
+
+
   beforeEach(() => {
     homeUseCase = new HomeUseCaseImpl();
     presenterSpy = new PresenterSpy();
   });
-  
+
   function getUsuario(): Usuario {
     let usuario: Usuario = new Usuario();
-    
+
     usuario.username = "lcleite";
     usuario.email = "lcleite@email.com";
-    
+
     return usuario;
   }
-  
+
   it('deve receber os dados mockados de um usuario atraves da sua ID', async (done) => {
-    
+
     spyOn(UsuarioRepository.prototype, "get").and.callFake(() => {
       return getUsuario();
     });
-    
-    let requestData: GetDadosUsuarioRequestData = new GetDadosUsuarioRequestData();
-    requestData.idUsuario = "1";
-  
-    await homeUseCase.getUsuario(requestData, presenterSpy);
-  
+
+    let requestData: GetUserDataRequestData = new GetUserDataRequestData();
+    requestData.userId = "1";
+
+    await homeUseCase.getUser(requestData, presenterSpy);
+
     expect(presenterSpy.responseData.username).toEqual("lcleite");
-  
+
     done();
   });
-  
+
 });
 
-class PresenterSpy implements GetDadosUsuarioOutputBoundary{
-  
-  responseData: GetDadosUsuarioResponseData;
-  
-  getDadosUsuarioSuccess(responseData: GetDadosUsuarioResponseData) {
+class PresenterSpy implements GetUserDataResponseHandler{
+
+  responseData: GetUserDataResponseData;
+
+  onGetUserDataSuccess(responseData: GetUserDataResponseData) {
     this.responseData = responseData;
   }
-  
-  getDadosUsuarioError(errorData: any) {
+
+  onGetUserDataError(errorData: any) {
     throw new Error("Method not implemented.");
   }
 }

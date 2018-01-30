@@ -1,11 +1,11 @@
 <div class="leftSideContent" fxLayout="column">
     <img class="profilePic" src="https://source.unsplash.com/random/200x200" />
-  {{homeViewModel.username}}
-    <span matTooltip="60% concluído" position="left">
-        <mat-progress-bar class="userProgress" mode="determinate" value="60" color="accent"></mat-progress-bar>
+  {{username}}
+    <span matTooltip="{{levelCompleted}}% concluído" position="left">
+        <mat-progress-bar class="userProgress" mode="determinate" value="{{levelCompleted}}" color="accent"></mat-progress-bar>
     </span>
     <mat-chip-list>
-        <mat-chip color="accent" selected="true" class="chipLevel">Amador</mat-chip>
+        <mat-chip color="accent" selected="true" class="chipLevel">{{levelName}}</mat-chip>
     </mat-chip-list>
     <mat-grid-list cols="2" rowHeight="2em">
         <mat-grid-tile>1</mat-grid-tile>

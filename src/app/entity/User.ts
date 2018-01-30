@@ -1,36 +1,36 @@
-import Nivel from './Nivel';
-import Recompensa from './Recompensa';
+import Level from './Level';
+import Reward from './Reward';
 import Tag from './Tag';
 import {Entity} from "./Entity";
 
-export default class Usuario extends Entity{
-  private _nome: string;
-  private _descricao: string;
+export default class User extends Entity{
+  private _name: string;
+  private _description: string;
   private _username: string;
   private _avatar: string;
   private _email: string;
-  private _experiencia: number;
+  private _experience: number;
   private _facebook: string;
   private _github: string;
   private _linkedin: string;
-  private _nivel: Nivel;
-  private _recompensas: Recompensa[];
-  private _interesses: Tag[];
+  private _level: Level;
+  private _rewards: Reward[];
+  private _interests: Tag[];
 
-  get nome(): string {
-    return this._nome;
+  get name(): string {
+    return this._name;
   }
 
-  set nome(value: string) {
-    this._nome = value;
+  set name(value: string) {
+    this._name = value;
   }
 
-  get descricao(): string {
-    return this._descricao;
+  get description(): string {
+    return this._description;
   }
 
-  set descricao(value: string) {
-    this._descricao = value;
+  set description(value: string) {
+    this._description = value;
   }
 
   get username(): string {
@@ -57,12 +57,12 @@ export default class Usuario extends Entity{
     this._email = value;
   }
 
-  get experiencia(): number {
-    return this._experiencia;
+  get experience(): number {
+    return this._experience;
   }
 
-  set experiencia(value: number) {
-    this._experiencia = value;
+  set experience(value: number) {
+    this._experience = value;
   }
 
   get facebook(): string {
@@ -89,27 +89,27 @@ export default class Usuario extends Entity{
     this._linkedin = value;
   }
 
-  get nivel(): Nivel {
-    return this._nivel;
+  get level(): Level {
+    return this._level;
   }
 
-  set nivel(value: Nivel) {
-    this._nivel = value;
+  set level(value: Level) {
+    this._level = value;
   }
 
-  get recompensas(): Recompensa[] {
-    return this._recompensas;
+  get rewards(): Reward[] {
+    return this._rewards;
   }
 
-  set recompensas(value: Recompensa[]) {
-    this._recompensas = value;
+  set rewards(value: Reward[]) {
+    this._rewards = value;
   }
 
-  get interesses(): Tag[] {
-    return this._interesses;
+  get interests(): Tag[] {
+    return this._interests;
   }
 
-  set interesses(value: Tag[]) {
-    this._interesses = value;
+  set interests(value: Tag[]) {
+    this._interests = value;
   }
 }
