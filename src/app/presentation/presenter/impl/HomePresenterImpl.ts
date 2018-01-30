@@ -1,19 +1,42 @@
-import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
-import HomeView from "@app/presentation/view/HomeView";
 import {GetDadosUsuarioResponseData} from "@app/interaction/GetDadosUsuarioOutputBoundary";
 import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
 import {GetTopicosInteresseResponseData} from "@app/interaction/GetTopicosInteresseOutputBoundary";
 import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
+import {HomePresenterContract, HomeUiContract} from "@app/presentation/contracts/HomeContract";
+import {HomeUseCase} from "@app/interaction/HomeUseCase";
+import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
+import {GetTopicosInteresseRequestData} from "@app/interaction/GetTopicosInteresseInputBoundary";
+import {GetDadosUsuarioRequestData} from "@app/interaction/GetDadosUsuarioInputBoundary";
 
-export default class HomePresenterImpl implements HomePresenter{
-  private view: HomeView;
+export default class HomePresenterImpl implements HomePresenterContract{
+  private view: HomeUiContract;
+  private homeUseCase: HomeUseCase;
 
-  constructor(view: HomeView) {
+  constructor(view: HomeUiContract) {
     this.view = view;
+    this.homeUseCase = new HomeUseCaseImpl();
+  }
+
+  onViewInit() {
+    this.getDadosUsuario();
+    this.getTopicosDeInteresse()
+  }
+
+  getDadosUsuario(){
+    let requestData = new GetDadosUsuarioRequestData();
+    requestData.idUsuario = "id";
+    this.homeUseCase.getUsuario(requestData, this);
+  }
+
+  getTopicosDeInteresse(){
+    let requestData = new GetTopicosInteresseRequestData();
+    requestData.idUsuario = "id";
+
+    this.homeUseCase.getTopicos(requestData, this);
   }
 
   getDadosUsuarioSuccess(responseData: GetDadosUsuarioResponseData) {
-    let homeViewModel: HomeViewModel = this.view.homeViewModel;
+    let homeViewModel: HomeViewModel = this.view.getViewModel();
 
     homeViewModel.username = responseData.username;
     homeViewModel.levelCompleted = responseData.levelCompleted;
@@ -28,7 +51,7 @@ export default class HomePresenterImpl implements HomePresenter{
 
 
   getTopicosInsteresseSuccess(responseData: GetTopicosInteresseResponseData) {
-    let homeViewModel: HomeViewModel = this.view.homeViewModel;
+    let homeViewModel: HomeViewModel = this.view.getViewModel();
     homeViewModel.topicsList = new Map();
     responseData.topicListData.forEach((value: string[], key: string) => {
       let cardList: CardViewModel[] = [];

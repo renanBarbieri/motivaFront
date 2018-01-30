@@ -1,36 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
-import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
-import HomeController from "@app/presentation/controller/HomeController";
-import HomeView from "@app/presentation/view/HomeView";
 import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImpl";
+import {HomePresenterContract, HomeUiContract} from "@app/presentation/contracts/HomeContract";
 
 @Component({
   selector: 'app-home',
   templateUrl: './homeView.html',
   styleUrls: ['./homeStyle.css']
 })
-export class HomeComponent implements OnInit{
-  private homeView: HomeView;
+export class HomeComponent implements OnInit, HomeUiContract{
 
-  homeViewModel: HomeViewModel;
+  private homePresenter: HomePresenterContract;
+  private homeViewModel: HomeViewModel;
 
   constructor(){
-    this.homeView = new HomeView();
-    this.homeViewModel = this.homeView.homeViewModel;
+    this.homeViewModel = new HomeViewModel();
+    this.homePresenter = new HomePresenterImpl(this);
   }
 
   ngOnInit(){
-    try {
-      this.homeView.onViewInit()
-    } catch (err){
-      console.log(err);
-    }
+    this.homePresenter.onViewInit()
   }
 
-  topics(): IterableIterator<string>{
-    return this.homeViewModel.topicsList.keys()
+  updateViewModel(homeViewModel: HomeViewModel) {
   }
 
+  getViewModel(): HomeViewModel {
+    return this.homeViewModel;
+  }
 
+  showErrorAlert(message: String) {
+  }
 }
