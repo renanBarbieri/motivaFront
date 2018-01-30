@@ -1,13 +1,13 @@
 import {Entity} from "./Entity";
 
 export default class Tag extends Entity{
-  private _nome: string;
+  private _name: string;
 
-  get nome(): string {
-    return this._nome;
+  get name(): string {
+    return this._name;
   }
 
-  set nome(value: string) {
-    this._nome = value;
+  set name(value: string) {
+    this._name = value;
   }
 }

@@ -1,23 +1,23 @@
 import {HomeUseCase} from "@app/interaction/HomeUseCase";
-import {UsuarioDataSource} from "@app/data/datasource/UsuarioDataSource";
-import UsuarioRepository from "@app/data/repository/UsuarioRepository";
-import {GetDadosUsuarioRequestData} from "@app/interaction/GetDadosUsuarioInputBoundary";
+import {UserDataSource} from "@app/data/datasource/UserDataSource";
+import UsuarioRepository from "@app/data/repository/UserRepository";
+import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 import {
-  GetDadosUsuarioOutputBoundary,
-  GetDadosUsuarioResponseData
-} from "@app/interaction/GetDadosUsuarioOutputBoundary";
-import Usuario from "@app/entity/Usuario";
-import {GetTopicosInteresseRequestData} from "@app/interaction/GetTopicosInteresseInputBoundary";
+  GetUserDataResponseHandler,
+  GetUserDataResponseData
+} from "@app/interaction/GetUserDataResponseHandler";
+import Usuario from "@app/entity/User";
+import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
 import {
-  GetTopicosInteresseOutputBoundary,
-  GetTopicosInteresseResponseData
-} from "@app/interaction/GetTopicosInteresseOutputBoundary";
+  GetTopicsInterestResponseHandler,
+  GetTopicsInterestResponseData
+} from "@app/interaction/GetTopicsInterestRespondeHandler";
 import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
 import ArticleRepository from "@app/data/repository/ArticleRepository";
 import Article from "@app/entity/Article";
 
 export default class HomeUseCaseImpl implements HomeUseCase{
-  private usuarioRepository: UsuarioDataSource;
+  private usuarioRepository: UserDataSource;
   private articleRepository: ArticleDataSource;
 
   constructor(){
@@ -25,40 +25,40 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     this.articleRepository = new ArticleRepository();
   }
 
-  async getUsuario(requestData: GetDadosUsuarioRequestData, presenter: GetDadosUsuarioOutputBoundary) {
-    let responseData: GetDadosUsuarioResponseData = new GetDadosUsuarioResponseData();
+  async getUser(requestData: GetUserDataRequestData, presenter: GetUserDataResponseHandler) {
+    let responseData: GetUserDataResponseData = new GetUserDataResponseData();
     try{
-      const idUsuario = requestData.idUsuario;
+      const idUsuario = requestData.userId;
       const usuario: Usuario = await this.usuarioRepository.get(idUsuario);
 
       responseData.username = usuario.username;
-      responseData.levelCompleted = usuario.nivel.experiencia;
-      responseData.levelName = usuario.nivel.nome;
+      responseData.levelCompleted = usuario.level.experience;
+      responseData.levelName = usuario.level.name;
 
-      presenter.getDadosUsuarioSuccess(responseData);
+      presenter.onGetUserDataSuccess(responseData);
     }
     catch (err){
-      presenter.getDadosUsuarioError(err);
+      presenter.onGetUserDataError(err);
     }
   }
 
 
-  async getTopicos(requestData: GetTopicosInteresseRequestData, presenter: GetTopicosInteresseOutputBoundary) {
-    let responseData: GetTopicosInteresseResponseData = new GetTopicosInteresseResponseData();
+  async getTopics(requestData: GetTopicsInterestRequestData, presenter: GetTopicsInterestResponseHandler) {
+    let responseData: GetTopicsInterestResponseData = new GetTopicsInterestResponseData();
     try{
-      const idUsuario = requestData.idUsuario;
-      // const article: Article = await this.articleRepository.get(idUsuario);
-      let articles: string[] = ["nome 1", "nome 2", "nome 3", "nome 4"];
+      const idUsuario = requestData.userId;
+      // const article: Article = await this.articleRepository.get(userId);
+      let articles: string[] = ["name 1", "name 2", "name 3", "name 4"];
       responseData.topicListData = new Map();
       responseData.topicListData.set("Primeiro Tópico", articles);
       responseData.topicListData.set("Segundo Tópico", articles);
       responseData.topicListData.set("Terceiro Tópico", articles);
       responseData.topicListData.set("Quarto Tópico", articles);
 
-      presenter.getTopicosInsteresseSuccess(responseData);
+      presenter.onGetTopicsOfInterestSuccess(responseData);
     }
     catch (err){
-      presenter.getTopicosInsteresseError(err)
+      presenter.onGetTopicsOfInterestError(err)
     }
   }
 }

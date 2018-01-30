@@ -1,6 +1,4 @@
-import {GetDadosUsuarioInputBoundary} from "./GetDadosUsuarioInputBoundary";
-import {GetTopicosInteresseInputBoundary} from "@app/interaction/GetTopicosInteresseInputBoundary";
+import {GetUserDataUseCase} from "./GetUserDataUseCase";
+import {GetTopicsInterestUseCase} from "@app/interaction/GetTopicsInterestUseCase";
 
-export interface HomeUseCase extends GetDadosUsuarioInputBoundary, GetTopicosInteresseInputBoundary{
-
-}
+export interface HomeUseCase extends GetUserDataUseCase, GetTopicsInterestUseCase{}

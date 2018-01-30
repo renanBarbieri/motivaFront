@@ -1,12 +1,12 @@
-import {GetDadosUsuarioResponseData} from "@app/interaction/GetDadosUsuarioOutputBoundary";
+import {GetUserDataResponseData} from "@app/interaction/GetUserDataResponseHandler";
 import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
-import {GetTopicosInteresseResponseData} from "@app/interaction/GetTopicosInteresseOutputBoundary";
+import {GetTopicsInterestResponseData} from "@app/interaction/GetTopicsInterestRespondeHandler";
 import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 import {HomePresenterContract, HomeUiContract} from "@app/presentation/contracts/HomeContract";
 import {HomeUseCase} from "@app/interaction/HomeUseCase";
 import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
-import {GetTopicosInteresseRequestData} from "@app/interaction/GetTopicosInteresseInputBoundary";
-import {GetDadosUsuarioRequestData} from "@app/interaction/GetDadosUsuarioInputBoundary";
+import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
+import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 
 export default class HomePresenterImpl implements HomePresenterContract{
   private view: HomeUiContract;
@@ -18,24 +18,24 @@ export default class HomePresenterImpl implements HomePresenterContract{
   }
 
   onViewInit() {
-    this.getDadosUsuario();
-    this.getTopicosDeInteresse()
+    this.getUserData();
+    this.getTopicsOfInterest()
   }
 
-  getDadosUsuario(){
-    let requestData = new GetDadosUsuarioRequestData();
-    requestData.idUsuario = "id";
-    this.homeUseCase.getUsuario(requestData, this);
+  getUserData(){
+    let requestData = new GetUserDataRequestData();
+    requestData.userId = "id";
+    this.homeUseCase.getUser(requestData, this);
   }
 
-  getTopicosDeInteresse(){
-    let requestData = new GetTopicosInteresseRequestData();
-    requestData.idUsuario = "id";
+  getTopicsOfInterest(){
+    let requestData = new GetTopicsInterestRequestData();
+    requestData.userId = "id";
 
-    this.homeUseCase.getTopicos(requestData, this);
+    this.homeUseCase.getTopics(requestData, this);
   }
 
-  getDadosUsuarioSuccess(responseData: GetDadosUsuarioResponseData) {
+  onGetUserDataSuccess(responseData: GetUserDataResponseData) {
     let homeViewModel: HomeViewModel = this.view.getViewModel();
 
     homeViewModel.username = responseData.username;
@@ -45,12 +45,12 @@ export default class HomePresenterImpl implements HomePresenterContract{
     this.view.updateViewModel(homeViewModel);
   }
 
-  getDadosUsuarioError(errorData: any) {
+  onGetUserDataError(errorData: any) {
     this.view.showErrorAlert(errorData.message);
   }
 
 
-  getTopicosInsteresseSuccess(responseData: GetTopicosInteresseResponseData) {
+  onGetTopicsOfInterestSuccess(responseData: GetTopicsInterestResponseData) {
     let homeViewModel: HomeViewModel = this.view.getViewModel();
     homeViewModel.topicsList = new Map();
     responseData.topicListData.forEach((value: string[], key: string) => {
@@ -67,7 +67,7 @@ export default class HomePresenterImpl implements HomePresenterContract{
 
   }
 
-  getTopicosInsteresseError(errorData: any) {
+  onGetTopicsOfInterestError(errorData: any) {
     this.view.showErrorAlert(errorData.message);
   }
 }

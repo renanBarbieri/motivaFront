@@ -11,7 +11,7 @@ import {HomePresenterContract, HomeUiContract} from "@app/presentation/contracts
 export class HomeComponent implements OnInit, HomeUiContract{
 
   private homePresenter: HomePresenterContract;
-  private homeViewModel: HomeViewModel;
+  homeViewModel: HomeViewModel;
 
   constructor(){
     this.homeViewModel = new HomeViewModel();
