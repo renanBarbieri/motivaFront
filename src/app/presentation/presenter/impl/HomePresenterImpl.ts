@@ -2,22 +2,25 @@ import {GetUserDataResponseData} from "@app/interaction/GetUserDataResponseHandl
 import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
 import {GetTopicsInterestResponseData} from "@app/interaction/GetTopicsInterestRespondeHandler";
 import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
-import {HomePresenterContract, HomeUiContract} from "@app/presentation/contracts/HomeContract";
+import {HomeUiView} from "@app/presentation/view/HomeUIView";
 import {HomeUseCase} from "@app/interaction/HomeUseCase";
 import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
 import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
 import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
+import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
+import {Injectable} from "@angular/core";
 
-export default class HomePresenterImpl implements HomePresenterContract{
-  private view: HomeUiContract;
+@Injectable()
+export default class HomePresenterImpl implements HomePresenter{
+  private view: HomeUiView;
   private homeUseCase: HomeUseCase;
 
-  constructor(view: HomeUiContract) {
-    this.view = view;
+  constructor() {
     this.homeUseCase = new HomeUseCaseImpl();
   }
 
-  onViewInit() {
+  onViewInit(view: HomeUiView) {
+    this.view = view;
     this.getUserData();
     this.getTopicsOfInterest()
   }
