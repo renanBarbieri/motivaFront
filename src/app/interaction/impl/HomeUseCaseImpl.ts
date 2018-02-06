@@ -2,38 +2,34 @@ import {HomeUseCase} from "@app/interaction/HomeUseCase";
 import {UserDataSource} from "@app/data/datasource/UserDataSource";
 import UsuarioRepository from "@app/data/repository/UserRepository";
 import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
-import {
-  GetUserDataResponseHandler,
-  GetUserDataResponseData
-} from "@app/interaction/GetUserDataResponseHandler";
-import Usuario from "@app/entity/User";
+import {GetUserDataResponseData, GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
+import {default as User} from "@app/entity/User";
 import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
 import {
-  GetTopicsInterestResponseHandler,
-  GetTopicsInterestResponseData
+  GetTopicsInterestResponseData,
+  GetTopicsInterestResponseHandler
 } from "@app/interaction/GetTopicsInterestRespondeHandler";
 import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
 import ArticleRepository from "@app/data/repository/ArticleRepository";
-import Article from "@app/entity/Article";
 
 export default class HomeUseCaseImpl implements HomeUseCase{
-  private usuarioRepository: UserDataSource;
+  private userRepository: UserDataSource;
   private articleRepository: ArticleDataSource;
 
   constructor(){
-    this.usuarioRepository = new UsuarioRepository();
+    this.userRepository = new UsuarioRepository();
     this.articleRepository = new ArticleRepository();
   }
 
   async getUser(requestData: GetUserDataRequestData, presenter: GetUserDataResponseHandler) {
     let responseData: GetUserDataResponseData = new GetUserDataResponseData();
     try{
-      const idUsuario = requestData.userId;
-      const usuario: Usuario = await this.usuarioRepository.get(idUsuario);
+      const userId = requestData.userId;
+      const user: User = await this.userRepository.get(userId);
 
-      responseData.username = usuario.username;
-      responseData.levelCompleted = usuario.level.experience;
-      responseData.levelName = usuario.level.name;
+      responseData.username = user.username;
+      responseData.levelCompleted = user.level.experience;
+      responseData.levelName = user.level.name;
 
       presenter.onGetUserDataSuccess(responseData);
     }
@@ -46,7 +42,7 @@ export default class HomeUseCaseImpl implements HomeUseCase{
   async getTopics(requestData: GetTopicsInterestRequestData, presenter: GetTopicsInterestResponseHandler) {
     let responseData: GetTopicsInterestResponseData = new GetTopicsInterestResponseData();
     try{
-      const idUsuario = requestData.userId;
+      const userId = requestData.userId;
       // const article: Article = await this.articleRepository.get(userId);
       let articles: string[] = ["name 1", "name 2", "name 3", "name 4"];
       responseData.topicListData = new Map();
