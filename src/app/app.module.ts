@@ -14,6 +14,7 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
+import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import {
     MatTooltipModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [HomeUseCaseImpl],
   bootstrap: [HomeComponent]
 })
 export class AppModule { }

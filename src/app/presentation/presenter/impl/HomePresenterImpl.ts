@@ -12,49 +12,29 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export default class HomePresenterImpl implements HomePresenter{
-  private view: HomeUiView;
-  private homeUseCase: HomeUseCase;
+  private _view: HomeUiView;
 
-  constructor() {
-    this.homeUseCase = new HomeUseCaseImpl();
-  }
-
-  onViewInit(view: HomeUiView) {
-    this.view = view;
-    this.getUserData();
-    this.getTopicsOfInterest()
-  }
-
-  getUserData(){
-    let requestData = new GetUserDataRequestData();
-    requestData.userId = "id";
-    this.homeUseCase.getUser(requestData, this);
-  }
-
-  getTopicsOfInterest(){
-    let requestData = new GetTopicsInterestRequestData();
-    requestData.userId = "id";
-
-    this.homeUseCase.getTopics(requestData, this);
+  set view(value: HomeUiView) {
+    this._view = value;
   }
 
   onGetUserDataSuccess(responseData: GetUserDataResponseData) {
-    let homeViewModel: HomeViewModel = this.view.getViewModel();
+    let homeViewModel: HomeViewModel = this._view.getViewModel();
 
     homeViewModel.username = responseData.username;
     homeViewModel.levelCompleted = responseData.levelCompleted;
     homeViewModel.levelName = responseData.levelName;
 
-    this.view.updateViewModel(homeViewModel);
+    this._view.updateViewModel(homeViewModel);
   }
 
   onGetUserDataError(errorData: any) {
-    this.view.showErrorAlert(errorData.message);
+    this._view.showErrorAlert(errorData.message);
   }
 
 
   onGetTopicsOfInterestSuccess(responseData: GetTopicsInterestResponseData) {
-    let homeViewModel: HomeViewModel = this.view.getViewModel();
+    let homeViewModel: HomeViewModel = this._view.getViewModel();
     homeViewModel.topicsList = new Map();
     responseData.topicListData.forEach((value: string[], key: string) => {
       let cardList: CardViewModel[] = [];
@@ -66,11 +46,11 @@ export default class HomePresenterImpl implements HomePresenter{
       homeViewModel.topicsList.set(key, cardList)
     });
 
-    this.view.updateViewModel(homeViewModel)
+    this._view.updateViewModel(homeViewModel)
 
   }
 
   onGetTopicsOfInterestError(errorData: any) {
-    this.view.showErrorAlert(errorData.message);
+    this._view.showErrorAlert(errorData.message);
   }
 }

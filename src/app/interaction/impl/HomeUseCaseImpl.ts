@@ -11,7 +11,9 @@ import {
 } from "@app/interaction/GetTopicsInterestRespondeHandler";
 import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
 import ArticleRepository from "@app/data/repository/ArticleRepository";
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export default class HomeUseCaseImpl implements HomeUseCase{
   private userRepository: UserDataSource;
   private articleRepository: ArticleDataSource;
