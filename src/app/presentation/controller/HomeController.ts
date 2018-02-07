@@ -12,13 +12,14 @@ export default class HomeController{
   getUserData(presenter: HomePresenter){
     let requestData = new GetUserDataRequestData();
     requestData.userId = "id";
+    // noinspection JSIgnoredPromiseFromCall
     this.homeUseCase.getUser(requestData, presenter);
   }
 
   getTopicsOfInterest(presenter: HomePresenter){
     let requestData = new GetTopicsInterestRequestData();
     requestData.userId = "id";
-
+    // noinspection JSIgnoredPromiseFromCall
     this.homeUseCase.getTopics(requestData, presenter);
   }
 

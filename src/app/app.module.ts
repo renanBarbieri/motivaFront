@@ -15,6 +15,9 @@ import {
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
+import UserRepository from "@app/data/repository/UserRepository";
+import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
+import ArticleRepository from "@app/data/repository/ArticleRepository";
 
 @NgModule({
   declarations: [
@@ -38,7 +41,11 @@ import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
     MatTooltipModule,
     MatGridListModule
   ],
-  providers: [HomeUseCaseImpl],
+  providers: [
+    HomeUseCaseImpl,
+    UserRepository,
+    ArticleRepository
+  ],
   bootstrap: [HomeComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import {HomeUseCase} from "@app/interaction/HomeUseCase";
 import {UserDataSource} from "@app/data/datasource/UserDataSource";
-import UsuarioRepository from "@app/data/repository/UserRepository";
+import UsuarioRepository, {default as UserRepository} from "@app/data/repository/UserRepository";
 import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 import {GetUserDataResponseData, GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
 import {default as User} from "@app/entity/User";
@@ -15,13 +15,7 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export default class HomeUseCaseImpl implements HomeUseCase{
-  private userRepository: UserDataSource;
-  private articleRepository: ArticleDataSource;
-
-  constructor(){
-    this.userRepository = new UsuarioRepository();
-    this.articleRepository = new ArticleRepository();
-  }
+  constructor(private userRepository: UserRepository, private articleRepository: ArticleRepository){}
 
   async getUser(requestData: GetUserDataRequestData, presenter: GetUserDataResponseHandler) {
     let responseData: GetUserDataResponseData = new GetUserDataResponseData();
