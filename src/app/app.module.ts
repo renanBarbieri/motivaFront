@@ -18,6 +18,8 @@ import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
 import UserRepository from "@app/data/repository/UserRepository";
 import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
 import ArticleRepository from "@app/data/repository/ArticleRepository";
+import UserApiDataSource from "@app/data/datasource/impl/UserApiDataSource";
+import ArticleApiDataSource from "@app/data/datasource/impl/ArticleApiDataSource";
 
 @NgModule({
   declarations: [
@@ -43,8 +45,12 @@ import ArticleRepository from "@app/data/repository/ArticleRepository";
   ],
   providers: [
     HomeUseCaseImpl,
+
     UserRepository,
-    ArticleRepository
+    ArticleRepository,
+
+    UserApiDataSource,
+    ArticleApiDataSource
   ],
   bootstrap: [HomeComponent]
 })

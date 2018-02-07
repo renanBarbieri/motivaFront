@@ -6,11 +6,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export default class ArticleRepository implements ArticleDataSource{
 
-  private articleApiDataSource: ArticleDataSource;
-
-  constructor(){
-    this.articleApiDataSource = new ArticleApiDataSource();
-  }
+  constructor(private articleApiDataSource: ArticleApiDataSource){}
 
   get(id: string): Promise<Article> {
     return new Promise<Article>(async (resolve, reject) => {

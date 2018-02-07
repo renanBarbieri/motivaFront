@@ -6,11 +6,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export default class UserRepository implements UserDataSource{
 
-  private userApiDataSource: UserDataSource;
-
-  constructor(){
-    this.userApiDataSource = new UsuarioApiDataSource();
-  }
+  constructor(private userApiDataSource: UsuarioApiDataSource){}
 
   get(id: string): Promise<User> {
     return new Promise<User>(async (resolve, reject) => {
