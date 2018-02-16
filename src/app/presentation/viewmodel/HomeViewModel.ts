@@ -4,5 +4,5 @@ export default class HomeViewModel{
   username: string;
   levelCompleted: number;
   levelName: string;
-  topicsList: Map<string, CardViewModel[]>
+  topicsList: Map<string, CardViewModel[]> = new Map();
 }

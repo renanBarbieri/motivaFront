@@ -1,24 +1,28 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
-import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImpl";
 import {HomeUiView} from "@app/presentation/view/HomeUIView";
+import HomeController from "@app/presentation/controller/HomeController";
+import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImpl";
 
 @Component({
   selector: 'app-home',
   templateUrl: './homeView.html',
   styleUrls: ['./homeStyle.css'],
-  providers: [HomePresenterImpl]
+  providers: [HomeController, HomePresenterImpl]
 })
 export class HomeComponent implements OnInit, HomeUiView{
 
   homeViewModel: HomeViewModel;
 
-  constructor(private homePresenter: HomePresenterImpl){
+  constructor(
+      @Inject(HomePresenterImpl) private homePresenter,
+      @Inject(HomeController) private homeController){
     this.homeViewModel = new HomeViewModel();
   }
 
   ngOnInit(){
-    this.homePresenter.onViewInit(this)
+    this.homePresenter.onViewInit(this);
+    this.homeController.onViewInit(this.homePresenter)
   }
 
   updateViewModel(homeViewModel: HomeViewModel) {

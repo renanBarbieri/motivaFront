@@ -1,42 +1,22 @@
-import {GetUserDataResponseData} from "@app/interaction/GetUserDataResponseHandler";
-import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
-import {GetTopicsInterestResponseData} from "@app/interaction/GetTopicsInterestRespondeHandler";
-import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 import {HomeUiView} from "@app/presentation/view/HomeUIView";
-import {HomeUseCase} from "@app/interaction/HomeUseCase";
-import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
-import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
-import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
-import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
 import {Injectable} from "@angular/core";
+import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
+import {GetUserDataResponseData} from "@app/interaction/GetUserDataResponseHandler";
+import {GetTopicsInterestResponseData} from "@app/interaction/GetTopicsInterestRespondeHandler";
+import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
+import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 @Injectable()
 export default class HomePresenterImpl implements HomePresenter{
   private view: HomeUiView;
-  private homeUseCase: HomeUseCase;
 
   constructor() {
-    this.homeUseCase = new HomeUseCaseImpl();
   }
 
   onViewInit(view: HomeUiView) {
     this.view = view;
-    this.getUserData();
-    this.getTopicsOfInterest()
   }
 
-  getUserData(){
-    let requestData = new GetUserDataRequestData();
-    requestData.userId = "id";
-    this.homeUseCase.getUser(requestData, this);
-  }
-
-  getTopicsOfInterest(){
-    let requestData = new GetTopicsInterestRequestData();
-    requestData.userId = "id";
-
-    this.homeUseCase.getTopics(requestData, this);
-  }
 
   onGetUserDataSuccess(responseData: GetUserDataResponseData) {
     let homeViewModel: HomeViewModel = this.view.getViewModel();
@@ -51,7 +31,6 @@ export default class HomePresenterImpl implements HomePresenter{
   onGetUserDataError(errorData: any) {
     this.view.showErrorAlert(errorData.message);
   }
-
 
   onGetTopicsOfInterestSuccess(responseData: GetTopicsInterestResponseData) {
     let homeViewModel: HomeViewModel = this.view.getViewModel();
