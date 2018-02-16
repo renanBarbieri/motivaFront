@@ -14,6 +14,10 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
+import UserRepository from "@app/data/repository/UserRepository";
+import ArticleRepository from "@app/data/repository/ArticleRepository";
+import UserApiDataSource from "@app/data/datasource/impl/UserApiDataSource";
+import ArticleApiDataSource from "@app/data/datasource/impl/ArticleApiDataSource";
 
 @NgModule({
   declarations: [
@@ -37,7 +41,14 @@ import {
     MatTooltipModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [
+    //Repositorys
+    UserRepository,
+    ArticleRepository,
+    //DataSources
+    UserApiDataSource,
+    ArticleApiDataSource
+  ],
   bootstrap: [HomeComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
 import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
 import Article from "@app/entity/Article";
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export default class ArticleApiDataSource implements ArticleDataSource{
 
   get(id: string): Promise<Article> {

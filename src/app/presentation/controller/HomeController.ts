@@ -1,6 +1,5 @@
 import {GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
 import {GetTopicsInterestResponseHandler} from "@app/interaction/GetTopicsInterestRespondeHandler";
-import {HomeUseCase} from "@app/interaction/HomeUseCase";
 import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
 import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
 import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
@@ -9,11 +8,8 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export default class HomeController{
-  private homeUseCase: HomeUseCase;
 
-  constructor() {
-    this.homeUseCase = new HomeUseCaseImpl();
-  }
+  constructor(private homeUseCase: HomeUseCaseImpl) {}
 
   onViewInit(presenter: HomePresenter) {
     this.getUserData(presenter);
