@@ -10,14 +10,13 @@
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar></app-toolbar>
       <div class="content">
-
         {{homeViewModel.topicsList.size}}
-        <!--<div *ngFor="let topic of topics()homeViewModel.topicsList.entries()">-->
-          <!--<app-topic-articles-->
-            <!--topicName="{{article.key}}"-->
-            <!--articles="{{article.value}}">-->
-          <!--</app-topic-articles>-->
-        <!--</div>-->
+        <div *ngFor="let topicName of homeViewModel.topicsKeys">
+          <app-topic-articles
+            topicName = "{{topicName}}"
+            articles = "{{homeViewModel.topicsList.get(topicName)}}">
+          </app-topic-articles>
+        </div>
       </div>
   </div>
   <div class="rightSideBar">

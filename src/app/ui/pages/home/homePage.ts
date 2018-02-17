@@ -4,35 +4,42 @@ import {HomeUiView} from "@app/presentation/view/HomeUIView";
 import HomeController from "@app/presentation/controller/HomeController";
 import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImpl";
 import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
+import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 @Component({
   selector: 'app-home',
   templateUrl: './homeView.html',
   styleUrls: ['./homeStyle.css'],
-  providers: [HomeController, HomePresenterImpl, HomeUseCaseImpl]
+  providers: [HomeController, HomePresenterImpl, HomeViewModel, HomeUseCaseImpl]
 })
 export class HomeComponent implements OnInit, HomeUiView{
 
-  homeViewModel: HomeViewModel;
-
   constructor(
       @Inject(HomePresenterImpl) private homePresenter,
-      @Inject(HomeController) private homeController){
-    this.homeViewModel = new HomeViewModel();
-  }
+      @Inject(HomeController) private homeController,
+      @Inject(HomeViewModel) public homeViewModel)
+  {}
 
   ngOnInit(){
     this.homePresenter.onViewInit(this);
     this.homeController.onViewInit(this.homePresenter)
   }
 
-  updateViewModel(homeViewModel: HomeViewModel) {
+  updateUserData(username: string, levelCompleted: number, levelName: string) {
+    this.homeViewModel.username = username;
+    this.homeViewModel.levelCompleted = levelCompleted;
+    this.homeViewModel.levelName = levelName;
   }
 
-  getViewModel(): HomeViewModel {
-    return this.homeViewModel;
+  updateTopicList(topicList: Map<string, CardViewModel[]>) {
+    this.homeViewModel.topicsList.clear();
+    topicList.forEach((value: CardViewModel[], key: string) => {
+      this.homeViewModel.topicsKeys.push(key);
+      this.homeViewModel.topicsList.set(key, value.toString())
+    });
   }
 
   showErrorAlert(message: String) {
+
   }
 }

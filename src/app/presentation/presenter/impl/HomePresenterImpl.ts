@@ -3,7 +3,6 @@ import {Injectable} from "@angular/core";
 import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
 import {GetUserDataResponseData} from "@app/interaction/GetUserDataResponseHandler";
 import {GetTopicsInterestResponseData} from "@app/interaction/GetTopicsInterestRespondeHandler";
-import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
 import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 @Injectable()
@@ -19,13 +18,7 @@ export default class HomePresenterImpl implements HomePresenter{
 
 
   onGetUserDataSuccess(responseData: GetUserDataResponseData) {
-    let homeViewModel: HomeViewModel = this.view.getViewModel();
-
-    homeViewModel.username = responseData.username;
-    homeViewModel.levelCompleted = responseData.levelCompleted;
-    homeViewModel.levelName = responseData.levelName;
-
-    this.view.updateViewModel(homeViewModel);
+    this.view.updateUserData(responseData.username, responseData.levelCompleted, responseData.levelName);
   }
 
   onGetUserDataError(errorData: any) {
@@ -33,8 +26,7 @@ export default class HomePresenterImpl implements HomePresenter{
   }
 
   onGetTopicsOfInterestSuccess(responseData: GetTopicsInterestResponseData) {
-    let homeViewModel: HomeViewModel = this.view.getViewModel();
-    homeViewModel.topicsList = new Map();
+    let topicsList: Map<string, CardViewModel[]> = new Map();
     responseData.topicListData.forEach((value: string[], key: string) => {
       let cardList: CardViewModel[] = [];
       value.forEach((article: string) => {
@@ -42,10 +34,10 @@ export default class HomePresenterImpl implements HomePresenter{
         cardItem.title = article;
         cardList.push(cardItem)
       });
-      homeViewModel.topicsList.set(key, cardList)
+      topicsList.set(key, cardList)
     });
 
-    this.view.updateViewModel(homeViewModel)
+    this.view.updateTopicList(topicsList)
 
   }
 

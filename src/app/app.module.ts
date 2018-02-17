@@ -14,10 +14,10 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
-import UserRepository from "@app/data/repository/UserRepository";
-import ArticleRepository from "@app/data/repository/ArticleRepository";
-import UserApiDataSource from "@app/data/datasource/impl/UserApiDataSource";
-import ArticleApiDataSource from "@app/data/datasource/impl/ArticleApiDataSource";
+import UserRepository from "./data/repository/UserRepository";
+import ArticleRepository from "./data/repository/ArticleRepository";
+import UserApiDataSource from "./data/datasource/impl/UserApiDataSource";
+import ArticleApiDataSource from "./data/datasource/impl/ArticleApiDataSource";
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import ArticleApiDataSource from "@app/data/datasource/impl/ArticleApiDataSource
     MatGridListModule
   ],
   providers: [
-    //Repositorys
+    //Repositories
     UserRepository,
     ArticleRepository,
     //DataSources

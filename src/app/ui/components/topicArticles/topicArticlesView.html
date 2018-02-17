@@ -2,7 +2,11 @@
   {{ topicName }}
 </div>
 <div layout-wrap fxLayout="row">
-  <app-card *ngFor="let article of articles"></app-card>
+  <div *ngFor="let index of articleIndexes">
+    <app-card
+    >
+    </app-card>
+  </div>
   <!-- <div class="viewMore">
       <mat-icon>keyboard_arrow_right</mat-icon>
   </div> -->

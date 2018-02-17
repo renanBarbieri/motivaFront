@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Troubleshooting
+* ERROR in TypeError: Cannot read property 'provide' of null
+Sometimes you need to build without providers at app.module.ts to make it work.
+Other times, I believe, that code below could resolve. 
+```bash
+sudo npm i -g npm
+sudo npm install -g @angular/cli
+```

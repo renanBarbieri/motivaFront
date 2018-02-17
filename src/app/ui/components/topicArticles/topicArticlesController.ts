@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 @Component({
@@ -6,9 +6,18 @@ import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
   templateUrl: './topicArticlesView.html',
   styleUrls: ['./topicArticlesStyle.css']
 })
-export class TopicArticlesComponent {
+export class TopicArticlesComponent implements OnInit{
   @Input()
   topicName: string;
-  // @Input()
-  // articles: CardViewModel[];
+
+  @Input()
+  articles: CardViewModel[];
+
+  public articleIndexes: Array<number> = [];
+
+  ngOnInit(): void {
+    for(let idx = 0; idx < this.articles.length; idx++){
+      this.articleIndexes.push(idx)
+    }
+  }
 }
