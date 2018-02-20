@@ -33,9 +33,11 @@ export class HomeComponent implements OnInit, HomeUiView{
 
   updateTopicList(topicList: Map<string, CardViewModel[]>) {
     this.homeViewModel.topicsList.clear();
+    console.log("HomeComponent");
+    console.log(topicList);
     topicList.forEach((value: CardViewModel[], key: string) => {
       this.homeViewModel.topicsKeys.push(key);
-      this.homeViewModel.topicsList.set(key, value.toString())
+      this.homeViewModel.topicsList.set(key, value)
     });
   }
 

@@ -10,11 +10,10 @@
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar></app-toolbar>
       <div class="content">
-        {{homeViewModel.topicsList.size}}
         <div *ngFor="let topicName of homeViewModel.topicsKeys">
           <app-topic-articles
-            topicName = "{{topicName}}"
-            articles = "{{homeViewModel.topicsList.get(topicName)}}">
+            [topicName] = "topicName"
+            [articles] = "homeViewModel.topicsList.get(topicName)">
           </app-topic-articles>
         </div>
       </div>

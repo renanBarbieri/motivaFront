@@ -19,5 +19,7 @@ export class TopicArticlesComponent implements OnInit{
     for(let idx = 0; idx < this.articles.length; idx++){
       this.articleIndexes.push(idx)
     }
+    console.log(`Artigos do ${this.topicName}`);
+    console.log(this.articles);
   }
 }

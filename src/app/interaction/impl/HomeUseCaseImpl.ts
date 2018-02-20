@@ -38,13 +38,15 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     try{
       const userId = requestData.userId;
       // const article: Article = await this.articleRepository.get(userId);
-      let articles: string[] = ["name 1", "name 2", "name 3", "name 4"];
+      console.log("Use Case");
+      let articles: Array<string> = ["name 1", "name 2", "name 3", "name 4"];
       responseData.topicListData = new Map();
       responseData.topicListData.set("Primeiro Tópico", articles);
       responseData.topicListData.set("Segundo Tópico", articles);
       responseData.topicListData.set("Terceiro Tópico", articles);
       responseData.topicListData.set("Quarto Tópico", articles);
 
+      console.log(responseData.topicListData);
       presenter.onGetTopicsOfInterestSuccess(responseData);
     }
     catch (err){

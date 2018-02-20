@@ -27,7 +27,8 @@ export default class HomePresenterImpl implements HomePresenter{
 
   onGetTopicsOfInterestSuccess(responseData: GetTopicsInterestResponseData) {
     let topicsList: Map<string, CardViewModel[]> = new Map();
-    responseData.topicListData.forEach((value: string[], key: string) => {
+    console.log("Presenter");
+    responseData.topicListData.forEach((value: Array<string>, key: string) => {
       let cardList: CardViewModel[] = [];
       value.forEach((article: string) => {
         let cardItem = new CardViewModel();
@@ -36,6 +37,8 @@ export default class HomePresenterImpl implements HomePresenter{
       });
       topicsList.set(key, cardList)
     });
+
+    console.log(topicsList);
 
     this.view.updateTopicList(topicsList)
 
