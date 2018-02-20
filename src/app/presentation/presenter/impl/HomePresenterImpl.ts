@@ -33,6 +33,12 @@ export default class HomePresenterImpl implements HomePresenter{
       value.forEach((article: string) => {
         let cardItem = new CardViewModel();
         cardItem.title = article;
+        cardItem.articleImage = "https://source.unsplash.com/random/800x600";
+        cardItem.authorImage = "https://source.unsplash.com/random/200x200";
+        cardItem.publishDate = "19/02/2018";
+        cardItem.favorites = 2;
+        cardItem.likes = 50;
+        cardItem.author = "Renan Barbieri";
         cardList.push(cardItem)
       });
       topicsList.set(key, cardList)

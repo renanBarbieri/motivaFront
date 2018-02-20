@@ -4,7 +4,13 @@
 <div layout-wrap fxLayout="row">
   <div *ngFor="let index of articleIndexes">
     <app-card
-      title="{{articles[index].title}}"
+      [title]="articles[index].title"
+      [thumbnail] = "articles[index].articleImage"
+      [avatar] = "articles[index].authorImage"
+      [subtitle] = "articles[index].author"
+      [starCount] = "articles[index].likes"
+      [favCount] = "articles[index].favorites"
+      [actionName] = "articles[index].publishDate"
     >
     </app-card>
   </div>
