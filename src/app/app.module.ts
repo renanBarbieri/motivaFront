@@ -43,11 +43,11 @@ import ArticleApiDataSource from "./data/datasource/impl/ArticleApiDataSource";
   ],
   providers: [
     //Repositories
-    UserRepository,
-    ArticleRepository,
+    { provide: UserRepository, useClass: UserRepository },
+    { provide: ArticleRepository, useClass: ArticleRepository },
     //DataSources
-    UserApiDataSource,
-    ArticleApiDataSource
+    { provide: UserApiDataSource, useClass: UserApiDataSource },
+    { provide: ArticleApiDataSource, useClass: ArticleApiDataSource }
   ],
   bootstrap: [HomeComponent]
 })
