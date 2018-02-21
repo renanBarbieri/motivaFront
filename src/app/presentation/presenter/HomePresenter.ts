@@ -2,4 +2,5 @@ import {GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHa
 import {GetTopicsInterestResponseHandler} from "@app/interaction/GetTopicsInterestRespondeHandler";
 
 export interface HomePresenter extends GetUserDataResponseHandler,
-  GetTopicsInterestResponseHandler {}
+  GetTopicsInterestResponseHandler, PresenterContract
+{}

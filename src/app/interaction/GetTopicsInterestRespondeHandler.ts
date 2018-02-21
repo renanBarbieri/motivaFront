@@ -5,5 +5,5 @@ export interface GetTopicsInterestResponseHandler{
 }
 
 export class GetTopicsInterestResponseData{
-  public topicListData: Map<string, string[]>;
+  public topicListData: Map<string, Array<string>>;
 }

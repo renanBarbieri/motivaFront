@@ -1,10 +1,9 @@
-import HomeViewModel from "app/presentation/viewmodel/HomeViewModel";
 import {UIContract} from "@app/presentation/view/UIContract";
+import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 export interface HomeUiView extends UIContract{
 
-  updateViewModel(homeViewModel: HomeViewModel);
+  updateUserData(username: string, levelCompleted: number, levelName: string);
 
-  getViewModel(): HomeViewModel;
-
+  updateTopicList(topicList: Map<string, CardViewModel[]>);
 }

@@ -1,36 +1,47 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import HomeViewModel from "@app/presentation/viewmodel/HomeViewModel";
-import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImpl";
 import {HomeUiView} from "@app/presentation/view/HomeUIView";
 import HomeController from "@app/presentation/controller/HomeController";
+import HomePresenterImpl from "@app/presentation/presenter/impl/HomePresenterImpl";
+import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
+import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 @Component({
   selector: 'app-home',
   templateUrl: './homeView.html',
   styleUrls: ['./homeStyle.css'],
-  providers: [HomePresenterImpl, HomeController, HomeViewModel]
+  providers: [HomeController, HomePresenterImpl, HomeViewModel, HomeUseCaseImpl]
 })
 export class HomeComponent implements OnInit, HomeUiView{
 
   constructor(
-    private homePresenter: HomePresenterImpl,
-    private homeController: HomeController,
-    private homeViewModel: HomeViewModel
-  ){}
+      @Inject(HomePresenterImpl) private homePresenter,
+      @Inject(HomeController) private homeController,
+      @Inject(HomeViewModel) public homeViewModel)
+  {}
 
   ngOnInit(){
-    this.homePresenter.view = this;
-    this.homeController.getUserData(this.homePresenter);
-    this.homeController.getTopicsOfInterest(this.homePresenter)
+    this.homePresenter.onViewInit(this);
+    this.homeController.onViewInit(this.homePresenter)
   }
 
-  updateViewModel(homeViewModel: HomeViewModel) {
+  updateUserData(username: string, levelCompleted: number, levelName: string) {
+    this.homeViewModel.username = username;
+    this.homeViewModel.levelCompleted = levelCompleted;
+    this.homeViewModel.levelName = levelName;
   }
 
-  getViewModel(): HomeViewModel {
-    return this.homeViewModel;
+  updateTopicList(topicList: Map<string, CardViewModel[]>) {
+    this.homeViewModel.topicsList.clear();
+    console.log("HomeComponent");
+    console.log(topicList);
+    topicList.forEach((value: CardViewModel[], key: string) => {
+      this.homeViewModel.topicsKeys.push(key);
+      this.homeViewModel.topicsList.set(key, value)
+    });
   }
 
   showErrorAlert(message: String) {
+
   }
 }

@@ -1,26 +1,31 @@
-import {Injectable} from "@angular/core";
+import {GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
+import {GetTopicsInterestResponseHandler} from "@app/interaction/GetTopicsInterestRespondeHandler";
 import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
-import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
+import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export default class HomeController{
 
-  constructor(private homeUseCase: HomeUseCaseImpl){}
+  constructor(private homeUseCase: HomeUseCaseImpl) {}
 
-  getUserData(presenter: HomePresenter){
+  onViewInit(presenter: HomePresenter) {
+    this.getUserData(presenter);
+    this.getTopicsOfInterest(presenter)
+  }
+
+  getUserData(responseHandler: GetUserDataResponseHandler){
     let requestData = new GetUserDataRequestData();
     requestData.userId = "id";
-    // noinspection JSIgnoredPromiseFromCall
-    this.homeUseCase.getUser(requestData, presenter);
+    this.homeUseCase.getUser(requestData, responseHandler);
   }
 
-  getTopicsOfInterest(presenter: HomePresenter){
+  getTopicsOfInterest(responseHandler: GetTopicsInterestResponseHandler){
     let requestData = new GetTopicsInterestRequestData();
     requestData.userId = "id";
-    // noinspection JSIgnoredPromiseFromCall
-    this.homeUseCase.getTopics(requestData, presenter);
-  }
 
+    this.homeUseCase.getTopics(requestData, responseHandler);
+  }
 }

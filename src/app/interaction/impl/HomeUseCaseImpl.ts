@@ -1,6 +1,5 @@
 import {HomeUseCase} from "@app/interaction/HomeUseCase";
-import {UserDataSource} from "@app/data/datasource/UserDataSource";
-import UsuarioRepository, {default as UserRepository} from "@app/data/repository/UserRepository";
+import UsuarioRepository from "@app/data/repository/UserRepository";
 import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 import {GetUserDataResponseData, GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
 import {default as User} from "@app/entity/User";
@@ -9,13 +8,12 @@ import {
   GetTopicsInterestResponseData,
   GetTopicsInterestResponseHandler
 } from "@app/interaction/GetTopicsInterestRespondeHandler";
-import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
 import ArticleRepository from "@app/data/repository/ArticleRepository";
 import {Injectable} from "@angular/core";
 
 @Injectable()
 export default class HomeUseCaseImpl implements HomeUseCase{
-  constructor(private userRepository: UserRepository, private articleRepository: ArticleRepository){}
+  constructor(private userRepository: UsuarioRepository, private articleRepository: ArticleRepository){}
 
   async getUser(requestData: GetUserDataRequestData, presenter: GetUserDataResponseHandler) {
     let responseData: GetUserDataResponseData = new GetUserDataResponseData();
@@ -40,13 +38,15 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     try{
       const userId = requestData.userId;
       // const article: Article = await this.articleRepository.get(userId);
-      let articles: string[] = ["name 1", "name 2", "name 3", "name 4"];
+      console.log("Use Case");
+      let articles: Array<string> = ["name 1", "name 2", "name 3", "name 4"];
       responseData.topicListData = new Map();
       responseData.topicListData.set("Primeiro Tópico", articles);
       responseData.topicListData.set("Segundo Tópico", articles);
       responseData.topicListData.set("Terceiro Tópico", articles);
       responseData.topicListData.set("Quarto Tópico", articles);
 
+      console.log(responseData.topicListData);
       presenter.onGetTopicsOfInterestSuccess(responseData);
     }
     catch (err){
