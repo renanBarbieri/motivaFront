@@ -22,7 +22,7 @@ export default class HomePresenterImpl implements HomePresenter{
   }
 
   onGetUserDataError(errorData: any) {
-    this._view.showErrorAlert(errorData.message);
+    this.view.showErrorAlert(errorData.message);
   }
 
   onGetTopicsOfInterestSuccess(responseData: GetTopicsInterestResponseData) {
@@ -51,6 +51,6 @@ export default class HomePresenterImpl implements HomePresenter{
   }
 
   onGetTopicsOfInterestError(errorData: any) {
-    this._view.showErrorAlert(errorData.message);
+    this.view.showErrorAlert(errorData.message);
   }
 }
