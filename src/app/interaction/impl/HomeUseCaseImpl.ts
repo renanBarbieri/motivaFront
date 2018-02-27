@@ -25,6 +25,7 @@ export default class HomeUseCaseImpl implements HomeUseCase{
       responseData.levelCompleted = user.level.experience;
       responseData.levelName = user.level.name;
       responseData.profileImage = user.avatar;
+      responseData.tagIds = [2, 40, 34, 24]; //TODO: parsear ids
 
       presenter.onGetUserDataSuccess(responseData);
     }

@@ -9,4 +9,5 @@ export class GetUserDataResponseData{
   public levelCompleted: number;
   public levelName: string;
   public profileImage: string;
+  public tagIds: number[];
 }

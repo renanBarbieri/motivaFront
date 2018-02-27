@@ -13,7 +13,6 @@ export default class HomeController{
 
   onViewInit(presenter: HomePresenter) {
     this.getUserData(presenter);
-    this.getTopicsOfInterest(presenter)
   }
 
   getUserData(responseHandler: GetUserDataResponseHandler){
@@ -22,7 +21,7 @@ export default class HomeController{
     this.homeUseCase.getUser(requestData, responseHandler);
   }
 
-  getTopicsOfInterest(responseHandler: GetTopicsInterestResponseHandler){
+  getPostsOfTopicsOfInterest(responseHandler: GetTopicsInterestResponseHandler, topicsIds: number[]){
     let requestData = new GetTopicsInterestRequestData();
     requestData.userId = "id";
 
