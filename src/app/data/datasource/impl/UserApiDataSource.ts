@@ -1,25 +1,35 @@
-import {UserDataSource} from "../UserDataSource";
-import User from "@app/entity/User";
-import Level from "@app/entity/Level";
 import {Injectable} from "@angular/core";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import DataSourceConfig from "@app/data/datasource/DataSourceConfig";
+import DataSourceResponse from "@app/data/model/DataSourceResponse";
+import DataSourceUser from "@app/data/model/DataSourceUser";
+import {UserDataSource} from "@app/data/datasource/UserDataSource";
 
 @Injectable()
-export default class UserApiDataSource implements UserDataSource{
+export default class UserApiDataSource extends DataSourceConfig implements UserDataSource{
 
-  get(id: string): Promise<User> {
-    return new Promise<User>(async (resolve, reject) => {
+  constructor(protected http: HttpClient){
+    super();
+  }
 
-      let user = new User();
+  getData(authKey: string): Promise<DataSourceUser> {
+    let headers = new HttpHeaders({
+      "Authentication": authKey
+    });
 
-      user.username = "Translate Success";
 
-      let userLevel = new Level();
-      userLevel.experience = 40;
-      userLevel.name = "Expert";
+    let getRequest = this.http.get<DataSourceResponse<DataSourceUser>>(UserApiDataSource.dataSourceURL.concat("/user"), {headers});
 
-      user.level = userLevel;
+    return new Promise<DataSourceUser>(async (resolve, reject) => {
 
-      resolve(user);
+      getRequest.subscribe( response => {
+          console.log(response);
+
+          if(response.status == "SUCCESS"){
+            resolve(response.result)
+          }
+        }
+      );
     });
   }
 }

@@ -1,19 +1,19 @@
 import {HomeUseCase} from "@app/interaction/HomeUseCase";
-import UsuarioRepository from "@app/data/repository/UserRepository";
 import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
 import {GetUserDataResponseData, GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
-import {default as User} from "@app/entity/User";
+import User from "@app/entity/User";
 import {GetTopicsInterestRequestData} from "@app/interaction/GetTopicsInterestUseCase";
 import {
   GetTopicsInterestResponseData,
   GetTopicsInterestResponseHandler
 } from "@app/interaction/GetTopicsInterestRespondeHandler";
-import ArticleRepository from "@app/data/repository/ArticleRepository";
+import ArticleRepository from "@app/data/repository/impl/ArticleRepositoryImpl";
 import {Injectable} from "@angular/core";
+import UserRepositoryImpl from "@app/data/repository/impl/UserRepositoryImpl";
 
 @Injectable()
 export default class HomeUseCaseImpl implements HomeUseCase{
-  constructor(private userRepository: UsuarioRepository, private articleRepository: ArticleRepository){}
+  constructor(private userRepository: UserRepositoryImpl, private articleRepository: ArticleRepository){}
 
   async getUser(requestData: GetUserDataRequestData, presenter: GetUserDataResponseHandler) {
     let responseData: GetUserDataResponseData = new GetUserDataResponseData();

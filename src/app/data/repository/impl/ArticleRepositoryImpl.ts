@@ -1,6 +1,6 @@
-import {ArticleDataSource} from "@app/data/datasource/ArticleDataSource";
-import ArticleApiDataSource from "@app/data/datasource/impl/ArticleApiDataSource";
-import Article from "@app/entity/Article";
+import {ArticleDataSource} from "app/data/datasource/ArticleDataSource";
+import ArticleApiDataSource from "app/data/datasource/impl/ArticleApiDataSource";
+import Article from "app/entity/Article";
 import {Injectable} from "@angular/core";
 
 @Injectable()
