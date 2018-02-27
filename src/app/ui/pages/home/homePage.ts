@@ -25,10 +25,11 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.onViewInit(this.homePresenter)
   }
 
-  updateUserData(username: string, levelCompleted: number, levelName: string) {
+  updateUserData(username: string, levelCompleted: number, levelName: string, profileImageUrl: string) {
     this.homeViewModel.username = username;
     this.homeViewModel.levelCompleted = levelCompleted;
     this.homeViewModel.levelName = levelName;
+    this.homeViewModel.profileImage = profileImageUrl;
   }
 
   updateTopicList(topicList: Map<string, CardViewModel[]>) {

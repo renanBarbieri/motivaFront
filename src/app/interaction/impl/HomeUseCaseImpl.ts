@@ -24,6 +24,7 @@ export default class HomeUseCaseImpl implements HomeUseCase{
       responseData.username = user.username;
       responseData.levelCompleted = user.level.experience;
       responseData.levelName = user.level.name;
+      responseData.profileImage = user.avatar;
 
       presenter.onGetUserDataSuccess(responseData);
     }

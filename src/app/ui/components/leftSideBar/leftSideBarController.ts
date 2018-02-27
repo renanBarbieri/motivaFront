@@ -15,6 +15,9 @@ export class LeftSideBarComponent{
   @Input()
   levelName: string;
 
+  @Input()
+  profileImage: string;
+
   menus: any[] = [
     {
       name: 'Meu Perfil',

@@ -3,7 +3,7 @@ import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
 
 export interface HomeUiView extends UIContract{
 
-  updateUserData(username: string, levelCompleted: number, levelName: string);
+  updateUserData(username: string, levelCompleted: number, levelName: string, profileImageUrl: string);
 
   updateTopicList(topicList: Map<string, CardViewModel[]>);
 }

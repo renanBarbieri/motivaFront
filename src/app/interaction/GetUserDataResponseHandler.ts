@@ -8,4 +8,5 @@ export class GetUserDataResponseData{
   public username: string;
   public levelCompleted: number;
   public levelName: string;
+  public profileImage: string;
 }

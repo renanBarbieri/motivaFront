@@ -1,9 +1,10 @@
 <div class="pageContent" fxLayout="row">
   <div class="leftSideBar" fxLayout="column" fxFlex="16%">
       <app-left-sidebar
-        username="{{homeViewModel.username}}"
-        levelCompleted="{{homeViewModel.levelCompleted}}"
-        levelName="{{homeViewModel.levelName}}">
+        [username]="homeViewModel.username"
+        [levelCompleted]="homeViewModel.levelCompleted"
+        [levelName]="homeViewModel.levelName"
+        [profileImage]="homeViewModel.profileImage">
 
       </app-left-sidebar>
   </div>
