@@ -8,7 +8,8 @@ export default class RewardDataSourceMapper implements DataSourceMapper<DataSour
     let reward = new Reward();
     reward.image = dataSource.icon;
     reward.name = dataSource.name;
-    reward.id = dataSource.description; //TODO adicionar id e descrição
+    reward.id = dataSource.id.toString();
+    reward.description = dataSource.description;
     return reward;
   }
 

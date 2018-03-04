@@ -9,7 +9,8 @@ export default class LevelDataSourceMapper implements DataSourceMapper<DataSourc
     let level = new Level();
     level.name = dataSource.name;
     level.experience = dataSource.completetion;
-    level.description = dataSource.nextLevelName; //TODO: adicionar nome do proximo nivel
+    level.nextLevelName = dataSource.nextLevelName;
+    level.description = "Sem informações sobre o nível";
     return level;
   }
 
