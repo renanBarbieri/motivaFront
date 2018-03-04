@@ -3,10 +3,7 @@ import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
 import Usuario from "@app/entity/User";
 import UsuarioRepository from "@app/data/repository/impl/UserRepositoryImpl";
 import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
-import {
-  GetUserDataResponseHandler,
-  GetUserDataResponseData
-} from "@app/interaction/GetUserDataResponseHandler";
+import {GetUserDataResponseData, GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
 
 describe('Teste dos casos de uso GetDadosUsuario', () => {
 

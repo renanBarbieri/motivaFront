@@ -1,12 +1,17 @@
 import Post from "@app/entity/Post";
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {PostDataSource} from "@app/data/datasource/PostDataSource";
+import DataSourcePost from "@app/data/model/DataSourcePost";
+import DataSourceResponse from "@app/data/model/DataSourceResponse";
+import DataSourceConfig from "@app/data/datasource/DataSourceConfig";
 
 @Injectable()
-export default class PostApiDataSource implements PostDataSource{
+export default class PostApiDataSource extends DataSourceConfig implements PostDataSource{
 
-  constructor(private http: HttpClient){}
+  constructor(protected http: HttpClient){
+    super();
+  }
 
   get(id: string): Promise<Post> {
     return new Promise<Post>(async (resolve, reject) => {
@@ -14,14 +19,32 @@ export default class PostApiDataSource implements PostDataSource{
       let article = new Post();
 
       article.title = "Sucesso";
-      article.publishDate = "11/11/2017";
+      article.publishDate = new Date();
 
       resolve(article);
     });
   }
 
 
-  getPostsFromTag(tagId: string): Promise<Post[]> {
-    return null;
+  getPostsFromTag(authKey: string, tagId: string): Promise<DataSourcePost[]> {
+    let headers = new HttpHeaders({
+      "Authentication": authKey
+    });
+
+
+    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePost[]>>(PostApiDataSource.dataSourceURL
+      .concat("/tag/").concat(tagId).concat("/posts"), {headers});
+
+    return new Promise<DataSourcePost[]>(async (resolve, reject) => {
+
+      getPostsRequest.subscribe( response => {
+          console.log(response);
+
+          if(response.status == "SUCCESS"){
+            resolve(response.result)
+          }
+        }
+      );
+    });
   }
 }

@@ -1,5 +1,5 @@
-import Post from "@app/entity/Post";
+import DataSourcePost from "@app/data/model/DataSourcePost";
 
 export interface PostDataSource{
-  getPostsFromTag(tagId: string): Promise<Post[]>;
+  getPostsFromTag(authKet: string, tagId: string): Promise<DataSourcePost[]>;
 }

@@ -5,8 +5,8 @@ export default class Post extends Entity{
   private _title: string;
   private _subtitle: string;
   private _content: string;
-  private _publishDate: string;
-  private _editedDate: number;
+  private _publishDate: Date;
+  private _editedDate: Date;
   private _owner: string;
 
 
@@ -34,19 +34,19 @@ export default class Post extends Entity{
     this._content = value;
   }
 
-  get publishDate(): string {
+  get publishDate(): Date {
     return this._publishDate;
   }
 
-  set publishDate(value: string) {
+  set publishDate(value: Date) {
     this._publishDate = value;
   }
 
-  get editedDate(): number {
+  get editedDate(): Date {
     return this._editedDate;
   }
 
-  set editedDate(value: number) {
+  set editedDate(value: Date) {
     this._editedDate = value;
   }
 
