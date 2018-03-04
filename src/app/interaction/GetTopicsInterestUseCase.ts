@@ -5,5 +5,5 @@ export interface GetTopicsInterestUseCase{
 }
 
 export class GetTopicsInterestRequestData {
-  public userId: string;
+  public tags: Map<number, string>;
 }

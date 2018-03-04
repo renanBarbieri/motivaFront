@@ -18,7 +18,7 @@ export default class HomePresenterImpl implements HomePresenter{
 
 
   onGetUserDataSuccess(responseData: GetUserDataResponseData) {
-    this.view.updateUserData(responseData.username, responseData.levelCompleted, responseData.levelName, responseData.profileImage, responseData.tagIds);
+    this.view.updateUserData(responseData.username, responseData.levelCompleted, responseData.levelName, responseData.profileImage, responseData.tags);
   }
 
   onGetUserDataError(errorData: any) {

@@ -21,10 +21,9 @@ export default class HomeController{
     this.homeUseCase.getUser(requestData, responseHandler);
   }
 
-  getPostsOfTopicsOfInterest(responseHandler: GetTopicsInterestResponseHandler, topicsIds: number[]){
+  getPostsOfTopicsOfInterest(responseHandler: GetTopicsInterestResponseHandler, topics: Map<number, string>){
     let requestData = new GetTopicsInterestRequestData();
-    requestData.userId = "id";
-
+    requestData.tags = topics;
     this.homeUseCase.getTopics(requestData, responseHandler);
   }
 }

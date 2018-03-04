@@ -11,6 +11,8 @@ import PostRepository from "@app/data/repository/impl/PostRepositoryImpl";
 import {Injectable} from "@angular/core";
 import UserRepositoryImpl from "@app/data/repository/impl/UserRepositoryImpl";
 import Tag from "@app/entity/Tag";
+import Post from "@app/entity/Post";
+import {isNumber} from "util";
 
 @Injectable()
 export default class HomeUseCaseImpl implements HomeUseCase{
@@ -26,7 +28,7 @@ export default class HomeUseCaseImpl implements HomeUseCase{
       responseData.levelCompleted = user.level.experience;
       responseData.levelName = user.level.name;
       responseData.profileImage = user.avatar;
-      responseData.tagIds = HomeUseCaseImpl.mapTagIds(user.interests);
+      responseData.tags = HomeUseCaseImpl.mapTagIds(user.interests);
 
       presenter.onGetUserDataSuccess(responseData);
     }
@@ -35,11 +37,11 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     }
   }
 
-  private static mapTagIds(tagsEntity: Tag[]): number[]{
-    let responseTags = Array();
+  private static mapTagIds(tagsEntity: Tag[]): Map<number, string>{
+    let responseTags = new Map();
 
     for(let tag of tagsEntity){
-      responseTags.push(tag.id)
+      responseTags.set(tag.id, tag.name);
     }
 
     return responseTags;
@@ -47,17 +49,29 @@ export default class HomeUseCaseImpl implements HomeUseCase{
 
 
   async getTopics(requestData: GetTopicsInterestRequestData, presenter: GetTopicsInterestResponseHandler) {
+
     let responseData: GetTopicsInterestResponseData = new GetTopicsInterestResponseData();
     try{
-      const userId = requestData.userId;
-      // const article: Post = await this.postRepository.get(userId);
-      console.log("Use Case");
-      let articles: Array<string> = ["name 1", "name 2", "name 3", "name 4"];
       responseData.topicListData = new Map();
-      responseData.topicListData.set("Primeiro Tópico", articles);
-      responseData.topicListData.set("Segundo Tópico", articles);
-      responseData.topicListData.set("Terceiro Tópico", articles);
-      responseData.topicListData.set("Quarto Tópico", articles);
+
+      console.log("passei aqui");
+
+      for(let key of Array.from(requestData.tags)){
+        console.log(key);
+        const posts: Post[] = await this.postRepository.getPostsFromTag(key.toString());
+
+        let postsNames = Array<string>();
+        for(let post of posts){
+          postsNames.push(post.title)
+        }
+        console.log(isNumber(parseInt(key.toString())));
+        //TODO: entender pq qualquer função do map não está funcionando
+        // console.log(requestData.tags.has(parseInt(key.toString())))
+
+        responseData.topicListData.set( "Topico ".concat(key.toString()), postsNames);
+      }
+
+      console.log("passei aqui 2");
 
       console.log(responseData.topicListData);
       presenter.onGetTopicsOfInterestSuccess(responseData);
