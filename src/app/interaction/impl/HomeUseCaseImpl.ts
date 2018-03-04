@@ -7,13 +7,14 @@ import {
   GetTopicsInterestResponseData,
   GetTopicsInterestResponseHandler
 } from "@app/interaction/GetTopicsInterestRespondeHandler";
-import ArticleRepository from "@app/data/repository/impl/ArticleRepositoryImpl";
+import PostRepository from "@app/data/repository/impl/PostRepositoryImpl";
 import {Injectable} from "@angular/core";
 import UserRepositoryImpl from "@app/data/repository/impl/UserRepositoryImpl";
+import Tag from "@app/entity/Tag";
 
 @Injectable()
 export default class HomeUseCaseImpl implements HomeUseCase{
-  constructor(private userRepository: UserRepositoryImpl, private articleRepository: ArticleRepository){}
+  constructor(private userRepository: UserRepositoryImpl, private postRepository: PostRepository){}
 
   async getUser(requestData: GetUserDataRequestData, presenter: GetUserDataResponseHandler) {
     let responseData: GetUserDataResponseData = new GetUserDataResponseData();
@@ -25,7 +26,7 @@ export default class HomeUseCaseImpl implements HomeUseCase{
       responseData.levelCompleted = user.level.experience;
       responseData.levelName = user.level.name;
       responseData.profileImage = user.avatar;
-      responseData.tagIds = [2, 40, 34, 24]; //TODO: parsear ids
+      responseData.tagIds = HomeUseCaseImpl.mapTagIds(user.interests);
 
       presenter.onGetUserDataSuccess(responseData);
     }
@@ -34,12 +35,22 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     }
   }
 
+  private static mapTagIds(tagsEntity: Tag[]): number[]{
+    let responseTags = Array();
+
+    for(let tag of tagsEntity){
+      responseTags.push(tag.id)
+    }
+
+    return responseTags;
+  }
+
 
   async getTopics(requestData: GetTopicsInterestRequestData, presenter: GetTopicsInterestResponseHandler) {
     let responseData: GetTopicsInterestResponseData = new GetTopicsInterestResponseData();
     try{
       const userId = requestData.userId;
-      // const article: Article = await this.articleRepository.get(userId);
+      // const article: Post = await this.postRepository.get(userId);
       console.log("Use Case");
       let articles: Array<string> = ["name 1", "name 2", "name 3", "name 4"];
       responseData.topicListData = new Map();

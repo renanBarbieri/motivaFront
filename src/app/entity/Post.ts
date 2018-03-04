@@ -1,6 +1,6 @@
 import {Entity} from "@app/entity/Entity";
 
-export default class Article extends Entity{
+export default class Post extends Entity{
 
   private _title: string;
   private _subtitle: string;

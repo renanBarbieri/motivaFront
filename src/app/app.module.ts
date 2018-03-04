@@ -15,9 +15,9 @@ import {
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import UserRepositoryImpl from "./data/repository/impl/UserRepositoryImpl";
-import ArticleRepository from "./data/repository/impl/ArticleRepositoryImpl";
+import ArticleRepository from "./data/repository/impl/PostRepositoryImpl";
 import UserApiDataSource from "./data/datasource/impl/UserApiDataSource";
-import ArticleApiDataSource from "./data/datasource/impl/ArticleApiDataSource";
+import ArticleApiDataSource from "./data/datasource/impl/PostApiDataSource";
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
