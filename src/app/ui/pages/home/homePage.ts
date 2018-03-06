@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeViewModel.levelCompleted = levelCompleted;
     this.homeViewModel.levelName = levelName;
     this.homeViewModel.profileImage = profileImageUrl;
-    this.homeController.getPostsOfTopicsOfInterest(this.homePresenter, tags.keys())
+    this.homeController.getPostsOfTopicsOfInterest(this.homePresenter, tags)
   }
 
   updateTopicList(topicList: Map<string, CardViewModel[]>) {

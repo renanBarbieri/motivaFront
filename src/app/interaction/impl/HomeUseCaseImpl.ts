@@ -54,27 +54,22 @@ export default class HomeUseCaseImpl implements HomeUseCase{
     try{
       responseData.topicListData = new Map();
 
-      console.log("passei aqui");
+      let tagsCount = requestData.tags.size;
 
-      for(let key of Array.from(requestData.tags)){
-        console.log(key);
-        const posts: Post[] = await this.postRepository.getPostsFromTag(key.toString());
+      requestData.tags.forEach(async(value, key) => {
+         const posts: Post[] = await this.postRepository.getPostsFromTag(key.toString());
+         let postsNames = Array<string>();
+         for(let post of posts){
+           postsNames.push(post.title)
+         }
+         responseData.topicListData.set(value, postsNames);
 
-        let postsNames = Array<string>();
-        for(let post of posts){
-          postsNames.push(post.title)
-        }
-        console.log(isNumber(parseInt(key.toString())));
-        //TODO: entender pq qualquer função do map não está funcionando
-        // console.log(requestData.tags.has(parseInt(key.toString())))
-
-        responseData.topicListData.set( "Topico ".concat(key.toString()), postsNames);
-      }
-
-      console.log("passei aqui 2");
-
-      console.log(responseData.topicListData);
-      presenter.onGetTopicsOfInterestSuccess(responseData);
+         //TODO: Improve implementation
+         tagsCount--;
+         if(tagsCount == 0){
+           presenter.onGetTopicsOfInterestSuccess(responseData);
+         }
+      });
     }
     catch (err){
       presenter.onGetTopicsOfInterestError(err)
