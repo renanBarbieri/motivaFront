@@ -7,12 +7,20 @@ import HomePresenter from "@app/useCases/home/HomePresenter";
 import HomeUseCase from "@app/useCases/home/HomeUseCase";
 import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
+import UserRepositoryImpl from "@app/data/repository/UserRepository";
 
 @Component({
   selector: 'app-home',
   templateUrl: './HomeView.html',
   styleUrls: ['./HomeStyle.css'],
-  providers: [HomeController, HomePresenter, HomeViewModel, HomeUseCase, PostsOfTopicsInterestUseCase, UserDataUseCase]
+  providers: [
+    { provide: HomeController, useClass: HomeController },
+    { provide: HomePresenter, useClass: HomePresenter },
+    { provide: HomeViewModel, useClass: HomeViewModel },
+    { provide: HomeUseCase, useClass: HomeUseCase },
+    { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase },
+    { provide: UserDataUseCase, useClass: UserDataUseCase }
+  ]
 })
 export class HomeComponent implements OnInit, HomeUiView{
 

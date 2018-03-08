@@ -1,4 +1,5 @@
 import {Entity} from "@app/entity/Entity";
+import User from "@app/entity/User";
 
 export default class Post extends Entity{
 
@@ -7,7 +8,8 @@ export default class Post extends Entity{
   private _content: string;
   private _publishDate: Date;
   private _editedDate: Date;
-  private _owner: string;
+  private _owner: User;
+  private _headerImage: string;
 
 
   get title(): string {
@@ -50,11 +52,20 @@ export default class Post extends Entity{
     this._editedDate = value;
   }
 
-  get owner(): string {
+  get owner(): User {
     return this._owner;
   }
 
-  set owner(value: string) {
+  set owner(value: User) {
     this._owner = value;
+  }
+
+
+  get headerImage(): string {
+    return this._headerImage;
+  }
+
+  set headerImage(value: string) {
+    this._headerImage = value;
   }
 }

@@ -2,7 +2,10 @@ import {HomeUiView} from "app/useCases/home/HomeUIView";
 import {Injectable} from "@angular/core";
 import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {GetUserDataOutputModel} from "app/useCases/userData/GetUserDataOutputBoundary";
-import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
+import {
+  GetPostsOfTopicsInterestOutputModel,
+  PostCardModel
+} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
 import CardViewModel from "app/useCases/card/CardViewModel";
 
 @Injectable()
@@ -28,17 +31,18 @@ export default class HomePresenter implements HomeOutputBoundary{
   onGetPostsOfTopicsInterestSuccess(responseData: GetPostsOfTopicsInterestOutputModel) {
     let topicsList: Map<string, CardViewModel[]> = new Map();
     console.log("Presenter");
-    responseData.tagPostsMap.forEach((value: Array<string>, key: string) => {
+    responseData.tagPostsMap.forEach((value: Array<PostCardModel>, key: string) => {
       let cardList: CardViewModel[] = [];
-      value.forEach((article: string) => {
+      value.forEach((post: PostCardModel) => {
         let cardItem = new CardViewModel();
-        cardItem.title = article;
-        cardItem.articleImage = "https://source.unsplash.com/random/800x600";
-        cardItem.authorImage = "https://source.unsplash.com/random/200x200";
-        cardItem.publishDate = "19/02/2018";
-        cardItem.favorites = 2;
-        cardItem.likes = 50;
-        cardItem.author = "Renan Barbieri";
+        cardItem.id = post.entityReference;
+        cardItem.title = post.title;
+        cardItem.articleImage = post.imageThumbnail;
+        cardItem.authorImage = post.userAvatar;
+        cardItem.publishDate = post.publishDate;
+        cardItem.favorites = post.favs;
+        cardItem.likes = post.stars;
+        cardItem.author = post.userName;
         cardList.push(cardItem)
       });
       topicsList.set(key, cardList)

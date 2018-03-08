@@ -1,9 +1,11 @@
+import DataSourcePostOwner from "@app/data/model/DataSourcePostOwner";
 
 export default class DataSourcePost{
+  id: number;
   title: string;
   subtitle: string;
-  content: string;
+  image: string;
   publishDate: number;
   editedDate: number;
-  ownerName: string;
+  owner: DataSourcePostOwner;
 }

@@ -4,7 +4,7 @@ import {
 } from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestInputBoundary";
 import {
   GetPostsOfTopicsInterestOutputBoundary,
-  GetPostsOfTopicsInterestOutputModel
+  GetPostsOfTopicsInterestOutputModel, PostCardModel
 } from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
 import PostRepository from "app/data/repository/PostRepository";
 import {Injectable} from "@angular/core";
@@ -24,11 +24,20 @@ export default class PostsOfTopicsInterestUseCase implements GetPostsOfTopicsInt
 
       requestData.tags.forEach(async(value, key) => {
          const posts: Post[] = await this.postRepository.getPostsFromTag(key.toString());
-         let postsNames = Array<string>();
+         let postsCards = Array<PostCardModel>();
          for(let post of posts){
-           postsNames.push(post.title)
+           let cardPost = new PostCardModel();
+           cardPost.imageThumbnail = post.headerImage;
+           cardPost.userAvatar = post.owner.avatar;
+           cardPost.userName = post.owner.username;
+           cardPost.title = post.title;
+           cardPost.subtitle = post.subtitle;
+           cardPost.favs = 2;
+           cardPost.stars = 5;
+           cardPost.publishDate = post.publishDate.toDateString();
+           postsCards.push(cardPost);
          }
-         responseData.tagPostsMap.set(value, postsNames);
+         responseData.tagPostsMap.set(value, postsCards);
          presenter.onGetPostsOfTopicsInterestSuccess(responseData);
       });
     }

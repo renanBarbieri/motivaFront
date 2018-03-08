@@ -1,5 +1,6 @@
 
 export default class CardViewModel{
+  id: string;
   author: string;
   authorImage: string;
   title: string;
