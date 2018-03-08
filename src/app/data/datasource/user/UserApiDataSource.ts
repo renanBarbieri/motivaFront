@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import DataSourceConfig from "@app/data/datasource/DataSourceConfig";
-import DataSourceResponse from "@app/data/model/DataSourceResponse";
-import DataSourceUser from "@app/data/model/DataSourceUser";
-import {UserDataSource} from "@app/data/datasource/UserDataSource";
+import DataSourceConfig from "app/data/datasource/DataSourceConfig";
+import DataSourceResponse from "app/data/model/DataSourceResponse";
+import DataSourceUser from "app/data/model/DataSourceUser";
+import {UserDataSource} from "app/data/datasource/user/UserDataSource";
 
 @Injectable()
 export default class UserApiDataSource extends DataSourceConfig implements UserDataSource{

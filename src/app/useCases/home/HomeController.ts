@@ -1,7 +1,7 @@
-import {GetUserDataOutputBoundary} from "app/useCases/userData/GetUserDataOutputBoundary";
-import {GetPostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
-import {GetPostsOfTopicsInterestInputModel} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestInputBoundary";
-import {GetUserDataInputModel} from "app/useCases/userData/GetUserDataInputBoundary";
+import {UserDataOutputBoundary} from "app/useCases/userData/UserDataOutputBoundary";
+import {PostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
+import {PostsOfTopicsInterestInputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
+import {UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
 import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {Injectable} from "@angular/core";
 import HomeUseCase from "@app/useCases/home/HomeUseCase";
@@ -15,14 +15,14 @@ export default class HomeController{
     this.getUserData(presenter);
   }
 
-  getUserData(responseHandler: GetUserDataOutputBoundary){
-    let requestData = new GetUserDataInputModel();
+  getUserData(responseHandler: UserDataOutputBoundary){
+    let requestData = new UserDataInputModel();
     requestData.userId = "id";
     this.homeUseCase.getUser(requestData, responseHandler);
   }
 
-  getPostsOfTopicsOfInterest(responseHandler: GetPostsOfTopicsInterestOutputBoundary, topics: Map<number, string>){
-    let requestData = new GetPostsOfTopicsInterestInputModel();
+  getPostsOfTopicsOfInterest(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>){
+    let requestData = new PostsOfTopicsInterestInputModel();
     requestData.tags = topics;
     this.homeUseCase.getTopics(requestData, responseHandler);
   }

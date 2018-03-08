@@ -16,8 +16,8 @@ import {
 } from '@angular/material';
 import UserRepositoryImpl from "./data/repository/UserRepository";
 import ArticleRepository from "./data/repository/PostRepository";
-import UserApiDataSource from "./data/datasource/impl/UserApiDataSource";
-import ArticleApiDataSource from "./data/datasource/impl/PostApiDataSource";
+import UserApiDataSource from "./data/datasource/user/UserApiDataSource";
+import ArticleApiDataSource from "./data/datasource/post/PostApiDataSource";
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({

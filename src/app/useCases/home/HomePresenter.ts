@@ -1,12 +1,11 @@
 import {HomeUiView} from "app/useCases/home/HomeUIView";
 import {Injectable} from "@angular/core";
 import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
-import {GetUserDataOutputModel} from "app/useCases/userData/GetUserDataOutputBoundary";
-import {
-  GetPostsOfTopicsInterestOutputModel,
-  PostCardModel
-} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
+import {UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
+import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import CardViewModel from "app/useCases/card/CardViewModel";
+import {SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
+import {PostCardModel} from "@app/useCases/postsOfTopicsInterest/PostCardModel";
 
 @Injectable()
 export default class HomePresenter implements HomeOutputBoundary{
@@ -20,15 +19,15 @@ export default class HomePresenter implements HomeOutputBoundary{
   }
 
 
-  onGetUserDataSuccess(responseData: GetUserDataOutputModel) {
+  onUserDataSuccess(responseData: UserDataOutputModel) {
     this.view.updateUserData(responseData.username, responseData.levelCompleted, responseData.levelName, responseData.profileImage, responseData.tags);
   }
 
-  onGetUserDataError(errorData: any) {
+  onUserDataError(errorData: any) {
     this.view.showErrorAlert(errorData.message);
   }
 
-  onGetPostsOfTopicsInterestSuccess(responseData: GetPostsOfTopicsInterestOutputModel) {
+  onPostsOfTopicsInterestSuccess(responseData: GetPostsOfTopicsInterestOutputModel) {
     let topicsList: Map<string, CardViewModel[]> = new Map();
     console.log("Presenter");
     responseData.tagPostsMap.forEach((value: Array<PostCardModel>, key: string) => {
@@ -54,7 +53,11 @@ export default class HomePresenter implements HomeOutputBoundary{
 
   }
 
-  onGetPostsOfTopicsInterestError(errorData: any) {
+  onPostsOfTopicsInterestError(errorData: any) {
     this.view.showErrorAlert(errorData.message);
+  }
+
+  //TODO: comunicação com a View
+  onSearchSuccess(result: SearchOutputModel) {
   }
 }

@@ -1,20 +1,20 @@
 import {
-  GetPostsOfTopicsInterestInputBoundary,
-  GetPostsOfTopicsInterestInputModel
-} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestInputBoundary";
+  PostsOfTopicsInterestInputBoundary,
+  PostsOfTopicsInterestInputModel
+} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
 import {
-  GetPostsOfTopicsInterestOutputBoundary,
+  PostsOfTopicsInterestOutputBoundary,
   GetPostsOfTopicsInterestOutputModel, PostCardModel
-} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
+} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import PostRepository from "app/data/repository/PostRepository";
 import {Injectable} from "@angular/core";
 import Post from "app/entity/Post";
 
 @Injectable()
-export default class PostsOfTopicsInterestUseCase implements GetPostsOfTopicsInterestInputBoundary{
+export default class PostsOfTopicsInterestUseCase implements PostsOfTopicsInterestInputBoundary{
   constructor(private postRepository: PostRepository){}
 
-  async getTopics(requestData: GetPostsOfTopicsInterestInputModel, presenter: GetPostsOfTopicsInterestOutputBoundary) {
+  async getTopics(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary) {
 
     let responseData: GetPostsOfTopicsInterestOutputModel = new GetPostsOfTopicsInterestOutputModel();
     try{
@@ -38,11 +38,11 @@ export default class PostsOfTopicsInterestUseCase implements GetPostsOfTopicsInt
            postsCards.push(cardPost);
          }
          responseData.tagPostsMap.set(value, postsCards);
-         presenter.onGetPostsOfTopicsInterestSuccess(responseData);
+         presenter.onPostsOfTopicsInterestSuccess(responseData);
       });
     }
     catch (err){
-      presenter.onGetPostsOfTopicsInterestError(err)
+      presenter.onPostsOfTopicsInterestError(err)
     }
   }
 }

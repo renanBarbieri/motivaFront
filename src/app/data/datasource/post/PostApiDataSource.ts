@@ -1,7 +1,7 @@
 import Post from "@app/entity/Post";
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {PostDataSource} from "@app/data/datasource/PostDataSource";
+import {PostDataSource} from "@app/data/datasource/post/PostDataSource";
 import DataSourcePost from "@app/data/model/DataSourcePost";
 import DataSourceResponse from "@app/data/model/DataSourceResponse";
 import DataSourceConfig from "@app/data/datasource/DataSourceConfig";

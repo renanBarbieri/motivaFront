@@ -1,4 +1,4 @@
-import UsuarioApiDataSource from "app/data/datasource/impl/UserApiDataSource";
+import UsuarioApiDataSource from "app/data/datasource/user/UserApiDataSource";
 import User from "app/entity/User";
 import {Injectable} from "@angular/core";
 import DataSourceUser from "app/data/model/DataSourceUser";

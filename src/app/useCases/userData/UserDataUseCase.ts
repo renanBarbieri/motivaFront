@@ -1,16 +1,16 @@
-import {GetUserDataInputBoundary, GetUserDataInputModel} from "app/useCases/userData/GetUserDataInputBoundary";
-import {GetUserDataOutputBoundary, GetUserDataOutputModel} from "app/useCases/userData/GetUserDataOutputBoundary";
+import {UserDataInputBoundary, UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
+import {UserDataOutputBoundary, UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
 import User from "app/entity/User";
 import {Injectable} from "@angular/core";
 import UserRepository from "app/data/repository/UserRepository";
 import Tag from "app/entity/Tag";
 
 @Injectable()
-export default class UserDataUseCase implements GetUserDataInputBoundary{
+export default class UserDataUseCase implements UserDataInputBoundary{
   constructor(private userRepository: UserRepository){}
 
-  async getUser(requestData: GetUserDataInputModel, presenter: GetUserDataOutputBoundary) {
-    let responseData: GetUserDataOutputModel = new GetUserDataOutputModel();
+  async getUser(requestData: UserDataInputModel, presenter: UserDataOutputBoundary) {
+    let responseData: UserDataOutputModel = new UserDataOutputModel();
     try{
       const userId = requestData.userId;
       const user: User = await this.userRepository.get(userId);
@@ -21,10 +21,10 @@ export default class UserDataUseCase implements GetUserDataInputBoundary{
       responseData.profileImage = user.avatar;
       responseData.tags = UserDataUseCase.mapTagIds(user.interests);
 
-      presenter.onGetUserDataSuccess(responseData);
+      presenter.onUserDataSuccess(responseData);
     }
     catch (err){
-      presenter.onGetUserDataError(err);
+      presenter.onUserDataError(err);
     }
   }
 
