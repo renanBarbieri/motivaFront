@@ -1,12 +1,12 @@
-import {HomeUiView} from "@app/presentation/view/HomeUIView";
+import {HomeUiView} from "app/useCases/home/HomeUIView";
 import {Injectable} from "@angular/core";
-import {HomePresenter} from "@app/presentation/presenter/HomePresenter";
-import {GetUserDataResponseData} from "@app/interaction/GetUserDataResponseHandler";
-import {GetTopicsInterestResponseData} from "@app/interaction/GetTopicsInterestRespondeHandler";
-import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
+import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
+import {GetUserDataOutputModel} from "app/useCases/userData/GetUserDataOutputBoundary";
+import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
+import CardViewModel from "app/useCases/card/CardViewModel";
 
 @Injectable()
-export default class HomePresenterImpl implements HomePresenter{
+export default class HomePresenter implements HomeOutputBoundary{
   private view: HomeUiView;
 
   constructor() {
@@ -17,7 +17,7 @@ export default class HomePresenterImpl implements HomePresenter{
   }
 
 
-  onGetUserDataSuccess(responseData: GetUserDataResponseData) {
+  onGetUserDataSuccess(responseData: GetUserDataOutputModel) {
     this.view.updateUserData(responseData.username, responseData.levelCompleted, responseData.levelName, responseData.profileImage, responseData.tags);
   }
 
@@ -25,10 +25,10 @@ export default class HomePresenterImpl implements HomePresenter{
     this.view.showErrorAlert(errorData.message);
   }
 
-  onGetTopicsOfInterestSuccess(responseData: GetTopicsInterestResponseData) {
+  onGetPostsOfTopicsInterestSuccess(responseData: GetPostsOfTopicsInterestOutputModel) {
     let topicsList: Map<string, CardViewModel[]> = new Map();
     console.log("Presenter");
-    responseData.topicListData.forEach((value: Array<string>, key: string) => {
+    responseData.tagPostsMap.forEach((value: Array<string>, key: string) => {
       let cardList: CardViewModel[] = [];
       value.forEach((article: string) => {
         let cardItem = new CardViewModel();
@@ -50,7 +50,7 @@ export default class HomePresenterImpl implements HomePresenter{
 
   }
 
-  onGetTopicsOfInterestError(errorData: any) {
+  onGetPostsOfTopicsInterestError(errorData: any) {
     this.view.showErrorAlert(errorData.message);
   }
 }

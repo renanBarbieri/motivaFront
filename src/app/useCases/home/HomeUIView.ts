@@ -1,5 +1,5 @@
-import {UIContract} from "@app/presentation/view/UIContract";
-import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
+import {UIContract} from "app/useCases/UIContract";
+import CardViewModel from "app/useCases/card/CardViewModel";
 
 export interface HomeUiView extends UIContract{
 

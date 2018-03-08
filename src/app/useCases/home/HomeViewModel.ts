@@ -1,4 +1,4 @@
-import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
+import CardViewModel from "app/useCases/card/CardViewModel";
 import {Injectable} from "@angular/core";
 
 @Injectable()

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import CardViewModel from "@app/presentation/viewmodel/CardViewModel";
+import CardViewModel from "app/useCases/card/CardViewModel";
 
 @Component({
   selector: 'app-topic-articles',

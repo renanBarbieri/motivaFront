@@ -1,13 +1,13 @@
-import {HomeUseCase} from "@app/interaction/HomeUseCase";
-import HomeUseCaseImpl from "@app/interaction/impl/HomeUseCaseImpl";
+import {HomeInputBoundary} from "@app/useCases/home/HomeInputBoundary";
+import HomeUseCaseImpl from "@app/useCases/home/HomeUseCase";
 import Usuario from "@app/entity/User";
-import UsuarioRepository from "@app/data/repository/impl/UserRepositoryImpl";
-import {GetUserDataRequestData} from "@app/interaction/GetUserDataUseCase";
-import {GetUserDataResponseData, GetUserDataResponseHandler} from "@app/interaction/GetUserDataResponseHandler";
+import UsuarioRepository from "@app/data/repository/UserRepository";
+import {GetUserDataInputModel} from "@app/useCases/userData/GetUserDataInputBoundary";
+import {GetUserDataOutputModel, GetUserDataOutputBoundary} from "@app/useCases/userData/GetUserDataOutputBoundary";
 
 describe('Teste dos casos de uso GetDadosUsuario', () => {
 
-  let homeUseCase: HomeUseCase;
+  let homeUseCase: HomeInputBoundary;
   let presenterSpy: PresenterSpy;
 
 
@@ -31,7 +31,7 @@ describe('Teste dos casos de uso GetDadosUsuario', () => {
       return getUsuario();
     });
 
-    let requestData: GetUserDataRequestData = new GetUserDataRequestData();
+    let requestData: GetUserDataInputModel = new GetUserDataInputModel();
     requestData.userId = "1";
 
     await homeUseCase.getUser(requestData, presenterSpy);
@@ -43,11 +43,11 @@ describe('Teste dos casos de uso GetDadosUsuario', () => {
 
 });
 
-class PresenterSpy implements GetUserDataResponseHandler{
+class PresenterSpy implements GetUserDataOutputBoundary{
 
-  responseData: GetUserDataResponseData;
+  responseData: GetUserDataOutputModel;
 
-  onGetUserDataSuccess(responseData: GetUserDataResponseData) {
+  onGetUserDataSuccess(responseData: GetUserDataOutputModel) {
     this.responseData = responseData;
   }
 

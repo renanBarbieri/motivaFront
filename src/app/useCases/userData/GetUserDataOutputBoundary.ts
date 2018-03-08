@@ -1,10 +1,10 @@
 
-export interface GetUserDataResponseHandler{
-  onGetUserDataSuccess(responseData: GetUserDataResponseData);
+export interface GetUserDataOutputBoundary{
+  onGetUserDataSuccess(responseData: GetUserDataOutputModel);
   onGetUserDataError(errorData: any);
 }
 
-export class GetUserDataResponseData{
+export class GetUserDataOutputModel{
   public username: string;
   public levelCompleted: number;
   public levelName: string;
