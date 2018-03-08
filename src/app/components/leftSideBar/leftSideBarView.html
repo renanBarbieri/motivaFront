@@ -1,0 +1,24 @@
+<div class="leftSideContent" fxLayout="column">
+    <img class="profilePic" src="{{profileImage}}" />
+  {{username}}
+    <span matTooltip="{{levelCompleted}}% concluído" position="left">
+        <mat-progress-bar class="userProgress" mode="determinate" value="{{levelCompleted}}" color="accent"></mat-progress-bar>
+    </span>
+    <mat-chip-list>
+        <mat-chip color="accent" selected="true" class="chipLevel">{{levelName}}</mat-chip>
+    </mat-chip-list>
+    <mat-grid-list cols="2" rowHeight="2em">
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-list class="listMenu">
+        <hr>
+        <mat-list-item class="listMenuItem" fxLayout="row" *ngFor="let menu of menus">
+            <mat-icon>{{ menu.icon }}</mat-icon>
+            <h4 mat-line>{{menu.name}}</h4>
+        </mat-list-item>
+    </mat-list>
+</div>

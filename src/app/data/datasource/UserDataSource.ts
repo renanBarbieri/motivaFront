@@ -1,5 +1,5 @@
-import User from "@app/entity/User";
+import DataSourceUser from "@app/data/model/DataSourceUser";
 
 export interface UserDataSource{
-  get(id: string): Promise<User>;
+  getData(id: string): Promise<DataSourceUser>;
 }
