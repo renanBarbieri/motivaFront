@@ -1,8 +1,21 @@
 
 .topBar{
-    background-color: darkgray;
-    align-items: center;
+  z-index: 2;
+    background: whitesmoke;
+    position: fixed;
     padding: 1%;
     color: white;
     font-weight: bold;
+  box-shadow: 0 0 1px 0 rgba(0,0,0,.2), 0 0 2px 0 rgba(0,0,0,.14), 0 0 5px 0 rgba(0,0,0,.12);
+  flex: 100%;
+}
+
+.searchInput{
+  margin-top: 5%;
+  margin-bottom: 3%;
+  flex: 1 1 100%;
+}
+
+#searchAll{
+  color: black;
 }

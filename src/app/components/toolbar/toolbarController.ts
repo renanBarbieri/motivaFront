@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,4 +7,5 @@ import {Component} from '@angular/core';
 })
 export class ToolbarComponent {
   title = 'Toolbar';
+  value = "";
 }

@@ -12,6 +12,7 @@ import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarControll
 
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
+  MatInputModule,
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import UserRepositoryImpl from "./data/repository/UserRepository";
@@ -39,6 +40,7 @@ import SearchApiDataSource from "@app/data/datasource/search/SearchApiDataSource
     MatButtonToggleModule,
     MatChipsModule,
     MatToolbarModule,
+    MatInputModule,
     MatIconModule,
     MatProgressBarModule,
     MatTooltipModule,

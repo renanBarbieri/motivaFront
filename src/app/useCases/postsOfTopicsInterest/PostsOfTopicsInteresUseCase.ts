@@ -25,19 +25,20 @@ export default class PostsOfTopicsInterestUseCase implements PostsOfTopicsIntere
 
       requestData.tags.forEach(async(value, key) => {
          const posts: Post[] = await this.postRepository.getPostsFromTag(key.toString());
-         let postsCards = Array<PostCardModel>();
-         for(let post of posts){
+
+        let postsCards: Array<PostCardModel> = posts.map(function (it) {
            let cardPost = new PostCardModel();
-           cardPost.imageThumbnail = post.headerImage;
-           cardPost.userAvatar = post.owner.avatar;
-           cardPost.userName = post.owner.username;
-           cardPost.title = post.title;
-           cardPost.subtitle = post.subtitle;
+           cardPost.imageThumbnail = it.headerImage;
+           cardPost.userAvatar = it.owner.avatar;
+           cardPost.userName = it.owner.username;
+           cardPost.title = it.title;
+           cardPost.subtitle = it.subtitle;
            cardPost.favs = 2;
            cardPost.stars = 5;
-           cardPost.publishDate = post.publishDate.toDateString();
-           postsCards.push(cardPost);
-         }
+           cardPost.publishDate = it.publishDate.toDateString();
+           return cardPost;
+         });
+
          responseData.tagPostsMap.set(value, postsCards);
          presenter.onPostsOfTopicsInterestSuccess(responseData);
       });
