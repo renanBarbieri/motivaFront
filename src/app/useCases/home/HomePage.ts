@@ -8,6 +8,7 @@ import HomeUseCase from "@app/useCases/home/HomeUseCase";
 import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
 import UserRepositoryImpl from "@app/data/repository/UserRepository";
+import SearchUseCase from "@app/useCases/search/SearchUseCase";
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ import UserRepositoryImpl from "@app/data/repository/UserRepository";
     { provide: HomeViewModel, useClass: HomeViewModel },
     { provide: HomeUseCase, useClass: HomeUseCase },
     { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase },
-    { provide: UserDataUseCase, useClass: UserDataUseCase }
+    { provide: UserDataUseCase, useClass: UserDataUseCase },
+    { provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
 export class HomeComponent implements OnInit, HomeUiView{

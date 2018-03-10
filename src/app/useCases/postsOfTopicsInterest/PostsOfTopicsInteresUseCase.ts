@@ -4,11 +4,12 @@ import {
 } from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
 import {
   PostsOfTopicsInterestOutputBoundary,
-  GetPostsOfTopicsInterestOutputModel, PostCardModel
+  GetPostsOfTopicsInterestOutputModel
 } from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import PostRepository from "app/data/repository/PostRepository";
 import {Injectable} from "@angular/core";
 import Post from "app/entity/Post";
+import {PostCardModel} from "@app/useCases/postsOfTopicsInterest/PostCardModel";
 
 @Injectable()
 export default class PostsOfTopicsInterestUseCase implements PostsOfTopicsInterestInputBoundary{

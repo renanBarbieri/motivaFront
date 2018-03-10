@@ -31,9 +31,8 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
       "Authentication": authKey
     });
 
-
-    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePost[]>>(PostApiDataSource.dataSourceURL
-      .concat("/tag/").concat(tagId).concat("/posts"), {headers});
+    let url = `${PostApiDataSource.dataSourceURL}/tag/${tagId}/posts`;
+    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePost[]>>(url, {headers});
 
     return new Promise<DataSourcePost[]>(async (resolve, reject) => {
 

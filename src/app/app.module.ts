@@ -19,6 +19,8 @@ import ArticleRepository from "./data/repository/PostRepository";
 import UserApiDataSource from "./data/datasource/user/UserApiDataSource";
 import ArticleApiDataSource from "./data/datasource/post/PostApiDataSource";
 import {HttpClientModule} from "@angular/common/http";
+import SearchRepository from "@app/data/repository/SearchRepository";
+import SearchApiDataSource from "@app/data/datasource/search/SearchApiDataSource";
 
 @NgModule({
   declarations: [
@@ -47,9 +49,11 @@ import {HttpClientModule} from "@angular/common/http";
     //Repositories
     { provide: UserRepositoryImpl, useClass: UserRepositoryImpl },
     { provide: ArticleRepository, useClass: ArticleRepository },
+    { provide: SearchRepository, useClass: SearchRepository},
     //DataSources
     { provide: UserApiDataSource, useClass: UserApiDataSource },
-    { provide: ArticleApiDataSource, useClass: ArticleApiDataSource }
+    { provide: ArticleApiDataSource, useClass: ArticleApiDataSource },
+    { provide: SearchApiDataSource, useClass: SearchApiDataSource }
   ],
   bootstrap: [HomeComponent]
 })

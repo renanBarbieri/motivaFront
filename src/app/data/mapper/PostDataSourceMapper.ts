@@ -2,7 +2,7 @@ import {DataSourceMapper} from "./DataSourceMapper";
 import Post from "@app/entity/Post";
 import DataSourcePost from "@app/data/model/DataSourcePost";
 import User from "@app/entity/User";
-import DataSourcePostOwner from "@app/data/model/DataSourcePostOwner";
+import DataSourcePostOwner from "@app/data/model/DataSourceUserProfile";
 
 export default class PostDataSourceMapper implements DataSourceMapper<DataSourcePost, Post>{
 
