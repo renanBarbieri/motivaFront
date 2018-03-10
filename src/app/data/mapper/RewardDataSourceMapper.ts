@@ -17,12 +17,4 @@ export default class RewardDataSourceMapper implements DataSourceMapper<DataSour
     throw new Error("Method not implemented.");
   }
 
-  toEntityArray(dataSource: DataSourceReward[]): Reward[] {
-    let returnArr = [];
-    for(let dsReward of dataSource){
-      returnArr.push(this.toEntity(dsReward))
-    }
-    return returnArr;
-  }
-
 }
