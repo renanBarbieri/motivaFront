@@ -58,6 +58,10 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeViewModel.topicsKeys.length = 0;
   }
 
+  onSearchInput($textToSearch: string){
+    console.log(`cheguei: ${$textToSearch}`);
+  }
+
   showErrorAlert(message: String) {
 
   }

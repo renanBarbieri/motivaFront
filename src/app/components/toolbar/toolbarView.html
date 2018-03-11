@@ -1,5 +1,5 @@
 <mat-toolbar class="topBar">
-  <mat-form-field color="accent" class="searchInput">
-    <input id="searchAll" matInput placeholder="Pesquisar">
+  <mat-form-field color="accent" class="searchInput" onsubmit="searchInput('ola')">
+    <input #searchAll id="searchAll" matInput placeholder="Pesquisar" (keyup.enter)="searchInput(searchAll.value)"/>
   </mat-form-field>
 </mat-toolbar>
