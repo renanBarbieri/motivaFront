@@ -1,5 +1,5 @@
 .pageContent{
-    flex: 1 1 100%;
+    flex: 1 1 auto;
 }
 
 .leftSideBar{
@@ -8,7 +8,7 @@
 
 .content{
     background-color: whitesmoke;
-    flex: 1 1 100%;
+    flex: 1 1 auto;
     padding: 2%;
 }
 

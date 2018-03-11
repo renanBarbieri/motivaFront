@@ -1,7 +1,7 @@
 <div class="topicName">
   {{ topicName }}
 </div>
-<div layout-wrap fxLayout="row">
+<div class="listArticles" fxLayout="row">
   <div *ngFor="let index of articleIndexes">
     <app-card
       [title]="articles[index].title"
