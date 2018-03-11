@@ -5,6 +5,7 @@ import {UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
 import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {Injectable} from "@angular/core";
 import HomeUseCase from "@app/useCases/home/HomeUseCase";
+import {SearchOutputBoundary} from "@app/useCases/search/SearchOutputBoundary";
 
 @Injectable()
 export default class HomeController{
@@ -25,5 +26,9 @@ export default class HomeController{
     let requestData = new PostsOfTopicsInterestInputModel();
     requestData.tags = topics;
     this.homeUseCase.getTopics(requestData, responseHandler);
+  }
+
+  getResultsOfSearch(responseOutput: SearchOutputBoundary, searchText: string){
+
   }
 }

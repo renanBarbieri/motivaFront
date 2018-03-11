@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit, HomeUiView{
 
   onSearchInput($textToSearch: string){
     console.log(`cheguei: ${$textToSearch}`);
+    this.homeController.getResultsOfSearch(this.homePresenter, $textToSearch)
   }
 
   showErrorAlert(message: String) {

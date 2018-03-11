@@ -59,5 +59,6 @@ export default class HomePresenter implements HomeOutputBoundary{
 
   //TODO: comunicação com a View
   onSearchSuccess(result: SearchOutputModel) {
+
   }
 }
