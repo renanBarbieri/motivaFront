@@ -1,14 +1,14 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import HomeViewModel from "app/useCases/home/HomeViewModel";
+import HomeViewModel from "app/ui/home/HomeViewModel";
 import {HomeUiView} from "app/useCases/home/HomeUIView";
 import HomeController from "app/useCases/home/HomeController";
-import CardViewModel from "app/useCases/card/CardViewModel";
-import HomePresenter from "@app/useCases/home/HomePresenter";
-import HomeUseCase from "@app/useCases/home/HomeUseCase";
-import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
-import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
-import UserRepositoryImpl from "@app/data/repository/UserRepository";
-import SearchUseCase from "@app/useCases/search/SearchUseCase";
+import CardViewModel from "app/ui/models/PostItem";
+import HomePresenter from "app/useCases/home/HomePresenter";
+import HomeUseCase from "app/useCases/home/HomeUseCase";
+import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
+import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
+import UserRepositoryImpl from "app/data/repository/UserRepository";
+import SearchUseCase from "app/useCases/search/SearchUseCase";
 
 @Component({
   selector: 'app-home',

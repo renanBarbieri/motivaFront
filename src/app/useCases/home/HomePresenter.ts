@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
 import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
-import CardViewModel from "app/useCases/card/CardViewModel";
+import PostItem from "app/ui/models/PostItem";
 import {SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
 import {PostCardModel} from "@app/useCases/postsOfTopicsInterest/PostCardModel";
 
@@ -28,12 +28,12 @@ export default class HomePresenter implements HomeOutputBoundary{
   }
 
   onPostsOfTopicsInterestSuccess(responseData: GetPostsOfTopicsInterestOutputModel) {
-    let topicsList: Map<string, CardViewModel[]> = new Map();
+    let topicsList: Map<string, PostItem[]> = new Map();
     console.log("Presenter");
     responseData.tagPostsMap.forEach((value: Array<PostCardModel>, key: string) => {
-      let cardList: CardViewModel[] = [];
+      let cardList: PostItem[] = [];
       value.forEach((post: PostCardModel) => {
-        let cardItem = new CardViewModel();
+        let cardItem = new PostItem();
         cardItem.id = post.entityReference;
         cardItem.title = post.title;
         cardItem.articleImage = post.imageThumbnail;

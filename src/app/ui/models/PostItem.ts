@@ -1,5 +1,5 @@
 
-export default class CardViewModel{
+export default class PostItem{
   id: string;
   author: string;
   authorImage: string;
