@@ -6,12 +6,13 @@ import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInt
 import PostItem from "app/ui/models/PostItem";
 import {SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
 import {PostCardModel} from "@app/useCases/postsOfTopicsInterest/PostCardModel";
+import {Router} from "@angular/router";
 
 @Injectable()
 export default class HomePresenter implements HomeOutputBoundary{
   private view: HomeUiView;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   onViewInit(view: HomeUiView) {
@@ -59,6 +60,7 @@ export default class HomePresenter implements HomeOutputBoundary{
 
   //TODO: comunicação com a View
   onSearchSuccess(result: SearchOutputModel) {
-
+    console.log("im here");
+    this.router.navigate(['/search']);
   }
 }

@@ -29,6 +29,6 @@ export default class HomeController{
   }
 
   getResultsOfSearch(responseOutput: SearchOutputBoundary, searchText: string){
-
+    this.homeUseCase.searchInput(searchText, responseOutput);
   }
 }

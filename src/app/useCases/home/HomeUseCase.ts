@@ -7,6 +7,7 @@ import {Injectable} from "@angular/core";
 import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
 import SearchUseCase from "@app/useCases/search/SearchUseCase";
+import {SearchOutputBoundary} from "@app/useCases/search/SearchOutputBoundary";
 
 @Injectable()
 export default class HomeUseCase implements HomeInputBoundary{
@@ -23,7 +24,7 @@ export default class HomeUseCase implements HomeInputBoundary{
     this.postsOfTopicsInterestUseCase.getTopics(requestData, presenter);
   }
 
-  async searchInput(input: string) {
-    this.searchUseCase.searchInput(input);
+  async searchInput(input: string, outputBoundary: SearchOutputBoundary) {
+    this.searchUseCase.searchInput(input, outputBoundary);
   }
 }
