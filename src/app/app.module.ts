@@ -29,11 +29,13 @@ import UserApiDataSource from "./data/datasource/user/UserApiDataSource";
 import PostApiDataSource from "./data/datasource/post/PostApiDataSource";
 import SearchRepository from "@app/data/repository/SearchRepository";
 import SearchApiDataSource from "@app/data/datasource/search/SearchApiDataSource";
-import {appRoutes} from "./Routes";
+import {appRoutes, AppRoutingModule} from "./app.routing";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
+import {AppComponent} from "@app/app.component";
 
 @NgModule({
   declarations: [
+    AppComponent,
     HomeComponent,
     SearchComponent,
     ToolbarComponent,
@@ -42,10 +44,7 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
     LeftSideBarComponent
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true} // <-- Just for debugging purposes
-    ),
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -71,6 +70,6 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
     { provide: PostApiDataSource, useClass: PostApiDataSource },
     { provide: SearchApiDataSource, useClass: SearchApiDataSource }
   ],
-  bootstrap: [HomeComponent, SearchComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

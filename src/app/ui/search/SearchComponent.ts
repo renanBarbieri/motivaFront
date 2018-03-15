@@ -16,17 +16,17 @@ import SearchViewModel from "@app/ui/search/SearchViewModel";
 })
 export class SearchComponent implements SearchUiView, OnInit{
 
-  // constructor(@Inject(SearchViewModel) public searchViewModel){}
+  constructor(@Inject(SearchViewModel) public searchViewModel){}
 
   ngOnInit(){
   }
 
 
   updateUserData(username: string, levelCompleted: number, levelName: string, profileImageUrl: string, tags: Map<number, string>) {
-    // this.searchViewModel.username = username;
-    // this.searchViewModel.levelCompleted = levelCompleted;
-    // this.searchViewModel.levelName = levelName;
-    // this.searchViewModel.profileImage = profileImageUrl;
+    this.searchViewModel.username = username;
+    this.searchViewModel.levelCompleted = levelCompleted;
+    this.searchViewModel.levelName = levelName;
+    this.searchViewModel.profileImage = profileImageUrl;
   }
 
   showErrorAlert(message: String) {
