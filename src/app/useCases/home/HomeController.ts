@@ -5,12 +5,13 @@ import {UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
 import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {Injectable} from "@angular/core";
 import HomeUseCase from "@app/useCases/home/HomeUseCase";
-import {SearchOutputBoundary} from "@app/useCases/search/SearchOutputBoundary";
+import {SearchOutputBoundary, SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
+import {Router} from "@angular/router";
 
 @Injectable()
 export default class HomeController{
 
-  constructor(private homeUseCase: HomeUseCase) {}
+  constructor(private homeUseCase: HomeUseCase, private router: Router) {}
 
   onViewInit(presenter: HomeOutputBoundary) {
     this.getUserData(presenter);
@@ -28,7 +29,8 @@ export default class HomeController{
     this.homeUseCase.getTopics(requestData, responseHandler);
   }
 
-  getResultsOfSearch(responseOutput: SearchOutputBoundary, searchText: string){
-    this.homeUseCase.searchInput(searchText, responseOutput);
+  getResultsOfSearch(searchText: string){
+    console.log("im here");
+    this.router.navigate(['/search', { q: searchText}]);
   }
 }

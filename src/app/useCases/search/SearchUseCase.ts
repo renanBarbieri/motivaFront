@@ -39,19 +39,23 @@ export default class SearchUseCase implements SearchInputBoundary{
       userView.entityReference = it.id.toString();
       userView.username = it.name;
       userView.profileImage = it.avatar;
-      userView.levelName = it.level.name;
-      userView.levelCompleted = it.level.experience;
       return userView;
     });
 
     searchOutput.posts = posts.map(function(it){
       let postView = new PostSearchModel();
       postView.entityReference = it.id.toString();
-      postView
+      postView.articleImage = it.headerImage;
+      postView.authorImage = it.owner.avatar;
+      postView.author = it.owner.username;
+      postView.title = it.title;
+      postView.favorites = 2;
+      postView.likes = 5;
+      postView.publishDate = it.publishDate.toDateString();
       return postView;
     });
 
 
-    outputBoundary.onSearchSuccess(new SearchOutputModel())
+    outputBoundary.onSearchSuccess(searchOutput);
   }
 }

@@ -3,4 +3,4 @@ import {PostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInt
 import {SearchOutputBoundary} from "@app/useCases/search/SearchOutputBoundary";
 
 export interface HomeOutputBoundary extends UserDataOutputBoundary,
-  PostsOfTopicsInterestOutputBoundary, SearchOutputBoundary {}
+  PostsOfTopicsInterestOutputBoundary {}

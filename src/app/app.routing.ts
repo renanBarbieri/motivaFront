@@ -11,7 +11,7 @@ export const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'search/:q',
+    path: 'search',
     component: SearchComponent
   }
 
