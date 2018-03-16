@@ -30,7 +30,7 @@ export default class HomeController{
   }
 
   getResultsOfSearch(searchText: string){
-    console.log("im here");
+    console.log(searchText);
     this.router.navigate(['/search', { q: searchText}]);
   }
 }

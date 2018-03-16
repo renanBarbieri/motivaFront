@@ -5,7 +5,6 @@ export interface SearchOutputBoundary {
 }
 
 export class SearchOutputModel{
-  public query: string;
   public tags: Array<TagSearchModel>;
   public users: Array<UserSearchOutputModel>;
   public posts: Array<PostSearchModel>;

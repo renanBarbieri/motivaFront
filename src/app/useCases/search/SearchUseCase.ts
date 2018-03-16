@@ -25,7 +25,6 @@ export default class SearchUseCase implements SearchInputBoundary{
     let posts: Array<Post> = search[2];
 
     let searchOutput = new SearchOutputModel();
-    searchOutput.query = input;
 
     searchOutput.tags = tags.map(function(it){
       let tagView = new TagSearchModel();
