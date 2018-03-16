@@ -1,4 +1,4 @@
-import {PostCardModel} from "@app/useCases/postsOfTopicsInterest/PostCardModel";
+import PostItem from "@app/ui/models/PostItem";
 
 export interface PostsOfTopicsInterestOutputBoundary{
   onPostsOfTopicsInterestSuccess(responseData: GetPostsOfTopicsInterestOutputModel);
@@ -6,5 +6,5 @@ export interface PostsOfTopicsInterestOutputBoundary{
 }
 
 export class GetPostsOfTopicsInterestOutputModel{
-  public tagPostsMap: Map<string, Array<PostCardModel>>;
+  public tagPostsMap: Map<string, Array<PostItem>>;
 }

@@ -1,16 +1,17 @@
-import {PostCardModel} from "@app/useCases/postsOfTopicsInterest/PostCardModel";
+import PostItem from "@app/ui/models/PostItem";
 
 export interface SearchOutputBoundary {
   onSearchSuccess(result: SearchOutputModel);
 }
 
 export class SearchOutputModel{
-  public tags: Map<string, Array<TagSearchModel>>;
+  public query: string;
+  public tags: Array<TagSearchModel>;
   public users: Array<UserSearchOutputModel>;
   public posts: Array<PostSearchModel>;
 }
 
-export class PostSearchModel extends PostCardModel{}
+export class PostSearchModel extends PostItem{}
 
 export class UserSearchOutputModel{
   public entityReference: string;

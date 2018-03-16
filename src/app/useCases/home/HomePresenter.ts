@@ -3,9 +3,7 @@ import {Injectable} from "@angular/core";
 import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
 import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
-import PostItem from "app/ui/models/PostItem";
 import {SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
-import {PostCardModel} from "@app/useCases/postsOfTopicsInterest/PostCardModel";
 import {Router} from "@angular/router";
 
 @Injectable()
@@ -29,28 +27,8 @@ export default class HomePresenter implements HomeOutputBoundary{
   }
 
   onPostsOfTopicsInterestSuccess(responseData: GetPostsOfTopicsInterestOutputModel) {
-    let topicsList: Map<string, PostItem[]> = new Map();
     console.log("Presenter");
-    responseData.tagPostsMap.forEach((value: Array<PostCardModel>, key: string) => {
-      let cardList: PostItem[] = [];
-      value.forEach((post: PostCardModel) => {
-        let cardItem = new PostItem();
-        cardItem.id = post.entityReference;
-        cardItem.title = post.title;
-        cardItem.articleImage = post.imageThumbnail;
-        cardItem.authorImage = post.userAvatar;
-        cardItem.publishDate = post.publishDate;
-        cardItem.favorites = post.favs;
-        cardItem.likes = post.stars;
-        cardItem.author = post.userName;
-        cardList.push(cardItem)
-      });
-      topicsList.set(key, cardList)
-    });
-
-    console.log(topicsList);
-
-    this.view.updateTopicList(topicsList)
+    this.view.updateTopicList(responseData.tagPostsMap)
 
   }
 
@@ -58,9 +36,8 @@ export default class HomePresenter implements HomeOutputBoundary{
     this.view.showErrorAlert(errorData.message);
   }
 
-  //TODO: comunicação com a View
   onSearchSuccess(result: SearchOutputModel) {
     console.log("im here");
-    this.router.navigate(['/search']);
+    this.router.navigate(['/search', result.query]);
   }
 }

@@ -5,7 +5,10 @@ import User from "@app/entity/User";
 import Tag from "@app/entity/Tag";
 import Post from "@app/entity/Post";
 import SearchRepository from "@app/data/repository/SearchRepository";
-import {SearchOutputBoundary, SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
+import {
+  PostSearchModel, SearchOutputBoundary, SearchOutputModel,
+  TagSearchModel, UserSearchOutputModel
+} from "@app/useCases/search/SearchOutputBoundary";
 
 @Injectable()
 export default class SearchUseCase implements SearchInputBoundary{
@@ -18,8 +21,36 @@ export default class SearchUseCase implements SearchInputBoundary{
     let search: [Array<User>, Array<Tag>, Array<Post>] = await this.searchRepository.searchAnyContent(input);
 
     let users: Array<User> = search[0];
-    let tag: Array<Tag> = search[1];
+    let tags: Array<Tag> = search[1];
     let posts: Array<Post> = search[2];
+
+    let searchOutput = new SearchOutputModel();
+    searchOutput.query = input;
+
+    searchOutput.tags = tags.map(function(it){
+      let tagView = new TagSearchModel();
+      tagView.entityReference = it.id.toString();
+      tagView.name = it.name;
+      return tagView;
+    });
+
+    searchOutput.users = users.map(function(it){
+      let userView = new UserSearchOutputModel();
+      userView.entityReference = it.id.toString();
+      userView.username = it.name;
+      userView.profileImage = it.avatar;
+      userView.levelName = it.level.name;
+      userView.levelCompleted = it.level.experience;
+      return userView;
+    });
+
+    searchOutput.posts = posts.map(function(it){
+      let postView = new PostSearchModel();
+      postView.entityReference = it.id.toString();
+      postView
+      return postView;
+    });
+
 
     outputBoundary.onSearchSuccess(new SearchOutputModel())
   }

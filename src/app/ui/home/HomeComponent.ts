@@ -2,13 +2,12 @@ import {Component, Inject, OnInit} from '@angular/core';
 import HomeViewModel from "app/ui/home/HomeViewModel";
 import {HomeUiView} from "app/useCases/home/HomeUIView";
 import HomeController from "app/useCases/home/HomeController";
-import CardViewModel from "app/ui/models/PostItem";
 import HomePresenter from "app/useCases/home/HomePresenter";
 import HomeUseCase from "app/useCases/home/HomeUseCase";
 import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
-import UserRepositoryImpl from "app/data/repository/UserRepository";
 import SearchUseCase from "app/useCases/search/SearchUseCase";
+import PostItem from "@app/ui/models/PostItem";
 
 @Component({
   selector: 'app-home',
@@ -45,9 +44,9 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.getPostsOfTopicsOfInterest(this.homePresenter, tags)
   }
 
-  updateTopicList(topicList: Map<string, CardViewModel[]>) {
+  updateTopicList(topicList: Map<string, PostItem[]>) {
     this.clearHomeViewLists();
-    topicList.forEach((value: CardViewModel[], key: string) => {
+    topicList.forEach((value: PostItem[], key: string) => {
       this.homeViewModel.topicsKeys.push(key);
       this.homeViewModel.topicsList.set(key, value)
     });

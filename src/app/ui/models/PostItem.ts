@@ -1,6 +1,6 @@
 
 export default class PostItem{
-  id: string;
+  entityReference: string;
   author: string;
   authorImage: string;
   title: string;
