@@ -6,9 +6,6 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 
-// PAGES
-import {HomeComponent} from './ui/home/HomeComponent';
-
 // COMPONENTS
 import {ToolbarComponent} from './components/toolbar/toolbarController';
 import {CardComponent} from './components/card/cardController';
@@ -18,7 +15,7 @@ import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarControll
 // MATERIAL DESIGN
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
-  MatInputModule,
+  MatInputModule, MatTabsModule,
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 
@@ -29,6 +26,9 @@ import UserApiDataSource from "./data/datasource/user/UserApiDataSource";
 import PostApiDataSource from "./data/datasource/post/PostApiDataSource";
 import SearchRepository from "@app/data/repository/SearchRepository";
 import SearchApiDataSource from "@app/data/datasource/search/SearchApiDataSource";
+
+// PAGES
+import {HomeComponent} from './ui/home/HomeComponent';
 import {appRoutes, AppRoutingModule} from "./app.routing";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
 import {AppComponent} from "@app/app.component";
@@ -58,7 +58,8 @@ import {AppComponent} from "@app/app.component";
     MatProgressBarModule,
     MatTooltipModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
   ],
   providers: [
     //Repositories

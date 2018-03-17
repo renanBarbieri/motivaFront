@@ -1,3 +1,6 @@
+import PostItem from '@app/ui/models/PostItem';
+import TopicItem from '@app/ui/models/TopicItem';
+import UserItem from '@app/ui/models/UserItem';
 import {Component, Inject, OnInit} from '@angular/core';
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import SearchUseCase from "app/useCases/search/SearchUseCase";
@@ -25,12 +28,16 @@ import SearchPresenter from "@app/useCases/search/SearchPresenter";
 })
 export class SearchComponent implements SearchUiView, OnInit{
 
+  public postIndexes: Array<number> = [];
+
   constructor(public searchViewModel: SearchViewModel,
               private searchController: SearchController,
               private searchPresenter: SearchPresenter,
               private route: ActivatedRoute){}
 
   ngOnInit(){
+    console.log("estoy aqui");
+
     const searchQuery = this.route.snapshot.paramMap.get('q');
     this.searchPresenter.initPresenter(this);
     this.searchController.getUserData(this.searchPresenter);
@@ -43,6 +50,30 @@ export class SearchComponent implements SearchUiView, OnInit{
     this.searchViewModel.levelCompleted = levelCompleted;
     this.searchViewModel.levelName = levelName;
     this.searchViewModel.profileImage = profileImageUrl;
+  }
+
+  updateResultList(result:  [Array<UserItem>, Array<TopicItem>, Array<PostItem>]){
+    this.searchViewModel.userResultList = result[0];
+    this.searchViewModel.topicResultList = result[1];
+    this.searchViewModel.postResultList = result[2];
+
+    this.updatePostIndexes();
+  }
+
+  updatePostIndexes(){
+    console.log(this.postIndexes);
+    this.postIndexes = []
+    console.log(this.postIndexes);
+
+    console.log(this.searchViewModel.postResultList);
+
+    for(let idx = 0; idx < this.searchViewModel.postResultList.length; idx++){
+      this.postIndexes.push(idx)
+    }
+  }
+
+  onSearchInput(textToSearch: string){
+    this.searchController.getResultsOfSearch(textToSearch, this.searchPresenter);
   }
 
   showErrorAlert(message: String) {

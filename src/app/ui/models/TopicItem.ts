@@ -1,4 +1,5 @@
- export default class TopicItem {
+
+export default class TopicItem {
   id: string;
   name: string;
  }

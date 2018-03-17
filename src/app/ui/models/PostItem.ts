@@ -1,5 +1,5 @@
 
-export default class PostItem{
+export default class PostItem {
   entityReference: string;
   author: string;
   authorImage: string;
