@@ -9,7 +9,9 @@
       </app-left-sidebar>
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
-      <app-toolbar (searchInputEvent)="onSearchInput($event)"></app-toolbar>
+      <app-toolbar
+        (searchInputEvent)="onSearchInput($event)"
+      [previousSearch]="searchQuery"></app-toolbar>
       <div class="content">
         <mat-tab-group>
           <mat-tab label="Usuários">

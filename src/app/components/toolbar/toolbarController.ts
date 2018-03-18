@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -6,6 +6,9 @@ import {Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core'
   styleUrls: ['./toolbarStyle.css']
 })
 export class ToolbarComponent {
+
+  @Input()
+  previousSearch;
 
   @Output() searchInputEvent = new EventEmitter();
 

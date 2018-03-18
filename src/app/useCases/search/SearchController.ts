@@ -17,7 +17,6 @@ export default class SearchController {
   }
 
   getResultsOfSearch(searchText: string, outputBoundary: SearchOutputBoundary){
-    console.log(searchText);
     this.searchUseCase.searchInput(searchText, outputBoundary);
   }
 

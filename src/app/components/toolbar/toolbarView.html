@@ -1,5 +1,11 @@
 <mat-toolbar class="topBar">
   <mat-form-field color="accent" class="searchInput" onsubmit="searchInput('ola')">
-    <input #searchAll id="searchAll" matInput placeholder="Pesquisar" (keyup.enter)="searchInput(searchAll.value)"/>
+    <input #searchAll
+           id="searchAll"
+           matInput
+           placeholder="Pesquisar"
+           (keyup.enter)="searchInput(searchAll.value)"
+           value={{previousSearch}}
+    />
   </mat-form-field>
 </mat-toolbar>

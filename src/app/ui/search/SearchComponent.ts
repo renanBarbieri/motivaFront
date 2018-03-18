@@ -1,15 +1,15 @@
 import PostItem from '@app/ui/models/PostItem';
 import TopicItem from '@app/ui/models/TopicItem';
 import UserItem from '@app/ui/models/UserItem';
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import SearchUseCase from "app/useCases/search/SearchUseCase";
 import {SearchUiView} from "app/useCases/search/SearchUIView";
 import SearchViewModel from "@app/ui/search/SearchViewModel";
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
-import {Observable} from "rxjs/Observable";
 import SearchController from "@app/useCases/search/SearchController";
 import SearchPresenter from "@app/useCases/search/SearchPresenter";
 
@@ -31,18 +31,19 @@ export class SearchComponent implements SearchUiView, OnInit{
   public postIndexes: Array<number> = [];
   public userIndexes: Array<number> = [];
 
+  public searchQuery;
+
   constructor(public searchViewModel: SearchViewModel,
               private searchController: SearchController,
               private searchPresenter: SearchPresenter,
+              private location: Location,
               private route: ActivatedRoute){}
 
   ngOnInit(){
-    console.log("estoy aqui");
-
-    const searchQuery = this.route.snapshot.paramMap.get('q');
+    this.searchQuery = this.route.snapshot.paramMap.get('q');
     this.searchPresenter.initPresenter(this);
     this.searchController.getUserData(this.searchPresenter);
-    this.searchController.getResultsOfSearch(searchQuery, this.searchPresenter);
+    this.searchController.getResultsOfSearch(this.searchQuery, this.searchPresenter);
   }
 
 
@@ -60,6 +61,8 @@ export class SearchComponent implements SearchUiView, OnInit{
 
     this.updatePostIndexes();
     this.updateUserIndexes();
+
+    this.location.replaceState(`/search;q=${this.searchQuery}`)
   }
 
   updatePostIndexes(){
@@ -76,8 +79,19 @@ export class SearchComponent implements SearchUiView, OnInit{
     }
   }
 
+  clearAllResults(){
+    this.searchViewModel.userResultList = [];
+    this.searchViewModel.topicResultList = [];
+    this.searchViewModel.postResultList = [];
+
+    this.updatePostIndexes();
+    this.updateUserIndexes();
+  }
+
   onSearchInput(textToSearch: string){
+    this.searchQuery = textToSearch;
     this.searchController.getResultsOfSearch(textToSearch, this.searchPresenter);
+    this.clearAllResults();
   }
 
   showErrorAlert(message: String) {

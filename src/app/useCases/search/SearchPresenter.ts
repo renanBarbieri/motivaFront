@@ -16,7 +16,6 @@ export default class SearchPresenter implements SearchOutputBoundary, UserDataOu
   }
 
   onSearchSuccess(result: SearchOutputModel) {
-    console.log(result);
     this.view.updateResultList([result.users, result.tags, result.posts]);
   }
 
