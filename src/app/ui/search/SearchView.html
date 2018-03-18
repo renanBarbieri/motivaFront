@@ -13,11 +13,20 @@
       <div class="content">
         <mat-tab-group>
           <mat-tab label="Usuários">
-            <div>
+            <div class="tabContent">
+              <div class="listUserResult" fxLayout="row">
+                <div *ngFor="let index of userIndexes">
+                  <profile-thumb
+                    [id]="searchViewModel.userResultList[index].id"
+                    [name] = "searchViewModel.userResultList[index].username"
+                    [avatar] = "searchViewModel.userResultList[index].avatar" >
+                  </profile-thumb>
+                </div>
+              </div>
             </div>
           </mat-tab>
           <mat-tab label="Tópicos">
-            <div>
+            <div class="tabContent">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
               Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
               In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
@@ -26,17 +35,19 @@
             </div>
           </mat-tab>
           <mat-tab label="Posts">
-            <div class="listPostResult" fxLayout="row">
-              <div *ngFor="let index of postIndexes">
-                <app-card
-                  [title]="searchViewModel.postResultList[index].title"
-                  [thumbnail] = "searchViewModel.postResultList[index].articleImage"
-                  [avatar] = "searchViewModel.postResultList[index].authorImage"
-                  [subtitle] = "searchViewModel.postResultList[index].author"
-                  [starCount] = "searchViewModel.postResultList[index].likes"
-                  [favCount] = "searchViewModel.postResultList[index].favorites"
-                  [actionName] = "searchViewModel.postResultList[index].publishDate" >
-                </app-card>
+            <div class="tabContent">
+              <div class="listPostResult" fxLayout="row">
+                <div *ngFor="let index of postIndexes">
+                  <app-card
+                    [title]="searchViewModel.postResultList[index].title"
+                    [thumbnail] = "searchViewModel.postResultList[index].articleImage"
+                    [avatar] = "searchViewModel.postResultList[index].authorImage"
+                    [subtitle] = "searchViewModel.postResultList[index].author"
+                    [starCount] = "searchViewModel.postResultList[index].likes"
+                    [favCount] = "searchViewModel.postResultList[index].favorites"
+                    [actionName] = "searchViewModel.postResultList[index].publishDate" >
+                  </app-card>
+                </div>
               </div>
             </div>
           </mat-tab>

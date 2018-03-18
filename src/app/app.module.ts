@@ -32,6 +32,7 @@ import {HomeComponent} from './ui/home/HomeComponent';
 import {appRoutes, AppRoutingModule} from "./app.routing";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
 import {AppComponent} from "@app/app.component";
+import {ProfileComponent} from "@app/components/profile/profileController";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {AppComponent} from "@app/app.component";
     ToolbarComponent,
     CardComponent,
     TopicArticlesComponent,
-    LeftSideBarComponent
+    LeftSideBarComponent,
+    ProfileComponent
   ],
   imports: [
     AppRoutingModule,

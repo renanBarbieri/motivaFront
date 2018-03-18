@@ -29,6 +29,7 @@ import SearchPresenter from "@app/useCases/search/SearchPresenter";
 export class SearchComponent implements SearchUiView, OnInit{
 
   public postIndexes: Array<number> = [];
+  public userIndexes: Array<number> = [];
 
   constructor(public searchViewModel: SearchViewModel,
               private searchController: SearchController,
@@ -58,17 +59,20 @@ export class SearchComponent implements SearchUiView, OnInit{
     this.searchViewModel.postResultList = result[2];
 
     this.updatePostIndexes();
+    this.updateUserIndexes();
   }
 
   updatePostIndexes(){
-    console.log(this.postIndexes);
     this.postIndexes = [];
-    console.log(this.postIndexes);
-
-    console.log(this.searchViewModel.postResultList);
-
     for(let idx = 0; idx < this.searchViewModel.postResultList.length; idx++){
       this.postIndexes.push(idx)
+    }
+  }
+
+  updateUserIndexes(){
+    this.userIndexes = [];
+    for(let idx = 0; idx < this.searchViewModel.userResultList.length; idx++){
+      this.userIndexes.push(idx)
     }
   }
 

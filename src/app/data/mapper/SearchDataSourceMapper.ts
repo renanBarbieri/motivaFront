@@ -14,8 +14,6 @@ export default class SearchDataSourceMapper{
     let postMapper = new PostDataSourceMapper();
     let tagMapper = new TagDataSourceMapper();
 
-    console.log(dataSource);
-
     let users: Array<User> = dataSource.users.map(function (it) {
       return userProfileMapper.toEntity(it);
     });

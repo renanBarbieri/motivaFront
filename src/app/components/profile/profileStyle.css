@@ -1,0 +1,21 @@
+.profileItem {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  flex: 1 auto;
+  align-items: center;
+  margin: 1em;
+}
+
+.profilePic {
+  display: flex;
+  border-radius: 50%;
+  margin: 1em;
+}
+
+.profileName {
+  color: black;
+}

@@ -35,7 +35,7 @@ export default class SearchUseCase implements SearchInputBoundary{
     searchOutput.users = users.map(function(it){
       let userView = new UserItem();
       userView.id = it.id.toString();
-      userView.username = it.name;
+      userView.username = it.username;
       userView.avatar = it.avatar;
       return userView;
     });
@@ -52,7 +52,6 @@ export default class SearchUseCase implements SearchInputBoundary{
       postView.publishDate = it.publishDate.toDateString();
       return postView;
     });
-
 
     outputBoundary.onSearchSuccess(searchOutput);
   }
