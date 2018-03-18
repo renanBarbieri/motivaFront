@@ -30,6 +30,7 @@ export class SearchComponent implements SearchUiView, OnInit{
 
   public postIndexes: Array<number> = [];
   public userIndexes: Array<number> = [];
+  public topicIndexes: Array<number> = [];
 
   public searchQuery;
 
@@ -59,8 +60,9 @@ export class SearchComponent implements SearchUiView, OnInit{
     this.searchViewModel.topicResultList = result[1];
     this.searchViewModel.postResultList = result[2];
 
-    this.updatePostIndexes();
     this.updateUserIndexes();
+    this.updateTopicIndexes();
+    this.updatePostIndexes();
 
     this.location.replaceState(`/search;q=${this.searchQuery}`)
   }
@@ -79,13 +81,21 @@ export class SearchComponent implements SearchUiView, OnInit{
     }
   }
 
+  updateTopicIndexes(){
+    this.topicIndexes= [];
+    for(let idx = 0; idx < this.searchViewModel.topicResultList.length; idx++){
+      this.topicIndexes.push(idx)
+    }
+  }
+
   clearAllResults(){
     this.searchViewModel.userResultList = [];
     this.searchViewModel.topicResultList = [];
     this.searchViewModel.postResultList = [];
 
-    this.updatePostIndexes();
     this.updateUserIndexes();
+    this.updateTopicIndexes();
+    this.updatePostIndexes();
   }
 
   onSearchInput(textToSearch: string){

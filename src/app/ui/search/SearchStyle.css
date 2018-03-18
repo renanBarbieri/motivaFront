@@ -3,7 +3,7 @@
     font-size: 60px
 }
 
-.listPostResult, .listUserResult {
+.listPostResult, .listUserResult, .listTopicResult {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
@@ -13,4 +13,8 @@ TODO: centralizar os resultados
  */
 .tabContent {
   justify-content: center;
+}
+
+.chipTopic {
+  margin: 1em;
 }
