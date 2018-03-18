@@ -55,7 +55,7 @@ export class SearchComponent implements SearchUiView, OnInit{
     this.searchViewModel.levelCompleted = levelCompleted;
     this.searchViewModel.levelName = levelName;
     this.searchViewModel.profileImage = profileImageUrl;
-    this.searchViewModel.rewards = rewards;
+    this.updateRewardsList(rewards);
   }
 
   updateResultList(result:  [Array<UserItem>, Array<TopicItem>, Array<PostItem>]){
@@ -68,6 +68,14 @@ export class SearchComponent implements SearchUiView, OnInit{
     this.updatePostIndexes();
 
     this.location.replaceState(`/search;q=${this.searchQuery}`)
+  }
+
+  updateRewardsList(newRewards: Array<RewardItem>) {
+    this.searchViewModel.rewards.length = 0;
+    newRewards.forEach((it) => {
+      console.log(it);
+      this.searchViewModel.rewards.push(it);
+    });
   }
 
   updatePostIndexes(){

@@ -10,8 +10,8 @@ export default class SearchViewModel{
   levelCompleted: number;
   levelName: string;
   profileImage: string;
-  rewards: Array<RewardItem>;
-  userResultList: Array<UserItem>;
-  topicResultList: Array<TopicItem>;
-  postResultList: Array<PostItem>;
+  rewards: Array<RewardItem> = [];
+  userResultList: Array<UserItem> = [];
+  topicResultList: Array<TopicItem> = [];
+  postResultList: Array<PostItem> = [];
 }
