@@ -20,7 +20,9 @@ export default class SearchPresenter implements SearchOutputBoundary, UserDataOu
   }
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-    this.view.updateUserData(responseData.username, responseData.levelCompleted, responseData.levelName, responseData.profileImage, responseData.tags);
+    this.view.updateUserData( responseData.username, responseData.levelCompleted,
+                              responseData.levelName, responseData.profileImage,
+                              responseData.rewards, responseData.tags);
   }
 
   onUserDataError(errorData: any) {

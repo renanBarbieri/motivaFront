@@ -1,3 +1,4 @@
+import RewardItem from "@app/ui/models/RewardItem";
 
 export interface UserDataOutputBoundary{
   onUserDataSuccess(responseData: UserDataOutputModel);
@@ -9,5 +10,6 @@ export class UserDataOutputModel{
   public levelCompleted: number;
   public levelName: string;
   public profileImage: string;
+  public rewards: Array<RewardItem>;
   public tags: Map<number, string>;
 }

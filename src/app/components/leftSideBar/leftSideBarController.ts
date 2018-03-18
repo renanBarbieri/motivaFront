@@ -1,11 +1,12 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
+import RewardItem from "@app/ui/models/RewardItem";
 
 @Component({
   selector: 'app-left-sidebar',
   templateUrl: './leftSideBarView.html',
   styleUrls: ['./leftSideBarStyle.css']
 })
-export class LeftSideBarComponent{
+export class LeftSideBarComponent implements OnChanges{
 
   @Input()
   username: string;
@@ -18,6 +19,11 @@ export class LeftSideBarComponent{
 
   @Input()
   profileImage: string;
+
+  @Input()
+  rewards: RewardItem[];
+
+  public rewardIndexes: Array<number> = [];
 
   menus: any[] = [
     {
@@ -33,4 +39,13 @@ export class LeftSideBarComponent{
       icon: 'settings',
     }
   ];
+
+
+  ngOnChanges(): void {
+    console.log(this.rewards);
+
+    for(let idx = 0; idx < this.rewards.length; idx++){
+      this.rewardIndexes.push(idx)
+    }
+  }
 }
