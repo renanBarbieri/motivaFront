@@ -104,6 +104,18 @@ export class SearchComponent implements SearchUiView, OnInit{
     this.clearAllResults();
   }
 
+  onProfileClick(){
+
+  }
+
+  onTopicClick(topicId: number){
+    console.log(`cliquei no tópico ${topicId}`)
+  }
+
+  onPostClick() {
+
+  }
+
   showErrorAlert(message: String) {
 
   }

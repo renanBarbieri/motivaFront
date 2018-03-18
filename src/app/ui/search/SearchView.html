@@ -31,7 +31,8 @@
             <div class="tabContent">
               <mat-chip-list class="listTopicResult" fxLayout="row">
                 <mat-chip color="primary" class="chipTopic" *ngFor="let index of topicIndexes"
-                          title="{{searchViewModel.topicResultList[index].name}}">
+                          title="{{searchViewModel.topicResultList[index].name}}"
+                          (click)="onTopicClick(searchViewModel.topicResultList[index].id)">
                     {{searchViewModel.topicResultList[index].name}}
                 </mat-chip>
               </mat-chip-list>
