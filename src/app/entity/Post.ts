@@ -5,6 +5,8 @@ export default class Post extends Entity{
 
   private _title: string;
   private _subtitle: string;
+  private _favorites: number;
+  private _likes: number;
   private _content: string;
   private _publishDate: Date;
   private _editedDate: Date;
@@ -67,5 +69,22 @@ export default class Post extends Entity{
 
   set headerImage(value: string) {
     this._headerImage = value;
+  }
+
+
+  get favorites(): number {
+    return this._favorites;
+  }
+
+  set favorites(value: number) {
+    this._favorites = value;
+  }
+
+  get likes(): number {
+    return this._likes;
+  }
+
+  set likes(value: number) {
+    this._likes = value;
   }
 }

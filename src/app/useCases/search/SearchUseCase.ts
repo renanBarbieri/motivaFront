@@ -1,14 +1,13 @@
 import {Injectable} from "@angular/core";
 import {SearchInputBoundary} from "@app/useCases/search/SearchInputBoundary";
-import {SearchGateway} from "@app/useCases/search/SearchGateway";
 import User from "@app/entity/User";
 import Tag from "@app/entity/Tag";
 import Post from "@app/entity/Post";
 import SearchRepository from "@app/data/repository/SearchRepository";
-import {
-  PostSearchModel, SearchOutputBoundary, SearchOutputModel,
-  TagSearchModel, UserSearchOutputModel
-} from "@app/useCases/search/SearchOutputBoundary";
+import { SearchOutputBoundary, SearchOutputModel } from "@app/useCases/search/SearchOutputBoundary";
+import PostItem from "@app/ui/models/PostItem";
+import UserItem from "@app/ui/models/UserItem";
+import TopicItem from "@app/ui/models/TopicItem";
 
 @Injectable()
 export default class SearchUseCase implements SearchInputBoundary{
@@ -27,29 +26,29 @@ export default class SearchUseCase implements SearchInputBoundary{
     let searchOutput = new SearchOutputModel();
 
     searchOutput.tags = tags.map(function(it){
-      let tagView = new TagSearchModel();
-      tagView.entityReference = it.id.toString();
+      let tagView = new TopicItem();
+      tagView.id = it.id.toString();
       tagView.name = it.name;
       return tagView;
     });
 
     searchOutput.users = users.map(function(it){
-      let userView = new UserSearchOutputModel();
-      userView.entityReference = it.id.toString();
+      let userView = new UserItem();
+      userView.id = it.id.toString();
       userView.username = it.name;
-      userView.profileImage = it.avatar;
+      userView.avatar = it.avatar;
       return userView;
     });
 
     searchOutput.posts = posts.map(function(it){
-      let postView = new PostSearchModel();
+      let postView = new PostItem();
       postView.entityReference = it.id.toString();
       postView.articleImage = it.headerImage;
       postView.authorImage = it.owner.avatar;
       postView.author = it.owner.username;
       postView.title = it.title;
-      postView.favorites = 2;
-      postView.likes = 5;
+      postView.favorites = it.favorites;
+      postView.likes = it.likes;
       postView.publishDate = it.publishDate.toDateString();
       return postView;
     });

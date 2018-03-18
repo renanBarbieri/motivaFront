@@ -2,3 +2,7 @@
     align-self: center;
     font-size: 60px
 }
+
+.listPostResult {
+  flex-wrap: wrap;
+}

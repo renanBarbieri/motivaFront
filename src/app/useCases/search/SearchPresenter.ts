@@ -1,4 +1,3 @@
-import { PostItem } from 'app/ui/models/PostItem';
 import UserItem from '@app/ui/models/UserItem';
 import TopicItem from '@app/ui/models/TopicItem';
 import PostItem from 'app/ui/models/PostItem';
@@ -18,28 +17,7 @@ export default class SearchPresenter implements SearchOutputBoundary, UserDataOu
 
   onSearchSuccess(result: SearchOutputModel) {
     console.log(result);
-
-    let usersView: Array<UserItem> = result.users.map(function(it){
-      const user = new UserItem();
-      user.id = it.entityReference;
-      user.username = it.username;
-      user.avatar = it.profileImage;
-      return user;
-    });
-
-    let topicsView: Array<TopicItem> = result.users.map(function(it){
-      const topic = new TopicItem()
-
-      return topic;
-    });
-
-    let postsView: Array<PostItem> = result.users.map(function(it){
-      const post = new PostItem();
-
-      return post;
-    });
-
-    this.view.updateResultList([usersView, topicsView, postsView]);
+    this.view.updateResultList([result.users, result.tags, result.posts]);
   }
 
   onUserDataSuccess(responseData: UserDataOutputModel) {

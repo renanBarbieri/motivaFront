@@ -12,6 +12,8 @@ export default class PostDataSourceMapper implements DataSourceMapper<DataSource
     post.id = "ojasndja";
     post.title = dataSource.title;
     post.subtitle = dataSource.subtitle;
+    post.favorites = dataSource.favorites;
+    post.likes = dataSource.likes;
     post.headerImage = dataSource.image;
     post.owner = PostDataSourceMapper.fromOwnerToUser(dataSource.owner);
     post.publishDate = new Date(dataSource.publishDate);

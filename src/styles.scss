@@ -30,7 +30,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
     max-width: 100%;
 }
 
-html, body{
+html, body, app-root{
     margin: 0;
     display: flex;
     flex-direction: column;

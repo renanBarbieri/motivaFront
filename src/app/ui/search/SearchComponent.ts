@@ -62,7 +62,7 @@ export class SearchComponent implements SearchUiView, OnInit{
 
   updatePostIndexes(){
     console.log(this.postIndexes);
-    this.postIndexes = []
+    this.postIndexes = [];
     console.log(this.postIndexes);
 
     console.log(this.searchViewModel.postResultList);

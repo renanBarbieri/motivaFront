@@ -1,26 +1,13 @@
 import PostItem from "@app/ui/models/PostItem";
+import TopicItem from "@app/ui/models/TopicItem";
+import UserItem from "@app/ui/models/UserItem";
 
 export interface SearchOutputBoundary {
   onSearchSuccess(result: SearchOutputModel);
 }
 
 export class SearchOutputModel{
-  public tags: Array<TagSearchModel>;
-  public users: Array<UserSearchOutputModel>;
-  public posts: Array<PostSearchModel>;
-}
-
-export class PostSearchModel extends PostItem{}
-
-export class UserSearchOutputModel{
-  public entityReference: string;
-  public username: string;
-  public levelCompleted: number;
-  public levelName: string;
-  public profileImage: string;
-}
-
-export class TagSearchModel{
-  entityReference: string;
-  name: string;
+  public tags: Array<TopicItem>;
+  public users: Array<UserItem>;
+  public posts: Array<PostItem>;
 }
