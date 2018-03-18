@@ -30,7 +30,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
     max-width: 100%;
 }
 
-html, body, app-root{
+html, body, app-root, .fillHeight, app-home{
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -38,13 +38,6 @@ html, body, app-root{
     height: auto;
     min-height: 100%;
     font-family: 'Roboto', sans-serif;
-}
-
-app-home{
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 100%;
 }
 
 .pageContent{
@@ -60,6 +53,8 @@ app-home{
   flex: 1 1 auto;
   padding: 2%;
 }
+
+
 
 /* fallback */
 @font-face {
