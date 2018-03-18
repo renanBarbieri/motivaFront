@@ -27,14 +27,14 @@ export default class SearchUseCase implements SearchInputBoundary{
 
     searchOutput.tags = tags.map(function(it){
       let tagView = new TopicItem();
-      tagView.id = it.id.toString();
+      tagView.entityReference = it.id.toString();
       tagView.name = it.name;
       return tagView;
     });
 
     searchOutput.users = users.map(function(it){
       let userView = new UserItem();
-      userView.id = it.id.toString();
+      userView.entityReference = it.id.toString();
       userView.username = it.username;
       userView.avatar = it.avatar;
       return userView;

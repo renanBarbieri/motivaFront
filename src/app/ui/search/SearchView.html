@@ -19,7 +19,7 @@
               <div class="listUserResult" fxLayout="row">
                 <div *ngFor="let index of userIndexes">
                   <profile-thumb
-                    [id]="searchViewModel.userResultList[index].id"
+                    [id]="searchViewModel.userResultList[index].entityReference"
                     [name] = "searchViewModel.userResultList[index].username"
                     [avatar] = "searchViewModel.userResultList[index].avatar" >
                   </profile-thumb>
@@ -32,7 +32,7 @@
               <mat-chip-list class="listTopicResult" fxLayout="row">
                 <mat-chip color="primary" class="chipTopic" *ngFor="let index of topicIndexes"
                           title="{{searchViewModel.topicResultList[index].name}}"
-                          (click)="onTopicClick(searchViewModel.topicResultList[index].id)">
+                          (click)="onTopicClick(searchViewModel.topicResultList[index].entityReference)">
                     {{searchViewModel.topicResultList[index].name}}
                 </mat-chip>
               </mat-chip-list>

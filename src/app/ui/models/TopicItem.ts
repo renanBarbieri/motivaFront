@@ -1,5 +1,5 @@
 
 export default class TopicItem {
-  id: string;
+  entityReference: string;
   name: string;
  }
