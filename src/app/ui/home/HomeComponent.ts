@@ -1,13 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import HomeViewModel from "app/useCases/home/HomeViewModel";
+import HomeViewModel from "app/ui/home/HomeViewModel";
 import {HomeUiView} from "app/useCases/home/HomeUIView";
 import HomeController from "app/useCases/home/HomeController";
-import CardViewModel from "app/useCases/card/CardViewModel";
-import HomePresenter from "@app/useCases/home/HomePresenter";
-import HomeUseCase from "@app/useCases/home/HomeUseCase";
-import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
-import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
-import UserRepositoryImpl from "@app/data/repository/UserRepository";
+import HomePresenter from "app/useCases/home/HomePresenter";
+import HomeUseCase from "app/useCases/home/HomeUseCase";
+import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
+import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
+import SearchUseCase from "app/useCases/search/SearchUseCase";
+import PostItem from "@app/ui/models/PostItem";
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,8 @@ import UserRepositoryImpl from "@app/data/repository/UserRepository";
     { provide: HomeViewModel, useClass: HomeViewModel },
     { provide: HomeUseCase, useClass: HomeUseCase },
     { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase },
-    { provide: UserDataUseCase, useClass: UserDataUseCase }
+    { provide: UserDataUseCase, useClass: UserDataUseCase },
+    { provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
 export class HomeComponent implements OnInit, HomeUiView{
@@ -43,9 +44,9 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.getPostsOfTopicsOfInterest(this.homePresenter, tags)
   }
 
-  updateTopicList(topicList: Map<string, CardViewModel[]>) {
+  updateTopicList(topicList: Map<string, PostItem[]>) {
     this.clearHomeViewLists();
-    topicList.forEach((value: CardViewModel[], key: string) => {
+    topicList.forEach((value: PostItem[], key: string) => {
       this.homeViewModel.topicsKeys.push(key);
       this.homeViewModel.topicsList.set(key, value)
     });
@@ -54,6 +55,11 @@ export class HomeComponent implements OnInit, HomeUiView{
   private clearHomeViewLists(){
     this.homeViewModel.topicsList.clear();
     this.homeViewModel.topicsKeys.length = 0;
+  }
+
+  onSearchInput($textToSearch: string){
+    console.log(`cheguei: ${$textToSearch}`);
+    this.homeController.getResultsOfSearch($textToSearch)
   }
 
   showErrorAlert(message: String) {

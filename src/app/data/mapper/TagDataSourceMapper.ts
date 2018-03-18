@@ -14,13 +14,4 @@ export default class TagDataSourceMapper implements DataSourceMapper<DataSourceT
   toDataSource(entity: Tag): DataSourceTag {
     throw new Error("Method not implemented.");
   }
-
-  toEntityArray(dataSource: DataSourceTag[]): Tag[] {
-    let returnArr = [];
-    for(let dsTag of dataSource){
-      returnArr.push(this.toEntity(dsTag))
-    }
-    return returnArr;
-  }
-
 }

@@ -1,6 +1,6 @@
-import {GetUserDataOutputBoundary} from "app/useCases/userData/GetUserDataOutputBoundary";
-import {GetPostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
+import {UserDataOutputBoundary} from "app/useCases/userData/UserDataOutputBoundary";
+import {PostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
+import {SearchOutputBoundary} from "@app/useCases/search/SearchOutputBoundary";
 
-export interface HomeOutputBoundary extends GetUserDataOutputBoundary,
-  GetPostsOfTopicsInterestOutputBoundary
-{}
+export interface HomeOutputBoundary extends UserDataOutputBoundary,
+  PostsOfTopicsInterestOutputBoundary {}

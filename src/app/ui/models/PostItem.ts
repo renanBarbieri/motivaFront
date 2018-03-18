@@ -1,6 +1,6 @@
 
-export default class CardViewModel{
-  id: string;
+export default class PostItem {
+  entityReference: string;
   author: string;
   authorImage: string;
   title: string;

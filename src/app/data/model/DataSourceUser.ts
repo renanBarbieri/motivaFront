@@ -1,12 +1,11 @@
 import DataSourceLevel from "@app/data/model/DataSourceLevel";
 import DataSourceReward from "@app/data/model/DataSourceReward";
 import DataSourceTag from "@app/data/model/DataSourceTag";
+import DataSourceUserProfile from "@app/data/model/DataSourceUserProfile";
 
-export default class DataSourceUser {
-  name: string;
+export default class DataSourceUser extends DataSourceUserProfile {
   description: string;
   username: string;
-  avatar: string;
   email: string;
   experience: number;
   facebook: string;

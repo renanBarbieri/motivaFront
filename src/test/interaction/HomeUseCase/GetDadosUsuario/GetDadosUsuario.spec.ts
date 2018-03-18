@@ -2,8 +2,8 @@ import {HomeInputBoundary} from "@app/useCases/home/HomeInputBoundary";
 import HomeUseCaseImpl from "@app/useCases/home/HomeUseCase";
 import Usuario from "@app/entity/User";
 import UsuarioRepository from "@app/data/repository/UserRepository";
-import {GetUserDataInputModel} from "@app/useCases/userData/GetUserDataInputBoundary";
-import {GetUserDataOutputModel, GetUserDataOutputBoundary} from "@app/useCases/userData/GetUserDataOutputBoundary";
+import {UserDataInputModel} from "@app/useCases/userData/UserDataInputBoundary";
+import {UserDataOutputModel, UserDataOutputBoundary} from "@app/useCases/userData/UserDataOutputBoundary";
 
 describe('Teste dos casos de uso GetDadosUsuario', () => {
 
@@ -31,7 +31,7 @@ describe('Teste dos casos de uso GetDadosUsuario', () => {
       return getUsuario();
     });
 
-    let requestData: GetUserDataInputModel = new GetUserDataInputModel();
+    let requestData: UserDataInputModel = new UserDataInputModel();
     requestData.userId = "1";
 
     await homeUseCase.getUser(requestData, presenterSpy);
@@ -43,15 +43,15 @@ describe('Teste dos casos de uso GetDadosUsuario', () => {
 
 });
 
-class PresenterSpy implements GetUserDataOutputBoundary{
+class PresenterSpy implements UserDataOutputBoundary{
 
-  responseData: GetUserDataOutputModel;
+  responseData: UserDataOutputModel;
 
-  onGetUserDataSuccess(responseData: GetUserDataOutputModel) {
+  onUserDataSuccess(responseData: UserDataOutputModel) {
     this.responseData = responseData;
   }
 
-  onGetUserDataError(errorData: any) {
+  onUserDataError(errorData: any) {
     throw new Error("Method not implemented.");
   }
 }

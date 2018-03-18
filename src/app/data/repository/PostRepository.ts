@@ -1,4 +1,4 @@
-import PostApiDataSource from "app/data/datasource/impl/PostApiDataSource";
+import PostApiDataSource from "app/data/datasource/post/PostApiDataSource";
 import Post from "app/entity/Post";
 import {Injectable} from "@angular/core";
 import {PostsOfTopicsInterestGateway} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestGateway";
@@ -24,13 +24,10 @@ export default class PostRepository implements PostsOfTopicsInterestGateway{
     return new Promise<Post[]>(async (resolve, reject) => {
       let postMapper = new PostDataSourceMapper();
       let dataSourcePosts: DataSourcePost[] = await this.articleApiDataSource.getPostsFromTag("authKey", tagId);//TODO: pegar o authkey do cache
-      let resultPosts: Post[] = Array();
 
-      for(let dsPost of dataSourcePosts){
-        resultPosts.push(postMapper.toEntity(dsPost))
-      }
-
-      resolve(resultPosts);
+      resolve(dataSourcePosts.map(function (it) {
+        return postMapper.toEntity(it);
+      }));
     });
   }
 }

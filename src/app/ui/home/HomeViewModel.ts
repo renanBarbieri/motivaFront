@@ -1,4 +1,4 @@
-import CardViewModel from "app/useCases/card/CardViewModel";
+import PostItem from "app/ui/models/PostItem";
 import {Injectable} from "@angular/core";
 
 @Injectable()
@@ -7,6 +7,6 @@ export default class HomeViewModel{
   levelCompleted: number;
   levelName: string;
   profileImage: string;
-  topicsList: Map<string, CardViewModel[]> = new Map();
+  topicsList: Map<string, PostItem[]> = new Map();
   topicsKeys: Array<string> = [];
 }

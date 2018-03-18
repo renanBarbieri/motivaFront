@@ -1,8 +1,18 @@
-
 .topBar{
-    background-color: darkgray;
-    align-items: center;
-    padding: 1%;
-    color: white;
-    font-weight: bold;
+  z-index: 2;
+  background: whitesmoke;
+  padding: 1%;
+  color: white;
+  font-weight: bold;
+  flex: 100%;
+}
+
+.searchInput{
+  margin-top: 8%;
+  margin-bottom: 3%;
+  flex: 1 1 100%;
+}
+
+#searchAll{
+  color: black;
 }

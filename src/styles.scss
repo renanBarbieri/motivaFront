@@ -4,20 +4,33 @@
 
 @include mat-core();
 
-$motivaPrimary: mat-palette($mat-blue-grey);
-$motivaAccent:  mat-palette($mat-pink, 500, 900, A100);
-$motivaWarn:    mat-palette($mat-deep-orange);
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+$warn:    mat-palette($mat-red);
 
-$motivaTheme: mat-light-theme($motivaPrimary, $motivaAccent, $motivaWarn);
+$motivaTheme: mat-light-theme($primary, $accent, $warn);
 
 @include angular-material-theme($motivaTheme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-cyan);
+$dark-accent:  mat-palette($mat-red, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+}
 
 .matchParentWidth{
     min-width: 100%;
     max-width: 100%;
 }
 
-html, body{
+html, body, app-root, .fillHeight, app-home{
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -27,12 +40,21 @@ html, body{
     font-family: 'Roboto', sans-serif;
 }
 
-app-home{
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 100%;
+.pageContent{
+  flex: 1 1 auto;
 }
+
+.leftSideBar{
+  padding: 1%;
+}
+
+.content{
+  background-color: whitesmoke;
+  flex: 1 1 auto;
+  padding: 2%;
+}
+
+
 
 /* fallback */
 @font-face {
@@ -41,7 +63,7 @@ app-home{
     font-weight: 400;
     src: url("/assets/fonts/material_fonts.woff2") format('woff2');
   }
-  
+
   .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;

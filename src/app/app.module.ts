@@ -1,34 +1,52 @@
+// FROM ANGULAR
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from "@angular/common/http";
 
-import {HomeComponent} from './useCases/home/HomePage';
+// COMPONENTS
 import {ToolbarComponent} from './components/toolbar/toolbarController';
 import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
 import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarController';
 
+// MATERIAL DESIGN
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
+  MatInputModule, MatTabsModule,
   MatProgressBarModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
-import UserRepositoryImpl from "./data/repository/UserRepository";
-import ArticleRepository from "./data/repository/PostRepository";
-import UserApiDataSource from "./data/datasource/impl/UserApiDataSource";
-import ArticleApiDataSource from "./data/datasource/impl/PostApiDataSource";
-import {HttpClientModule} from "@angular/common/http";
+
+//DEPENDENCY INJECTION
+import UserRepository from "./data/repository/UserRepository";
+import PostRepository from "./data/repository/PostRepository";
+import UserApiDataSource from "./data/datasource/user/UserApiDataSource";
+import PostApiDataSource from "./data/datasource/post/PostApiDataSource";
+import SearchRepository from "@app/data/repository/SearchRepository";
+import SearchApiDataSource from "@app/data/datasource/search/SearchApiDataSource";
+
+// PAGES
+import {HomeComponent} from './ui/home/HomeComponent';
+import {appRoutes, AppRoutingModule} from "./app.routing";
+import {SearchComponent} from "@app/ui/search/SearchComponent";
+import {AppComponent} from "@app/app.component";
+import {ProfileComponent} from "@app/components/profile/profileController";
 
 @NgModule({
   declarations: [
+    AppComponent,
     HomeComponent,
+    SearchComponent,
     ToolbarComponent,
     CardComponent,
     TopicArticlesComponent,
-    LeftSideBarComponent
+    LeftSideBarComponent,
+    ProfileComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -37,20 +55,24 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonToggleModule,
     MatChipsModule,
     MatToolbarModule,
+    MatInputModule,
     MatIconModule,
     MatProgressBarModule,
     MatTooltipModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule
   ],
   providers: [
     //Repositories
-    { provide: UserRepositoryImpl, useClass: UserRepositoryImpl },
-    { provide: ArticleRepository, useClass: ArticleRepository },
+    { provide: UserRepository, useClass: UserRepository },
+    { provide: PostRepository, useClass: PostRepository },
+    { provide: SearchRepository, useClass: SearchRepository},
     //DataSources
     { provide: UserApiDataSource, useClass: UserApiDataSource },
-    { provide: ArticleApiDataSource, useClass: ArticleApiDataSource }
+    { provide: PostApiDataSource, useClass: PostApiDataSource },
+    { provide: SearchApiDataSource, useClass: SearchApiDataSource }
   ],
-  bootstrap: [HomeComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

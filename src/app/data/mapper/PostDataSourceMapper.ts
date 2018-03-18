@@ -2,7 +2,7 @@ import {DataSourceMapper} from "./DataSourceMapper";
 import Post from "@app/entity/Post";
 import DataSourcePost from "@app/data/model/DataSourcePost";
 import User from "@app/entity/User";
-import DataSourcePostOwner from "@app/data/model/DataSourcePostOwner";
+import DataSourcePostOwner from "@app/data/model/DataSourceUserProfile";
 
 export default class PostDataSourceMapper implements DataSourceMapper<DataSourcePost, Post>{
 
@@ -12,6 +12,8 @@ export default class PostDataSourceMapper implements DataSourceMapper<DataSource
     post.id = "ojasndja";
     post.title = dataSource.title;
     post.subtitle = dataSource.subtitle;
+    post.favorites = dataSource.favorites;
+    post.likes = dataSource.likes;
     post.headerImage = dataSource.image;
     post.owner = PostDataSourceMapper.fromOwnerToUser(dataSource.owner);
     post.publishDate = new Date(dataSource.publishDate);

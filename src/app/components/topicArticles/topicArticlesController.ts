@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import CardViewModel from "app/useCases/card/CardViewModel";
+import PostItem from "app/ui/models/PostItem";
 
 @Component({
   selector: 'app-topic-articles',
@@ -11,7 +11,7 @@ export class TopicArticlesComponent implements OnInit{
   topicName: string;
 
   @Input()
-  articles: CardViewModel[];
+  articles: PostItem[];
 
   public articleIndexes: Array<number> = [];
 
@@ -19,7 +19,5 @@ export class TopicArticlesComponent implements OnInit{
     for(let idx = 0; idx < this.articles.length; idx++){
       this.articleIndexes.push(idx)
     }
-    console.log(`Artigos do ${this.topicName}`);
-    console.log(this.articles);
   }
 }

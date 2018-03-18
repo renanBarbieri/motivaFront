@@ -1,37 +1,50 @@
-.chipLevel{
-    width: 12em;
-    justify-content: center;
+.leftSideContent{
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  flex: 1 auto;
+  align-items: center;
 }
 
 .profilePic{
-    width: 8em;
-    height: 8em;
-    border-radius: 50%;
-    margin: 1em;
-    flex: 1 1 100%;
-}
-
-.leftSideContent{
-    align-items: center;
+  display: flex;
+  border-radius: 50%;
+  margin: 1em;
+  max-width: 90%;
 }
 
 .userProgress{
-    margin: 0.2em;
-    width: 10em;
+  display: flex;
+  width: 8em;
+  max-width: 90%;
+  margin: 2%;
 }
 
-.listMenuItem{
-    align-items: center;
+.chipLevel{
+  display: flex;
+  max-width: 90%;
+  min-width: 0;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .listMenu{
-    width: 12em
+  max-width: 90%;
+}
+
+.listMenuItem{
+  align-items: center;
 }
 
 .listMenu mat-icon{
-    margin: 0.2em
+  margin: 0.2em
 }
 
 mat-grid-tile {
-    background: lightblue;
+  background: lightblue;
 }

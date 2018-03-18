@@ -1,20 +1,21 @@
 import {
-  GetPostsOfTopicsInterestInputBoundary,
-  GetPostsOfTopicsInterestInputModel
-} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestInputBoundary";
+  PostsOfTopicsInterestInputBoundary,
+  PostsOfTopicsInterestInputModel
+} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
 import {
-  GetPostsOfTopicsInterestOutputBoundary,
-  GetPostsOfTopicsInterestOutputModel, PostCardModel
-} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
+  PostsOfTopicsInterestOutputBoundary,
+  GetPostsOfTopicsInterestOutputModel
+} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import PostRepository from "app/data/repository/PostRepository";
 import {Injectable} from "@angular/core";
 import Post from "app/entity/Post";
+import PostItem from "@app/ui/models/PostItem";
 
 @Injectable()
-export default class PostsOfTopicsInterestUseCase implements GetPostsOfTopicsInterestInputBoundary{
+export default class PostsOfTopicsInterestUseCase implements PostsOfTopicsInterestInputBoundary{
   constructor(private postRepository: PostRepository){}
 
-  async getTopics(requestData: GetPostsOfTopicsInterestInputModel, presenter: GetPostsOfTopicsInterestOutputBoundary) {
+  async getTopics(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary) {
 
     let responseData: GetPostsOfTopicsInterestOutputModel = new GetPostsOfTopicsInterestOutputModel();
     try{
@@ -24,25 +25,25 @@ export default class PostsOfTopicsInterestUseCase implements GetPostsOfTopicsInt
 
       requestData.tags.forEach(async(value, key) => {
          const posts: Post[] = await this.postRepository.getPostsFromTag(key.toString());
-         let postsCards = Array<PostCardModel>();
-         for(let post of posts){
-           let cardPost = new PostCardModel();
-           cardPost.imageThumbnail = post.headerImage;
-           cardPost.userAvatar = post.owner.avatar;
-           cardPost.userName = post.owner.username;
-           cardPost.title = post.title;
-           cardPost.subtitle = post.subtitle;
-           cardPost.favs = 2;
-           cardPost.stars = 5;
-           cardPost.publishDate = post.publishDate.toDateString();
-           postsCards.push(cardPost);
-         }
+
+        let postsCards: Array<PostItem> = posts.map(function (it) {
+           let cardPost = new PostItem();
+           cardPost.articleImage = it.headerImage;
+           cardPost.authorImage = it.owner.avatar;
+           cardPost.author = it.owner.username;
+           cardPost.title = it.title;
+           cardPost.favorites = it.favorites;
+           cardPost.likes = it.likes;
+           cardPost.publishDate = it.publishDate.toDateString();
+           return cardPost;
+         });
+
          responseData.tagPostsMap.set(value, postsCards);
-         presenter.onGetPostsOfTopicsInterestSuccess(responseData);
+         presenter.onPostsOfTopicsInterestSuccess(responseData);
       });
     }
     catch (err){
-      presenter.onGetPostsOfTopicsInterestError(err)
+      presenter.onPostsOfTopicsInterestError(err)
     }
   }
 }

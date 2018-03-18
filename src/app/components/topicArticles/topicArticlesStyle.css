@@ -2,3 +2,8 @@
     padding: 0.7em;
     font-size: 1.5em
 }
+
+.listArticles{
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}

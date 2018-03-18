@@ -1,23 +1,30 @@
 import {HomeInputBoundary} from "app/useCases/home/HomeInputBoundary";
-import {GetUserDataInputModel} from "app/useCases/userData/GetUserDataInputBoundary";
-import {GetUserDataOutputBoundary} from "app/useCases/userData/GetUserDataOutputBoundary";
-import {GetPostsOfTopicsInterestInputModel} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestInputBoundary";
-import {GetPostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestOutputBoundary";
+import {UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
+import {UserDataOutputBoundary} from "app/useCases/userData/UserDataOutputBoundary";
+import {PostsOfTopicsInterestInputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
+import {PostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import {Injectable} from "@angular/core";
 import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
+import SearchUseCase from "@app/useCases/search/SearchUseCase";
+import {SearchOutputBoundary} from "@app/useCases/search/SearchOutputBoundary";
 
 @Injectable()
 export default class HomeUseCase implements HomeInputBoundary{
   constructor(private postsOfTopicsInterestUseCase: PostsOfTopicsInterestUseCase,
-              private userDataUseCase: UserDataUseCase){}
+              private userDataUseCase: UserDataUseCase,
+              private searchUseCase: SearchUseCase){}
 
-  async getUser(requestData: GetUserDataInputModel, presenter: GetUserDataOutputBoundary) {
+  async getUser(requestData: UserDataInputModel, presenter: UserDataOutputBoundary) {
     this.userDataUseCase.getUser(requestData, presenter);
   }
 
 
-  async getTopics(requestData: GetPostsOfTopicsInterestInputModel, presenter: GetPostsOfTopicsInterestOutputBoundary) {
+  async getTopics(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary) {
     this.postsOfTopicsInterestUseCase.getTopics(requestData, presenter);
+  }
+
+  async searchInput(input: string, outputBoundary: SearchOutputBoundary) {
+    this.searchUseCase.searchInput(input, outputBoundary);
   }
 }

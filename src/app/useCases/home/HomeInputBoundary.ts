@@ -1,4 +1,5 @@
-import {GetUserDataInputBoundary} from "../userData/GetUserDataInputBoundary";
-import {GetPostsOfTopicsInterestInputBoundary} from "app/useCases/postsOfTopicsInterest/GetPostsOfTopicsInterestInputBoundary";
+import {UserDataInputBoundary} from "../userData/UserDataInputBoundary";
+import {PostsOfTopicsInterestInputBoundary} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
+import {SearchInputBoundary} from "@app/useCases/search/SearchInputBoundary";
 
-export interface HomeInputBoundary extends GetUserDataInputBoundary, GetPostsOfTopicsInterestInputBoundary{}
+export interface HomeInputBoundary extends UserDataInputBoundary, PostsOfTopicsInterestInputBoundary, SearchInputBoundary{}

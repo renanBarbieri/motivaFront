@@ -9,7 +9,7 @@
       </app-left-sidebar>
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
-      <app-toolbar></app-toolbar>
+      <app-toolbar (searchInputEvent)="onSearchInput($event)"></app-toolbar>
       <div class="content">
         <div *ngFor="let topicName of homeViewModel.topicsKeys">
           <app-topic-articles
