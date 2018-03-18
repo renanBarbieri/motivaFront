@@ -4,6 +4,7 @@ import User from "app/entity/User";
 import {Injectable} from "@angular/core";
 import UserRepository from "app/data/repository/UserRepository";
 import Tag from "app/entity/Tag";
+import RewardItem from "@app/ui/models/RewardItem";
 
 @Injectable()
 export default class UserDataUseCase implements UserDataInputBoundary{
@@ -19,6 +20,13 @@ export default class UserDataUseCase implements UserDataInputBoundary{
       responseData.levelCompleted = user.level.experience;
       responseData.levelName = user.level.name;
       responseData.profileImage = user.avatar;
+      responseData.rewards = user.rewards.map(function (it) {
+        let rewardView = new RewardItem();
+        rewardView.entityReference = it.id.toString();
+        rewardView.icon = it.image;
+        rewardView.name = it.name;
+        return rewardView;
+      });
       responseData.tags = UserDataUseCase.mapTagIds(user.interests);
 
       presenter.onUserDataSuccess(responseData);

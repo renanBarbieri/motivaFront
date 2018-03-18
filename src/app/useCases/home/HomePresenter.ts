@@ -14,7 +14,9 @@ export default class HomePresenter implements HomeOutputBoundary{
 
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-    this.view.updateUserData(responseData.username, responseData.levelCompleted, responseData.levelName, responseData.profileImage, responseData.tags);
+    this.view.updateUserData( responseData.username, responseData.levelCompleted,
+                              responseData.levelName, responseData.profileImage,
+                              responseData.rewards, responseData.tags);
   }
 
   onUserDataError(errorData: any) {

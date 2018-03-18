@@ -12,6 +12,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 import SearchController from "@app/useCases/search/SearchController";
 import SearchPresenter from "@app/useCases/search/SearchPresenter";
+import RewardItem from "@app/ui/models/RewardItem";
 
 
 @Component({
@@ -48,11 +49,13 @@ export class SearchComponent implements SearchUiView, OnInit{
   }
 
 
-  updateUserData(username: string, levelCompleted: number, levelName: string, profileImageUrl: string, tags: Map<number, string>) {
+  updateUserData(username: string, levelCompleted: number, levelName: string,
+                 profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
     this.searchViewModel.username = username;
     this.searchViewModel.levelCompleted = levelCompleted;
     this.searchViewModel.levelName = levelName;
     this.searchViewModel.profileImage = profileImageUrl;
+    this.searchViewModel.rewards = rewards;
   }
 
   updateResultList(result:  [Array<UserItem>, Array<TopicItem>, Array<PostItem>]){

@@ -7,12 +7,12 @@
     <mat-chip-list>
         <mat-chip color="accent" selected="true" class="chipLevel" title="{{levelName}}">{{levelName}}</mat-chip>
     </mat-chip-list>
-    <mat-grid-list cols="2" rowHeight="2em">
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-    </mat-grid-list>
+    <div class="rewardsList" fxLayout="row">
+      <img  class="chipIcon" *ngFor="let index of rewardIndexes"
+            src="{{rewards[index].icon}}"
+            alt="{{rewards[index].name}}"
+            matTooltip="{{rewards[index].name}}"/>
+    </div>
 
     <mat-list class="listMenu">
         <hr>

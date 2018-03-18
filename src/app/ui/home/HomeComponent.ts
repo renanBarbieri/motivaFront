@@ -8,6 +8,7 @@ import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/Pos
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import SearchUseCase from "app/useCases/search/SearchUseCase";
 import PostItem from "@app/ui/models/PostItem";
+import RewardItem from "@app/ui/models/RewardItem";
 
 @Component({
   selector: 'app-home',
@@ -36,12 +37,22 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.onViewInit(this.homePresenter)
   }
 
-  updateUserData(username: string, levelCompleted: number, levelName: string, profileImageUrl: string, tags: Map<number, string>) {
+  updateUserData(username: string, levelCompleted: number, levelName: string,
+                 profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
     this.homeViewModel.username = username;
     this.homeViewModel.levelCompleted = levelCompleted;
     this.homeViewModel.levelName = levelName;
     this.homeViewModel.profileImage = profileImageUrl;
-    this.homeController.getPostsOfTopicsOfInterest(this.homePresenter, tags)
+    this.updateRewardsList(rewards);
+    this.homeController.getPostsOfTopicsOfInterest(this.homePresenter, tags);
+  }
+
+  updateRewardsList(newRewards: Array<RewardItem>) {
+    this.homeViewModel.rewards.length = 0;
+    newRewards.forEach((it) => {
+      console.log(it);
+      this.homeViewModel.rewards.push(it);
+    });
   }
 
   updateTopicList(topicList: Map<string, PostItem[]>) {
@@ -58,7 +69,6 @@ export class HomeComponent implements OnInit, HomeUiView{
   }
 
   onSearchInput($textToSearch: string){
-    console.log(`cheguei: ${$textToSearch}`);
     this.homeController.getResultsOfSearch($textToSearch)
   }
 

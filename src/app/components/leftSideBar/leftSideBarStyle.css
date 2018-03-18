@@ -16,6 +16,20 @@
   max-width: 90%;
 }
 
+.rewardsList {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 0.5em;
+}
+
+.chipIcon{
+  border-radius: 50%;
+  margin: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+}
+
 .userProgress{
   display: flex;
   width: 8em;
