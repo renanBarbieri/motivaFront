@@ -1,10 +1,12 @@
-<div class="overflowContent">
+<div
+  *ngIf="authViewModel.state == thisState.LOADING"
+  class="overflowContent" fxLayout="column">
   <mat-spinner
     class="loading"
-    *ngIf="authViewModel.state == thisState.LOADING"
     [mode]="indeterminate">
   </mat-spinner>
 </div>
 
 <app-home *ngIf="authViewModel.logged"></app-home>
+<app-login *ngIf="!authViewModel.logged"></app-login>
 

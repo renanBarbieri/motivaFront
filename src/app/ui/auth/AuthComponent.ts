@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit, AfterViewInit{
   constructor(private authViewModel: AuthViewModel){}
 
   ngOnInit(){
-    this.authViewModel.logged = true;
+    this.authViewModel.logged = false;
   }
 
 
