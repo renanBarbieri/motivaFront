@@ -16,7 +16,7 @@ import RewardItem from "@app/ui/models/RewardItem";
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-search',
   templateUrl: './SearchView.html',
   styleUrls: ['./SearchStyle.css'],
   providers: [

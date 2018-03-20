@@ -16,7 +16,7 @@ import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarControll
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
   MatInputModule, MatTabsModule,
-  MatProgressBarModule, MatToolbarModule, MatTooltipModule
+  MatProgressBarModule, MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule
 } from '@angular/material';
 
 //DEPENDENCY INJECTION
@@ -33,10 +33,14 @@ import {appRoutes, AppRoutingModule} from "./app.routing";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
 import {AppComponent} from "@app/app.component";
 import {ProfileComponent} from "@app/components/profile/profileController";
+import {LoginComponent} from "@app/ui/login/LoginComponent";
+import {AuthComponent} from "@app/ui/auth/AuthComponent";
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
+    LoginComponent,
     HomeComponent,
     SearchComponent,
     ToolbarComponent,
@@ -61,7 +65,8 @@ import {ProfileComponent} from "@app/components/profile/profileController";
     MatTooltipModule,
     MatGridListModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     //Repositories

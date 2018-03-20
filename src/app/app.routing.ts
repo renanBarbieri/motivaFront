@@ -1,13 +1,12 @@
 import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "@app/ui/home/HomeComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
 import {NgModule} from "@angular/core";
+import {AuthComponent} from "@app/ui/auth/AuthComponent";
 
 export const appRoutes: Routes = [
-
   {
     path: '',
-    component: HomeComponent,
+    component: AuthComponent,
     pathMatch: 'full'
   },
   {
