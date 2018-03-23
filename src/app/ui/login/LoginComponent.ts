@@ -1,4 +1,6 @@
 import {Component} from "@angular/core";
+import {NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -8,5 +10,15 @@ import {Component} from "@angular/core";
   ]
 })
 export class LoginComponent {
+
+  onSubmit(form: NgForm){
+    if(form.valid){
+      console.log("validado");
+      console.log(form.value);
+    }
+    else{
+      console.log("faltou algo");
+    }
+  }
 
 }

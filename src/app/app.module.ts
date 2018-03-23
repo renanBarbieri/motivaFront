@@ -35,6 +35,7 @@ import {AppComponent} from "@app/app.component";
 import {ProfileComponent} from "@app/components/profile/profileController";
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {AuthComponent} from "@app/ui/auth/AuthComponent";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -47,13 +48,15 @@ import {AuthComponent} from "@app/ui/auth/AuthComponent";
     CardComponent,
     TopicArticlesComponent,
     LeftSideBarComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    HttpClientModule,
+    FormsModule,
     MatCardModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -64,9 +67,8 @@ import {AuthComponent} from "@app/ui/auth/AuthComponent";
     MatProgressBarModule,
     MatTooltipModule,
     MatGridListModule,
-    HttpClientModule,
     MatTabsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [
     //Repositories

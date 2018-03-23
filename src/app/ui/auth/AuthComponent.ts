@@ -22,6 +22,6 @@ export class AuthComponent implements OnInit, AfterViewInit{
 
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.authViewModel.state = ScreenState.DONE, 10000);
+    setTimeout(() => this.authViewModel.state = ScreenState.DONE, 1000);
   }
 }
