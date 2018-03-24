@@ -16,6 +16,7 @@ export class LoginComponent {
   onSubmit(form: NgForm){
     if(form.valid){
       console.log("validado");
+      console.log(this.loginModel);
     }
     else {
       console.log(form);
