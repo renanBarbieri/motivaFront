@@ -35,7 +35,7 @@ import {AppComponent} from "@app/app.component";
 import {ProfileComponent} from "@app/components/profile/profileController";
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {AuthComponent} from "@app/ui/auth/AuthComponent";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -57,6 +57,7 @@ import {FormsModule} from "@angular/forms";
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
     MatButtonToggleModule,

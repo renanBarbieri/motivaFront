@@ -11,13 +11,16 @@ import {NgForm} from '@angular/forms';
 })
 export class LoginComponent {
 
+  loginModel: any = {}
+
   onSubmit(form: NgForm){
     if(form.valid){
       console.log("validado");
-      console.log(form.value);
     }
-    else{
-      console.log("faltou algo");
+    else {
+      console.log(form);
+      console.log(this.loginModel);
+      console.log("algo errado");
     }
   }
 
