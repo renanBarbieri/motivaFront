@@ -15,13 +15,9 @@ export class LoginComponent {
 
   onSubmit(form: NgForm){
     if(form.valid){
+      //TODO: enviar para a próxima camada o login e a senha
       console.log("validado");
       console.log(this.loginModel);
-    }
-    else {
-      console.log(form);
-      console.log(this.loginModel);
-      console.log("algo errado");
     }
   }
 
