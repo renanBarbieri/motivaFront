@@ -5,8 +5,6 @@ import {Injectable} from "@angular/core";
 import UserRepository from "app/data/user/UserRepository";
 import Tag from "app/entity/Tag";
 import RewardItem from "@app/ui/models/RewardItem";
-import {error} from "selenium-webdriver";
-import InvalidArgumentError = error.InvalidArgumentError;
 
 @Injectable()
 export default class UserDataUseCase implements UserDataInputBoundary{
@@ -24,7 +22,7 @@ export default class UserDataUseCase implements UserDataInputBoundary{
         user = await this.userRepository.getByLogin(requestData.username, requestData.password);
       }
       else {
-        throw new InvalidArgumentError("Solicitação não conhecida");
+        throw new Error("Solicitação não conhecida");
       }
 
       responseData.username = user.username;

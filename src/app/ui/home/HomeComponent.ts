@@ -1,9 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import HomeViewModel from "app/ui/home/HomeViewModel";
-import {HomeUiView} from "app/useCases/home/HomeUIView";
-import HomeController from "app/useCases/home/HomeController";
-import HomePresenter from "app/useCases/home/HomePresenter";
-import HomeUseCase from "app/useCases/home/HomeUseCase";
+import {HomeUiView} from "app/ui/home/HomeUIView";
+import HomeController from "app/ui/home/HomeController";
+import HomePresenter from "app/ui/home/HomePresenter";
 import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import SearchUseCase from "app/useCases/search/SearchUseCase";
@@ -18,7 +17,6 @@ import RewardItem from "@app/ui/models/RewardItem";
     { provide: HomeController, useClass: HomeController },
     { provide: HomePresenter, useClass: HomePresenter },
     { provide: HomeViewModel, useClass: HomeViewModel },
-    { provide: HomeUseCase, useClass: HomeUseCase },
     { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
     { provide: SearchUseCase, useClass: SearchUseCase}
@@ -34,7 +32,7 @@ export class HomeComponent implements OnInit, HomeUiView{
 
   ngOnInit(){
     this.homePresenter.onViewInit(this);
-    this.homeController.onViewInit(this.homePresenter)
+    this.homeController.getUserData(this.homePresenter)
   }
 
   updateUserData(username: string, levelCompleted: number, levelName: string,

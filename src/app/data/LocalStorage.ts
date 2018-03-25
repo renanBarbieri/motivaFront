@@ -1,7 +1,5 @@
-import {error} from "selenium-webdriver";
 
 export namespace LocalStorage {
-  import UnsupportedOperationError = error.UnsupportedOperationError;
 
   function storageAvailable(type) {
     const storage = window[type];
@@ -32,7 +30,7 @@ export namespace LocalStorage {
       window.localStorage.setItem(key, value);
     }
     else {
-      throw new UnsupportedOperationError("Local Storage não está disponível.")
+      throw new Error("Local Storage não está disponível.")
     }
   }
 
@@ -41,7 +39,7 @@ export namespace LocalStorage {
       return window.localStorage.getItem(key);
     }
     else {
-      throw new UnsupportedOperationError("Local Storage não está disponível.")
+      throw new Error("Local Storage não está disponível.")
     }
   }
 }
