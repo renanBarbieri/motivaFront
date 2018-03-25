@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import DataSourceConfig from "app/data/datasource/DataSourceConfig";
-import {SearchDataSource} from "@app/data/datasource/search/SearchDataSource";
-import DataSourceSearch from "@app/data/model/DataSourceSearch";
-import DataSourceResponse from "@app/data/model/DataSourceResponse";
+import DataSourceConfig from "app/data/DataSourceConfig";
+import {SearchDataSource} from "app/data/search/SearchDataSource";
+import DataSourceSearch from "app/data/model/DataSourceSearch";
+import DataSourceResponse from "app/data/model/DataSourceResponse";
 
 @Injectable()
 export default class SearchApiDataSource extends DataSourceConfig implements SearchDataSource{

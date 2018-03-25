@@ -5,5 +5,7 @@ export interface UserDataInputBoundary{
 }
 
 export class UserDataInputModel {
-  public userId: string;
+  public userId?: string;
+  public username?: string;
+  public password?: string;
 }

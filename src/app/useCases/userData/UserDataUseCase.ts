@@ -2,19 +2,30 @@ import {UserDataInputBoundary, UserDataInputModel} from "app/useCases/userData/U
 import {UserDataOutputBoundary, UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
 import User from "app/entity/User";
 import {Injectable} from "@angular/core";
-import UserRepository from "app/data/repository/UserRepository";
+import UserRepository from "app/data/user/UserRepository";
 import Tag from "app/entity/Tag";
 import RewardItem from "@app/ui/models/RewardItem";
+import {error} from "selenium-webdriver";
+import InvalidArgumentError = error.InvalidArgumentError;
 
 @Injectable()
 export default class UserDataUseCase implements UserDataInputBoundary{
   constructor(private userRepository: UserRepository){}
 
-  async getUser(requestData: UserDataInputModel, presenter: UserDataOutputBoundary) {
+  async getUser(requestData: UserDataInputModel, outputBoundary: UserDataOutputBoundary) {
     let responseData: UserDataOutputModel = new UserDataOutputModel();
-    try{
-      const userId = requestData.userId;
-      const user: User = await this.userRepository.get(userId);
+    let user: User;
+
+    try {
+      if (requestData.userId && !requestData.username && !requestData.password) {
+        user = await this.userRepository.getByKey(requestData.userId);
+      }
+      else if (!requestData.userId && requestData.username && requestData.password) {
+        user = await this.userRepository.getByLogin(requestData.username, requestData.password);
+      }
+      else {
+        throw new InvalidArgumentError("Solicitação não conhecida");
+      }
 
       responseData.username = user.username;
       responseData.levelCompleted = user.level.experience;
@@ -29,10 +40,11 @@ export default class UserDataUseCase implements UserDataInputBoundary{
       });
       responseData.tags = UserDataUseCase.mapTagIds(user.interests);
 
-      presenter.onUserDataSuccess(responseData);
-    }
-    catch (err){
-      presenter.onUserDataError(err);
+      outputBoundary.onUserDataSuccess(responseData);
+
+    } catch (err) {
+      outputBoundary.onUserDataError(err);
+      return;
     }
   }
 

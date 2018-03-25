@@ -20,12 +20,12 @@ import {
 } from '@angular/material';
 
 //DEPENDENCY INJECTION
-import UserRepository from "./data/repository/UserRepository";
-import PostRepository from "./data/repository/PostRepository";
-import UserApiDataSource from "./data/datasource/user/UserApiDataSource";
-import PostApiDataSource from "./data/datasource/post/PostApiDataSource";
-import SearchRepository from "@app/data/repository/SearchRepository";
-import SearchApiDataSource from "@app/data/datasource/search/SearchApiDataSource";
+import UserRepository from "./data/user/UserRepository";
+import PostRepository from "./data/post/PostRepository";
+import UserApiDataSource from "./data/user/UserApiDataSource";
+import PostApiDataSource from "./data/post/PostApiDataSource";
+import SearchRepository from "@app/data/search/SearchRepository";
+import SearchApiDataSource from "@app/data/search/SearchApiDataSource";
 
 // PAGES
 import {HomeComponent} from './ui/home/HomeComponent';
@@ -36,6 +36,7 @@ import {ProfileComponent} from "@app/components/profile/profileController";
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {FormsModule, ReactiveFormsModule } from "@angular/forms";
+import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {FormsModule, ReactiveFormsModule } from "@angular/forms";
     //DataSources
     { provide: UserApiDataSource, useClass: UserApiDataSource },
     { provide: PostApiDataSource, useClass: PostApiDataSource },
-    { provide: SearchApiDataSource, useClass: SearchApiDataSource }
+    { provide: SearchApiDataSource, useClass: SearchApiDataSource },
+    { provide: AuthLocalDataSource, useClass: AuthLocalDataSource }
   ],
   bootstrap: [AppComponent]
 })
