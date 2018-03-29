@@ -13,9 +13,18 @@ export default class UserRepository implements UserDataGateway{
   constructor(private userApiDataSource: UsuarioApiDataSource,
               private authLocalDataSource: AuthLocalDataSource){}
 
-  getByKey(id: string): Promise<User> {
+
+  getStorageKey(): Promise<string> {
+    return new Promise<string>(async (resolve, reject) => {
+      let localSrc = await this.authLocalDataSource.getAuthKey();
+      console.log(`key salva: ${localSrc}`);
+      resolve(localSrc.authkey);
+    });
+  }
+
+  getByKey(authKey: string): Promise<User> {
     return new Promise<User>(async (resolve, reject) => {
-      let user: DataSourceUser = await this.userApiDataSource.getData(id);
+      let user: DataSourceUser = await this.userApiDataSource.getData(authKey);
 
       let userMapper = new UserDataSourceMapper();
       resolve(userMapper.toEntity(user));

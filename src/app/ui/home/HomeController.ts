@@ -16,7 +16,6 @@ export default class HomeController{
 
   getUserData(responseHandler: UserDataOutputBoundary){
     let requestData = new UserDataInputModel();
-    requestData.userId = "id";
     this.userDataUseCase.getUser(requestData, responseHandler);
   }
 

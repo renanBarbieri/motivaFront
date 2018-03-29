@@ -6,7 +6,7 @@
     [mode]="indeterminate">
   </mat-spinner>
 </div>
-
-<app-home *ngIf="authViewModel.logged"></app-home>
-<app-login *ngIf="!authViewModel.logged"></app-login>
-
+<div *ngIf="authViewModel.state == thisState.DONE">
+  <app-home *ngIf="authViewModel.logged"></app-home>
+  <app-login *ngIf="!authViewModel.logged"></app-login>
+</div>

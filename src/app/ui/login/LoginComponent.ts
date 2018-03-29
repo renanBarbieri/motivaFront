@@ -29,8 +29,6 @@ export class LoginComponent implements OnInit, UIContract{
 
   onSubmit(form: NgForm){
     if(form.valid){
-      //TODO: enviar para a próxima camada o login e a senha
-      console.log("validado");
       console.log(this.loginModel);
       this.loginController.makeLogin(this.loginModel.username, this.loginModel.password, this.loginPresenter);
     }

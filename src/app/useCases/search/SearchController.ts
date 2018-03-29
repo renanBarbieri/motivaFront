@@ -12,7 +12,6 @@ export default class SearchController {
 
   getUserData(outputBoundary: UserDataOutputBoundary){
     let requestData = new UserDataInputModel();
-    requestData.userId = "id";
     this.userDataUseCase.getUser(requestData, outputBoundary);
   }
 
