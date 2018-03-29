@@ -16,9 +16,10 @@ export default class UserRepository implements UserDataGateway{
 
   getStorageKey(): Promise<string> {
     return new Promise<string>(async (resolve, reject) => {
-      let localSrc = await this.authLocalDataSource.getAuthKey();
-      console.log(`key salva: ${localSrc}`);
-      resolve(localSrc.authkey);
+      let localSrc = await this.authLocalDataSource.getAuthKey().catch(error => reject(error) );
+      if(localSrc){
+        resolve(localSrc.authkey);
+      }
     });
   }
 

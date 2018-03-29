@@ -16,11 +16,8 @@ export default class UserDataUseCase implements UserDataInputBoundary{
 
     try {
       if (!requestData.username && !requestData.password) {
-        console.log("i'm here!");
+
         let authKey = await this.userRepository.getStorageKey();
-
-        if(!authKey) throw new Error("Nenhum login encontrado");
-
         user = await this.userRepository.getByKey(authKey);
       }
       else if (requestData.username && requestData.password) {
