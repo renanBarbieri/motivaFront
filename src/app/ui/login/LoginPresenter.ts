@@ -1,18 +1,18 @@
 import {Injectable} from "@angular/core";
 import {UserDataOutputBoundary, UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
-import {UIContract} from "app/useCases/UIContract";
+import {LoginUiView} from "@app/ui/login/LoginUIView";
 
 @Injectable()
 export default class LoginPresenter implements UserDataOutputBoundary{
-  private view: UIContract;
+  private view: LoginUiView;
 
-  onViewInit(view: UIContract) {
+  onViewInit(view: LoginUiView) {
     this.view = view;
   }
 
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-
+    this.view.onLoggingSuccess();
   }
 
   onUserDataError(errorData: any) {

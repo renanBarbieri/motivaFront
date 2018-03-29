@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ScreenState} from "@app/ScreenState";
+import {ScreenState} from "@app/ui/ScreenState";
 
 @Injectable()
 export default class AuthViewModel {

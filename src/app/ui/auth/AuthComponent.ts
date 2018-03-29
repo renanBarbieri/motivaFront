@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import AuthViewModel from "@app/ui/auth/AuthViewModel";
-import {ScreenState} from "@app/ScreenState";
+import {ScreenState} from "@app/ui/ScreenState";
 import AuthController from "@app/ui/auth/AuthController";
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 import {AuthUiView} from "@app/ui/auth/AuthUIView";
@@ -26,9 +26,13 @@ export class AuthComponent implements AuthUiView, OnInit{
               private authPresenter: AuthPresenter){}
 
   ngOnInit(){
-    this.authViewModel.state = ScreenState.LOADING;
+    this.authViewModel.state = ScreenState.LOADING_STATE;
     this.authPresenter.onViewInit(this);
     this.authController.getUserData(this.authPresenter);
+  }
+
+  updateScreenState(state: ScreenState){
+    this.authViewModel.state = state;
   }
 
   updateLoggedStatus(logged: boolean) {
