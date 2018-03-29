@@ -2,31 +2,27 @@ import {UserDataOutputBoundary} from "app/useCases/userData/UserDataOutputBounda
 import {PostsOfTopicsInterestOutputBoundary} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import {PostsOfTopicsInterestInputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
 import {UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
-import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {Injectable} from "@angular/core";
-import HomeUseCase from "@app/useCases/home/HomeUseCase";
-import {SearchOutputBoundary, SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
 import {Router} from "@angular/router";
+import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
+import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 
 @Injectable()
 export default class HomeController{
 
-  constructor(private homeUseCase: HomeUseCase, private router: Router) {}
-
-  onViewInit(presenter: HomeOutputBoundary) {
-    this.getUserData(presenter);
-  }
+  constructor(private postsOfTopicsInterestUseCase: PostsOfTopicsInterestUseCase,
+              private userDataUseCase: UserDataUseCase,
+              private router: Router) {}
 
   getUserData(responseHandler: UserDataOutputBoundary){
     let requestData = new UserDataInputModel();
-    requestData.userId = "id";
-    this.homeUseCase.getUser(requestData, responseHandler);
+    this.userDataUseCase.getUser(requestData, responseHandler);
   }
 
   getPostsOfTopicsOfInterest(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>){
     let requestData = new PostsOfTopicsInterestInputModel();
     requestData.tags = topics;
-    this.homeUseCase.getTopics(requestData, responseHandler);
+    this.postsOfTopicsInterestUseCase.getTopics(requestData, responseHandler);
   }
 
   getResultsOfSearch(searchText: string){

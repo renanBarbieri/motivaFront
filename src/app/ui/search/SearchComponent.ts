@@ -128,6 +128,8 @@ export class SearchComponent implements SearchUiView, OnInit{
   }
 
   showErrorAlert(message: String) {
-
+    alert(message);
   }
+
+
 }

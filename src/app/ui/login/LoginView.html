@@ -1,22 +1,44 @@
 <div class="pageContent" fxLayout="column">
-  <div class="logo">Motiva</div>
+  <div class="logoLogin">
+    MOTIVA
+  </div>
   <div class="login-item">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form form-login">
-      <div class="form-field">
-        <label class="user" for="login-username"><span class="hidden">Usuário</span></label>
-        <input name="username" id="login-username" type="text"
-               class="form-input" placeholder="Usuário" required
-        >
-      </div>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" class="form form-login">
+        <mat-form-field class="form-field" color="accent">
+            <mat-icon matPrefix color="primary">account_circle</mat-icon>
+            <input name="username" id="login-username" type="text"
+                   [(ngModel)]="loginModel.username" #username="ngModel"
+                   class="form-input" placeholder="Usuário" required matInput
+            >
+        </mat-form-field>
 
-      <div class="form-field">
-        <label class="lock" for="login-password"><span class="hidden">Senha</span></label>
-        <input name="password" id="login-password" type="password" class="form-input" placeholder="Senha" required>
-      </div>
-
-      <div class="form-field">
+        <mat-form-field class="form-field" color="accent">
+            <mat-icon matPrefix color="primary">lock</mat-icon>
+            <input name="password" id="login-password" type="password"
+                  [(ngModel)]="loginModel.password" #password="ngModel"
+                  class="form-input" placeholder="Senha"  required minlength="6" matInput
+            >
+        </mat-form-field>
+      <div class="form-field" color="accent">
         <input type="submit" value="Entrar">
       </div>
     </form>
   </div>
+  <div class="errorMessages">
+        <mat-chip-list *ngIf="form.submitted && (form.controls.username?.invalid || form.controls.password?.invalid)"
+                      class="errorMessagesList">
+          <mat-chip selected="true" color="warn" class="errorMessagesChip"
+            *ngIf="form.controls.username?.errors?.required" >
+            Usuário é obrigatório.
+          </mat-chip>
+          <mat-chip selected="true" color="warn" class="errorMessagesChip"
+            *ngIf="form.controls.password?.errors?.required">
+            Senha é obrigatória.
+          </mat-chip>
+          <mat-chip selected="true" color="warn" class="errorMessagesChip"
+            *ngIf="form.controls.password?.errors?.minlength">
+            A senha deve ter pelo menos 6 caracteres.
+          </mat-chip>
+        </mat-chip-list>
+      </div>
 </div>

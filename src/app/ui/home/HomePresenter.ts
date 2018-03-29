@@ -1,11 +1,12 @@
-import {HomeUiView} from "app/useCases/home/HomeUIView";
+import {HomeUiView} from "app/ui/home/HomeUIView";
 import {Injectable} from "@angular/core";
-import {HomeOutputBoundary} from "app/useCases/home/HomeOutputBoundary";
 import {UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
 import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
+import {UserDataOutputBoundary} from "@app/useCases/userData/UserDataOutputBoundary";
+import {PostsOfTopicsInterestOutputBoundary} from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 
 @Injectable()
-export default class HomePresenter implements HomeOutputBoundary{
+export default class HomePresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary{
   private view: HomeUiView;
 
   onViewInit(view: HomeUiView) {

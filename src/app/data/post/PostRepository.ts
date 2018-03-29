@@ -1,4 +1,4 @@
-import PostApiDataSource from "app/data/datasource/post/PostApiDataSource";
+import PostApiDataSource from "app/data/post/PostApiDataSource";
 import Post from "app/entity/Post";
 import {Injectable} from "@angular/core";
 import {PostsOfTopicsInterestGateway} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestGateway";

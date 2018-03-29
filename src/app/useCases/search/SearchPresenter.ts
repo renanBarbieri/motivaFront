@@ -5,11 +5,14 @@ import {Injectable} from "@angular/core";
 import {SearchOutputBoundary, SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
 import {UserDataOutputBoundary, UserDataOutputModel} from "@app/useCases/userData/UserDataOutputBoundary";
 import {SearchUiView} from "@app/useCases/search/SearchUIView";
+import {Router} from "@angular/router";
 
 @Injectable()
 export default class SearchPresenter implements SearchOutputBoundary, UserDataOutputBoundary{
 
   private view: SearchUiView;
+
+  constructor(private router: Router){}
 
   initPresenter(viewInstance: SearchUiView){
     this.view = viewInstance;
@@ -26,6 +29,7 @@ export default class SearchPresenter implements SearchOutputBoundary, UserDataOu
   }
 
   onUserDataError(errorData: any) {
-    this.view.showErrorAlert(errorData.message);
+    console.log(errorData);
+    this.router.navigate(["/"], {replaceUrl: true});
   }
 }

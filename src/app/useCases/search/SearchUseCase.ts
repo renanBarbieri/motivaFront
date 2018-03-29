@@ -3,7 +3,7 @@ import {SearchInputBoundary} from "@app/useCases/search/SearchInputBoundary";
 import User from "@app/entity/User";
 import Tag from "@app/entity/Tag";
 import Post from "@app/entity/Post";
-import SearchRepository from "@app/data/repository/SearchRepository";
+import SearchRepository from "@app/data/search/SearchRepository";
 import { SearchOutputBoundary, SearchOutputModel } from "@app/useCases/search/SearchOutputBoundary";
 import PostItem from "@app/ui/models/PostItem";
 import UserItem from "@app/ui/models/UserItem";

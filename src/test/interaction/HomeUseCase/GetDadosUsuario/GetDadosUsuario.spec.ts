@@ -1,7 +1,7 @@
 import {HomeInputBoundary} from "@app/useCases/home/HomeInputBoundary";
 import HomeUseCaseImpl from "@app/useCases/home/HomeUseCase";
 import Usuario from "@app/entity/User";
-import UsuarioRepository from "@app/data/repository/UserRepository";
+import UsuarioRepository from "@app/data/user/UserRepository";
 import {UserDataInputModel} from "@app/useCases/userData/UserDataInputBoundary";
 import {UserDataOutputModel, UserDataOutputBoundary} from "@app/useCases/userData/UserDataOutputBoundary";
 

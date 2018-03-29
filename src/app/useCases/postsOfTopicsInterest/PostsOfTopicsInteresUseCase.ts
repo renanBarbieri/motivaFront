@@ -6,7 +6,7 @@ import {
   PostsOfTopicsInterestOutputBoundary,
   GetPostsOfTopicsInterestOutputModel
 } from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
-import PostRepository from "app/data/repository/PostRepository";
+import PostRepository from "app/data/post/PostRepository";
 import {Injectable} from "@angular/core";
 import Post from "app/entity/Post";
 import PostItem from "@app/ui/models/PostItem";
