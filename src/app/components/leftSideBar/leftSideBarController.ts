@@ -32,6 +32,9 @@ export class LeftSideBarComponent implements OnChanges{
   @Output()
   onSettingsClick = new EventEmitter<void>();
 
+  @Output()
+  onLogoutClick = new EventEmitter<void>();
+
   public rewardIndexes: Array<number> = [];
 
   menus: any[] = [
@@ -49,6 +52,11 @@ export class LeftSideBarComponent implements OnChanges{
       name: 'Configurações',
       icon: 'settings',
       id: 'settings'
+    },
+    {
+      name: 'Sair',
+      icon: 'exit_to_app',
+      id: 'logout'
     }
   ];
 
@@ -72,6 +80,9 @@ export class LeftSideBarComponent implements OnChanges{
         break;
       case 'settings':
         this.onSettingsClick.emit();
+        break;
+      case 'logout':
+        this.onLogoutClick.emit();
         break;
       default:
         break;

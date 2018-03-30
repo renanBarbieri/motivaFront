@@ -35,4 +35,15 @@ export default class AuthLocalDataSource implements AuthDataSource{
       }
     });
   }
+
+  eraseAuthKey(): Promise<boolean> {
+    return new Promise<boolean>(async (resolve, reject) => {
+      try {
+        LocalStorage.erase(AuthLocalDataSource.STORAGE_KEY_AUTH);
+        resolve(true);
+      } catch(error) {
+        reject(error);
+      }
+    });
+  }
 }

@@ -14,7 +14,8 @@ import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
 // MATERIAL DESIGN
 import {
-  MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
+  MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
+  MatIconModule,
   MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 //DEPENDENCY INJECTION
@@ -32,6 +33,7 @@ import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {HomeComponent} from './ui/home/HomeComponent';
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
+import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
     TopicArticlesComponent,
     LeftSideBarComponent,
     ProfileComponent,
+    SimpleTextDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -61,6 +64,7 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
     MatButtonModule,
     MatButtonToggleModule,
     MatChipsModule,
+    MatDialogModule,
     MatToolbarModule,
     MatInputModule,
     MatIconModule,
@@ -81,6 +85,9 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
     { provide: SearchApiDataSource, useClass: SearchApiDataSource },
     { provide: AuthLocalDataSource, useClass: AuthLocalDataSource }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    SimpleTextDialogComponent,
+  ],
 })
 export class AppModule { }

@@ -6,6 +6,7 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
+import {AuthOutputBoundary} from "@app/useCases/userData/AuthOutputBoundary";
 
 @Injectable()
 export default class HomeController{
@@ -40,5 +41,9 @@ export default class HomeController{
 
   goToSettings() {
     this.router.navigate(['/settings']);
+  }
+
+  makeLogout(responseHandler: AuthOutputBoundary) {
+    this.userDataUseCase.performLogout(responseHandler);
   }
 }

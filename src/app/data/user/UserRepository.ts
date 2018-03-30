@@ -23,6 +23,13 @@ export default class UserRepository implements UserDataGateway{
     });
   }
 
+  clearStorageKey(): Promise<boolean> {
+    return new Promise<boolean>(async (resolve, reject) => {
+      let localResponse = await this.authLocalDataSource.eraseAuthKey().catch(error => reject(error) );
+      resolve(true);
+    });
+  }
+
   getByKey(authKey: string): Promise<User> {
     return new Promise<User>(async (resolve, reject) => {
       let user: DataSourceUser = await this.userApiDataSource.getData(authKey);
