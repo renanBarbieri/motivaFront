@@ -12,6 +12,7 @@ import {TopicArticlesComponent} from './components/topicArticles/topicArticlesCo
 import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarController';
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
+// import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
 // MATERIAL DESIGN
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
@@ -33,7 +34,6 @@ import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {HomeComponent} from './ui/home/HomeComponent';
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
-import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/Simple
     TopicArticlesComponent,
     LeftSideBarComponent,
     ProfileComponent,
-    SimpleTextDialogComponent
+    // SimpleTextDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -87,7 +87,7 @@ import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/Simple
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    SimpleTextDialogComponent,
+    // SimpleTextDialogComponent,
   ],
 })
 export class AppModule { }
