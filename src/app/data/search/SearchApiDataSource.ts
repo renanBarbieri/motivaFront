@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import DataSourceConfig from "app/data/DataSourceConfig";
 import {SearchDataSource} from "app/data/search/SearchDataSource";
 import DataSourceSearch from "app/data/model/DataSourceSearch";

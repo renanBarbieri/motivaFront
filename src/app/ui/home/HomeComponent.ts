@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import HomeViewModel from "app/ui/home/HomeViewModel";
 import {HomeUiView} from "app/ui/home/HomeUIView";
 import HomeController from "app/ui/home/HomeController";
@@ -25,9 +25,9 @@ import RewardItem from "@app/ui/models/RewardItem";
 export class HomeComponent implements OnInit, HomeUiView{
 
   constructor(
-      @Inject(HomePresenter) private homePresenter,
-      @Inject(HomeController) private homeController,
-      @Inject(HomeViewModel) public homeViewModel)
+      private homePresenter: HomePresenter,
+      private homeController: HomeController,
+      public homeViewModel: HomeViewModel)
   {}
 
   ngOnInit(){
@@ -68,6 +68,22 @@ export class HomeComponent implements OnInit, HomeUiView{
 
   onSearchInput($textToSearch: string){
     this.homeController.getResultsOfSearch($textToSearch)
+  }
+
+  openProfile() {
+    this.homeController.goToProfile();
+  }
+
+  openFavorites() {
+    this.homeController.goToFavorites();
+  }
+
+  openSettings() {
+    this.homeController.goToSettings();
+  }
+
+  logout() {
+    this.homeController.makeLogout(this.homePresenter);
   }
 
   showErrorAlert(message: String) {

@@ -6,7 +6,7 @@
     [mode]="indeterminate">
   </mat-spinner>
 </div>
-<div *ngIf="authViewModel.state != thisState.LOADING_STATE">
+<div id="contentDiv" *ngIf="authViewModel.state != thisState.LOADING_STATE">
   <app-home *ngIf="authViewModel.logged"></app-home>
   <app-login *ngIf="!authViewModel.logged"
               (screenStateChange)="updateScreenState($event)"

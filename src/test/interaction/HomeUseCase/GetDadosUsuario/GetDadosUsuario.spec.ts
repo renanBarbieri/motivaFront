@@ -3,7 +3,7 @@ import HomeUseCaseImpl from "@app/useCases/home/HomeUseCase";
 import Usuario from "@app/entity/User";
 import UsuarioRepository from "@app/data/user/UserRepository";
 import {UserDataInputModel} from "@app/useCases/userData/UserDataInputBoundary";
-import {UserDataOutputModel, UserDataOutputBoundary} from "@app/useCases/userData/UserDataOutputBoundary";
+import {UserDataOutputBoundary, UserDataOutputModel} from "@app/useCases/userData/UserDataOutputBoundary";
 
 describe('Teste dos casos de uso GetDadosUsuario', () => {
 

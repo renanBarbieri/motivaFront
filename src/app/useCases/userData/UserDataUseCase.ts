@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import UserRepository from "app/data/user/UserRepository";
 import Tag from "app/entity/Tag";
 import RewardItem from "@app/ui/models/RewardItem";
+import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/userData/AuthOutputBoundary";
 
 @Injectable()
 export default class UserDataUseCase implements UserDataInputBoundary{
@@ -57,5 +58,17 @@ export default class UserDataUseCase implements UserDataInputBoundary{
     }
 
     return responseTags;
+  }
+
+  performLogout(outputBoundary: AuthOutputBoundary) {
+    try {
+      this.userRepository.clearStorageKey();
+      let response = new AuthOutputModel();
+      response.code = 200;
+      response.message = "Usuário deslogado com sucesso";
+      outputBoundary.onAuthLogoutSuccess(response);
+    } catch (error) {
+      outputBoundary.onAuthLogoutError(error.message);
+    }
   }
 }

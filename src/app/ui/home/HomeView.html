@@ -6,6 +6,10 @@
         [levelName]="homeViewModel.levelName"
         [profileImage]="homeViewModel.profileImage"
         [rewards]="homeViewModel.rewards"
+        (onProfileClick)="openProfile()"
+        (onFavoritesClick)="openFavorites()"
+        (onSettingsClick)="openSettings()"
+        (onLogoutClick)="logout()"
       >
       </app-left-sidebar>
   </div>

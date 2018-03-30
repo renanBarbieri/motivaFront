@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 import {NgForm} from '@angular/forms';
 import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
-import {UIContract} from "@app/useCases/UIContract";
 import LoginController from "@app/ui/login/LoginController";
 import LoginPresenter from "@app/ui/login/LoginPresenter";
 import {ScreenState} from "@app/ui/ScreenState";

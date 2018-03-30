@@ -5,9 +5,6 @@ import Tag from "app/entity/Tag";
 import Post from "app/entity/Post";
 import SearchApiDataSource from "app/data/search/SearchApiDataSource";
 import DataSourceSearch from "app/data/model/DataSourceSearch";
-import UserProfileDataSourceMapper from "app/data/mapper/UserProfileDataSourceMapper";
-import PostDataSourceMapper from "app/data/mapper/PostDataSourceMapper";
-import TagDataSourceMapper from "app/data/mapper/TagDataSourceMapper";
 import SearchDataSourceMapper from "app/data/mapper/SearchDataSourceMapper";
 
 @Injectable()

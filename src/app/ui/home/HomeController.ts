@@ -6,6 +6,7 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
+import {AuthOutputBoundary} from "@app/useCases/userData/AuthOutputBoundary";
 
 @Injectable()
 export default class HomeController{
@@ -28,5 +29,21 @@ export default class HomeController{
   getResultsOfSearch(searchText: string){
     console.log(searchText);
     this.router.navigate(['/search', { q: searchText}]);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/user']);
+  }
+
+  goToFavorites() {
+    this.router.navigate(['/favorites']);
+  }
+
+  goToSettings() {
+    this.router.navigate(['/settings']);
+  }
+
+  makeLogout(responseHandler: AuthOutputBoundary) {
+    this.userDataUseCase.performLogout(responseHandler);
   }
 }

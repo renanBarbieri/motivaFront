@@ -42,4 +42,13 @@ export namespace LocalStorage {
       throw new Error("Local Storage não está disponível.")
     }
   }
+
+  export function erase(key: string) {
+    if(storageAvailable("localStorage")){
+      return window.localStorage.removeItem(key);
+    }
+    else {
+      throw new Error("Local Storage não está disponível.")
+    }
+  }
 }
