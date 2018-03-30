@@ -3,8 +3,8 @@ import {
   PostsOfTopicsInterestInputModel
 } from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestInputBoundary";
 import {
-  PostsOfTopicsInterestOutputBoundary,
-  GetPostsOfTopicsInterestOutputModel
+  GetPostsOfTopicsInterestOutputModel,
+  PostsOfTopicsInterestOutputBoundary
 } from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import PostRepository from "app/data/post/PostRepository";
 import {Injectable} from "@angular/core";

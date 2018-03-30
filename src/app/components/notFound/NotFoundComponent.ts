@@ -1,6 +1,4 @@
 import {Component} from "@angular/core";
-import {NgForm} from '@angular/forms';
-import {ScreenState} from "@app/ui/ScreenState";
 
 
 @Component({

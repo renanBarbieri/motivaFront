@@ -1,5 +1,5 @@
 import {UIContract} from "app/useCases/UIContract";
-import CardViewModel, {default as PostItem} from "app/ui/models/PostItem";
+import {default as PostItem} from "app/ui/models/PostItem";
 import RewardItem from "app/ui/models/RewardItem";
 
 export interface HomeUiView extends UIContract{

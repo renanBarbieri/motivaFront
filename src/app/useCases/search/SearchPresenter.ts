@@ -1,6 +1,3 @@
-import UserItem from '@app/ui/models/UserItem';
-import TopicItem from '@app/ui/models/TopicItem';
-import PostItem from 'app/ui/models/PostItem';
 import {Injectable} from "@angular/core";
 import {SearchOutputBoundary, SearchOutputModel} from "@app/useCases/search/SearchOutputBoundary";
 import {UserDataOutputBoundary, UserDataOutputModel} from "@app/useCases/userData/UserDataOutputBoundary";

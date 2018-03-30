@@ -14,8 +14,8 @@ import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
 // MATERIAL DESIGN
 import {
-MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
-MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule, MatTooltipModule
+  MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
+  MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 //DEPENDENCY INJECTION
 import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
