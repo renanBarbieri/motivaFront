@@ -29,4 +29,16 @@ export default class HomeController{
     console.log(searchText);
     this.router.navigate(['/search', { q: searchText}]);
   }
+
+  goToProfile() {
+    this.router.navigate(['/user']);
+  }
+
+  goToFavorites() {
+    this.router.navigate(['/favorites']);
+  }
+
+  goToSettings() {
+    this.router.navigate(['/settings']);
+  }
 }

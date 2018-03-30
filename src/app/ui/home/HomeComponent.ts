@@ -70,6 +70,18 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.getResultsOfSearch($textToSearch)
   }
 
+  openProfile() {
+    this.homeController.goToProfile();
+  }
+
+  openFavorites() {
+    this.homeController.goToFavorites();
+  }
+
+  openSettings() {
+    this.homeController.goToSettings();
+  }
+
   showErrorAlert(message: String) {
 
   }

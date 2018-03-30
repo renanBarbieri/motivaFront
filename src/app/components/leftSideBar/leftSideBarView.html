@@ -16,7 +16,7 @@
 
     <mat-list class="listMenu">
         <hr>
-        <mat-list-item class="listMenuItem" fxLayout="row" *ngFor="let menu of menus">
+        <mat-list-item class="listMenuItem" fxLayout="row" *ngFor="let menu of menus" (click)="openMenuItemClick(menu.id)">
             <mat-icon>{{ menu.icon }}</mat-icon>
             <h4 mat-line>{{menu.name}}</h4>
         </mat-list-item>
