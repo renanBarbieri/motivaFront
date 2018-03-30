@@ -1,50 +1,48 @@
 // FROM ANGULAR
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import { RouterModule } from '@angular/router';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 // COMPONENTS
 import {ToolbarComponent} from './components/toolbar/toolbarController';
 import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
 import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarController';
-
+import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
+import {ProfileComponent} from "@app/components/profile/profileController";
 // MATERIAL DESIGN
 import {
-  MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
-  MatInputModule, MatTabsModule,
-  MatProgressBarModule, MatToolbarModule, MatTooltipModule, MatProgressSpinnerModule
+MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatGridListModule, MatIconModule,
+MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
-
 //DEPENDENCY INJECTION
+import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
 import UserRepository from "./data/user/UserRepository";
 import PostRepository from "./data/post/PostRepository";
 import UserApiDataSource from "./data/user/UserApiDataSource";
 import PostApiDataSource from "./data/post/PostApiDataSource";
 import SearchRepository from "@app/data/search/SearchRepository";
 import SearchApiDataSource from "@app/data/search/SearchApiDataSource";
-
 // PAGES
-import {HomeComponent} from './ui/home/HomeComponent';
-import {appRoutes, AppRoutingModule} from "./app.routing";
-import {SearchComponent} from "@app/ui/search/SearchComponent";
 import {AppComponent} from "@app/app.component";
-import {ProfileComponent} from "@app/components/profile/profileController";
-import {LoginComponent} from "@app/ui/login/LoginComponent";
+import {AppRoutingModule} from "./app.routing";
 import {AuthComponent} from "@app/ui/auth/AuthComponent";
-import {FormsModule, ReactiveFormsModule } from "@angular/forms";
-import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
+import {HomeComponent} from './ui/home/HomeComponent';
+import {LoginComponent} from "@app/ui/login/LoginComponent";
+import {SearchComponent} from "@app/ui/search/SearchComponent";
 
 @NgModule({
   declarations: [
     AppComponent,
+    //PAGES
     AuthComponent,
     LoginComponent,
     HomeComponent,
     SearchComponent,
+    //COMPONENTS
+    NotFoundComponent,
     ToolbarComponent,
     CardComponent,
     TopicArticlesComponent,

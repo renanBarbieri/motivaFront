@@ -1,0 +1,90 @@
+.pageContent{
+  background: url("../../../assets/wally.jpg");
+  background-repeat:no-repeat;
+  background-position: center center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  height: auto;
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  justify-content: center;
+}
+.c{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width:100%;
+  height: 100%;
+  justify-content: center;
+}
+._404{
+  font-size: 10rem;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  letter-spacing: 15px;
+}
+._1{
+  background-color: white;
+  color:deeppink;
+  text-align:center;
+  display:block;
+  position:relative;
+  font-size: 4em;
+  line-height: 80%;
+  margin-top: 2em;
+  padding-top: 0.25em;
+}
+._2{
+  background-color: white;
+  color:deeppink;
+  text-align:center;
+  display:block;
+  position: relative;
+  font-size: 20px;
+}
+.text{
+  font-size: 70px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  margin: 19px 0px 0px 0px;
+  /* top: 256.301px; */
+  z-index: 3;
+  width: 100%;
+  line-height: 1.2em;
+  display: inline-block;
+}
+
+
+.btn{
+  background-color: deeppink;
+  color:white;
+  position: relative;
+  display: inline-block;
+  z-index: 5;
+  font-size: 25px;
+  margin:0 auto;
+  text-decoration: none;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+.right{
+  float:right;
+  width:60%;
+}
+
+hr{
+  padding: 0;
+  border: none;
+  border-top: 5px solid #fff;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  width: 90%;
+  height:1em;
+}
