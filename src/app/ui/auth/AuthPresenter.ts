@@ -1,24 +1,23 @@
 import {Injectable} from "@angular/core";
 import {UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
-import {UserDataOutputBoundary} from "@app/useCases/userData/UserDataOutputBoundary";
 import {AuthUiView} from "@app/ui/auth/AuthUIView";
+import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/auth/AuthOutputBoundary";
 
 @Injectable()
-export default class AuthPresenter implements UserDataOutputBoundary{
+export default class AuthPresenter implements AuthOutputBoundary{
   private view: AuthUiView;
 
   onViewInit(view: AuthUiView) {
     this.view = view;
   }
 
-
-  onUserDataSuccess(responseData: UserDataOutputModel) {
-    this.view.updateLoggedStatus(true);
+  onAuthSuccess(responseData: AuthOutputModel) {
+    if(responseData.logged) this.view.updateLoggedStatus(true, responseData.message);
+    else this.view.updateLoggedStatus(false);
   }
 
-  onUserDataError(errorData: any) {
+  onAuthError(errorData: any) {
     this.view.updateLoggedStatus(false);
-    // this.view.showErrorAlert(errorData.message);
   }
 
 }

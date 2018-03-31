@@ -1,6 +1,7 @@
 import PostItem from "app/ui/models/PostItem";
 import {Injectable} from "@angular/core";
 import RewardItem from "@app/ui/models/RewardItem";
+import AuthViewModel from "@app/ui/auth/AuthViewModel";
 
 @Injectable()
 export default class HomeViewModel{

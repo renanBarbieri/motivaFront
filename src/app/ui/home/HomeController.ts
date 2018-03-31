@@ -6,17 +6,22 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
-import {AuthOutputBoundary} from "@app/useCases/userData/AuthOutputBoundary";
+import AuthController from "@app/ui/auth/AuthController";
+import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 
 @Injectable()
-export default class HomeController{
+export default class HomeController extends AuthController{
 
   constructor(private postsOfTopicsInterestUseCase: PostsOfTopicsInterestUseCase,
               private userDataUseCase: UserDataUseCase,
-              private router: Router) {}
+              private authParentCase: AuthUseCase,
+              private router: Router) {
+    super(authParentCase);
+  }
 
-  getUserData(responseHandler: UserDataOutputBoundary){
+  getUserData(authKey: string, responseHandler: UserDataOutputBoundary){
     let requestData = new UserDataInputModel();
+    requestData.authKey = authKey;
     this.userDataUseCase.getUser(requestData, responseHandler);
   }
 
@@ -41,9 +46,5 @@ export default class HomeController{
 
   goToSettings() {
     this.router.navigate(['/settings']);
-  }
-
-  makeLogout(responseHandler: AuthOutputBoundary) {
-    this.userDataUseCase.performLogout(responseHandler);
   }
 }

@@ -5,6 +5,7 @@ import LoginController from "@app/ui/login/LoginController";
 import LoginPresenter from "@app/ui/login/LoginPresenter";
 import {ScreenState} from "@app/ui/ScreenState";
 import {LoginUiView} from "@app/ui/login/LoginUIView";
+import LoginViewModel from "@app/ui/login/LoginViewModel";
 
 
 @Component({
@@ -12,6 +13,7 @@ import {LoginUiView} from "@app/ui/login/LoginUIView";
   templateUrl: './LoginView.html',
   styleUrls: ['./LoginStyle.css'],
   providers: [
+    { provide: LoginViewModel, useClass: LoginViewModel },
     { provide: LoginController, useClass: LoginController },
     { provide: LoginPresenter, useClass: LoginPresenter },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit, LoginUiView{
   loginModel: any = {};
 
   constructor(private loginController: LoginController,
-              private loginPresenter: LoginPresenter){}
+              private loginPresenter: LoginPresenter,
+              private loginViewModel: LoginViewModel){}
 
   ngOnInit(){
     this.loginPresenter.onViewInit(this);

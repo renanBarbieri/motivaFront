@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import AuthViewModel from "@app/ui/auth/AuthViewModel";
 import {ScreenState} from "@app/ui/ScreenState";
 import AuthController from "@app/ui/auth/AuthController";
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 import {AuthUiView} from "@app/ui/auth/AuthUIView";
-import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
+import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 
 @Component({
   selector: 'app-auth',
@@ -14,9 +14,10 @@ import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
     { provide: AuthViewModel, useClass: AuthViewModel },
     { provide: AuthController, useClass: AuthController },
     { provide: AuthPresenter, useClass: AuthPresenter },
-    { provide: UserDataUseCase, useClass: UserDataUseCase },
+    { provide: AuthUseCase, useClass: AuthUseCase },
   ]
 })
+
 export class AuthComponent implements AuthUiView, OnInit{
 
   public thisState = ScreenState;
@@ -28,7 +29,7 @@ export class AuthComponent implements AuthUiView, OnInit{
   ngOnInit(){
     this.authViewModel.state = ScreenState.LOADING_STATE;
     this.authPresenter.onViewInit(this);
-    this.authController.getUserData(this.authPresenter);
+    this.authController.verifyAuthorization(this.authPresenter);
   }
 
   updateScreenState(state: ScreenState){

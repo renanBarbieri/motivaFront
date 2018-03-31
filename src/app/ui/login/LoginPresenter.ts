@@ -10,7 +10,6 @@ export default class LoginPresenter implements UserDataOutputBoundary{
     this.view = view;
   }
 
-
   onUserDataSuccess(responseData: UserDataOutputModel) {
     this.view.onLoggingSuccess();
   }
