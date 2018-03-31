@@ -15,8 +15,8 @@ export default class HomeController extends AuthController{
   constructor(private postsOfTopicsInterestUseCase: PostsOfTopicsInterestUseCase,
               private userDataUseCase: UserDataUseCase,
               private authParentCase: AuthUseCase,
-              private router: Router) {
-    super(authParentCase);
+              private routerChild: Router) {
+    super(authParentCase, routerChild);
   }
 
   getUserData(authKey: string, responseHandler: UserDataOutputBoundary){
@@ -33,18 +33,18 @@ export default class HomeController extends AuthController{
 
   getResultsOfSearch(searchText: string){
     console.log(searchText);
-    this.router.navigate(['/search', { q: searchText}]);
+    this.routerChild.navigate(['/search', { q: searchText}]);
   }
 
   goToProfile() {
-    this.router.navigate(['/user']);
+    this.routerChild.navigate(['/user']);
   }
 
   goToFavorites() {
-    this.router.navigate(['/favorites']);
+    this.routerChild.navigate(['/favorites']);
   }
 
   goToSettings() {
-    this.router.navigate(['/settings']);
+    this.routerChild.navigate(['/settings']);
   }
 }
