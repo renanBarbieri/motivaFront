@@ -6,6 +6,10 @@
         [levelName]="searchViewModel.levelName"
         [profileImage]="searchViewModel.profileImage"
         [rewards]="searchViewModel.rewards"
+        (onProfileClick)="openProfile()"
+        (onFavoritesClick)="openFavorites()"
+        (onSettingsClick)="openSettings()"
+        (onLogoutClick)="logout()"
       >
       </app-left-sidebar>
   </div>
