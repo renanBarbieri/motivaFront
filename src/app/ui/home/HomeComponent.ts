@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import HomeViewModel from "app/ui/home/HomeViewModel";
 import {HomeUiView} from "app/ui/home/HomeUIView";
 import HomeController from "app/ui/home/HomeController";
@@ -8,6 +8,7 @@ import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import SearchUseCase from "app/useCases/search/SearchUseCase";
 import PostItem from "@app/ui/models/PostItem";
 import RewardItem from "@app/ui/models/RewardItem";
+import {ScreenState} from "@app/ui/ScreenState";
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,12 @@ import RewardItem from "@app/ui/models/RewardItem";
 })
 export class HomeComponent implements OnInit, HomeUiView{
 
+  @Output()
+  screenStateChange = new EventEmitter<ScreenState>();
+
+  @Output()
+  authStateLogged = new EventEmitter<boolean>();
+
   constructor(
       private homePresenter: HomePresenter,
       private homeController: HomeController,
@@ -32,7 +39,18 @@ export class HomeComponent implements OnInit, HomeUiView{
 
   ngOnInit(){
     this.homePresenter.onViewInit(this);
-    this.homeController.getUserData(this.homePresenter)
+    this.homeController.verifyAuthorization(this.homePresenter);
+  }
+
+  updateLoggedStatus(logged: boolean, authKey?: string) {
+    this.screenStateChange.emit(ScreenState.LOADING);
+    if(logged && authKey){
+      this.authStateLogged.emit(true);
+      this.homeController.getUserData(authKey, this.homePresenter);
+    }
+    else {
+      this.authStateLogged.emit(false);
+    }
   }
 
   updateUserData(username: string, levelCompleted: number, levelName: string,
@@ -48,7 +66,6 @@ export class HomeComponent implements OnInit, HomeUiView{
   updateRewardsList(newRewards: Array<RewardItem>) {
     this.homeViewModel.rewards.length = 0;
     newRewards.forEach((it) => {
-      console.log(it);
       this.homeViewModel.rewards.push(it);
     });
   }

@@ -5,25 +5,25 @@ import {Injectable} from "@angular/core";
 import UserRepository from "app/data/user/UserRepository";
 import Tag from "app/entity/Tag";
 import RewardItem from "@app/ui/models/RewardItem";
-import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/userData/AuthOutputBoundary";
+import AuthRepository from "@app/data/auth/AuthRepository";
 
 @Injectable()
 export default class UserDataUseCase implements UserDataInputBoundary{
-  constructor(private userRepository: UserRepository){}
+  constructor(private userRepository: UserRepository, private authRepository: AuthRepository){}
 
   async getUser(requestData: UserDataInputModel, outputBoundary: UserDataOutputBoundary) {
     let responseData: UserDataOutputModel = new UserDataOutputModel();
     let user: User;
 
     try {
-      if (!requestData.username && !requestData.password) {
-
-        let authKey = await this.userRepository.getStorageKey();
-        user = await this.userRepository.getByKey(authKey);
+      if (requestData.authKey &&!requestData.username && !requestData.password) {
+        user = await this.userRepository.getByKey(requestData.authKey);
       }
-      else if (requestData.username && requestData.password) {
-        user = await this.userRepository.getByLogin(requestData.username, requestData.password);
-
+      else if (!requestData.authKey && requestData.username && requestData.password) {
+        let loginResponse = await this.userRepository.getByLogin(requestData.username, requestData.password);
+        let storageKey = await this.authRepository.setStorageKey(loginResponse[1]);
+        if(storageKey) user = loginResponse[0];
+        else throw new Error("Erro ao salvar seus dados");
       }
       else {
         throw new Error("Solicitação não conhecida");
@@ -58,17 +58,5 @@ export default class UserDataUseCase implements UserDataInputBoundary{
     }
 
     return responseTags;
-  }
-
-  performLogout(outputBoundary: AuthOutputBoundary) {
-    try {
-      this.userRepository.clearStorageKey();
-      let response = new AuthOutputModel();
-      response.code = 200;
-      response.message = "Usuário deslogado com sucesso";
-      outputBoundary.onAuthLogoutSuccess(response);
-    } catch (error) {
-      outputBoundary.onAuthLogoutError(error.message);
-    }
   }
 }

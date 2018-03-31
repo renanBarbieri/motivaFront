@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToolbarComponent} from './components/toolbar/toolbarController';
 import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
-import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarController';
+import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
 // import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
@@ -34,6 +34,7 @@ import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {HomeComponent} from './ui/home/HomeComponent';
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
+import AuthRepository from "@app/data/auth/AuthRepository";
 
 @NgModule({
   declarations: [
@@ -76,14 +77,15 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
   ],
   providers: [
     //Repositories
-    { provide: UserRepository, useClass: UserRepository },
+    { provide: AuthRepository, useClass: AuthRepository },
     { provide: PostRepository, useClass: PostRepository },
     { provide: SearchRepository, useClass: SearchRepository},
+    { provide: UserRepository, useClass: UserRepository },
     //DataSources
-    { provide: UserApiDataSource, useClass: UserApiDataSource },
+    { provide: AuthLocalDataSource, useClass: AuthLocalDataSource },
     { provide: PostApiDataSource, useClass: PostApiDataSource },
     { provide: SearchApiDataSource, useClass: SearchApiDataSource },
-    { provide: AuthLocalDataSource, useClass: AuthLocalDataSource }
+    { provide: UserApiDataSource, useClass: UserApiDataSource },
   ],
   bootstrap: [AppComponent],
   entryComponents: [

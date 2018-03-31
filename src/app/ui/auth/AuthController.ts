@@ -1,15 +1,22 @@
-import {UserDataOutputBoundary} from "app/useCases/userData/UserDataOutputBoundary";
-import {UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
 import {Injectable} from "@angular/core";
-import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
+import AuthUseCase from "@app/useCases/auth/AuthUseCase";
+import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
+import {Router} from "@angular/router";
 
 @Injectable()
 export default class AuthController{
 
-  constructor(private userDataUseCase: UserDataUseCase) {}
+  constructor(private authUseCase: AuthUseCase, private router: Router) {}
 
-  getUserData(responseHandler: UserDataOutputBoundary){
-    let requestData = new UserDataInputModel();
-    this.userDataUseCase.getUser(requestData, responseHandler);
+  verifyAuthorization(responseHandler: AuthOutputBoundary){
+    this.authUseCase.performAuthValidation(responseHandler);
+  }
+
+  makeLogout(responseHandler: AuthOutputBoundary){
+    this.authUseCase.performLogout(responseHandler);
+  }
+
+  redirectToLogin(){
+    this.router.navigate(["/"], {replaceUrl: true});
   }
 }

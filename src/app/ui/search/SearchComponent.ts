@@ -1,18 +1,20 @@
 import PostItem from '@app/ui/models/PostItem';
 import TopicItem from '@app/ui/models/TopicItem';
 import UserItem from '@app/ui/models/UserItem';
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Location} from '@angular/common';
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import SearchUseCase from "app/useCases/search/SearchUseCase";
-import {SearchUiView} from "app/useCases/search/SearchUIView";
+import {SearchUiView} from "app/ui/search/SearchUIView";
 import SearchViewModel from "@app/ui/search/SearchViewModel";
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
-import SearchController from "@app/useCases/search/SearchController";
-import SearchPresenter from "@app/useCases/search/SearchPresenter";
+import SearchController from "@app/ui/search/SearchController";
+import SearchPresenter from "@app/ui/search/SearchPresenter";
 import RewardItem from "@app/ui/models/RewardItem";
+import {ScreenState} from "@app/ui/ScreenState";
+import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 
 
 @Component({
@@ -23,11 +25,18 @@ import RewardItem from "@app/ui/models/RewardItem";
     { provide: SearchViewModel, useClass: SearchViewModel },
     { provide: SearchController, useClass: SearchController },
     { provide: SearchPresenter, useClass: SearchPresenter },
+    { provide: AuthUseCase, useClass: AuthUseCase },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
     { provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
 export class SearchComponent implements SearchUiView, OnInit{
+
+  @Output()
+  screenStateChange = new EventEmitter<ScreenState>();
+
+  @Output()
+  authStateLogged = new EventEmitter<boolean>();
 
   public postIndexes: Array<number> = [];
   public userIndexes: Array<number> = [];
@@ -43,11 +52,22 @@ export class SearchComponent implements SearchUiView, OnInit{
 
   ngOnInit(){
     this.searchQuery = this.route.snapshot.paramMap.get('q');
-    this.searchPresenter.initPresenter(this);
-    this.searchController.getUserData(this.searchPresenter);
-    this.searchController.getResultsOfSearch(this.searchQuery, this.searchPresenter);
+    this.searchPresenter.onViewInit(this);
+    this.searchController.verifyAuthorization(this.searchPresenter);
   }
 
+
+  updateLoggedStatus(logged: boolean, authKey?: string) {
+    this.screenStateChange.emit(ScreenState.LOADING);
+    if(logged && authKey){
+      this.authStateLogged.emit(true);
+      this.searchController.getUserData(authKey, this.searchPresenter);
+      this.searchController.getResultsOfSearch(this.searchQuery, this.searchPresenter);
+    }
+    else {
+      this.searchController.redirectToLogin();
+    }
+  }
 
   updateUserData(username: string, levelCompleted: number, levelName: string,
                  profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
@@ -125,6 +145,22 @@ export class SearchComponent implements SearchUiView, OnInit{
 
   onPostClick() {
 
+  }
+
+  openProfile() {
+    // this.searchController.goToProfile();
+  }
+
+  openFavorites() {
+    // this.searchController.goToFavorites();
+  }
+
+  openSettings() {
+    // this.searchController.goToSettings();
+  }
+
+  logout() {
+    this.searchController.makeLogout(this.searchPresenter);
   }
 
   showErrorAlert(message: String) {
