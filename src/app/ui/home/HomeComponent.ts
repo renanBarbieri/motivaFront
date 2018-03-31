@@ -38,13 +38,12 @@ export class HomeComponent implements OnInit, HomeUiView{
   {}
 
   ngOnInit(){
-    // this.screenStateChange.emit(ScreenState.LOADING);
     this.homePresenter.onViewInit(this);
     this.homeController.verifyAuthorization(this.homePresenter);
   }
 
   updateLoggedStatus(logged: boolean, authKey?: string) {
-    this.screenStateChange.emit(ScreenState.DONE);
+    this.screenStateChange.emit(ScreenState.LOADING);
     if(logged && authKey){
       this.authStateLogged.emit(true);
       this.homeController.getUserData(authKey, this.homePresenter);
@@ -56,7 +55,6 @@ export class HomeComponent implements OnInit, HomeUiView{
 
   updateUserData(username: string, levelCompleted: number, levelName: string,
                  profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
-    console.log(`passei aqui tabém`);
     this.homeViewModel.username = username;
     this.homeViewModel.levelCompleted = levelCompleted;
     this.homeViewModel.levelName = levelName;
@@ -68,7 +66,6 @@ export class HomeComponent implements OnInit, HomeUiView{
   updateRewardsList(newRewards: Array<RewardItem>) {
     this.homeViewModel.rewards.length = 0;
     newRewards.forEach((it) => {
-      console.log(it);
       this.homeViewModel.rewards.push(it);
     });
   }
