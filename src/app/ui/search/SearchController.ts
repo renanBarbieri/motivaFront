@@ -7,21 +7,16 @@ import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import AuthController from "app/ui/auth/AuthController";
 import AuthUseCase from "app/useCases/auth/AuthUseCase";
 import {Router} from "@angular/router";
+import LeftSideBarController from "@app/components/leftSideBar/LeftSideBarController";
 
 @Injectable()
-export default class SearchController extends AuthController {
+export default class SearchController extends LeftSideBarController {
 
   constructor(private searchUseCase: SearchUseCase,
-              private userDataUseCase: UserDataUseCase,
-              private authParentCase: AuthUseCase,
+              private userChild: UserDataUseCase,
+              private authChild: AuthUseCase,
               private routerChild: Router){
-    super(authParentCase, routerChild);
-  }
-
-  getUserData(authKey: string, outputBoundary: UserDataOutputBoundary){
-    let requestData = new UserDataInputModel();
-    requestData.authKey = authKey;
-    this.userDataUseCase.getUser(requestData, outputBoundary);
+    super(userChild, authChild, routerChild);
   }
 
   getResultsOfSearch(searchText: string, outputBoundary: SearchOutputBoundary){

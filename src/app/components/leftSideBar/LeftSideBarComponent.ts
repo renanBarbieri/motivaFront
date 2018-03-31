@@ -3,8 +3,8 @@ import RewardItem from "@app/ui/models/RewardItem";
 
 @Component({
   selector: 'app-left-sidebar',
-  templateUrl: './leftSideBarView.html',
-  styleUrls: ['./leftSideBarStyle.css']
+  templateUrl: './LeftSideBarView.html',
+  styleUrls: ['./LeftSideBarStyle.css']
 })
 export class LeftSideBarComponent implements OnChanges{
 

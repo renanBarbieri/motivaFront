@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToolbarComponent} from './components/toolbar/toolbarController';
 import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
-import {LeftSideBarComponent} from './components/leftSideBar/leftSideBarController';
+import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
 // import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
