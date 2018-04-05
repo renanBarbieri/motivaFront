@@ -14,7 +14,7 @@ export default class PostDataSourceMapper implements DataSourceMapper<DataSource
     post.subtitle = dataSource.subtitle;
     post.favorites = dataSource.favorites;
     post.likes = dataSource.likes;
-    post.headerImage = dataSource.image;
+    post.headerImage = dataSource.image_url;
     post.owner = PostDataSourceMapper.fromOwnerToUser(dataSource.owner);
     post.publishDate = new Date(dataSource.publishDate);
     post.editedDate = new Date(dataSource.editedDate);
@@ -25,7 +25,7 @@ export default class PostDataSourceMapper implements DataSourceMapper<DataSource
   private static fromOwnerToUser(owner: DataSourcePostOwner): User{
     let user = new User();
     user.id = owner.id;
-    user.avatar = owner.avatar;
+    user.avatar = owner.avatar_url;
     user.username = owner.name;
 
     return user;

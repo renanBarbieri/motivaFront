@@ -1,7 +1,7 @@
 
 export default class DataSourceReward{
   id: number;
-  icon: string;
+  image_url: string;
   name: string;
   description: string;
 }

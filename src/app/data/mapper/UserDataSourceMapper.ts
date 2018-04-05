@@ -16,7 +16,7 @@ export default class UserDataSourceMapper implements DataSourceMapper<DataSource
     user.name = dataSource.name;
     user.description = dataSource.description;
     user.username = dataSource.username;
-    user.avatar = dataSource.avatar;
+    user.avatar = dataSource.avatar_url;
     user.email = dataSource.email;
     user.experience = dataSource.experience;
     user.facebook = dataSource.facebook;

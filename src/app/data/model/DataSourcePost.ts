@@ -6,7 +6,7 @@ export default class DataSourcePost{
   subtitle: string;
   favorites: number;
   likes: number;
-  image: string;
+  image_url: string;
   publishDate: number;
   editedDate: number;
   owner: DataSourceUserProfile;

@@ -8,7 +8,7 @@ export default class UserProfileDataSourceMapper implements DataSourceMapper<Dat
     toEntity(dataSource: DataSourceUserProfile): User {
         let entity = new User();
         entity.username = dataSource.name;
-        entity.avatar = dataSource.avatar;
+        entity.avatar = dataSource.avatar_url;
         entity.id = dataSource.id;
         return entity;
     }

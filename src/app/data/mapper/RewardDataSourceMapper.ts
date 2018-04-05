@@ -6,7 +6,7 @@ export default class RewardDataSourceMapper implements DataSourceMapper<DataSour
 
   toEntity(dataSource: DataSourceReward): Reward {
     let reward = new Reward();
-    reward.image = dataSource.icon;
+    reward.image = dataSource.image_url;
     reward.name = dataSource.name;
     reward.id = dataSource.id.toString();
     reward.description = dataSource.description;
