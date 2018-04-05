@@ -15,9 +15,8 @@ export default class LeftSideBarController extends AuthController{
     super(authParent, routerParent);
   }
 
-  getUserData(authKey: string, responseHandler: UserDataOutputBoundary){
+  getUserData(responseHandler: UserDataOutputBoundary){
     let requestData = new UserDataInputModel();
-    requestData.authKey = authKey;
     this.userDataUseCase.getUser(requestData, responseHandler);
   }
 

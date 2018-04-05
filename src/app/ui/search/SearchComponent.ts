@@ -57,11 +57,11 @@ export class SearchComponent implements SearchUiView, OnInit{
   }
 
 
-  updateLoggedStatus(logged: boolean, authKey?: string) {
+  updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
-    if(logged && authKey){
+    if(logged){
       this.authStateLogged.emit(true);
-      this.searchController.getUserData(authKey, this.searchPresenter);
+      this.searchController.getUserData(this.searchPresenter);
       this.searchController.getResultsOfSearch(this.searchQuery, this.searchPresenter);
     }
     else {

@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary";
 import {AuthUiView} from "@app/ui/auth/AuthUIView";
 import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/auth/AuthOutputBoundary";
 
@@ -12,7 +11,7 @@ export default class AuthPresenter implements AuthOutputBoundary{
   }
 
   onAuthSuccess(responseData: AuthOutputModel) {
-    if(responseData.logged) this.view.updateLoggedStatus(true, responseData.message);
+    if(responseData.logged) this.view.updateLoggedStatus(true);
     else this.view.updateLoggedStatus(false);
   }
 

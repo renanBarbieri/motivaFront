@@ -12,6 +12,6 @@ export default class DataSourceUser extends DataSourceUserProfile {
   github: string;
   linkedin: string;
   level: DataSourceLevel;
-  rewards: DataSourceReward[];
-  tags: DataSourceTag[];
+  achievements: DataSourceReward[];
+  interests: DataSourceTag[];
 }

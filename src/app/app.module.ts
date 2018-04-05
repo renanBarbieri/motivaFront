@@ -35,6 +35,7 @@ import {HomeComponent} from './ui/home/HomeComponent';
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
 import AuthRepository from "@app/data/auth/AuthRepository";
+import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import AuthRepository from "@app/data/auth/AuthRepository";
     { provide: UserRepository, useClass: UserRepository },
     //DataSources
     { provide: AuthLocalDataSource, useClass: AuthLocalDataSource },
+    { provide: AuthApiDataSource, useClass: AuthApiDataSource },
     { provide: PostApiDataSource, useClass: PostApiDataSource },
     { provide: SearchApiDataSource, useClass: SearchApiDataSource },
     { provide: UserApiDataSource, useClass: UserApiDataSource },

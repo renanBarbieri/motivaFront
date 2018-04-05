@@ -19,11 +19,11 @@ export default class PostRepository implements PostsOfTopicsInterestGateway{
   }
 
 
-  getPostsFromTag(tagId: string): Promise<Post[]> {
+  getPostsFromTag(auth: string, tagId: string): Promise<Post[]> {
 
     return new Promise<Post[]>(async (resolve, reject) => {
       let postMapper = new PostDataSourceMapper();
-      let dataSourcePosts: DataSourcePost[] = await this.articleApiDataSource.getPostsFromTag("authKey", tagId);//TODO: pegar o authkey do cache
+      let dataSourcePosts: DataSourcePost[] = await this.articleApiDataSource.getPostsFromTag(auth, tagId);
 
       resolve(dataSourcePosts.map(function (it) {
         return postMapper.toEntity(it);

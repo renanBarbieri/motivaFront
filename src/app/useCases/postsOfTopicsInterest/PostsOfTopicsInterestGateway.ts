@@ -1,5 +1,5 @@
 import Post from "app/entity/Post";
 
 export interface PostsOfTopicsInterestGateway{
-  getPostsFromTag(tagId: string): Promise<Post[]>;
+  getPostsFromTag(auth: string, tagId: string): Promise<Post[]>;
 }

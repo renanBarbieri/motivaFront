@@ -23,10 +23,10 @@ export default class UserDataSourceMapper implements DataSourceMapper<DataSource
     user.github = dataSource.github;
     user.linkedin = dataSource.linkedin;
     user.level = levelMapper.toEntity(dataSource.level);
-    user.rewards = dataSource.rewards.map(function (it) {
+    user.rewards = dataSource.achievements.map(function (it) {
       return rewardMapper.toEntity(it);
     });
-    user.interests = dataSource.tags.map(function (it) {
+    user.interests = dataSource.interests.map(function (it) {
       return tagMapper.toEntity(it);
     });
 

@@ -1,17 +1,17 @@
-import {UserDataOutputBoundary} from "app/useCases/userData/UserDataOutputBoundary";
-import {UserDataInputModel} from "app/useCases/userData/UserDataInputBoundary";
 import {Injectable} from "@angular/core";
-import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
+import AuthUseCase from "@app/useCases/auth/AuthUseCase";
+import {AuthInputModel} from "@app/useCases/auth/AuthInputBoundary";
+import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
 
 @Injectable()
 export default class LoginController{
 
-  constructor(private userDataUseCase: UserDataUseCase) {}
+  constructor(private authUseCase: AuthUseCase) {}
 
-  makeLogin(username: string, password: string, responseHandler: UserDataOutputBoundary){
-    let requestData = new UserDataInputModel();
+  makeLogin(username: string, password: string, responseHandler: AuthOutputBoundary){
+    let requestData = new AuthInputModel();
     requestData.username = username;
     requestData.password = password;
-    this.userDataUseCase.getUser(requestData, responseHandler);
+    this.authUseCase.performLogin(requestData, responseHandler);
   }
 }

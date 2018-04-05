@@ -15,7 +15,7 @@ export default class SearchApiDataSource extends DataSourceConfig implements Sea
 
   getSearchResult(authKey: string, query: string): Promise<DataSourceSearch> {
     let headers = new HttpHeaders({
-      "Authentication": authKey
+      "Authorization": `Bearer ${authKey}`
     });
 
     let url = `${SearchApiDataSource.dataSourceURL}/search?q=${query}&limit=-1`;
@@ -25,7 +25,7 @@ export default class SearchApiDataSource extends DataSourceConfig implements Sea
 
       getRequest.subscribe( response => {
           console.log(response);
-          if(response.status == "SUCCESS"){
+          if(response.status){
             resolve(response.result);
           }
           else{
