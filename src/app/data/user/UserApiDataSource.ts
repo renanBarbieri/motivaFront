@@ -13,41 +13,21 @@ export default class UserApiDataSource extends DataSourceConfig implements UserD
     super();
   }
 
-  getDataWithAuth(username: string, password: string): Promise<DataSourceUserAuth> {
-    let headers = new HttpHeaders({
-      "Authentication": btoa(`${username}:${password}`)
-    });
-
-    let getRequest = this.http.get<DataSourceResponse<DataSourceUserAuth>>(
-      UserApiDataSource.dataSourceURL.concat("/user/auth"), {headers});
-
-    return new Promise<DataSourceUserAuth>(async (resolve, reject) => {
-
-      getRequest.subscribe( response => {
-          console.log(response);
-
-          if(response.status == "SUCCESS"){
-            resolve(response.result)
-          }
-        }
-      );
-    });
-  }
-
   getData(authKey: string): Promise<DataSourceUser>{
     let headers = new HttpHeaders({
-      "Authentication": authKey
+      "Authorization": `Bearer ${authKey}`
     });
 
 
-    let getRequest = this.http.get<DataSourceResponse<DataSourceUser>>(UserApiDataSource.dataSourceURL.concat("/user"), {headers});
+    //TODO: saber como vai funcionar isso
+    let getRequest = this.http.get<DataSourceResponse<DataSourceUser>>(UserApiDataSource.dataSourceURL.concat("/user/renan"), {headers});
 
     return new Promise<DataSourceUser>(async (resolve, reject) => {
 
       getRequest.subscribe( response => {
           console.log(response);
 
-          if(response.status == "SUCCESS"){
+          if(response.status){
             resolve(response.result)
           }
         }

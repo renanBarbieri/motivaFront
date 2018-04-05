@@ -8,16 +8,18 @@ import {SearchOutputBoundary, SearchOutputModel} from "@app/useCases/search/Sear
 import PostItem from "@app/ui/models/PostItem";
 import UserItem from "@app/ui/models/UserItem";
 import TopicItem from "@app/ui/models/TopicItem";
+import AuthRepository from "@app/data/auth/AuthRepository";
 
 @Injectable()
 export default class SearchUseCase implements SearchInputBoundary{
 
-  constructor(private searchRepository: SearchRepository){
+  constructor(private searchRepository: SearchRepository, private authRepository: AuthRepository){
 
   }
 
   async searchInput(input: string, outputBoundary: SearchOutputBoundary) {
-    let search: [Array<User>, Array<Tag>, Array<Post>] = await this.searchRepository.searchAnyContent(input);
+    let tokenKey = await this.authRepository.getKey();
+    let search: [Array<User>, Array<Tag>, Array<Post>] = await this.searchRepository.searchAnyContent(tokenKey, input);
 
     let users: Array<User> = search[0];
     let tags: Array<Tag> = search[1];

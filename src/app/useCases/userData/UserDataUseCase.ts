@@ -13,22 +13,9 @@ export default class UserDataUseCase implements UserDataInputBoundary{
 
   async getUser(requestData: UserDataInputModel, outputBoundary: UserDataOutputBoundary) {
     let responseData: UserDataOutputModel = new UserDataOutputModel();
-    let user: User;
-
     try {
-      if (requestData.authKey &&!requestData.username && !requestData.password) {
-        user = await this.userRepository.getByKey(requestData.authKey);
-      }
-      else if (!requestData.authKey && requestData.username && requestData.password) {
-        let loginResponse = await this.userRepository.getByLogin(requestData.username, requestData.password);
-        let storageKey = await this.authRepository.setStorageKey(loginResponse[1]);
-        if(storageKey) user = loginResponse[0];
-        else throw new Error("Erro ao salvar seus dados");
-      }
-      else {
-        throw new Error("Solicitação não conhecida");
-      }
-
+      let token = await this.authRepository.getKey();
+      let user: User = await this.userRepository.get(token);
       responseData.username = user.username;
       responseData.levelCompleted = user.level.experience;
       responseData.levelName = user.level.name;

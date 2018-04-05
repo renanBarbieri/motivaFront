@@ -28,7 +28,7 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
 
   getPostsFromTag(authKey: string, tagId: string): Promise<DataSourcePost[]> {
     let headers = new HttpHeaders({
-      "Authentication": authKey
+      "Authorization": `Bearer ${authKey}`
     });
 
     let url = `${PostApiDataSource.dataSourceURL}/tag/${tagId}/posts`;
@@ -39,7 +39,7 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
       getPostsRequest.subscribe( response => {
           console.log(response);
 
-          if(response.status == "SUCCESS"){
+          if(response.status){
             resolve(response.result)
           }
         }

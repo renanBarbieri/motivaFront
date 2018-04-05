@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
 import DataSourceResponse from "app/data/model/DataSourceResponse";
 import DataSourceAuth from "app/data/model/DataSourceAuth";
-import {AuthDataSource} from "@app/data/auth/AuthDataSource";
+import {AuthCacheSource} from "@app/data/auth/AuthCacheSource";
 import {LocalStorage} from "@app/data/LocalStorage";
 
 @Injectable()
-export default class AuthLocalDataSource implements AuthDataSource{
+export default class AuthLocalDataSource implements AuthCacheSource{
   static STORAGE_KEY_AUTH = "authkey";
 
   setAuthKey(auth: string): Promise<DataSourceResponse<string>> {

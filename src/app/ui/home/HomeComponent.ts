@@ -42,11 +42,11 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.verifyAuthorization(this.homePresenter);
   }
 
-  updateLoggedStatus(logged: boolean, authKey?: string) {
+  updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
-    if(logged && authKey){
+    if(logged){
       this.authStateLogged.emit(true);
-      this.homeController.getUserData(authKey, this.homePresenter);
+      this.homeController.getUserData(this.homePresenter);
     }
     else {
       this.authStateLogged.emit(false);
