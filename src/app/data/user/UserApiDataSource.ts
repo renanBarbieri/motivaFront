@@ -5,6 +5,7 @@ import DataSourceResponse from "app/data/model/DataSourceResponse";
 import DataSourceUser from "app/data/model/DataSourceUser";
 import {UserDataSource} from "app/data/user/UserDataSource";
 import DataSourceUserAuth from "@app/data/model/DataSourceUserAuth";
+import DataSourceLoggedUserResponse from "@app/data/model/DataSourceLoggedUserResponse";
 
 @Injectable()
 export default class UserApiDataSource extends DataSourceConfig implements UserDataSource{
@@ -18,9 +19,8 @@ export default class UserApiDataSource extends DataSourceConfig implements UserD
       "Authorization": `Bearer ${authKey}`
     });
 
-
-    //TODO: saber como vai funcionar isso
-    let getRequest = this.http.get<DataSourceResponse<DataSourceUser>>(UserApiDataSource.dataSourceURL.concat("/user/renan"), {headers});
+    let getRequest = this.http.get<DataSourceResponse<DataSourceLoggedUserResponse>>(
+        UserApiDataSource.dataSourceURL.concat("/user"), {headers});
 
     return new Promise<DataSourceUser>(async (resolve, reject) => {
 
@@ -28,7 +28,7 @@ export default class UserApiDataSource extends DataSourceConfig implements UserD
           console.log(response);
 
           if(response.status){
-            resolve(response.result)
+            resolve(response.result.logged_in_user)
           }
         }
       );

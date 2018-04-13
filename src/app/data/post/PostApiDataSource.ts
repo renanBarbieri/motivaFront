@@ -5,6 +5,7 @@ import {PostDataSource} from "app/data/post/PostDataSource";
 import DataSourcePost from "app/data/model/DataSourcePost";
 import DataSourceResponse from "app/data/model/DataSourceResponse";
 import DataSourceConfig from "app/data/DataSourceConfig";
+import DataSourcePostsResponse from "@app/data/model/DataSourcePostsResponse";
 
 @Injectable()
 export default class PostApiDataSource extends DataSourceConfig implements PostDataSource{
@@ -32,7 +33,7 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
     });
 
     let url = `${PostApiDataSource.dataSourceURL}/tag/${tagId}/posts`;
-    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePost[]>>(url, {headers});
+    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePostsResponse>>(url, {headers});
 
     return new Promise<DataSourcePost[]>(async (resolve, reject) => {
 
@@ -40,7 +41,7 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
           console.log(response);
 
           if(response.status){
-            resolve(response.result)
+            resolve(response.result.posts)
           }
         }
       );
