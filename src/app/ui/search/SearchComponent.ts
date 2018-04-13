@@ -148,15 +148,15 @@ export class SearchComponent implements SearchUiView, OnInit{
   }
 
   openProfile() {
-    // this.searchController.goToProfile();
+    this.searchController.goToProfile();
   }
 
   openFavorites() {
-    // this.searchController.goToFavorites();
+    this.searchController.goToFavorites();
   }
 
   openSettings() {
-    // this.searchController.goToSettings();
+    this.searchController.goToSettings();
   }
 
   logout() {
