@@ -13,6 +13,7 @@ import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponen
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
 // import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
+import { QuillEditorModule } from 'ngx-quill-editor';
 // MATERIAL DESIGN
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
@@ -77,6 +78,7 @@ import {PostComponent} from "@app/ui/post/PostComponent";
     MatGridListModule,
     MatTabsModule,
     MatProgressSpinnerModule,
+    QuillEditorModule,
   ],
   providers: [
     //Repositories
