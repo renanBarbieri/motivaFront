@@ -18,7 +18,7 @@
         <hr>
         <mat-list-item class="listMenuItem" fxLayout="row" *ngFor="let menu of menus" (click)="openMenuItemClick(menu.id)">
             <mat-icon>{{ menu.icon }}</mat-icon>
-            <h4 mat-line>{{menu.name}}</h4>
+            <span mat-line class="menuText">{{menu.name}}</span>
         </mat-list-item>
     </mat-list>
 </div>

@@ -62,3 +62,7 @@
 mat-grid-tile {
   background: lightblue;
 }
+
+.menuText {
+  font-size: 0.8rem;
+}
