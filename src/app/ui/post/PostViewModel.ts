@@ -1,0 +1,13 @@
+import PostItem from "app/ui/models/PostItem";
+import {Injectable} from "@angular/core";
+import RewardItem from "@app/ui/models/RewardItem";
+import AuthViewModel from "@app/ui/auth/AuthViewModel";
+
+@Injectable()
+export default class PostViewModel{
+  username: string;
+  levelCompleted: number;
+  levelName: string;
+  profileImage: string;
+  rewards: Array<RewardItem> = [];
+}

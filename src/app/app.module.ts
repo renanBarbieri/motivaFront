@@ -36,6 +36,7 @@ import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
 import AuthRepository from "@app/data/auth/AuthRepository";
 import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
+import {PostComponent} from "@app/ui/post/PostComponent";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
     LoginComponent,
     HomeComponent,
     SearchComponent,
+    PostComponent,
     //COMPONENTS
     NotFoundComponent,
     ToolbarComponent,
