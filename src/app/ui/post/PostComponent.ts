@@ -28,6 +28,20 @@ export class PostComponent implements OnInit, PostUiView{
   @Output()
   authStateLogged = new EventEmitter<boolean>();
 
+  editorOptions = {
+    modules: {
+      formula: true,
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike', { 'color': [] }],
+        ['blockquote', 'code-block', 'formula'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+      ],
+    }
+  };
+
   constructor(
     private postPresenter: PostPresenter,
     private postController: PostController,
