@@ -24,12 +24,11 @@ export default class AuthLocalDataSource implements AuthCacheSource{
     return new Promise<DataSourceAuth>(async (resolve, reject) => {
       try {
         let result = LocalStorage.get(AuthLocalDataSource.STORAGE_KEY_AUTH);
+        let response = new DataSourceAuth();
         if(result){
-          let response = new DataSourceAuth();
           response.authkey = result;
-          resolve(response);
         }
-        else reject("Não foi possível pegar os dados do usuário");
+        resolve(response);
       } catch (error) {
         reject(error);
       }

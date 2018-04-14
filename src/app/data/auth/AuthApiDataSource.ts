@@ -17,7 +17,7 @@ export default class AuthApiDataSource extends DataSourceConfig implements AuthA
       "Content-Type": "application/json"
     });
 
-    let getRequest = this.http.get<DataSourceResponse<DataSourceLogin>>(
+    let getRequest = this.http.post<DataSourceResponse<DataSourceLogin>>(
       AuthApiDataSource.dataSourceURL.concat("/login"), {headers});
 
     return new Promise<DataSourceLogin>(async (resolve, reject) => {

@@ -22,9 +22,9 @@ export default class AuthUseCase implements AuthInputBoundary{
         authResponse.logged = true;
         outputBoundary.onAuthSuccess(authResponse);
       }
-      else throw "Não foi encontrada uma atenticação";
+      else outputBoundary.onAuthError(null);
     } catch (error) {
-      outputBoundary.onAuthError(`Erro ao realizar a autenticação: ${error.message}`);
+      outputBoundary.onAuthError(error.message ? `Erro ao realizar a autenticação: ${error.message}` : error);
     }
   }
 
