@@ -1,0 +1,50 @@
+.drop-zone {
+   border: dotted 3px lightgray;
+   height: 18em;
+   justify-content: center;
+   display: flex;
+   flex-direction: column;
+ }
+
+.drop-zone-empty {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.drop-zone-frame{
+  height: 100%;
+  width: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.drop-zone-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  min-height: 100%;
+  min-width: 100%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.drop-text {
+  align-self: center;
+  font-size: 1rem;
+}
+
+.drop-subtext {
+  align-self: center;
+  font-size: 0.5rem;
+}
+
+.drop-icon {
+  align-self: center;
+  font-size: 6rem;
+  height: 1em;
+  width: 1em;
+}
+.nv-file-over { border: dotted 3px #FF007B; } /* Default class applied to drop zones on over */

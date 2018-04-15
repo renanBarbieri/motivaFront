@@ -2,6 +2,7 @@ import PostItem from "app/ui/models/PostItem";
 import {Injectable} from "@angular/core";
 import RewardItem from "@app/ui/models/RewardItem";
 import AuthViewModel from "@app/ui/auth/AuthViewModel";
+import {SafeUrl} from "@angular/platform-browser";
 
 @Injectable()
 export default class PostViewModel{
@@ -12,4 +13,6 @@ export default class PostViewModel{
   rewards: Array<RewardItem> = [];
   editor;
   htmlText;
+  hasBaseDropZoneOver = false;
+  public filePreviewPath: SafeUrl;
 }

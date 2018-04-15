@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, Directive, EventEmitter, OnInit, Output} from '@angular/core';
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
@@ -7,6 +7,10 @@ import PostController from "@app/ui/post/PostController";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import PostPresenter from "@app/ui/post/PostPresenter";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
+import { FileUploader  } from 'ng2-file-upload';
+import { DomSanitizer } from '@angular/platform-browser';
+
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
   selector: 'app-post',
@@ -43,11 +47,18 @@ export class PostComponent implements OnInit, PostUiView{
     }
   };
 
+  public uploader:FileUploader = new FileUploader({url: URL});
+
+
   constructor(
     private postPresenter: PostPresenter,
     private postController: PostController,
-    private postViewModel: PostViewModel)
-  {}
+    private postViewModel: PostViewModel,
+    private sanitizer: DomSanitizer){
+    this.uploader.onAfterAddingFile = (fileItem) => {
+      this.postViewModel.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
+    }
+  }
 
   ngOnInit(){
     this.postPresenter.onViewInit(this);
@@ -91,6 +102,10 @@ export class PostComponent implements OnInit, PostUiView{
   onContentChanged({ quill, html, text }) {
     console.log('quill content is changed!', quill, html, text);
     this.postViewModel.htmlText = html;
+  }
+
+  public fileOverBase(e:any):void {
+    this.postViewModel.hasBaseDropZoneOver = e;
   }
 
   openProfile() {

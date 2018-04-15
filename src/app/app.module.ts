@@ -14,6 +14,7 @@ import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
 // import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
 import { QuillEditorModule } from 'ngx-quill-editor';
+import {FileUploadModule} from "ng2-file-upload";
 // MATERIAL DESIGN
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
@@ -79,6 +80,7 @@ import {PostComponent} from "@app/ui/post/PostComponent";
     MatTabsModule,
     MatProgressSpinnerModule,
     QuillEditorModule,
+    FileUploadModule
   ],
   providers: [
     //Repositories

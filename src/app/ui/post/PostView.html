@@ -15,6 +15,20 @@
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
     <div class="content">
+      <div ng2FileDrop
+           [ngClass]="{'nv-file-over': postViewModel.hasBaseDropZoneOver }"
+           [uploader]="uploader"
+           (fileOver)="fileOverBase($event)"
+           class="well drop-zone">
+        <div class="drop-zone-empty" *ngIf="!postViewModel.filePreviewPath">
+          <mat-icon matPrefix class="drop-icon">file_upload</mat-icon>
+          <span class="drop-text">Arraste um arquivo aqui</span>
+          <span class="drop-subtext">ou clique no botão +</span>
+        </div>
+        <div class="drop-zone-frame" *ngIf="postViewModel.filePreviewPath">
+          <img [src]="postViewModel.filePreviewPath" class="drop-zone-image"/>
+        </div>
+      </div>
       <quill-editor [options]="editorOptions"
                     (ready)="onEditorCreated($event)">
       </quill-editor>
