@@ -30,6 +30,7 @@ export class PostComponent implements OnInit, PostUiView{
 
   editorOptions = {
     modules: {
+      //theme: 'snow',
       formula: true,
       toolbar: [
         ['bold', 'italic', 'underline', 'strike', { 'color': [] }],
@@ -78,6 +79,18 @@ export class PostComponent implements OnInit, PostUiView{
     newRewards.forEach((it) => {
       this.postViewModel.rewards.push(it);
     });
+  }
+
+  //https://quilljs.com/docs/quickstart/
+  onEditorCreated(quill) {
+    console.log("onEditorCreated");
+    this.postViewModel.editor = quill;
+    console.log('quill is ready! this is current quill instance object', quill);
+  }
+
+  onContentChanged({ quill, html, text }) {
+    console.log('quill content is changed!', quill, html, text);
+    this.postViewModel.htmlText = html;
   }
 
   openProfile() {

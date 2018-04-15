@@ -10,4 +10,6 @@ export default class PostViewModel{
   levelName: string;
   profileImage: string;
   rewards: Array<RewardItem> = [];
+  editor;
+  htmlText;
 }
