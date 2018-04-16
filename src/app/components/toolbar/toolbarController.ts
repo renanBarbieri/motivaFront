@@ -12,7 +12,13 @@ export class ToolbarComponent {
 
   @Output() searchInputEvent = new EventEmitter();
 
+  @Output() newPostClickEvent = new EventEmitter();
+
   searchInput(inputText: string){
     this.searchInputEvent.emit(inputText);
+  }
+
+  openCreatePost() {
+    this.newPostClickEvent.emit();
   }
 }

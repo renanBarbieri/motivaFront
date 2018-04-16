@@ -20,6 +20,10 @@ export default class LeftSideBarController extends AuthController{
     this.userDataUseCase.getUser(requestData, responseHandler);
   }
 
+  goToNewPost() {
+    this.routerParent.navigate(['/post']);
+  }
+
   goToProfile() {
     this.routerParent.navigate(['/user']);
   }

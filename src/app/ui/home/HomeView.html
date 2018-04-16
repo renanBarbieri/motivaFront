@@ -10,11 +10,13 @@
         (onFavoritesClick)="openFavorites()"
         (onSettingsClick)="openSettings()"
         (onLogoutClick)="logout()"
-      >
-      </app-left-sidebar>
+      ></app-left-sidebar>
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
-      <app-toolbar (searchInputEvent)="onSearchInput($event)"></app-toolbar>
+      <app-toolbar
+        (searchInputEvent)="onSearchInput($event)"
+        (newPostClickEvent)="openCreatePost()"
+      ></app-toolbar>
       <div class="content">
         <div *ngFor="let topicName of homeViewModel.topicsKeys">
           <app-topic-articles

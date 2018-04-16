@@ -87,6 +87,10 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.getResultsOfSearch($textToSearch)
   }
 
+  openCreatePost(){
+    this.homeController.goToNewPost();
+  }
+
   openProfile() {
     this.homeController.goToProfile();
   }
