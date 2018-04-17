@@ -8,15 +8,16 @@ import AuthController from "app/ui/auth/AuthController";
 import AuthUseCase from "app/useCases/auth/AuthUseCase";
 import {Router} from "@angular/router";
 import LeftSideBarController from "@app/components/leftSideBar/LeftSideBarController";
+import LoggedPageController from "@app/ui/logged/LoggedPageController";
 
 @Injectable()
-export default class SearchController extends LeftSideBarController {
+export default class SearchController extends LoggedPageController {
 
   constructor(private searchUseCase: SearchUseCase,
-              private userChild: UserDataUseCase,
-              private authChild: AuthUseCase,
-              private routerChild: Router){
-    super(userChild, authChild, routerChild);
+              private userSearch: UserDataUseCase,
+              private authSearch: AuthUseCase,
+              private routerSearch: Router){
+    super(userSearch, authSearch, routerSearch);
   }
 
   getResultsOfSearch(searchText: string, outputBoundary: SearchOutputBoundary){

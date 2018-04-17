@@ -9,6 +9,7 @@ import PostPresenter from "@app/ui/post/PostPresenter";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import { FileUploader  } from 'ng2-file-upload';
 import { DomSanitizer } from '@angular/platform-browser';
+import LoggedComponent from "@app/ui/logged/LoggedComponent";
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
@@ -24,7 +25,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
     { provide: AuthUseCase, useClass: AuthUseCase }
   ]
 })
-export class PostComponent implements OnInit, PostUiView{
+export class PostComponent extends LoggedComponent implements OnInit, PostUiView{
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -55,6 +56,7 @@ export class PostComponent implements OnInit, PostUiView{
     private postController: PostController,
     private postViewModel: PostViewModel,
     private sanitizer: DomSanitizer){
+    super(postController);
     this.uploader.onAfterAddingFile = (fileItem) => {
       this.postViewModel.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
     }
@@ -108,15 +110,15 @@ export class PostComponent implements OnInit, PostUiView{
     this.postViewModel.hasBaseDropZoneOver = e;
   }
 
-  openProfile() {
+  openProfilePage() {
     this.postController.goToProfile();
   }
 
-  openFavorites() {
+  openFavoritesPage() {
     this.postController.goToFavorites();
   }
 
-  openSettings() {
+  openSettingsPage() {
     this.postController.goToSettings();
   }
 

@@ -7,15 +7,21 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class ToolbarComponent {
 
-  @Input()
-  previousSearch;
+  @Input() previousSearch = "";
+  @Input() showGlobalActions = true;
 
   @Output() searchInputEvent = new EventEmitter();
 
   @Output() newPostClickEvent = new EventEmitter();
+  @Output() homeClickEvent = new EventEmitter();
+  @Output() searchClickEvent = new EventEmitter();
 
   searchInput(inputText: string){
     this.searchInputEvent.emit(inputText);
+  }
+
+  openSearch() {
+    this.searchClickEvent.emit();
   }
 
   openCreatePost() {
@@ -23,6 +29,6 @@ export class ToolbarComponent {
   }
 
   openHome() {
-
+    this.homeClickEvent.emit();
   }
 }

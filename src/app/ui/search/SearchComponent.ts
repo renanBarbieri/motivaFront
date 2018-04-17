@@ -15,6 +15,7 @@ import SearchPresenter from "@app/ui/search/SearchPresenter";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
+import LoggedComponent from "@app/ui/logged/LoggedComponent";
 
 
 @Component({
@@ -30,7 +31,7 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
     { provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
-export class SearchComponent implements SearchUiView, OnInit{
+export class SearchComponent extends LoggedComponent implements SearchUiView, OnInit{
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -48,7 +49,9 @@ export class SearchComponent implements SearchUiView, OnInit{
               private searchController: SearchController,
               private searchPresenter: SearchPresenter,
               private location: Location,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute){
+    super(searchController);
+  }
 
   ngOnInit(){
     this.searchQuery = this.route.snapshot.paramMap.get('q');
@@ -145,18 +148,6 @@ export class SearchComponent implements SearchUiView, OnInit{
 
   onPostClick() {
 
-  }
-
-  openProfile() {
-    this.searchController.goToProfile();
-  }
-
-  openFavorites() {
-    this.searchController.goToFavorites();
-  }
-
-  openSettings() {
-    this.searchController.goToSettings();
   }
 
   logout() {

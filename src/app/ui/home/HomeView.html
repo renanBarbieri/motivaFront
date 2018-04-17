@@ -6,17 +6,18 @@
         [levelName]="homeViewModel.levelName"
         [profileImage]="homeViewModel.profileImage"
         [rewards]="homeViewModel.rewards"
-        (onProfileClick)="openProfile()"
-        (onFavoritesClick)="openFavorites()"
-        (onSettingsClick)="openSettings()"
+        (onProfileClick)="openProfilePage()"
+        (onFavoritesClick)="openFavoritesPage()"
+        (onSettingsClick)="openSettingsPage()"
         (onLogoutClick)="logout()"
       ></app-left-sidebar>
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
-      <app-toolbar
-        (searchInputEvent)="onSearchInput($event)"
-        (newPostClickEvent)="openCreatePost()"
-      ></app-toolbar>
+    <app-toolbar
+      (searchInputEvent)="onSearchInput($event)"
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"></app-toolbar>
       <div class="content">
         <div *ngFor="let topicName of homeViewModel.topicsKeys">
           <app-topic-articles

@@ -67,6 +67,13 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   padding: 2%;
 }
 
+.cVisible {
+  visibility: visible;
+}
+
+.cHidden {
+  visibility: hidden;
+}
 
 
 /* fallback */

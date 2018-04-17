@@ -6,14 +6,19 @@
       [levelName]="postViewModel.levelName"
       [profileImage]="postViewModel.profileImage"
       [rewards]="postViewModel.rewards"
-      (onProfileClick)="openProfile()"
-      (onFavoritesClick)="openFavorites()"
-      (onSettingsClick)="openSettings()"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
       (onLogoutClick)="logout()"
     >
     </app-left-sidebar>
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
+    <app-toolbar
+      [showGlobalActions]="false"
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"></app-toolbar>
     <div class="content">
       <div ng2FileDrop
            [ngClass]="{'nv-file-over': postViewModel.hasBaseDropZoneOver }"

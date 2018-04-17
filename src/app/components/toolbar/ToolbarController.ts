@@ -2,15 +2,11 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 
 @Injectable()
-export default class ToolbarController{
+export default abstract class ToolbarController{
 
-  constructor(private router: Router) {}
+  abstract goToHome();
 
-  goToHome() {
-    this.router.navigate(['/']);
-  }
+  abstract goToNewPost();
 
-  goToNewPost() {
-    this.router.navigate(['/post']);
-  }
+  abstract goToSearch();
 }

@@ -3,13 +3,14 @@ import {Router} from "@angular/router";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import LeftSideBarController from "@app/components/leftSideBar/LeftSideBarController";
+import LoggedPageController from "@app/ui/logged/LoggedPageController";
 
 @Injectable()
-export default class PostController extends LeftSideBarController{
+export default class PostController extends LoggedPageController{
 
-  constructor(private userChild: UserDataUseCase,
-              private authChild: AuthUseCase,
-              private routerChild: Router) {
-    super(userChild, authChild, routerChild);
+  constructor(private userCreatePost: UserDataUseCase,
+              private authCreatePost: AuthUseCase,
+              private routerCreatePost: Router) {
+    super(userCreatePost, authCreatePost, routerCreatePost);
   }
 }

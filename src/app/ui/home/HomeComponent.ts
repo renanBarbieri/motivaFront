@@ -9,6 +9,7 @@ import SearchUseCase from "app/useCases/search/SearchUseCase";
 import PostItem from "@app/ui/models/PostItem";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
+import LoggedComponent from "@app/ui/logged/LoggedComponent";
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ import {ScreenState} from "@app/ui/ScreenState";
     { provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
-export class HomeComponent implements OnInit, HomeUiView{
+export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView{
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -34,8 +35,9 @@ export class HomeComponent implements OnInit, HomeUiView{
   constructor(
       private homePresenter: HomePresenter,
       private homeController: HomeController,
-      public homeViewModel: HomeViewModel)
-  {}
+      public homeViewModel: HomeViewModel){
+    super(homeController);
+  }
 
   ngOnInit(){
     this.homePresenter.onViewInit(this);
@@ -91,15 +93,15 @@ export class HomeComponent implements OnInit, HomeUiView{
     this.homeController.goToNewPost();
   }
 
-  openProfile() {
+  openProfilePage() {
     this.homeController.goToProfile();
   }
 
-  openFavorites() {
+  openFavoritesPage() {
     this.homeController.goToFavorites();
   }
 
-  openSettings() {
+  openSettingsPage() {
     this.homeController.goToSettings();
   }
 

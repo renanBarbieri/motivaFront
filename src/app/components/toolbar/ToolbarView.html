@@ -1,6 +1,6 @@
 <mat-toolbar class="topBar">
-  <mat-form-field color="accent" class="searchInput" onsubmit="searchInput('ola')"
-                  [floatLabel]="'always'">
+  <mat-form-field color="accent" class="searchInput {{showGlobalActions? 'cVisible' : 'cHidden' }}" onsubmit="searchInput('ola')"
+                  [floatLabel]="'always'" >
     <mat-label>O que você quer encontrar?</mat-label>
     <input matInput
            #searchAll
@@ -9,7 +9,7 @@
            value={{previousSearch}}
     />
   </mat-form-field>
-  <mat-icon class="bar-button">search</mat-icon>
-  <mat-icon class="bar-button" (click)="openCreatePost()">create</mat-icon>
+  <mat-icon class="bar-button" (click)="openSearch()">search</mat-icon>
+  <mat-icon class="bar-button"  *ngIf="showGlobalActions" (click)="openCreatePost()">create</mat-icon>
   <mat-icon class="bar-button" (click)="openHome()">home</mat-icon>
 </mat-toolbar>

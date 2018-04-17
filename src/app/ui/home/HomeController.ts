@@ -6,15 +6,16 @@ import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import LeftSideBarController from "@app/components/leftSideBar/LeftSideBarController";
+import LoggedPageController from "@app/ui/logged/LoggedPageController";
 
 @Injectable()
-export default class HomeController extends LeftSideBarController{
+export default class HomeController extends LoggedPageController{
 
   constructor(private postsOfTopicsInterestUseCase: PostsOfTopicsInterestUseCase,
-              private userChild: UserDataUseCase,
-              private authChild: AuthUseCase,
-              private routerChild: Router) {
-    super(userChild, authChild, routerChild);
+              private userHome: UserDataUseCase,
+              private authHome: AuthUseCase,
+              private routerHome: Router) {
+    super(userHome, authHome, routerHome);
   }
 
   getPostsOfTopicsOfInterest(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>){
@@ -25,6 +26,6 @@ export default class HomeController extends LeftSideBarController{
 
   getResultsOfSearch(searchText: string){
     console.log(searchText);
-    this.routerChild.navigate(['/search', { q: searchText}]);
+    this.routerHome.navigate(['/search', { q: searchText}]);
   }
 }

@@ -6,9 +6,9 @@
         [levelName]="searchViewModel.levelName"
         [profileImage]="searchViewModel.profileImage"
         [rewards]="searchViewModel.rewards"
-        (onProfileClick)="openProfile()"
-        (onFavoritesClick)="openFavorites()"
-        (onSettingsClick)="openSettings()"
+        (onProfileClick)="openProfilePage()"
+        (onFavoritesClick)="openFavoritesPage()"
+        (onSettingsClick)="openSettingsPage()"
         (onLogoutClick)="logout()"
       >
       </app-left-sidebar>
@@ -16,6 +16,9 @@
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar
         (searchInputEvent)="onSearchInput($event)"
+        (homeClickEvent)="openHomePage()"
+        (searchClickEvent)="openSearchPage()"
+        (newPostClickEvent)="openNewPostPage()"
       [previousSearch]="searchQuery"></app-toolbar>
       <div class="content">
         <mat-tab-group>
