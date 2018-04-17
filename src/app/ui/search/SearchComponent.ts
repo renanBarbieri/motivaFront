@@ -16,6 +16,7 @@ import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
+import {ToolbarState} from "@app/components/toolbar/TollbarState";
 
 
 @Component({
@@ -32,6 +33,8 @@ import LoggedComponent from "@app/ui/logged/LoggedComponent";
   ]
 })
 export class SearchComponent extends LoggedComponent implements SearchUiView, OnInit{
+
+  searchToolbarState = ToolbarState.HIDE_SEARCH;
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -90,7 +93,7 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
     this.updateTopicIndexes();
     this.updatePostIndexes();
 
-    this.location.replaceState(`/search;q=${this.searchQuery}`)
+    if(this.searchQuery) this.location.replaceState(`/search;q=${this.searchQuery}`)
   }
 
   updateRewardsList(newRewards: Array<RewardItem>) {

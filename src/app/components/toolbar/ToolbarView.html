@@ -1,15 +1,21 @@
 <mat-toolbar class="topBar">
-  <mat-form-field color="accent" class="searchInput {{showGlobalActions? 'cVisible' : 'cHidden' }}" onsubmit="searchInput('ola')"
+  <mat-form-field color="accent" onsubmit="searchInput('ola')"
+                  class="searchInput {{
+                    (toolbarState == thisToolbarState.ALL_ITEMS || toolbarState == thisToolbarState.HIDE_SEARCH)?
+                      'cVisible' : 'cHidden'
+                  }}"
                   [floatLabel]="'always'" >
     <mat-label>O que você quer encontrar?</mat-label>
     <input matInput
            #searchAll
            id="searchAll"
            (keyup.enter)="searchInput(searchAll.value)"
-           value={{previousSearch}}
+           value="{{previousSearch? previousSearch : ''}}"
     />
   </mat-form-field>
-  <mat-icon class="bar-button" (click)="openSearch()">search</mat-icon>
-  <mat-icon class="bar-button"  *ngIf="showGlobalActions" (click)="openCreatePost()">create</mat-icon>
-  <mat-icon class="bar-button" (click)="openHome()">home</mat-icon>
+  <mat-icon class="bar-button" *ngIf="toolbarState != thisToolbarState.HIDE_SEARCH"
+            (click)="openSearch()" matTooltip="Ir para pesquisa">search</mat-icon>
+  <mat-icon class="bar-button" *ngIf="toolbarState != thisToolbarState.HIDE_QUERY_AND_CREATE"
+            (click)="openCreatePost()" matTooltip="Criar novo post">create</mat-icon>
+  <mat-icon class="bar-button" (click)="openHome()" matTooltip="Ir para home">home</mat-icon>
 </mat-toolbar>

@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ToolbarState} from "@app/components/toolbar/TollbarState";
+import {ScreenState} from "@app/ui/ScreenState";
 
 @Component({
   selector: 'app-toolbar',
@@ -7,8 +9,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class ToolbarComponent {
 
+  public thisToolbarState = ToolbarState;
+
   @Input() previousSearch = "";
-  @Input() showGlobalActions = true;
+  @Input() toolbarState:ToolbarState = ToolbarState.ALL_ITEMS;
 
   @Output() searchInputEvent = new EventEmitter();
 

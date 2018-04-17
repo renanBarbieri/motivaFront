@@ -10,6 +10,7 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import { FileUploader  } from 'ng2-file-upload';
 import { DomSanitizer } from '@angular/platform-browser';
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
+import {ToolbarState} from "@app/components/toolbar/TollbarState";
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
@@ -26,6 +27,8 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
   ]
 })
 export class PostComponent extends LoggedComponent implements OnInit, PostUiView{
+
+  postToolbarState = ToolbarState.HIDE_QUERY_AND_CREATE;
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();

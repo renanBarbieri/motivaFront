@@ -15,6 +15,7 @@
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar
+        [toolbarState]="searchToolbarState"
         (searchInputEvent)="onSearchInput($event)"
         (homeClickEvent)="openHomePage()"
         (searchClickEvent)="openSearchPage()"
