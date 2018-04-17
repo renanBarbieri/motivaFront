@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: './toolbarView.html',
-  styleUrls: ['./toolbarStyle.css']
+  templateUrl: './ToolbarView.html',
+  styleUrls: ['./ToolbarStyle.css']
 })
 export class ToolbarComponent {
 
@@ -20,5 +20,9 @@ export class ToolbarComponent {
 
   openCreatePost() {
     this.newPostClickEvent.emit();
+  }
+
+  openHome() {
+
   }
 }

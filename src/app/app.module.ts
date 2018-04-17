@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 // COMPONENTS
-import {ToolbarComponent} from './components/toolbar/toolbarController';
+import {ToolbarComponent} from './components/toolbar/ToolbarComponent';
 import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
 import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
@@ -18,8 +18,8 @@ import {FileUploadModule} from "ng2-file-upload";
 // MATERIAL DESIGN
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
-  MatIconModule,
-  MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule, MatTooltipModule
+  MatIconModule, MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule,
+  MatTooltipModule, MatListModule
 } from '@angular/material';
 //DEPENDENCY INJECTION
 import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
@@ -71,13 +71,14 @@ import {PostComponent} from "@app/ui/post/PostComponent";
     MatButtonToggleModule,
     MatChipsModule,
     MatDialogModule,
-    MatToolbarModule,
+    MatGridListModule,
     MatInputModule,
     MatIconModule,
+    MatListModule,
     MatProgressBarModule,
-    MatTooltipModule,
-    MatGridListModule,
     MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
     MatProgressSpinnerModule,
     QuillEditorModule,
     FileUploadModule

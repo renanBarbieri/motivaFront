@@ -1,13 +1,15 @@
 <mat-toolbar class="topBar">
-  <mat-form-field color="accent" class="searchInput" onsubmit="searchInput('ola')">
-    <input #searchAll
+  <mat-form-field color="accent" class="searchInput" onsubmit="searchInput('ola')"
+                  [floatLabel]="'always'">
+    <mat-label>O que você quer encontrar?</mat-label>
+    <input matInput
+           #searchAll
            id="searchAll"
-           matInput
-           placeholder="Pesquisar"
            (keyup.enter)="searchInput(searchAll.value)"
            value={{previousSearch}}
     />
   </mat-form-field>
   <mat-icon class="bar-button">search</mat-icon>
   <mat-icon class="bar-button" (click)="openCreatePost()">create</mat-icon>
+  <mat-icon class="bar-button" (click)="openHome()">home</mat-icon>
 </mat-toolbar>
