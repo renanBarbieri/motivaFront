@@ -14,11 +14,12 @@
             matTooltip="{{rewards[index].name}}"/>
     </div>
 
-    <mat-list class="listMenu">
+    <mat-list class="listMenu" dense>
         <hr>
-        <mat-list-item class="listMenuItem" fxLayout="row" *ngFor="let menu of menus" (click)="openMenuItemClick(menu.id)">
-            <mat-icon>{{ menu.icon }}</mat-icon>
-            <span mat-line class="menuText">{{menu.name}}</span>
+        <mat-list-item class="listMenuItem" fxLayout="row" (click)="openMenuItemClick(menu.id)"
+                       *ngFor="let menu of menus">
+          <mat-icon matListAvatar>{{ menu.icon }}</mat-icon>
+          <span mat-line class="menuText">{{menu.name}}</span>
         </mat-list-item>
     </mat-list>
 </div>
