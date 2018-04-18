@@ -48,3 +48,14 @@
   width: 1em;
 }
 .nv-file-over { border: dotted 3px #FF007B; } /* Default class applied to drop zones on over */
+
+.saveButton {
+  margin-top: 1em;
+}
+
+.postActions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
