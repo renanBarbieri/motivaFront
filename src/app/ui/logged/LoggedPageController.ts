@@ -19,7 +19,7 @@ export default class LoggedPageController extends LeftSideBarController implemen
   }
 
   goToFavorites(): void {
-    this.routerChild.navigate(['/favorites']);
+    this.routerChild.navigate(['/views']);
   }
 
   goToSettings(): void {

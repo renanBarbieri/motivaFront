@@ -49,7 +49,7 @@ export default class SearchUseCase implements SearchInputBoundary{
       postView.authorImage = it.owner.avatar;
       postView.author = it.owner.username;
       postView.title = it.title;
-      postView.favorites = it.favorites;
+      postView.views = it.favorites;
       postView.likes = it.likes;
       postView.publishDate = it.publishDate.toDateString();
       return postView;

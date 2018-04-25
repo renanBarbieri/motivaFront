@@ -22,7 +22,7 @@ export class CardComponent {
   favCount;
 
   @Input()
-  actionName;
+  date;
 
   @Input()
   title;

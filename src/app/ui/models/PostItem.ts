@@ -7,5 +7,5 @@ export default class PostItem {
   publishDate: string;
   articleImage: string;
   likes: number;
-  favorites: number;
+  views: number;
 }
