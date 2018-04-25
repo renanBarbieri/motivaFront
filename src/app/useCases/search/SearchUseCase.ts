@@ -36,7 +36,7 @@ export default class SearchUseCase implements SearchInputBoundary{
 
     searchOutput.users = users.map(function(it){
       let userView = new UserItem();
-      userView.entityReference = it.id.toString();
+      userView.entityReference = it.username;
       userView.username = it.username;
       userView.avatar = it.avatar;
       return userView;

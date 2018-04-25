@@ -142,7 +142,7 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
   }
 
   onProfileClick(){
-
+    console.log(`cliquei no perfil`)
   }
 
   onTopicClick(topicId: number){
@@ -150,11 +150,11 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
   }
 
   onPostClick() {
-
+    console.log(`cliquei no post`)
   }
 
   logout() {
-    this.searchController.makeLogout(this.searchPresenter);
+    super.logout(this.searchPresenter);
   }
 
   showErrorAlert(message: String) {

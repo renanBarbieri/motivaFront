@@ -113,20 +113,8 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     this.postViewModel.hasBaseDropZoneOver = e;
   }
 
-  openProfilePage() {
-    this.postController.goToProfile();
-  }
-
-  openFavoritesPage() {
-    this.postController.goToFavorites();
-  }
-
-  openSettingsPage() {
-    this.postController.goToSettings();
-  }
-
   logout() {
-    this.postController.makeLogout(this.postPresenter);
+    super.logout(this.postPresenter);
   }
 
   showErrorAlert(message: String) {

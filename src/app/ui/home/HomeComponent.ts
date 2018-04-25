@@ -89,24 +89,8 @@ export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView
     this.homeController.getResultsOfSearch($textToSearch)
   }
 
-  openCreatePost(){
-    this.homeController.goToNewPost();
-  }
-
-  openProfilePage() {
-    this.homeController.goToProfile();
-  }
-
-  openFavoritesPage() {
-    this.homeController.goToFavorites();
-  }
-
-  openSettingsPage() {
-    this.homeController.goToSettings();
-  }
-
   logout() {
-    this.homeController.makeLogout(this.homePresenter);
+    super.logout(this.homePresenter);
   }
 
   showErrorAlert(message: String) {

@@ -1,6 +1,7 @@
 
 export default class DataSourceUserProfile{
   avatar_url: string;
-  name: string;
-  id: string;
+  first_name: string;
+  last_name: string;
+  username: string;
 }

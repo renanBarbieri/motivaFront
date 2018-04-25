@@ -1,4 +1,5 @@
 import LoggedPageController from "@app/ui/logged/LoggedPageController";
+import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
 
 export default class LoggedComponent {
   constructor(private loggedController: LoggedPageController){}
@@ -25,5 +26,9 @@ export default class LoggedComponent {
 
   openSearchPage(): void {
     this.loggedController.goToSearch();
+  }
+
+  logout(outputBoundary: AuthOutputBoundary): void {
+    this.loggedController.makeLogout(outputBoundary);
   }
 }

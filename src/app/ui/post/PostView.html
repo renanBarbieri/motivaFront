@@ -26,9 +26,9 @@
            (fileOver)="fileOverBase($event)"
            class="well drop-zone">
         <div class="drop-zone-empty" *ngIf="!postViewModel.filePreviewPath">
-          <mat-icon matPrefix class="drop-icon">file_upload</mat-icon>
+          <mat-icon matPrefix class="drop-icon" (click)="openFileUpload()">file_upload</mat-icon>
           <span class="drop-text">Arraste um arquivo aqui</span>
-          <span class="drop-subtext">ou clique no botão +</span>
+          <span class="drop-subtext">ou clique no ícone</span>
         </div>
         <div class="drop-zone-frame" *ngIf="postViewModel.filePreviewPath">
           <img [src]="postViewModel.filePreviewPath" class="drop-zone-image"/>

@@ -28,6 +28,7 @@
               <div class="listUserResult" fxLayout="row">
                 <div *ngFor="let index of userIndexes">
                   <profile-thumb
+                    (click)="onProfileClick()"
                     [id]="searchViewModel.userResultList[index].entityReference"
                     [name] = "searchViewModel.userResultList[index].username"
                     [avatar] = "searchViewModel.userResultList[index].avatar" >
@@ -52,6 +53,7 @@
               <div class="listPostResult" fxLayout="row">
                 <div *ngFor="let index of postIndexes">
                   <app-card
+                    (click)="onPostClick()"
                     [title]="searchViewModel.postResultList[index].title"
                     [thumbnail] = "searchViewModel.postResultList[index].articleImage"
                     [avatar] = "searchViewModel.postResultList[index].authorImage"
