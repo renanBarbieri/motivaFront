@@ -52,6 +52,22 @@
 }
 .nv-file-over { border: dotted 3px #FF007B; } /* Default class applied to drop zones on over */
 
+.postTitleBox {
+  height: 2em;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  padding: 1em 0.3em 0.3em 0.3em;
+}
+
+.postTitle {
+  flex: 1;
+  height: 100%;
+  font-size: 1.5em;
+}
+
 .saveButton {
   margin-top: 1em;
 }

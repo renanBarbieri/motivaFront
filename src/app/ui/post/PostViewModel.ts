@@ -12,7 +12,8 @@ export default class PostViewModel{
   profileImage: string;
   rewards: Array<RewardItem> = [];
   editor;
-  htmlText;
+  postHtmlText: string;
+  title: string;
   hasBaseDropZoneOver = false;
   public filePreviewPath: SafeUrl;
 }

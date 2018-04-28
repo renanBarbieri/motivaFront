@@ -7,7 +7,7 @@ import PostController from "@app/ui/post/PostController";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import PostPresenter from "@app/ui/post/PostPresenter";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
-import {FileItem, FileLikeObject, FileUploader, FilterFunction} from 'ng2-file-upload';
+import {FileItem, FileLikeObject, FileUploader} from 'ng2-file-upload';
 import { DomSanitizer } from '@angular/platform-browser';
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
 import {ToolbarState} from "@app/components/toolbar/TollbarState";
@@ -46,8 +46,9 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
         [{ 'script': 'sub' }, { 'script': 'super' }],
         [{ 'indent': '-1' }, { 'indent': '+1' }],
         [{ 'size': ['small', false, 'large', 'huge'] }],
-      ],
-    }
+      ]
+    },
+    placeholder: "Insira seu texto aqui",
   };
 
   public allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
@@ -117,20 +118,30 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   }
 
   onContentChanged({ quill, html, text }) {
-    console.log('quill content is changed!', quill, html, text);
-    this.postViewModel.htmlText = html;
+    this.postViewModel.postHtmlText = html;
   }
 
-  public fileOverBase(e:any):void {
+  fileOverBase(e:any):void {
     this.postViewModel.hasBaseDropZoneOver = e;
   }
 
-  public savePost() {
-    console.log(this.getLastFile());
-    this.uploader.uploadItem(this.getLastFile());
+  onTitleChanged({target}) {
+    console.log(target.value);
+    this.postViewModel.title = target.value;
   }
 
-  public getLastFile(): FileItem {
+  savePost() {
+    if(this.postViewModel.title && this.postViewModel.postHtmlText && this.getLastFile()){
+      console.log(this.getLastFile());
+      //this.uploader.uploadItem(this.getLastFile());
+    }
+    else {
+      this.showErrorAlert("Seu post deve conter imagem, título e texto");
+    }
+  }
+
+  getLastFile(): FileItem {
+    if(this.uploader.queue.length < 1) return null;
     return this.uploader.queue[this.uploader.queue.length-1];
   }
 

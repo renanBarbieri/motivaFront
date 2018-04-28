@@ -43,8 +43,13 @@
           </button>
         </div>
       </div>
+      <div class="postTitleBox">
+        <input matInput class="postTitle" id="postTitleInput" (change)="onTitleChanged($event)"
+               placeholder="Insira um título pra seu post" />
+      </div>
       <quill-editor [options]="editorOptions"
-                    (ready)="onEditorCreated($event)">
+                    (ready)="onEditorCreated($event)"
+                    (change)="onContentChanged($event)">
       </quill-editor>
       <div class="postActions">
         <button class="saveButton" mat-raised-button color="primary" (click)="savePost()">Postar</button>
