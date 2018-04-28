@@ -75,6 +75,10 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   visibility: hidden;
 }
 
+.cGone {
+  display: none !important;
+}
+
 
 /* fallback */
 @font-face {

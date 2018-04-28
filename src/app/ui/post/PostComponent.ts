@@ -1,4 +1,4 @@
-import {Component, Directive, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
@@ -7,7 +7,7 @@ import PostController from "@app/ui/post/PostController";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import PostPresenter from "@app/ui/post/PostPresenter";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
-import { FileUploader  } from 'ng2-file-upload';
+import {FileItem, FileLikeObject, FileUploader, FilterFunction} from 'ng2-file-upload';
 import { DomSanitizer } from '@angular/platform-browser';
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
 import {ToolbarState} from "@app/components/toolbar/TollbarState";
@@ -38,7 +38,6 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
 
   editorOptions = {
     modules: {
-      //theme: 'snow',
       formula: true,
       toolbar: [
         ['bold', 'italic', 'underline', 'strike', { 'color': [] }],
@@ -51,17 +50,30 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     }
   };
 
-  public uploader:FileUploader = new FileUploader({url: URL});
+  public allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
+
+  public uploader:FileUploader = new FileUploader({
+    url: URL,
+    allowedMimeType: this.allowedMimeType
+  });
 
 
-  constructor(
-    private postPresenter: PostPresenter,
-    private postController: PostController,
-    private postViewModel: PostViewModel,
-    private sanitizer: DomSanitizer){
+  constructor( private postPresenter: PostPresenter, private postController: PostController,
+               private postViewModel: PostViewModel, private sanitizer: DomSanitizer){
     super(postController);
+
     this.uploader.onAfterAddingFile = (fileItem) => {
       this.postViewModel.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
+    };
+
+    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
+      switch (filter.name) {
+        case 'mimeType':
+          this.showErrorAlert(`Este tipo de arquivo não é permitido. Por favor, selecione um arquivo do tipo imagem, nos formatos png, jpg ou jpeg`);
+          break;
+        default:
+          this.showErrorAlert(`Ocorreu um erro desconhecido. Pro favor, tente novamente.`);
+      }
     }
   }
 
@@ -111,6 +123,15 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
 
   public fileOverBase(e:any):void {
     this.postViewModel.hasBaseDropZoneOver = e;
+  }
+
+  public savePost() {
+    console.log(this.getLastFile());
+    this.uploader.uploadItem(this.getLastFile());
+  }
+
+  public getLastFile(): FileItem {
+    return this.uploader.queue[this.uploader.queue.length-1];
   }
 
   logout() {
