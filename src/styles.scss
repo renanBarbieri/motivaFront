@@ -33,7 +33,8 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .fillHeight, .overflowContent,
   html, body, #contentDiv,
   app-root, app-auth, app-404,
-  app-home, app-login, app-search, app-post{
+  app-home, app-login, app-search,
+  app-post, app-profile{
     margin: 0;
     display: flex;
     flex-direction: column;

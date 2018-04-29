@@ -10,6 +10,7 @@ import PostItem from "@app/ui/models/PostItem";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
+import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ import LoggedComponent from "@app/ui/logged/LoggedComponent";
     { provide: HomePresenter, useClass: HomePresenter },
     { provide: HomeViewModel, useClass: HomeViewModel },
     { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase },
+    { provide: AuthUseCase, useClass: AuthUseCase },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
     { provide: SearchUseCase, useClass: SearchUseCase}
   ]

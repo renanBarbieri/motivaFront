@@ -4,18 +4,11 @@ import {UserDataOutputModel} from "app/useCases/userData/UserDataOutputBoundary"
 import {GetPostsOfTopicsInterestOutputModel} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 import {UserDataOutputBoundary} from "@app/useCases/userData/UserDataOutputBoundary";
 import {PostsOfTopicsInterestOutputBoundary} from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
-import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/auth/AuthOutputBoundary";
-import {Router} from "@angular/router";
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 
 @Injectable()
-export default class HomePresenter extends AuthPresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary,
-    AuthOutputBoundary{
+export default class HomePresenter extends AuthPresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary{
   private homeUiView: HomeUiView;
-
-  constructor(private router: Router){
-    super();
-  }
 
   onViewInit(view: HomeUiView) {
     super.onViewInit(view);

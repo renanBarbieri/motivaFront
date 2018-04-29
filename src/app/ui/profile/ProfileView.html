@@ -1,0 +1,25 @@
+<div class="pageContent" fxLayout="row">
+  <div class="leftSideBar" fxLayout="column" fxFlex="16%">
+    <app-left-sidebar
+      [username]="profileViewModel.username"
+      [levelCompleted]="profileViewModel.levelCompleted"
+      [levelName]="profileViewModel.levelName"
+      [profileImage]="profileViewModel.profileImage"
+      [rewards]="profileViewModel.rewards"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
+      (onLogoutClick)="logout()"
+    >
+    </app-left-sidebar>
+  </div>
+  <div class="pageCenter" fxLayout="column" fxFlex="84%">
+    <app-toolbar
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"></app-toolbar>
+    <div class="content">
+      Perfil de um usuário
+    </div>
+  </div>
+</div>

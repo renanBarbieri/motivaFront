@@ -1,9 +1,9 @@
-import PostItem from "app/ui/models/PostItem";
 import {Injectable} from "@angular/core";
 import RewardItem from "@app/ui/models/RewardItem";
+import PostItem from "@app/ui/models/PostItem";
 
 @Injectable()
-export default class HomeViewModel{
+export default class ProfileViewModel {
   username: string;
   levelCompleted: number;
   levelName: string;

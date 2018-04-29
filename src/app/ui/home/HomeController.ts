@@ -5,7 +5,6 @@ import {Router} from "@angular/router";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import PostsOfTopicsInterestUseCase from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
-import LeftSideBarController from "@app/components/leftSideBar/LeftSideBarController";
 import LoggedPageController from "@app/ui/logged/LoggedPageController";
 
 @Injectable()

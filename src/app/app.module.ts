@@ -11,8 +11,7 @@ import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
 import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
-import {ProfileComponent} from "@app/components/profile/profileController";
-// import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
+import {ProfilePicComponent} from "@app/components/profile/ProfilePicComponent";
 import { QuillEditorModule } from 'ngx-quill-editor';
 import {FileUploadModule} from "ng2-file-upload";
 // MATERIAL DESIGN
@@ -39,6 +38,7 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
 import AuthRepository from "@app/data/auth/AuthRepository";
 import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
 import {PostComponent} from "@app/ui/post/PostComponent";
+import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 
 @NgModule({
   declarations: [
@@ -49,14 +49,14 @@ import {PostComponent} from "@app/ui/post/PostComponent";
     HomeComponent,
     SearchComponent,
     PostComponent,
+    ProfileComponent,
     //COMPONENTS
     NotFoundComponent,
     ToolbarComponent,
     CardComponent,
     TopicArticlesComponent,
     LeftSideBarComponent,
-    ProfileComponent,
-    // SimpleTextDialogComponent
+    ProfilePicComponent,
   ],
   imports: [
     AppRoutingModule,

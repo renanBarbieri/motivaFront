@@ -1,25 +1,24 @@
 <div class="leftSideContent" fxLayout="column">
-    <img class="profilePic" src="{{profileImage}}" />
-  {{username}}
-    <span matTooltip="{{levelCompleted}}% concluído" position="left" class="userProgress">
-        <mat-progress-bar mode="determinate" value="{{levelCompleted}}" color="accent"></mat-progress-bar>
-    </span>
-    <mat-chip-list>
-        <mat-chip color="accent" selected="true" class="chipLevel" title="{{levelName}}">{{levelName}}</mat-chip>
-    </mat-chip-list>
-    <div class="rewardsList" fxLayout="row">
-      <img  class="chipIcon" *ngFor="let index of rewardIndexes"
-            src="{{rewards[index].icon}}"
-            alt="{{rewards[index].name}}"
-            matTooltip="{{rewards[index].name}}"/>
-    </div>
+  <profile-pic [avatar]="profileImage" [name]="username"></profile-pic>
+  <span matTooltip="{{levelCompleted}}% concluído" position="left" class="userProgress">
+      <mat-progress-bar mode="determinate" value="{{levelCompleted}}" color="accent"></mat-progress-bar>
+  </span>
+  <mat-chip-list>
+      <mat-chip color="accent" selected="true" class="chipLevel" title="{{levelName}}">{{levelName}}</mat-chip>
+  </mat-chip-list>
+  <div class="rewardsList" fxLayout="row">
+    <img  class="chipIcon" *ngFor="let index of rewardIndexes"
+          src="{{rewards[index].icon}}"
+          alt="{{rewards[index].name}}"
+          matTooltip="{{rewards[index].name}}"/>
+  </div>
 
-    <mat-list class="listMenu" dense>
-        <hr>
-        <mat-list-item class="listMenuItem" fxLayout="row" (click)="openMenuItemClick(menu.id)"
-                       *ngFor="let menu of menus">
-          <mat-icon matListAvatar>{{ menu.icon }}</mat-icon>
-          <span mat-line class="menuText">{{menu.name}}</span>
-        </mat-list-item>
-    </mat-list>
+  <mat-list class="listMenu" dense>
+      <hr>
+      <mat-list-item class="listMenuItem" fxLayout="row" (click)="openMenuItemClick(menu.id)"
+                     *ngFor="let menu of menus">
+        <mat-icon matListAvatar>{{ menu.icon }}</mat-icon>
+        <span mat-line class="menuText">{{menu.name}}</span>
+      </mat-list-item>
+  </mat-list>
 </div>

@@ -4,6 +4,7 @@ import {NgModule} from "@angular/core";
 import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {PostComponent} from "@app/ui/post/PostComponent";
+import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 
 export const appRoutes: Routes = [
   {
@@ -18,6 +19,10 @@ export const appRoutes: Routes = [
   {
     path: 'post',
     component: PostComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: '404',

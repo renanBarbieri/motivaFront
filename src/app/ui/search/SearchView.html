@@ -27,12 +27,12 @@
             <div class="tabContent">
               <div class="listUserResult" fxLayout="row">
                 <div *ngFor="let index of userIndexes">
-                  <profile-thumb
+                  <profile-pic
                     (click)="onProfileClick()"
                     [id]="searchViewModel.userResultList[index].entityReference"
                     [name] = "searchViewModel.userResultList[index].username"
                     [avatar] = "searchViewModel.userResultList[index].avatar" >
-                  </profile-thumb>
+                  </profile-pic>
                 </div>
               </div>
             </div>
