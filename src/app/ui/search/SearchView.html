@@ -6,16 +6,20 @@
         [levelName]="searchViewModel.levelName"
         [profileImage]="searchViewModel.profileImage"
         [rewards]="searchViewModel.rewards"
-        (onProfileClick)="openProfile()"
-        (onFavoritesClick)="openFavorites()"
-        (onSettingsClick)="openSettings()"
+        (onProfileClick)="openProfilePage()"
+        (onFavoritesClick)="openFavoritesPage()"
+        (onSettingsClick)="openSettingsPage()"
         (onLogoutClick)="logout()"
       >
       </app-left-sidebar>
   </div>
   <div class="pageCenter" fxLayout="column" fxFlex="84%">
       <app-toolbar
+        [toolbarState]="searchToolbarState"
         (searchInputEvent)="onSearchInput($event)"
+        (homeClickEvent)="openHomePage()"
+        (searchClickEvent)="openSearchPage()"
+        (newPostClickEvent)="openNewPostPage()"
       [previousSearch]="searchQuery"></app-toolbar>
       <div class="content">
         <mat-tab-group>
@@ -24,6 +28,7 @@
               <div class="listUserResult" fxLayout="row">
                 <div *ngFor="let index of userIndexes">
                   <profile-thumb
+                    (click)="onProfileClick()"
                     [id]="searchViewModel.userResultList[index].entityReference"
                     [name] = "searchViewModel.userResultList[index].username"
                     [avatar] = "searchViewModel.userResultList[index].avatar" >
@@ -48,13 +53,14 @@
               <div class="listPostResult" fxLayout="row">
                 <div *ngFor="let index of postIndexes">
                   <app-card
+                    (click)="onPostClick()"
                     [title]="searchViewModel.postResultList[index].title"
                     [thumbnail] = "searchViewModel.postResultList[index].articleImage"
                     [avatar] = "searchViewModel.postResultList[index].authorImage"
                     [subtitle] = "searchViewModel.postResultList[index].author"
                     [starCount] = "searchViewModel.postResultList[index].likes"
-                    [favCount] = "searchViewModel.postResultList[index].favorites"
-                    [actionName] = "searchViewModel.postResultList[index].publishDate" >
+                    [favCount] = "searchViewModel.postResultList[index].views"
+                    [date] = "searchViewModel.postResultList[index].publishDate" >
                   </app-card>
                 </div>
               </div>

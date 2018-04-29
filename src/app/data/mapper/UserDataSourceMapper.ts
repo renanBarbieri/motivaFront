@@ -13,7 +13,7 @@ export default class UserDataSourceMapper implements DataSourceMapper<DataSource
     let rewardMapper = new RewardDataSourceMapper();
     let tagMapper = new TagDataSourceMapper();
 
-    user.name = dataSource.name;
+    user.name = dataSource.first_name+" "+dataSource.last_name;
     user.description = dataSource.description;
     user.username = dataSource.username;
     user.avatar = dataSource.avatar_url;

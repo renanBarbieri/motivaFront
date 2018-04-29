@@ -6,18 +6,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 // COMPONENTS
-import {ToolbarComponent} from './components/toolbar/toolbarController';
+import {ToolbarComponent} from './components/toolbar/ToolbarComponent';
 import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
 import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfileComponent} from "@app/components/profile/profileController";
 // import {SimpleTextDialogComponent} from "@app/components/simpleTextDialog/SimpleTextDialogComponent";
+import { QuillEditorModule } from 'ngx-quill-editor';
+import {FileUploadModule} from "ng2-file-upload";
 // MATERIAL DESIGN
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
-  MatIconModule,
-  MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule, MatTooltipModule
+  MatIconModule, MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule,
+  MatTooltipModule, MatListModule
 } from '@angular/material';
 //DEPENDENCY INJECTION
 import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
@@ -36,6 +38,7 @@ import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
 import AuthRepository from "@app/data/auth/AuthRepository";
 import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
+import {PostComponent} from "@app/ui/post/PostComponent";
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
     LoginComponent,
     HomeComponent,
     SearchComponent,
+    PostComponent,
     //COMPONENTS
     NotFoundComponent,
     ToolbarComponent,
@@ -67,14 +71,17 @@ import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
     MatButtonToggleModule,
     MatChipsModule,
     MatDialogModule,
-    MatToolbarModule,
+    MatGridListModule,
     MatInputModule,
     MatIconModule,
+    MatListModule,
     MatProgressBarModule,
-    MatTooltipModule,
-    MatGridListModule,
     MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
     MatProgressSpinnerModule,
+    QuillEditorModule,
+    FileUploadModule
   ],
   providers: [
     //Repositories

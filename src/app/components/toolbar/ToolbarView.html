@@ -1,0 +1,27 @@
+<mat-toolbar class="topBar">
+  <mat-form-field color="accent" onsubmit="searchInput('ola')"
+                  class="searchInput {{
+                    (toolbarState == thisToolbarState.ALL_ITEMS || toolbarState == thisToolbarState.HIDE_SEARCH)?
+                      'cVisible' : 'cHidden'
+                  }}"
+                  [floatLabel]="'always'" >
+    <mat-label>O que você quer encontrar?</mat-label>
+    <input matInput
+           #searchAll
+           id="searchAll"
+           (keyup.enter)="searchInput(searchAll.value)"
+           value="{{previousSearch? previousSearch : ''}}"
+    />
+  </mat-form-field>
+  <button mat-icon-button class="bar-button" *ngIf="toolbarState != thisToolbarState.HIDE_SEARCH"
+            (click)="openSearch()" matTooltip="Ir para pesquisa">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button class="bar-button" *ngIf="toolbarState != thisToolbarState.HIDE_QUERY_AND_CREATE"
+            (click)="openCreatePost()" matTooltip="Criar novo post">
+    <mat-icon>rate_review</mat-icon>
+  </button>
+  <button mat-icon-button class="bar-button" (click)="openHome()" matTooltip="Ir para home">
+    <mat-icon>home</mat-icon>
+  </button>
+</mat-toolbar>

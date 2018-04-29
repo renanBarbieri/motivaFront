@@ -46,7 +46,7 @@ export class LeftSideBarComponent implements OnChanges{
     {
       name: 'Favoritos',
       icon: 'stars',
-      id: 'favorites'
+      id: 'views'
     },
     {
       name: 'Configurações',
@@ -75,7 +75,7 @@ export class LeftSideBarComponent implements OnChanges{
         console.log("open profile click");
         this.onProfileClick.emit();
         break;
-      case 'favorites':
+      case 'views':
         this.onFavoritesClick.emit();
         break;
       case 'settings':

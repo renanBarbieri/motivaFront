@@ -1,0 +1,98 @@
+.drop-zone {
+   border: dotted 3px lightgray;
+   height: 18em;
+   justify-content: center;
+   display: flex;
+   flex-direction: column;
+ }
+
+.drop-zone-empty {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.drop-zone-frame{
+  height: 100%;
+  width: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.drop-zone-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  min-height: 100%;
+  min-width: 100%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.drop-text {
+  color: darkgray;
+  align-self: center;
+  font-size: 1.1rem;
+}
+
+.drop-subtext {
+  color: darkgray;
+  align-self: center;
+  font-size: 0.6rem;
+}
+
+.drop-icon {
+  align-self: center;
+  font-size: 6rem;
+  height: 1em;
+  width: 1em;
+  color: darkgray;
+}
+.nv-file-over { border: dotted 3px #FF007B; } /* Default class applied to drop zones on over */
+
+.postTitleBox {
+  height: 2em;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  padding: 1em 0.3em 0.3em 0.3em;
+}
+
+.postTitle {
+  flex: 1;
+  height: 100%;
+  font-size: 1.5em;
+}
+
+.saveButton {
+  margin-top: 1em;
+}
+
+.postActions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.fabUpload {
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  right: 0;
+  margin-right: 2em;
+}
+
+.fabColumn {
+  position: absolute;
+  display: flex;
+  align-self: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  z-index: 2;
+  height: 16em;
+}

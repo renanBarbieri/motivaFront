@@ -48,17 +48,30 @@
 }
 
 .listMenu{
-  max-width: 90%;
+  max-width: 100%;
 }
 
 .listMenuItem{
-  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
 }
 
 .listMenu mat-icon{
-  margin: 0.2em
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 mat-grid-tile {
   background: lightblue;
+}
+
+.menuText {
+  padding: 0 !important;
+  font-size: 1.2vw !important;
+}
+
+.mat-list-text {
+  padding: 0 !important;
 }

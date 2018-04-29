@@ -3,6 +3,7 @@ import {SearchComponent} from "@app/ui/search/SearchComponent";
 import {NgModule} from "@angular/core";
 import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
+import {PostComponent} from "@app/ui/post/PostComponent";
 
 export const appRoutes: Routes = [
   {
@@ -13,6 +14,10 @@ export const appRoutes: Routes = [
   {
     path: 'search',
     component: SearchComponent
+  },
+  {
+    path: 'post',
+    component: PostComponent
   },
   {
     path: '404',

@@ -32,9 +32,9 @@ export default class PostsOfTopicsInterestUseCase implements PostsOfTopicsIntere
            cardPost.authorImage = it.owner.avatar;
            cardPost.author = it.owner.username;
            cardPost.title = it.title;
-           cardPost.favorites = it.favorites;
+           cardPost.views = it.favorites;
            cardPost.likes = it.likes;
-           cardPost.publishDate = it.publishDate.toDateString();
+           cardPost.publishDate = it.publishDate.toLocaleDateString();
            return cardPost;
          });
 

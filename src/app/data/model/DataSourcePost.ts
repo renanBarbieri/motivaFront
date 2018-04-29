@@ -4,10 +4,10 @@ export default class DataSourcePost{
   id: number;
   title: string;
   subtitle: string;
-  favorites: number;
+  views: number;
   likes: number;
   image_url: string;
-  publishDate: number;
-  editedDate: number;
-  owner: DataSourceUserProfile;
+  date: number;
+  edited_at: number;
+  author: DataSourceUserProfile;
 }

@@ -33,7 +33,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .fillHeight, .overflowContent,
   html, body, #contentDiv,
   app-root, app-auth, app-404,
-  app-home, app-login, app-search{
+  app-home, app-login, app-search, app-post{
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -67,6 +67,17 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   padding: 2%;
 }
 
+.cVisible {
+  visibility: visible;
+}
+
+.cHidden {
+  visibility: hidden;
+}
+
+.cGone {
+  display: none !important;
+}
 
 
 /* fallback */

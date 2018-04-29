@@ -15,6 +15,8 @@ import SearchPresenter from "@app/ui/search/SearchPresenter";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
+import LoggedComponent from "@app/ui/logged/LoggedComponent";
+import {ToolbarState} from "@app/components/toolbar/TollbarState";
 
 
 @Component({
@@ -30,7 +32,9 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
     { provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
-export class SearchComponent implements SearchUiView, OnInit{
+export class SearchComponent extends LoggedComponent implements SearchUiView, OnInit{
+
+  searchToolbarState = ToolbarState.HIDE_SEARCH;
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -48,7 +52,9 @@ export class SearchComponent implements SearchUiView, OnInit{
               private searchController: SearchController,
               private searchPresenter: SearchPresenter,
               private location: Location,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute){
+    super(searchController);
+  }
 
   ngOnInit(){
     this.searchQuery = this.route.snapshot.paramMap.get('q');
@@ -87,7 +93,7 @@ export class SearchComponent implements SearchUiView, OnInit{
     this.updateTopicIndexes();
     this.updatePostIndexes();
 
-    this.location.replaceState(`/search;q=${this.searchQuery}`)
+    if(this.searchQuery) this.location.replaceState(`/search;q=${this.searchQuery}`)
   }
 
   updateRewardsList(newRewards: Array<RewardItem>) {
@@ -136,7 +142,7 @@ export class SearchComponent implements SearchUiView, OnInit{
   }
 
   onProfileClick(){
-
+    console.log(`cliquei no perfil`)
   }
 
   onTopicClick(topicId: number){
@@ -144,23 +150,11 @@ export class SearchComponent implements SearchUiView, OnInit{
   }
 
   onPostClick() {
-
-  }
-
-  openProfile() {
-    this.searchController.goToProfile();
-  }
-
-  openFavorites() {
-    this.searchController.goToFavorites();
-  }
-
-  openSettings() {
-    this.searchController.goToSettings();
+    console.log(`cliquei no post`)
   }
 
   logout() {
-    this.searchController.makeLogout(this.searchPresenter);
+    super.logout(this.searchPresenter);
   }
 
   showErrorAlert(message: String) {

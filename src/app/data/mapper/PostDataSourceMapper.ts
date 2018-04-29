@@ -9,24 +9,24 @@ export default class PostDataSourceMapper implements DataSourceMapper<DataSource
   toEntity(dataSource: DataSourcePost): Post {
     let post = new Post();
 
-    post.id = "ojasndja";
+    post.id = dataSource.id.toString();
     post.title = dataSource.title;
     post.subtitle = dataSource.subtitle;
-    post.favorites = dataSource.favorites;
+    post.favorites = dataSource.views;
     post.likes = dataSource.likes;
     post.headerImage = dataSource.image_url;
-    post.owner = PostDataSourceMapper.fromOwnerToUser(dataSource.owner);
-    post.publishDate = new Date(dataSource.publishDate);
-    post.editedDate = new Date(dataSource.editedDate);
+    post.owner = PostDataSourceMapper.fromOwnerToUser(dataSource.author);
+    post.publishDate = new Date(dataSource.date);
+    post.editedDate = new Date(dataSource.edited_at);
 
     return post;
   }
 
   private static fromOwnerToUser(owner: DataSourcePostOwner): User{
     let user = new User();
-    user.id = owner.id;
+    user.id = owner.username;
     user.avatar = owner.avatar_url;
-    user.username = owner.name;
+    user.username = owner.first_name+" "+owner.last_name;
 
     return user;
   }

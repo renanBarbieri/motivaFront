@@ -7,7 +7,7 @@ import AuthController from "@app/ui/auth/AuthController";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 
 @Injectable()
-export default class LeftSideBarController extends AuthController{
+export default abstract class LeftSideBarController extends AuthController{
 
   constructor(private userDataUseCase: UserDataUseCase,
               private authParent: AuthUseCase,
@@ -20,15 +20,9 @@ export default class LeftSideBarController extends AuthController{
     this.userDataUseCase.getUser(requestData, responseHandler);
   }
 
-  goToProfile() {
-    this.routerParent.navigate(['/user']);
-  }
+  abstract goToProfile();
 
-  goToFavorites() {
-    this.routerParent.navigate(['/favorites']);
-  }
+  abstract goToFavorites();
 
-  goToSettings() {
-    this.routerParent.navigate(['/settings']);
-  }
+  abstract goToSettings();
 }

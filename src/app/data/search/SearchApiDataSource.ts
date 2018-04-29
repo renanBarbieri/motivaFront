@@ -18,7 +18,7 @@ export default class SearchApiDataSource extends DataSourceConfig implements Sea
       "Authorization": `Bearer ${authKey}`
     });
 
-    let url = `${SearchApiDataSource.dataSourceURL}/search?q=${query}&limit=-1`;
+    let url = `${SearchApiDataSource.dataSourceURL}/search/all?q=${query}`;
     let getRequest = this.http.get<DataSourceResponse<DataSourceSearch>>(url, {headers});
 
     return new Promise<DataSourceSearch>(async (resolve, reject) => {
