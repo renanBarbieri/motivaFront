@@ -56,17 +56,35 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
 
   updateUserData(username: string, levelCompleted: number, levelName: string,
                  profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
-    this.profileViewModel.username = username;
-    this.profileViewModel.levelCompleted = levelCompleted;
-    this.profileViewModel.levelName = levelName;
-    this.profileViewModel.profileImage = profileImageUrl;
+    this.profileViewModel.selfUsername = username;
+    this.profileViewModel.selfLevelCompleted = levelCompleted;
+    this.profileViewModel.selfLevelName = levelName;
+    this.profileViewModel.selfProfileImage = profileImageUrl;
+
+    this.profileViewModel.userName = username;
+    this.profileViewModel.userLevelName = levelName;
+    this.profileViewModel.userProfileImage = profileImageUrl;
+    this.updateSelfRewardsList(rewards);
     this.updateRewardsList(rewards);
   }
 
-  updateRewardsList(newRewards: Array<RewardItem>) {
-    this.profileViewModel.rewards.length = 0;
+  updateSelfRewardsList(newRewards: Array<RewardItem>) {
+    this.profileViewModel.selfRewards.length = 0;
     newRewards.forEach((it) => {
-      this.profileViewModel.rewards.push(it);
+      this.profileViewModel.selfRewards.push(it);
+    });
+  }
+
+  updateRewardsList(newRewards: Array<RewardItem>) {
+    this.profileViewModel.userRewards.length = 0;
+    this.profileViewModel.userRewardsIndexes.length = 0;
+
+    let count = 0;
+
+    newRewards.forEach((it) => {
+      this.profileViewModel.userRewards.push(it);
+      this.profileViewModel.userRewardsIndexes.push(count);
+      count++;
     });
   }
 

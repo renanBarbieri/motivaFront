@@ -1,11 +1,11 @@
 <div class="pageContent" fxLayout="row">
   <div class="leftSideBar" fxLayout="column" fxFlex="16%">
     <app-left-sidebar
-      [username]="profileViewModel.username"
-      [levelCompleted]="profileViewModel.levelCompleted"
-      [levelName]="profileViewModel.levelName"
-      [profileImage]="profileViewModel.profileImage"
-      [rewards]="profileViewModel.rewards"
+      [username]="profileViewModel.selfUsername"
+      [levelCompleted]="profileViewModel.selfLevelCompleted"
+      [levelName]="profileViewModel.selfLevelName"
+      [profileImage]="profileViewModel.selfProfileImage"
+      [rewards]="profileViewModel.selfRewards"
       (onProfileClick)="openProfilePage()"
       (onFavoritesClick)="openFavoritesPage()"
       (onSettingsClick)="openSettingsPage()"
@@ -19,7 +19,37 @@
       (searchClickEvent)="openSearchPage()"
       (newPostClickEvent)="openNewPostPage()"></app-toolbar>
     <div class="content">
-      Perfil de um usuário
+      <div class="profileResume">
+        <div class="profileMainInfo">
+          <profile-pic class="profileMainPic" [avatar]="profileViewModel.userProfileImage"></profile-pic>
+          <div class="profileName">
+            <div class="profileUserName">
+              {{profileViewModel.userName}}
+            </div>
+            <div class="profileUserLevel">
+              <div class="chipLevel">
+                {{profileViewModel.userLevelName}}
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column">
+            Conquistas
+            <div class="rewardsList" fxLayout="row">
+              <img  class="chipIcon" *ngFor="let index of profileViewModel.userRewardsIndexes"
+                    src="{{profileViewModel.userRewards[index].icon}}"
+                    alt="{{profileViewModel.userRewards[index].name}}"
+                    matTooltip="{{profileViewModel.userRewards[index].name}}"/>
+            </div>
+          </div>
+        </div>
+        <div class="interests"></div>
+      </div>
+      <div *ngFor="let topicName of profileViewModel.topicsKeys">
+        <app-topic-articles
+          [topicName] = "topicName"
+          [articles] = "profileViewModel.topicsList.get(topicName)">
+        </app-topic-articles>
+      </div>
     </div>
   </div>
 </div>

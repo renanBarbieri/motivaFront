@@ -80,6 +80,20 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   display: none !important;
 }
 
+.chipLevel {
+  background: #FF007B;
+  color: white;
+  padding: 0.5em;
+  border-radius: 5em;
+  text-align: center;
+  font-size: 1.5vw;
+}
+
+@media screen and (max-width: 700px) {
+  .chipLevel {
+    font-size: 0.6em;
+  }
+}
 
 /* fallback */
 @font-face {

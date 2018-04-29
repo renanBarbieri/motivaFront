@@ -2,10 +2,10 @@
   <div class="leftSideBar" fxLayout="column" fxFlex="16%">
     <app-left-sidebar
       [username]="postViewModel.username"
-      [levelCompleted]="postViewModel.levelCompleted"
-      [levelName]="postViewModel.levelName"
-      [profileImage]="postViewModel.profileImage"
-      [rewards]="postViewModel.rewards"
+      [levelCompleted]="postViewModel.selfLevelCompleted"
+      [levelName]="postViewModel.selfLevelName"
+      [profileImage]="postViewModel.selfProfileImage"
+      [rewards]="postViewModel.selfRewards"
       (onProfileClick)="openProfilePage()"
       (onFavoritesClick)="openFavoritesPage()"
       (onSettingsClick)="openSettingsPage()"

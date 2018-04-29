@@ -3,9 +3,7 @@
   <span matTooltip="{{levelCompleted}}% concluído" position="left" class="userProgress">
       <mat-progress-bar mode="determinate" value="{{levelCompleted}}" color="accent"></mat-progress-bar>
   </span>
-  <mat-chip-list>
-      <mat-chip color="accent" selected="true" class="chipLevel" title="{{levelName}}">{{levelName}}</mat-chip>
-  </mat-chip-list>
+  <div class="chipLevel" >{{levelName}}</div>
   <div class="rewardsList" fxLayout="row">
     <img  class="chipIcon" *ngFor="let index of rewardIndexes"
           src="{{rewards[index].icon}}"

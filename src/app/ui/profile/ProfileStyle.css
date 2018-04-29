@@ -1,0 +1,60 @@
+.content {
+  flex-direction: column;
+}
+
+.profileResume {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  height: 15em;
+}
+
+.profileMainInfo {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 100%;
+}
+
+.profileMainPic {
+  display: flex;
+  flex: 1em;
+  align-self: center;
+  min-width: 8em;
+}
+
+.profileName {
+  flex: 5em;
+  align-self: center;
+}
+
+.profileUserName {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  font-size: 3.5vw;
+}
+
+.profileUserLevel {
+  display: flex;
+  flex-direction: row;
+}
+
+.interests {
+  display: flex;
+  flex: 4em;
+}
+
+.rewardsList {
+  flex: 10em;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 0.5em;
+}
+
+.chipIcon{
+  border-radius: 50%;
+  margin: 0.3em;
+  width: 2.5em;
+  height: 2.5em;
+}
