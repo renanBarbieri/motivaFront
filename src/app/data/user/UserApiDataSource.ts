@@ -4,7 +4,6 @@ import DataSourceConfig from "app/data/DataSourceConfig";
 import DataSourceResponse from "app/data/model/DataSourceResponse";
 import DataSourceUser from "app/data/model/DataSourceUser";
 import {UserDataSource} from "app/data/user/UserDataSource";
-import DataSourceUserAuth from "@app/data/model/DataSourceUserAuth";
 import DataSourceLoggedUserResponse from "@app/data/model/DataSourceLoggedUserResponse";
 
 @Injectable()
@@ -30,6 +29,10 @@ export default class UserApiDataSource extends DataSourceConfig implements UserD
           if(response.status){
             resolve(response.result.logged_in_user)
           }
+        },
+        error => {
+          console.log("erro http");
+          reject(error);
         }
       );
     });

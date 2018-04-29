@@ -14,26 +14,32 @@ export default class UserDataUseCase implements UserDataInputBoundary{
   async getUser(requestData: UserDataInputModel, outputBoundary: UserDataOutputBoundary) {
     let responseData: UserDataOutputModel = new UserDataOutputModel();
     try {
+
       let token = await this.authRepository.getKey();
       let user: User = await this.userRepository.get(token);
-      responseData.username = user.username;
-      responseData.levelCompleted = user.level.experience;
-      responseData.levelName = user.level.name;
-      responseData.profileImage = user.avatar;
-      responseData.rewards = user.rewards.map(function (it) {
-        let rewardView = new RewardItem();
-        rewardView.entityReference = it.id.toString();
-        rewardView.icon = it.image;
-        rewardView.name = it.name;
-        return rewardView;
-      });
-      responseData.tags = UserDataUseCase.mapTagIds(user.interests);
+      if(user){
+        responseData.username = user.username;
+        responseData.levelCompleted = user.level.experience;
+        responseData.levelName = user.level.name;
+        responseData.profileImage = user.avatar;
+        responseData.rewards = user.rewards.map(function (it) {
+          let rewardView = new RewardItem();
+          rewardView.entityReference = it.id.toString();
+          rewardView.icon = it.image;
+          rewardView.name = it.name;
+          return rewardView;
+        });
+        responseData.tags = UserDataUseCase.mapTagIds(user.interests);
 
-      outputBoundary.onUserDataSuccess(responseData);
+        outputBoundary.onUserDataSuccess(responseData);
+      }
+      else {
+        console.log("err");
+      }
 
     } catch (err) {
+      console.log("err");
       outputBoundary.onUserDataError(err);
-      return;
     }
   }
 

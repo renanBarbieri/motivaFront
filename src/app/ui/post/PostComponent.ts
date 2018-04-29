@@ -112,9 +112,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
 
   //https://quilljs.com/docs/quickstart/
   onEditorCreated(quill) {
-    console.log("onEditorCreated");
     this.postViewModel.editor = quill;
-    console.log('quill is ready! this is current quill instance object', quill);
   }
 
   onContentChanged({ quill, html, text }) {
@@ -133,7 +131,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   savePost() {
     if(this.postViewModel.title && this.postViewModel.postHtmlText && this.getLastFile()){
       console.log(this.getLastFile());
-      //this.uploader.uploadItem(this.getLastFile());
+      this.uploader.uploadItem(this.getLastFile());
     }
     else {
       this.showErrorAlert("Seu post deve conter imagem, título e texto");
