@@ -21,3 +21,10 @@
   color: #3A3F44;
   margin: 0.6em;
 }
+
+@media screen and (max-width: 445px) {
+  .searchInput {
+    visibility: collapse;
+    flex: 0.1;
+  }
+}

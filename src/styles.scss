@@ -60,6 +60,15 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .leftSideBar{
   padding: 1%;
+  flex: 0.5;
+  flex-direction: column;
+  display: flex;
+}
+
+.pageCenter {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
 }
 
 .content{
@@ -86,12 +95,22 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   padding: 0.5em;
   border-radius: 5em;
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 1vw;
 }
 
 @media screen and (max-width: 700px) {
   .chipLevel {
     font-size: 0.6em;
+  }
+
+  .leftSideBar{
+    width: 4.2em;
+    display: flex;
+  }
+
+  .pageCenter {
+    display: flex;
+    flex: 1;
   }
 }
 

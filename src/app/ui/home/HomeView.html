@@ -1,5 +1,5 @@
 <div class="pageContent" fxLayout="row">
-  <div class="leftSideBar" fxLayout="column" fxFlex="16%">
+  <div class="leftSideBar">
       <app-left-sidebar
         [username]="homeViewModel.username"
         [levelCompleted]="homeViewModel.levelCompleted"
@@ -12,7 +12,7 @@
         (onLogoutClick)="logout()"
       ></app-left-sidebar>
   </div>
-  <div class="pageCenter" fxLayout="column" fxFlex="84%">
+  <div class="pageCenter">
     <app-toolbar
       (searchInputEvent)="onSearchInput($event)"
       (homeClickEvent)="openHomePage()"

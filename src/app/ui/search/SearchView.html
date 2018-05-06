@@ -1,5 +1,5 @@
 <div class="pageContent" fxLayout="row">
-  <div class="leftSideBar" fxLayout="column" fxFlex="16%">
+  <div class="leftSideBar">
       <app-left-sidebar
         [username]="searchViewModel.username"
         [levelCompleted]="searchViewModel.levelCompleted"
@@ -13,7 +13,7 @@
       >
       </app-left-sidebar>
   </div>
-  <div class="pageCenter" fxLayout="column" fxFlex="84%">
+  <div class="pageCenter">
       <app-toolbar
         [toolbarState]="searchToolbarState"
         (searchInputEvent)="onSearchInput($event)"
