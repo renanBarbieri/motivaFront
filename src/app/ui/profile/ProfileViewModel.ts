@@ -15,6 +15,7 @@ export default class ProfileViewModel {
   userRewards: Array<RewardItem> = [];
   userRewardsIndexes: Array<number> = [];
   userTopicsKeys: Array<string> = [];
+  userTopicsKeysIndexes: Array<number> = [];
   topicsKeys: Array<string> = [];
   topicsList: Map<string, PostItem[]> = new Map();
 }

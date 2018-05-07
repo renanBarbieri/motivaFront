@@ -34,7 +34,7 @@
           </div>
           <div fxLayout="column">
             Conquistas
-            <div class="rewardsList" fxLayout="row">
+            <div class="rewardsList">
               <img  class="chipIcon" *ngFor="let index of profileViewModel.userRewardsIndexes"
                     src="{{profileViewModel.userRewards[index].icon}}"
                     alt="{{profileViewModel.userRewards[index].name}}"
@@ -42,7 +42,14 @@
             </div>
           </div>
         </div>
-        <div class="interests"></div>
+        <div class="interests">
+          <mat-chip-list class="listTopic" fxLayout="row">
+            <mat-chip color="primary" class="chipTopic" *ngFor="let index of profileViewModel.userTopicsKeysIndexes"
+                      title="{{profileViewModel.userTopicsKeys[index]}}">
+              {{profileViewModel.userTopicsKeys[index]}}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
       </div>
       <div *ngFor="let topicName of profileViewModel.topicsKeys">
         <app-topic-articles

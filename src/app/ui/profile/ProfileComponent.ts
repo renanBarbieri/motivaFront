@@ -66,6 +66,7 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
     this.profileViewModel.userProfileImage = profileImageUrl;
     this.updateSelfRewardsList(rewards);
     this.updateRewardsList(rewards);
+    this.updateTopicsOfInterestList(["java","swift","c++", "python"]);
   }
 
   updateSelfRewardsList(newRewards: Array<RewardItem>) {
@@ -76,14 +77,30 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
   }
 
   updateRewardsList(newRewards: Array<RewardItem>) {
-    this.profileViewModel.userRewards.length = 0;
-    this.profileViewModel.userRewardsIndexes.length = 0;
+    this.updateViewList(
+      newRewards,
+      this.profileViewModel.userRewards,
+      this.profileViewModel.userRewardsIndexes
+    );
+  }
 
+  updateTopicsOfInterestList(newTopics: Array<string>) {
+    this.updateViewList(
+      newTopics,
+      this.profileViewModel.userTopicsKeys,
+      this.profileViewModel.userTopicsKeysIndexes
+    )
+
+  }
+
+  updateViewList(contentArray: Array<any>, toPopulateArray: Array<any>, indexes: Array<number>) {
     let count = 0;
+    toPopulateArray.length = 0;
+    indexes.length = 0;
 
-    newRewards.forEach((it) => {
-      this.profileViewModel.userRewards.push(it);
-      this.profileViewModel.userRewardsIndexes.push(count);
+    contentArray.forEach((it) => {
+      toPopulateArray.push(it);
+      indexes.push(count);
       count++;
     });
   }
