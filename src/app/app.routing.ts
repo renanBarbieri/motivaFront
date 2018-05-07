@@ -21,6 +21,10 @@ export const appRoutes: Routes = [
     component: PostComponent
   },
   {
+    path: 'profile/:username',
+    component: ProfileComponent
+  },
+  {
     path: 'profile',
     component: ProfileComponent
   },

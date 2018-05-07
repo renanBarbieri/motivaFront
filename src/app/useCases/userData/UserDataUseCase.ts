@@ -11,8 +11,41 @@ import AuthRepository from "@app/data/auth/AuthRepository";
 export default class UserDataUseCase implements UserDataInputBoundary{
   constructor(private userRepository: UserRepository, private authRepository: AuthRepository){}
 
+  async getPublicUser(requestData: UserDataInputModel, outputBoundary: UserDataOutputBoundary){
+    let responseData: UserDataOutputModel = new UserDataOutputModel();
+    responseData.publicProfile = true;
+    try {
+
+      let token = await this.authRepository.getKey();
+      let user: User = await this.userRepository.get(token);
+      if(user){
+        responseData.username = user.username;
+        responseData.levelName = user.level.name;
+        responseData.profileImage = user.avatar;
+        responseData.rewards = user.rewards.map(function (it) {
+          let rewardView = new RewardItem();
+          rewardView.entityReference = it.id.toString();
+          rewardView.icon = it.image;
+          rewardView.name = it.name;
+          return rewardView;
+        });
+        responseData.tags = UserDataUseCase.mapTagIds(user.interests);
+
+        outputBoundary.onUserDataSuccess(responseData);
+      }
+      else {
+        console.log("err");
+      }
+
+    } catch (err) {
+      console.log("err");
+      outputBoundary.onUserDataError(err);
+    }
+  }
+
   async getUser(requestData: UserDataInputModel, outputBoundary: UserDataOutputBoundary) {
     let responseData: UserDataOutputModel = new UserDataOutputModel();
+    responseData.publicProfile = false;
     try {
 
       let token = await this.authRepository.getKey();

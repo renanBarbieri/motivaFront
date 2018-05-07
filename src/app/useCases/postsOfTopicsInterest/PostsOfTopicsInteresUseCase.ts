@@ -16,7 +16,7 @@ import AuthRepository from "@app/data/auth/AuthRepository";
 export default class PostsOfTopicsInterestUseCase implements PostsOfTopicsInterestInputBoundary{
   constructor(private postRepository: PostRepository, private authRepository: AuthRepository){}
 
-  async getTopics(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary) {
+  async getPosts(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary) {
 
     let responseData: GetPostsOfTopicsInterestOutputModel = new GetPostsOfTopicsInterestOutputModel();
     try{

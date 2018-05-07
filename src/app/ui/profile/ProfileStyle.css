@@ -22,6 +22,10 @@
   min-width: 8em;
 }
 
+.profileMainPic{
+  margin-bottom: 1.5em;
+}
+
 .profileName {
   flex: 5em;
   align-self: center;
@@ -65,5 +69,13 @@
     height: 2em;
     margin-top: 0;
     line-height: 10px;
+  }
+
+  .profileMainInfo {
+    flex: 1 1 10%;
+  }
+
+  .profileMainPic{
+    margin-bottom: 0;
   }
 }

@@ -12,4 +12,5 @@ export class UserDataOutputModel{
   public profileImage: string;
   public rewards: Array<RewardItem>;
   public tags: Map<number, string>;
+  public publicProfile: boolean = false;
 }

@@ -10,6 +10,8 @@ import PostItem from "@app/ui/models/PostItem";
 import SearchUseCase from "@app/useCases/search/SearchUseCase";
 import UserDataUseCase from "@app/useCases/userData/UserDataUseCase";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
+import {ActivatedRoute} from "@angular/router";
+import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInteresUseCase";
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +23,8 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
     { provide: ProfileViewModel, useClass: ProfileViewModel },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
     { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: SearchUseCase, useClass: SearchUseCase}
+    { provide: SearchUseCase, useClass: SearchUseCase},
+    { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase }
   ]
 })
 export class ProfileComponent extends LoggedComponent implements OnInit, ProfileUIView {
@@ -34,7 +37,8 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
 
   constructor(private profilePresenter: ProfilePresenter,
               private profileController: ProfileController,
-              public profileViewModel: ProfileViewModel){
+              public profileViewModel: ProfileViewModel,
+              private route: ActivatedRoute){
     super(profileController);
   }
 
@@ -48,25 +52,31 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
     if(logged){
       this.authStateLogged.emit(true);
       this.profileController.getUserData(this.profilePresenter);
+      this.profileController.getProfileData(this.profilePresenter, this.route.snapshot.params.username);
     }
     else {
       this.authStateLogged.emit(false);
     }
   }
 
-  updateUserData(username: string, levelCompleted: number, levelName: string,
-                 profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
+  updateUserData(username: string, levelCompleted: number, levelName: string, profileImageUrl: string,
+                 rewards: Array<RewardItem>, tags: Map<number, string>) {
     this.profileViewModel.selfUsername = username;
     this.profileViewModel.selfLevelCompleted = levelCompleted;
     this.profileViewModel.selfLevelName = levelName;
     this.profileViewModel.selfProfileImage = profileImageUrl;
+    this.updateSelfRewardsList(rewards);
+  }
 
+
+  updateProfileData(username: string, levelName: string, profileImageUrl: string, rewards: Array<RewardItem>,
+                    tags: Map<number, string>) {
     this.profileViewModel.userName = username;
     this.profileViewModel.userLevelName = levelName;
     this.profileViewModel.userProfileImage = profileImageUrl;
-    this.updateSelfRewardsList(rewards);
     this.updateRewardsList(rewards);
-    this.updateTopicsOfInterestList(["java","swift","c++", "python"]);
+    this.updateTopicsOfInterestList(Array.from( tags.values()) );
+    this.profileController.getPostsOfTopics(this.profilePresenter, tags);
   }
 
   updateSelfRewardsList(newRewards: Array<RewardItem>) {
@@ -106,11 +116,13 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
   }
 
   updateTopicList(topicList: Map<string, PostItem[]>) {
-    // this.clearHomeViewLists();
-    // topicList.forEach((value: PostItem[], key: string) => {
-    //   this.profileViewModel.topicsKeys.push(key);
-    //   this.profileViewModel.topicsList.set(key, value)
-    // });
+    this.profileViewModel.topicsList.clear();
+    this.profileViewModel.topicsKeys.length = 0;
+
+    topicList.forEach((value: PostItem[], key: string) => {
+      this.profileViewModel.topicsKeys.push(key);
+      this.profileViewModel.topicsList.set(key, value)
+    });
   }
 
   showErrorAlert(message: String) {

@@ -1,7 +1,7 @@
 import {PostsOfTopicsInterestOutputBoundary} from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 
 export interface PostsOfTopicsInterestInputBoundary{
-  getTopics(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary)
+  getPosts(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary)
 }
 
 export class PostsOfTopicsInterestInputModel {

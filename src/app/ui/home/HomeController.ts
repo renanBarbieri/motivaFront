@@ -20,7 +20,7 @@ export default class HomeController extends LoggedPageController{
   getPostsOfTopicsOfInterest(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>){
     let requestData = new PostsOfTopicsInterestInputModel();
     requestData.tags = topics;
-    this.postsOfTopicsInterestUseCase.getTopics(requestData, responseHandler);
+    this.postsOfTopicsInterestUseCase.getPosts(requestData, responseHandler);
   }
 
   getResultsOfSearch(searchText: string){
