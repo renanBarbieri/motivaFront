@@ -5,6 +5,7 @@ import DataSourceResponse from "app/data/model/DataSourceResponse";
 import DataSourceUser from "app/data/model/DataSourceUser";
 import {UserDataSource} from "app/data/user/UserDataSource";
 import DataSourceLoggedUserResponse from "@app/data/model/DataSourceLoggedUserResponse";
+import DataSourcePublicUserResponse from "@app/data/model/DataSourcePublicUserResponse";
 
 @Injectable()
 export default class UserApiDataSource extends DataSourceConfig implements UserDataSource{
@@ -28,6 +29,32 @@ export default class UserApiDataSource extends DataSourceConfig implements UserD
 
           if(response.status){
             resolve(response.result.logged_in_user)
+          }
+        },
+        error => {
+          console.log("erro http");
+          reject(error);
+        }
+      );
+    });
+  }
+
+
+  getPublicData(authKey: string, username: string): Promise<DataSourceUser> {
+    let headers = new HttpHeaders({
+      "Authorization": `Bearer ${authKey}`
+    });
+
+    let getRequest = this.http.get<DataSourceResponse<DataSourcePublicUserResponse>>(
+      UserApiDataSource.dataSourceURL.concat(`/user/${username}`), {headers});
+
+    return new Promise<DataSourceUser>(async (resolve, reject) => {
+
+      getRequest.subscribe( response => {
+          console.log(response);
+
+          if(response.status){
+            resolve(response.result.user)
           }
         },
         error => {

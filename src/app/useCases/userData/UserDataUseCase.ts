@@ -15,21 +15,30 @@ export default class UserDataUseCase implements UserDataInputBoundary{
     let responseData: UserDataOutputModel = new UserDataOutputModel();
     responseData.publicProfile = true;
     try {
-
       let token = await this.authRepository.getKey();
-      let user: User = await this.userRepository.get(token);
-      if(user){
-        responseData.username = user.username;
-        responseData.levelName = user.level.name;
-        responseData.profileImage = user.avatar;
-        responseData.rewards = user.rewards.map(function (it) {
+      let username = requestData.username;
+      if(!username) {
+        let user: User = await this.userRepository.get(token);
+        if(user)
+          username = user.username;
+        else
+          outputBoundary.onUserDataError("Usuário inválido");
+      }
+
+      let userProfile = await  this.userRepository.getPublicProfile(token, username);
+
+      if(userProfile){
+        responseData.username = userProfile.username;
+        responseData.levelName = userProfile.level.name;
+        responseData.profileImage = userProfile.avatar;
+        responseData.rewards = userProfile.rewards.map(function (it) {
           let rewardView = new RewardItem();
           rewardView.entityReference = it.id.toString();
           rewardView.icon = it.image;
           rewardView.name = it.name;
           return rewardView;
         });
-        responseData.tags = UserDataUseCase.mapTagIds(user.interests);
+        responseData.tags = UserDataUseCase.mapTagIds(userProfile.interests);
 
         outputBoundary.onUserDataSuccess(responseData);
       }

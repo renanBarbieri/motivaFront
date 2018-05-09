@@ -20,7 +20,12 @@ export default class UserRepository implements UserDataGateway{
   }
 
 
-  getPublicProfile(authkey: string): Promise<User> {
-    return null;
+  getPublicProfile(authKey: string, username: string): Promise<User> {
+    return new Promise<User>(async (resolve) => {
+      let user: DataSourceUser = await this.userApiDataSource.getPublicData(authKey, username);
+
+      let userMapper = new UserDataSourceMapper();
+      resolve(userMapper.toEntity(user));
+    });
   }
 }

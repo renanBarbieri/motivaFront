@@ -17,11 +17,9 @@ export default class ProfilePresenter extends AuthPresenter implements UserDataO
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
     if(responseData.publicProfile){
-      console.log("oi");
       this.onProfileDataSuccess(responseData);
     }
     else {
-      console.log("ah não");
       this.profileUiView.updateUserData( responseData.username, responseData.levelCompleted,
         responseData.levelName, responseData.profileImage,
         responseData.rewards, responseData.tags);

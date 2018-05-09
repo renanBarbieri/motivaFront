@@ -1,5 +1,6 @@
 import DataSourceUser from "app/data/model/DataSourceUser";
 
 export interface UserDataSource{
-  getData(id: string): Promise<DataSourceUser>;
+  getData(authKey: string): Promise<DataSourceUser>;
+  getPublicData(authKey: string, username: string): Promise<DataSourceUser>;
 }
