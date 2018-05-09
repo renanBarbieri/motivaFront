@@ -9,12 +9,13 @@
 
 .cardDate{
     color: rgba(0,0,0,.54);
-    font-size: 1.25vw;
+    font-size: 0.8vw;
     align-self: center;
 }
 
 mat-card-content{
-    justify-content: space-between;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 mat-card{
