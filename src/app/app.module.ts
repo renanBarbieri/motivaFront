@@ -18,7 +18,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
   MatIconModule, MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule,
-  MatTooltipModule, MatListModule
+  MatTooltipModule, MatListModule, MatAutocompleteModule
 } from '@angular/material';
 //DEPENDENCY INJECTION
 import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
@@ -80,6 +80,7 @@ import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
     MatToolbarModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
     QuillEditorModule,
     FileUploadModule
   ],

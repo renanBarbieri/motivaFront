@@ -1,3 +1,8 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
 .drop-zone {
    border: dotted 3px lightgray;
    height: 18em;
@@ -53,7 +58,8 @@
 .nv-file-over { border: dotted 3px #FF007B; } /* Default class applied to drop zones on over */
 
 .postTitleBox {
-  height: 2em;
+  flex: 1;
+  /*height: 2em;*/
   justify-content: flex-start;
   align-items: center;
   display: flex;
@@ -66,6 +72,30 @@
   flex: 1;
   height: 100%;
   font-size: 1.5em;
+}
+
+.postTagsBox {
+  min-height: 4em;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.postTagsField {
+  height: 100%;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.postContentBox {
+  flex: 1;
+  display: flex;
+}
+
+quill-editor {
+  height: 100%;
+  width: 100%;
 }
 
 .saveButton {

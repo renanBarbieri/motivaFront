@@ -12,8 +12,6 @@ export default class AuthController{
     this.authUseCase.performAuthValidation(responseHandler);
   }
 
-
-
   makeLogout(responseHandler: AuthOutputBoundary){
     this.authUseCase.performLogout(responseHandler);
   }

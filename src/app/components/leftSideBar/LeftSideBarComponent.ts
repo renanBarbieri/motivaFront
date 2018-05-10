@@ -62,8 +62,6 @@ export class LeftSideBarComponent implements OnChanges{
 
 
   ngOnChanges(): void {
-    console.log(this.rewards);
-
     for(let idx = 0; idx < this.rewards.length; idx++){
       this.rewardIndexes.push(idx)
     }

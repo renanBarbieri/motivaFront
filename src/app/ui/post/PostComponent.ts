@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
@@ -11,6 +11,11 @@ import {FileItem, FileLikeObject, FileUploader} from 'ng2-file-upload';
 import { DomSanitizer } from '@angular/platform-browser';
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
 import {ToolbarState} from "@app/components/toolbar/TollbarState";
+import {FormControl} from "@angular/forms";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {Observable} from "rxjs/Observable";
+import {map, startWith} from "rxjs/operators";
+import {MatAutocompleteSelectedEvent, MatChipInputEvent} from "@angular/material";
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
@@ -58,11 +63,15 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     allowedMimeType: this.allowedMimeType
   });
 
-
   constructor( private postPresenter: PostPresenter, private postController: PostController,
                private postViewModel: PostViewModel, private sanitizer: DomSanitizer){
     super(postController);
 
+    this.configureUploader();
+    this.configureTagsAutocomplete()
+  }
+
+  configureUploader(){
     this.uploader.onAfterAddingFile = (fileItem) => {
       this.postViewModel.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
     };
@@ -76,6 +85,12 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
           this.showErrorAlert(`Ocorreu um erro desconhecido. Pro favor, tente novamente.`);
       }
     }
+  }
+
+  configureTagsAutocomplete(){
+    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this.filter(fruit) : this.allFruits.slice()));
   }
 
   ngOnInit(){
@@ -96,6 +111,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
 
   updateUserData(username: string, levelCompleted: number, levelName: string,
                  profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
+
     this.postViewModel.username = username;
     this.postViewModel.levelCompleted = levelCompleted;
     this.postViewModel.levelName = levelName;
@@ -149,5 +165,76 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
 
   showErrorAlert(message: String) {
     alert(message);
+  }
+
+  visible: boolean = true;
+  selectable: boolean = true;
+  removable: boolean = true;
+  addOnBlur: boolean = false;
+
+  separatorKeysCodes = [ENTER, COMMA];
+
+  fruitCtrl = new FormControl();
+
+  filteredFruits: Observable<any[]>;
+
+  fruits = [
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+    { name: 'Lemon' },
+  ];
+
+  allFruits = [
+    'Orange',
+    'Strawberry',
+    'Lime',
+    'Apple',
+  ];
+
+  @ViewChild('fruitInput') fruitInput: ElementRef;
+
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.fruits.push({ name: value.trim() });
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(fruit: any): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+  filter(name: string) {
+    return this.allFruits.filter(fruit =>
+      fruit.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.fruits.push({ name: event.option.viewValue });
+    this.fruitInput.nativeElement.value = '';
   }
 }
