@@ -7,17 +7,11 @@ import PostController from "@app/ui/post/PostController";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import PostPresenter from "@app/ui/post/PostPresenter";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
-import {FileItem, FileLikeObject, FileUploader} from 'ng2-file-upload';
-import { DomSanitizer } from '@angular/platform-browser';
+import {FileItem, FileLikeObject} from 'ng2-file-upload';
+import {DomSanitizer} from '@angular/platform-browser';
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
-import {ToolbarState} from "@app/components/toolbar/TollbarState";
-import {FormControl} from "@angular/forms";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {Observable} from "rxjs/Observable";
 import {map, startWith} from "rxjs/operators";
 import {MatAutocompleteSelectedEvent, MatChipInputEvent} from "@angular/material";
-
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 @Component({
   selector: 'app-post',
@@ -33,35 +27,14 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 })
 export class PostComponent extends LoggedComponent implements OnInit, PostUiView{
 
-  postToolbarState = ToolbarState.HIDE_QUERY_AND_CREATE;
-
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
 
   @Output()
   authStateLogged = new EventEmitter<boolean>();
 
-  editorOptions = {
-    modules: {
-      formula: true,
-      toolbar: [
-        ['bold', 'italic', 'underline', 'strike', { 'color': [] }],
-        ['blockquote', 'code-block', 'formula'],
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
-        [{ 'script': 'sub' }, { 'script': 'super' }],
-        [{ 'indent': '-1' }, { 'indent': '+1' }],
-        [{ 'size': ['small', false, 'large', 'huge'] }],
-      ]
-    },
-    placeholder: "Insira seu texto aqui",
-  };
-
-  public allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
-
-  public uploader:FileUploader = new FileUploader({
-    url: URL,
-    allowedMimeType: this.allowedMimeType
-  });
+  @ViewChild('tagInput')
+  tagInput: ElementRef;
 
   constructor( private postPresenter: PostPresenter, private postController: PostController,
                private postViewModel: PostViewModel, private sanitizer: DomSanitizer){
@@ -72,11 +45,11 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   }
 
   configureUploader(){
-    this.uploader.onAfterAddingFile = (fileItem) => {
+    this.postViewModel.uploader.onAfterAddingFile = (fileItem) => {
       this.postViewModel.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
     };
 
-    this.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
+    this.postViewModel.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
       switch (filter.name) {
         case 'mimeType':
           this.showErrorAlert(`Este tipo de arquivo não é permitido. Por favor, selecione um arquivo do tipo imagem, nos formatos png, jpg ou jpeg`);
@@ -88,9 +61,10 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   }
 
   configureTagsAutocomplete(){
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    this.postViewModel.tagsFiltered = this.postViewModel.tagsFormCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this.filter(fruit) : this.allFruits.slice()));
+      map((tag: string | null) => tag ? this.filter(tag) : this.postViewModel.allTags.slice())
+    );
   }
 
   ngOnInit(){
@@ -98,6 +72,14 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     this.postController.verifyAuthorization(this.postPresenter);
   }
 
+  /**********************************************************
+   ******************* Dados do usuário *********************
+   **********************************************************/
+
+  /**
+   *
+   * @param {boolean} logged
+   */
   updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
     if(logged){
@@ -109,6 +91,15 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     }
   }
 
+  /**
+   *
+   * @param {string} username
+   * @param {number} levelCompleted
+   * @param {string} levelName
+   * @param {string} profileImageUrl
+   * @param {Array<RewardItem>} rewards
+   * @param {Map<number, string>} tags
+   */
   updateUserData(username: string, levelCompleted: number, levelName: string,
                  profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>) {
 
@@ -119,6 +110,10 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     this.updateRewardsList(rewards);
   }
 
+  /**
+   *
+   * @param {Array<RewardItem>} newRewards
+   */
   updateRewardsList(newRewards: Array<RewardItem>) {
     this.postViewModel.rewards.length = 0;
     newRewards.forEach((it) => {
@@ -126,92 +121,64 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     });
   }
 
-  //https://quilljs.com/docs/quickstart/
+  /**********************************************************
+   ******************** Editor do post **********************
+   **********************************************************/
+
+  /**
+   * @reference https://quilljs.com/docs/quickstart/
+   * @param quill
+   */
   onEditorCreated(quill) {
     this.postViewModel.editor = quill;
   }
 
+  /**
+   *
+   * @param {any} quill
+   * @param {any} html
+   * @param {any} text
+   */
   onContentChanged({ quill, html, text }) {
     this.postViewModel.postHtmlText = html;
   }
 
+  /**********************************************************
+   ****************** Uploader de arquivo *******************
+   **********************************************************/
+
+  /**
+   *
+   * @param e
+   */
   fileOverBase(e:any):void {
     this.postViewModel.hasBaseDropZoneOver = e;
   }
 
-  onTitleChanged({target}) {
-    console.log(target.value);
-    this.postViewModel.title = target.value;
-  }
-
-  savePost() {
-    if(this.postViewModel.title && this.postViewModel.postHtmlText && this.getLastFile()){
-      console.log(this.getLastFile());
-      this.uploader.uploadItem(this.getLastFile());
-    }
-    else {
-      this.showErrorAlert("Seu post deve conter imagem, título e texto");
-    }
-  }
-
+  /**
+   *
+   * @returns {FileItem}
+   */
   getLastFile(): FileItem {
-    if(this.uploader.queue.length < 1) return null;
-    return this.uploader.queue[this.uploader.queue.length-1];
+    if(this.postViewModel.uploader.queue.length < 1) return null;
+    return this.postViewModel.uploader.queue[this.postViewModel.uploader.queue.length-1];
   }
 
-  logout() {
-    super.logout(this.postPresenter);
-  }
+  /**********************************************************
+   ******************* Autocomplete tags ********************
+   **********************************************************/
 
-  showErrorAlert(message: String) {
-    alert(message);
-  }
-
-  visible: boolean = true;
-  selectable: boolean = true;
-  removable: boolean = true;
-  addOnBlur: boolean = false;
-
-  separatorKeysCodes = [ENTER, COMMA];
-
-  fruitCtrl = new FormControl();
-
-  filteredFruits: Observable<any[]>;
-
-  fruits = [
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-    { name: 'Lemon' },
-  ];
-
-  allFruits = [
-    'Orange',
-    'Strawberry',
-    'Lime',
-    'Apple',
-  ];
-
-  @ViewChild('fruitInput') fruitInput: ElementRef;
-
-
+  /**
+   *
+   * @param {MatChipInputEvent} event
+   */
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add our tag
     if ((value || '').trim()) {
-      this.fruits.push({ name: value.trim() });
+      this.postViewModel.tags.push( value.trim() );
     }
 
     // Reset the input value
@@ -220,21 +187,71 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     }
   }
 
-  remove(fruit: any): void {
-    const index = this.fruits.indexOf(fruit);
+  /**
+   *
+   * @param tag
+   */
+  remove(tag: any): void {
+    const index = this.postViewModel.tags.indexOf(tag);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.postViewModel.tags.splice(index, 1);
     }
   }
 
+  /**
+   *
+   * @param {string} name
+   * @returns {string[]}
+   */
   filter(name: string) {
-    return this.allFruits.filter(fruit =>
-      fruit.toLowerCase().indexOf(name.toLowerCase()) === 0);
+    return this.postViewModel.allTags.filter(tag =>
+      tag.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
+  /**
+   *
+   * @param {MatAutocompleteSelectedEvent} event
+   */
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push({ name: event.option.viewValue });
-    this.fruitInput.nativeElement.value = '';
+    this.postViewModel.tags.push( event.option.viewValue );
+    this.tagInput.nativeElement.value = '';
+  }
+
+  /**
+   *
+   * @param {any} target
+   */
+  onTitleChanged({target}) {
+    console.log(target.value);
+    this.postViewModel.title = target.value;
+  }
+
+  /**
+   *
+   */
+  savePost() {
+    if(this.postViewModel.title && this.postViewModel.postHtmlText && this.getLastFile()){
+      console.log(this.getLastFile());
+      this.postViewModel.uploader.uploadItem(this.getLastFile());
+    }
+    else {
+      this.showErrorAlert("Seu post deve conter imagem, título e texto");
+    }
+  }
+
+  /**
+   *
+   */
+  logout() {
+    super.logout(this.postPresenter);
+  }
+
+  /**
+   *
+   * @param {String} message
+   */
+  showErrorAlert(message: String) {
+    alert(message);
   }
 }

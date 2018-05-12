@@ -15,18 +15,18 @@
   </div>
   <div class="pageCenter">
     <app-toolbar
-      [toolbarState]="postToolbarState"
+      [toolbarState]="postViewModel.postToolbarState"
       (homeClickEvent)="openHomePage()"
       (searchClickEvent)="openSearchPage()"
       (newPostClickEvent)="openNewPostPage()"></app-toolbar>
     <div class="content">
       <div ng2FileDrop
            [ngClass]="{'nv-file-over': postViewModel.hasBaseDropZoneOver }"
-           [uploader]="uploader"
+           [uploader]="postViewModel.uploader"
            (fileOver)="fileOverBase($event)"
            class="well drop-zone">
         <div class="drop-zone-empty {{ !postViewModel.filePreviewPath ? 'cVisible' : 'cGone'}}">
-          <input id="fileToUpload" type="file" ng2FileSelect [uploader]="uploader" style="display:none;">
+          <input id="fileToUpload" type="file" ng2FileSelect [uploader]="postViewModel.uploader" style="display:none;">
           <mat-icon class="drop-icon">panorama</mat-icon>
           <span class="drop-text">Esta é a capa do seu post</span>
           <span class="drop-subtext">Arraste um arquivo aqui ou clique no botão</span>
@@ -51,33 +51,33 @@
         <mat-form-field class="postTagsField">
           <mat-chip-list #chipList>
             <mat-chip
-              *ngFor="let fruit of fruits"
-              [selectable]="selectable"
-              [removable]="removable"
-              (remove)="remove(fruit)">
-              {{fruit.name}}
-              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              *ngFor="let tag of postViewModel.tags"
+              [selectable]="postViewModel.tagsSelectable"
+              [removable]="postViewModel.tagsRemovable"
+              (remove)="remove(tag)">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="postViewModel.tagsRemovable">cancel</mat-icon>
             </mat-chip>
             <input
               placeholder="Tags"
-              #fruitInput
-              [formControl]="fruitCtrl"
+              #tagInput
+              [formControl]="postViewModel.tagsFormCtrl"
               [matAutocomplete]="auto"
               [matChipInputFor]="chipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur"
+              [matChipInputSeparatorKeyCodes]="postViewModel.tagsSeparatorKeysCodes"
+              [matChipInputAddOnBlur]="postViewModel.tagsAddOnBlur"
               (matChipInputTokenEnd)="add($event)"
             />
           </mat-chip-list>
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-              {{ fruit }}
+            <mat-option *ngFor="let tag of postViewModel.tagsFiltered | async" [value]="tag">
+              {{ tag }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </div>
       <div class="postContentBox">
-        <quill-editor [options]="editorOptions"
+        <quill-editor [options]="postViewModel.editorOptions"
                       (ready)="onEditorCreated($event)"
                       (change)="onContentChanged($event)">
         </quill-editor>
