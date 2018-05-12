@@ -47,7 +47,7 @@ export default class PostViewModel{
   public filePreviewPath: SafeUrl;
   public allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
   public uploader:FileUploader = new FileUploader({
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+    url: 'http://138.68.249.148:8000/app/v1/upload/post_image',
     allowedMimeType: this.allowedMimeType
   });
 

@@ -169,7 +169,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    **********************************************************/
 
   /**
-   *
+   * Método usado na view
    * @param {MatChipInputEvent} event
    */
   add(event: MatChipInputEvent): void {
@@ -188,7 +188,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   }
 
   /**
-   *
+   * Método usado na view
    * @param tag
    */
   remove(tag: any): void {
@@ -231,13 +231,17 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    *
    */
   savePost() {
-    if(this.postViewModel.title && this.postViewModel.postHtmlText && this.getLastFile()){
-      console.log(this.getLastFile());
+    // if(this.postViewModel.title && this.postViewModel.postHtmlText && this.getLastFile()){
+    //   console.log(this.getLastFile());
       this.postViewModel.uploader.uploadItem(this.getLastFile());
-    }
-    else {
-      this.showErrorAlert("Seu post deve conter imagem, título e texto");
-    }
+      this.postViewModel.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        const responsePath = JSON.parse(response);
+        console.log(response, responsePath);// the url will be in the response
+      };
+    // }
+    // else {
+    //   this.showErrorAlert("Seu post deve conter imagem, título e texto");
+    // }
   }
 
   /**
