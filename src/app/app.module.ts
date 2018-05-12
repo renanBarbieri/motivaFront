@@ -11,7 +11,7 @@ import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
 import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
-import {ProfilePicComponent} from "@app/components/profile/ProfilePicComponent";
+import {ProfilePicComponent} from "@app/components/profilePic/ProfilePicComponent";
 import { QuillEditorModule } from 'ngx-quill-editor';
 import {FileUploadModule} from "ng2-file-upload";
 // MATERIAL DESIGN

@@ -70,7 +70,7 @@ export class LeftSideBarComponent implements OnChanges{
   openMenuItemClick(id:string) {
     switch(id){
       case 'profile':
-        console.log("open profile click");
+        console.log("open profilePic click");
         this.onProfileClick.emit();
         break;
       case 'views':

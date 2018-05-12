@@ -21,7 +21,7 @@ export const appRoutes: Routes = [
     component: PostComponent
   },
   {
-    path: 'profile/:username',
+    path: 'profilePic/:username',
     component: ProfileComponent
   },
   {
