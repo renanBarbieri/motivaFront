@@ -45,11 +45,7 @@ export default class PostViewModel{
   //dropzone and photo uploador
   hasBaseDropZoneOver = false;
   public filePreviewPath: SafeUrl;
-  public allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
-  public uploader:FileUploader = new FileUploader({
-    url: 'http://138.68.249.148:8000/app/v1/upload/post_image',
-    allowedMimeType: this.allowedMimeType
-  });
+  public uploader:FileUploader;
 
   //chips autocomplete
   tags: Array<string> = [];
@@ -61,7 +57,7 @@ export default class PostViewModel{
   tagsFiltered: Observable<any[]>;
   allTags: Array<string> = [];
 
-  //post title
+  //publishPost title
   title: string;
 
 }

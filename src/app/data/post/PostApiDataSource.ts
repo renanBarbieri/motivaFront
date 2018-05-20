@@ -6,12 +6,20 @@ import DataSourcePost from "app/data/model/DataSourcePost";
 import DataSourceResponse from "app/data/model/DataSourceResponse";
 import DataSourceConfig from "app/data/DataSourceConfig";
 import DataSourcePostsResponse from "@app/data/model/DataSourcePostsResponse";
+import {FileItem, FileLikeObject, FileUploader} from "ng2-file-upload";
 
 @Injectable()
 export default class PostApiDataSource extends DataSourceConfig implements PostDataSource{
 
+  fileUploader: FileUploader;
+
   constructor(protected http: HttpClient){
     super();
+    let allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
+    this.fileUploader = new FileUploader({
+      url: `${PostApiDataSource.dataSourceURL}/upload/post_image'`,
+      allowedMimeType: allowedMimeType
+    });
   }
 
   get(id: string): Promise<Post> {
@@ -46,5 +54,37 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
         }
       );
     });
+  }
+
+  /**
+   *
+   * @returns {FileUploader}
+   */
+  getImageUploader(): FileUploader {
+    return this.fileUploader;
+  }
+
+  /**
+   * Publica a imagem no servidor e retorna uma string com a URL da imagem
+   * @returns {Promise<string>}
+   */
+  publishImage(): Promise<string>{
+    return new Promise<string>(async (resolve, reject) => {
+      this.fileUploader.uploadItem(this.getLastFile());
+      this.fileUploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        const responsePath = JSON.parse(response);
+        // console.log(response, responsePath);// the url will be in the response
+        resolve(responsePath);
+      };
+    });
+  }
+
+  /**
+   * Pega o último item adicionano na fila de upload
+   * @returns {FileItem}
+   */
+  getLastFile(): FileItem {
+    if(this.fileUploader.queue.length < 1) return null;
+    return this.fileUploader.queue[this.fileUploader.queue.length-1];
   }
 }

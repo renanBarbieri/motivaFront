@@ -5,10 +5,14 @@ import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
 import {Router} from "@angular/router";
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 import {PostUiView} from "@app/ui/post/PostUIView";
+import {
+  BannerOutputModel, ImageUploaderOutputModel, PublishPostOutputBoundary,
+  PublishPostOutputModel
+} from "@app/useCases/publishPost/PublishPostOutputBoundary";
 
 @Injectable()
 export default class PostPresenter extends AuthPresenter implements UserDataOutputBoundary,
-    AuthOutputBoundary{
+    AuthOutputBoundary, PublishPostOutputBoundary{
   private postUiView: PostUiView;
 
   constructor(private router: Router){
@@ -26,8 +30,27 @@ export default class PostPresenter extends AuthPresenter implements UserDataOutp
                               responseData.rewards, responseData.tags);
   }
 
+  onImageUploaderBuilt(imageUploaderOutputModel: ImageUploaderOutputModel) {
+    this.postUiView.uploaderReady(imageUploaderOutputModel.imageUploader);
+  }
+
+  onBannerUploaded(bannerOutputModel: BannerOutputModel) {
+    this.postUiView.onImageUploadSuccess(bannerOutputModel.url);
+  }
+
+  onPublishSuccess(publishPostOutputModel: PublishPostOutputModel) {
+    //TODO: redirecionar para a visualização do post
+  }
+
   onUserDataError(errorData: any) {
     this.postUiView.showErrorAlert(errorData.message);
   }
 
+  onBannerUploadError(errorData: any) {
+    this.postUiView.showErrorAlert(errorData.message);
+  }
+
+  onPublishError(errorData: any) {
+    this.postUiView.showErrorAlert(errorData.message);
+  }
 }

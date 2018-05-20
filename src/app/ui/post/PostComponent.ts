@@ -7,11 +7,12 @@ import PostController from "@app/ui/post/PostController";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import PostPresenter from "@app/ui/post/PostPresenter";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
-import {FileItem, FileLikeObject} from 'ng2-file-upload';
+import {FileItem, FileLikeObject, FileUploader} from 'ng2-file-upload';
 import {DomSanitizer} from '@angular/platform-browser';
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
 import {map, startWith} from "rxjs/operators";
 import {MatAutocompleteSelectedEvent, MatChipInputEvent} from "@angular/material";
+import PublishPostUseCase from "@app/useCases/publishPost/PublishPostUseCase";
 
 @Component({
   selector: 'app-post',
@@ -22,7 +23,8 @@ import {MatAutocompleteSelectedEvent, MatChipInputEvent} from "@angular/material
     { provide: PostPresenter, useClass: PostPresenter },
     { provide: PostViewModel, useClass: PostViewModel },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
-    { provide: AuthUseCase, useClass: AuthUseCase }
+    { provide: AuthUseCase, useClass: AuthUseCase },
+    { provide: PublishPostUseCase, useClass: PublishPostUseCase }
   ]
 })
 export class PostComponent extends LoggedComponent implements OnInit, PostUiView{
@@ -40,8 +42,12 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
                private postViewModel: PostViewModel, private sanitizer: DomSanitizer){
     super(postController);
 
-    this.configureUploader();
     this.configureTagsAutocomplete()
+  }
+
+  uploaderReady(imageUploader: FileUploader) {
+    this.postViewModel.uploader = imageUploader;
+    this.configureUploader();
   }
 
   configureUploader(){
@@ -70,6 +76,8 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   ngOnInit(){
     this.postPresenter.onViewInit(this);
     this.postController.verifyAuthorization(this.postPresenter);
+    this.postController.getFileUploader(this.postPresenter);
+    this.postController.getRegisteredTags(this.postPresenter);
   }
 
   /**********************************************************
@@ -122,7 +130,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   }
 
   /**********************************************************
-   ******************** Editor do post **********************
+   ******************** Editor do publishPost **********************
    **********************************************************/
 
   /**
@@ -153,15 +161,6 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    */
   fileOverBase(e:any):void {
     this.postViewModel.hasBaseDropZoneOver = e;
-  }
-
-  /**
-   *
-   * @returns {FileItem}
-   */
-  getLastFile(): FileItem {
-    if(this.postViewModel.uploader.queue.length < 1) return null;
-    return this.postViewModel.uploader.queue[this.postViewModel.uploader.queue.length-1];
   }
 
   /**********************************************************
@@ -231,17 +230,28 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    *
    */
   savePost() {
-    // if(this.postViewModel.title && this.postViewModel.postHtmlText && this.getLastFile()){
-    //   console.log(this.getLastFile());
-      this.postViewModel.uploader.uploadItem(this.getLastFile());
-      this.postViewModel.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-        const responsePath = JSON.parse(response);
-        console.log(response, responsePath);// the url will be in the response
-      };
-    // }
-    // else {
-    //   this.showErrorAlert("Seu post deve conter imagem, título e texto");
-    // }
+    if(this.postViewModel.title && this.postViewModel.postHtmlText){
+      this.postController.publishImage(this.postPresenter);
+      //console.log(this.getLastFile());
+      // this.postViewModel.uploader.uploadItem(this.getLastFile());
+      // this.postViewModel.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      //   const responsePath = JSON.parse(response);
+      //   console.log(response, responsePath);// the url will be in the response
+      // };
+    }
+    else {
+      this.showErrorAlert("Seu post deve conter imagem, título e texto");
+    }
+  }
+
+
+  onImageUploadSuccess(imageUrl: string) {
+    this.postController.publishPost(
+      this.postViewModel.title,
+      this.postViewModel.tags,
+      this.postViewModel.postHtmlText,
+      imageUrl
+    )
   }
 
   /**

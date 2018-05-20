@@ -4,9 +4,11 @@ import {Injectable} from "@angular/core";
 import {PostsOfTopicsInterestGateway} from "app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestGateway";
 import DataSourcePost from "app/data/model/DataSourcePost";
 import PostDataSourceMapper from "app/data/mapper/PostDataSourceMapper";
+import {PublishPostGateway} from "@app/useCases/publishPost/PublishPostGateway";
+import {FileUploader} from "ng2-file-upload";
 
 @Injectable()
-export default class PostRepository implements PostsOfTopicsInterestGateway{
+export default class PostRepository implements PostsOfTopicsInterestGateway, PublishPostGateway{
 
   constructor(private articleApiDataSource:PostApiDataSource){}
 
@@ -29,5 +31,15 @@ export default class PostRepository implements PostsOfTopicsInterestGateway{
         return postMapper.toEntity(it);
       }));
     });
+  }
+
+
+  getImageUploader(): FileUploader {
+    return this.articleApiDataSource.getImageUploader();
+  }
+
+
+  postImage(): Promise<string> {
+    return this.articleApiDataSource.publishImage();
   }
 }
