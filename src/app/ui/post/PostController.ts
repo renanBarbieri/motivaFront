@@ -6,6 +6,7 @@ import LeftSideBarController from "@app/components/leftSideBar/LeftSideBarContro
 import LoggedPageController from "@app/ui/logged/LoggedPageController";
 import PublishPostUseCase from "@app/useCases/publishPost/PublishPostUseCase";
 import {PublishPostOutputBoundary} from "@app/useCases/publishPost/PublishPostOutputBoundary";
+import ManageTagUseCase from "@app/useCases/tag/ManageTagUseCase";
 
 @Injectable()
 export default class PostController extends LoggedPageController{
@@ -13,7 +14,8 @@ export default class PostController extends LoggedPageController{
   constructor(private userCreatePost: UserDataUseCase,
               private authCreatePost: AuthUseCase,
               private routerCreatePost: Router,
-              private publishPostUseCase: PublishPostUseCase) {
+              private publishPostUseCase: PublishPostUseCase,
+              private manageTagUseCase: ManageTagUseCase) {
     super(userCreatePost, authCreatePost, routerCreatePost);
   }
 
@@ -22,12 +24,14 @@ export default class PostController extends LoggedPageController{
   }
 
   getRegisteredTags(outputBoundary: PublishPostOutputBoundary){
-    this.publishPostUseCase.getRegisteredTags(outputBoundary);
+    this.manageTagUseCase.getRegisteredTags(outputBoundary);
   }
 
   publishImage(outputBoundary: PublishPostOutputBoundary){
     this.publishPostUseCase.uploadBanner(outputBoundary);
   }
+
+  //TODO: publish tags
 
   publishPost(title: string, tags: Array<string>, text: string, bannerURL: string){
 

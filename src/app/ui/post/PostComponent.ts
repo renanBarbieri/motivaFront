@@ -13,6 +13,7 @@ import LoggedComponent from "@app/ui/logged/LoggedComponent";
 import {map, startWith} from "rxjs/operators";
 import {MatAutocompleteSelectedEvent, MatChipInputEvent} from "@angular/material";
 import PublishPostUseCase from "@app/useCases/publishPost/PublishPostUseCase";
+import ManageTagUseCase from "@app/useCases/tag/ManageTagUseCase";
 
 @Component({
   selector: 'app-post',
@@ -24,7 +25,8 @@ import PublishPostUseCase from "@app/useCases/publishPost/PublishPostUseCase";
     { provide: PostViewModel, useClass: PostViewModel },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
     { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: PublishPostUseCase, useClass: PublishPostUseCase }
+    { provide: PublishPostUseCase, useClass: PublishPostUseCase },
+    { provide: ManageTagUseCase, useClass: ManageTagUseCase }
   ]
 })
 export class PostComponent extends LoggedComponent implements OnInit, PostUiView{

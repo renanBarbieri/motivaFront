@@ -10,12 +10,6 @@ export interface PublishPostGateway {
   getImageUploader(): FileUploader;
 
   /**
-   * Pega todas as tags cadastradas
-   * @returns {Promise<Array<Tag>>}
-   */
-  getTags(auth: string): Promise< Array<Tag> >;
-
-  /**
    * Publica a imagem
    * @returns {Promise<string>}
    */

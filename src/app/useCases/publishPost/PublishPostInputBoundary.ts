@@ -9,12 +9,6 @@ export interface PublishPostInputBoundary {
   buildBannerUploader(outputBoundary: PublishPostOutputBoundary);
 
   /**
-   * Get tags registered
-   * @param {PublishPostOutputBoundary} outputBoundary
-   */
-  getRegisteredTags(outputBoundary: PublishPostOutputBoundary);
-
-  /**
    * Upload an image for this post
    * @param {PublishPostOutputBoundary} outputBoundary
    */

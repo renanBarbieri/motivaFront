@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {PublishPostInputBoundary, PublishPostInputModel} from "@app/useCases/publishPost/PublishPostInputBoundary";
 import {
   BannerOutputModel, ImageUploaderOutputModel,
-  PublishPostOutputBoundary, TagListOutputModel
+  PublishPostOutputBoundary
 } from "@app/useCases/publishPost/PublishPostOutputBoundary";
 import PostRepository from "@app/data/post/PostRepository";
 import AuthRepository from "@app/data/auth/AuthRepository";
@@ -21,23 +21,6 @@ export default class PublishPostUseCase implements PublishPostInputBoundary {
     const outputModel = new ImageUploaderOutputModel();
     outputModel.imageUploader = this.publishPostRepository.getImageUploader();
     outputBoundary.onImageUploaderBuilt(outputModel);
-  }
-
-  /**
-   * Get tags registered
-   */
-  async getRegisteredTags(outputBoundary: PublishPostOutputBoundary) {
-    const outputModel = new TagListOutputModel();
-    try {
-      let tokenKey = await this.authRepository.getKey();
-      let tags = await this.publishPostRepository.getTags(tokenKey);
-      outputModel.tags = tags.map(it => {
-        return it.name;
-      });
-      outputBoundary.onTagsListed(outputModel);
-    } catch (error){
-
-    }
   }
 
   /**

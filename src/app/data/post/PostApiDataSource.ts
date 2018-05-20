@@ -7,8 +7,6 @@ import DataSourceResponse from "app/data/model/DataSourceResponse";
 import DataSourceConfig from "app/data/DataSourceConfig";
 import DataSourcePostsResponse from "@app/data/model/DataSourcePostsResponse";
 import {FileItem, FileUploader} from "ng2-file-upload";
-import DataSourceTagResponse from "@app/data/model/DataSourceTagResponse";
-import DataSourceTag from "@app/data/model/DataSourceTag";
 
 @Injectable()
 export default class PostApiDataSource extends DataSourceConfig implements PostDataSource{
@@ -64,33 +62,6 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
    */
   getImageUploader(): FileUploader {
     return this.fileUploader;
-  }
-
-
-  /**
-   * Pega as tags registradas no servidor
-   * @param {string} authKey
-   * @returns {Promise<DataSourceTag[]>}
-   */
-  getTags(authKey: string) {
-    let headers = new HttpHeaders({
-      "Authorization": `Bearer ${authKey}`
-    });
-
-    let url = `${PostApiDataSource.dataSourceURL}/tag`;
-    let getTagsRequest = this.http.get<DataSourceResponse<DataSourceTagResponse>>(url, {headers});
-
-    return new Promise<DataSourceTag[]>(async (resolve, reject) => {
-
-      getTagsRequest.subscribe( response => {
-          console.log(response);
-
-          if(response.status){
-            resolve(response.result.tags)
-          }
-        }
-      );
-    });
   }
 
   /**

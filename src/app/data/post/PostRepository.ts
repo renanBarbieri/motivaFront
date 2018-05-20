@@ -36,17 +36,6 @@ export default class PostRepository implements PostsOfTopicsInterestGateway, Pub
     });
   }
 
-
-  getTags(auth: string): Promise< Array<Tag> > {
-    return new Promise< Array<Tag> >(async (resolve, reject) => {
-      let tagMapper = new TagDataSourceMapper();
-      let dataSourceTags: DataSourceTag[] = await this.postApiDataSource.getTags(auth);
-      resolve(dataSourceTags.map(it =>
-        tagMapper.toEntity(it)
-      ));
-    });
-  }
-
   getImageUploader(): FileUploader {
     return this.postApiDataSource.getImageUploader();
   }

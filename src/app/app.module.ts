@@ -28,6 +28,8 @@ import UserApiDataSource from "./data/user/UserApiDataSource";
 import PostApiDataSource from "./data/post/PostApiDataSource";
 import SearchRepository from "@app/data/search/SearchRepository";
 import SearchApiDataSource from "@app/data/search/SearchApiDataSource";
+import TagRepository from "@app/data/tag/TagRepository";
+import TagApiDataSource from "@app/data/tag/TagApiDataSource";
 // PAGES
 import {AppComponent} from "@app/app.component";
 import {AppRoutingModule} from "./app.routing";
@@ -89,12 +91,14 @@ import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
     { provide: AuthRepository, useClass: AuthRepository },
     { provide: PostRepository, useClass: PostRepository },
     { provide: SearchRepository, useClass: SearchRepository},
+    { provide: TagRepository, useClass: TagRepository },
     { provide: UserRepository, useClass: UserRepository },
     //DataSources
     { provide: AuthLocalDataSource, useClass: AuthLocalDataSource },
     { provide: AuthApiDataSource, useClass: AuthApiDataSource },
     { provide: PostApiDataSource, useClass: PostApiDataSource },
     { provide: SearchApiDataSource, useClass: SearchApiDataSource },
+    { provide: TagApiDataSource, useClass: TagApiDataSource },
     { provide: UserApiDataSource, useClass: UserApiDataSource },
   ],
   bootstrap: [AppComponent],
