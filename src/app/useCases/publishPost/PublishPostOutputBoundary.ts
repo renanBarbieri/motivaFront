@@ -9,6 +9,12 @@ export interface PublishPostOutputBoundary {
   onImageUploaderBuilt(imageUploaderOutputModel: ImageUploaderOutputModel);
 
   /**
+   *
+   * @param {TagListOutputModel} tagsOutputModel
+   */
+  onTagsListed(tagsOutputModel: TagListOutputModel);
+
+  /**
    * Função que indica quando a imagem de um post é enviada ao servidor com sucesso.
    * @param {BannerOutputModel} bannerOutputModel
    */
@@ -31,6 +37,10 @@ export interface PublishPostOutputBoundary {
    * @param errorData
    */
   onPublishError(errorData: any);
+}
+
+export class TagListOutputModel {
+  tags: Array<string>;
 }
 
 export class ImageUploaderOutputModel {

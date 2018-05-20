@@ -7,7 +7,7 @@ import AuthPresenter from "@app/ui/auth/AuthPresenter";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import {
   BannerOutputModel, ImageUploaderOutputModel, PublishPostOutputBoundary,
-  PublishPostOutputModel
+  PublishPostOutputModel, TagListOutputModel
 } from "@app/useCases/publishPost/PublishPostOutputBoundary";
 
 @Injectable()
@@ -32,6 +32,11 @@ export default class PostPresenter extends AuthPresenter implements UserDataOutp
 
   onImageUploaderBuilt(imageUploaderOutputModel: ImageUploaderOutputModel) {
     this.postUiView.uploaderReady(imageUploaderOutputModel.imageUploader);
+  }
+
+
+  onTagsListed(tagsOutputModel: TagListOutputModel) {
+    this.postUiView.onTagsListed(tagsOutputModel.tags);
   }
 
   onBannerUploaded(bannerOutputModel: BannerOutputModel) {

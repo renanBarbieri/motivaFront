@@ -80,6 +80,12 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     this.postController.getRegisteredTags(this.postPresenter);
   }
 
+
+  onTagsListed(tags: Array<string>) {
+    this.postViewModel.allTags.length = 0;
+    tags.forEach(it => this.postViewModel.allTags.push(it));
+  }
+
   /**********************************************************
    ******************* Dados do usuário *********************
    **********************************************************/

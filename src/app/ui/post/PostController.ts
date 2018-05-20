@@ -18,11 +18,11 @@ export default class PostController extends LoggedPageController{
   }
 
   getFileUploader(outputBoundary: PublishPostOutputBoundary) {
-    this.publishPostUseCase.getBannerUploader(outputBoundary)
+    this.publishPostUseCase.buildBannerUploader(outputBoundary)
   }
 
   getRegisteredTags(outputBoundary: PublishPostOutputBoundary){
-
+    this.publishPostUseCase.getRegisteredTags(outputBoundary);
   }
 
   publishImage(outputBoundary: PublishPostOutputBoundary){

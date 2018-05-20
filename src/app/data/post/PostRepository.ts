@@ -6,15 +6,18 @@ import DataSourcePost from "app/data/model/DataSourcePost";
 import PostDataSourceMapper from "app/data/mapper/PostDataSourceMapper";
 import {PublishPostGateway} from "@app/useCases/publishPost/PublishPostGateway";
 import {FileUploader} from "ng2-file-upload";
+import Tag from "@app/entity/Tag";
+import TagDataSourceMapper from "@app/data/mapper/TagDataSourceMapper";
+import DataSourceTag from "@app/data/model/DataSourceTag";
 
 @Injectable()
 export default class PostRepository implements PostsOfTopicsInterestGateway, PublishPostGateway{
 
-  constructor(private articleApiDataSource:PostApiDataSource){}
+  constructor(private postApiDataSource:PostApiDataSource){}
 
   get(id: string): Promise<Post> {
     return new Promise<Post>(async (resolve, reject) => {
-      let article: Post = await this.articleApiDataSource.get(id);
+      let article: Post = await this.postApiDataSource.get(id);
 
       resolve(article);
     });
@@ -25,21 +28,31 @@ export default class PostRepository implements PostsOfTopicsInterestGateway, Pub
 
     return new Promise<Post[]>(async (resolve, reject) => {
       let postMapper = new PostDataSourceMapper();
-      let dataSourcePosts: DataSourcePost[] = await this.articleApiDataSource.getPostsFromTag(auth, tagId);
+      let dataSourcePosts: DataSourcePost[] = await this.postApiDataSource.getPostsFromTag(auth, tagId);
 
-      resolve(dataSourcePosts.map(function (it) {
-        return postMapper.toEntity(it);
-      }));
+      resolve(dataSourcePosts.map( it =>
+        postMapper.toEntity(it)
+      ));
     });
   }
 
 
+  getTags(auth: string): Promise< Array<Tag> > {
+    return new Promise< Array<Tag> >(async (resolve, reject) => {
+      let tagMapper = new TagDataSourceMapper();
+      let dataSourceTags: DataSourceTag[] = await this.postApiDataSource.getTags(auth);
+      resolve(dataSourceTags.map(it =>
+        tagMapper.toEntity(it)
+      ));
+    });
+  }
+
   getImageUploader(): FileUploader {
-    return this.articleApiDataSource.getImageUploader();
+    return this.postApiDataSource.getImageUploader();
   }
 
 
-  postImage(): Promise<string> {
-    return this.articleApiDataSource.publishImage();
+  postImage(auth: string): Promise<string> {
+    return this.postApiDataSource.publishImage();
   }
 }

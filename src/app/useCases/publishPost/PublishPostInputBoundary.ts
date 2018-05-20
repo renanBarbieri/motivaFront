@@ -2,10 +2,29 @@ import {PublishPostOutputBoundary} from "@app/useCases/publishPost/PublishPostOu
 
 export interface PublishPostInputBoundary {
 
-  getBannerUploader(outputBoundary: PublishPostOutputBoundary);
+  /**
+   * Create an file uploader
+   * @param {PublishPostOutputBoundary} outputBoundary
+   */
+  buildBannerUploader(outputBoundary: PublishPostOutputBoundary);
 
+  /**
+   * Get tags registered
+   * @param {PublishPostOutputBoundary} outputBoundary
+   */
+  getRegisteredTags(outputBoundary: PublishPostOutputBoundary);
+
+  /**
+   * Upload an image for this post
+   * @param {PublishPostOutputBoundary} outputBoundary
+   */
   uploadBanner(outputBoundary: PublishPostOutputBoundary);
 
+  /**
+   * Publish post
+   * @param {PublishPostInputModel} post
+   * @param {PublishPostOutputBoundary} outputBoundary
+   */
   publishPost(post: PublishPostInputModel, outputBoundary: PublishPostOutputBoundary);
 }
 

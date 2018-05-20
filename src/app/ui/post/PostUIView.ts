@@ -9,6 +9,8 @@ export interface PostUiView extends AuthUiView{
   updateUserData(username: string, levelCompleted: number, levelName: string,
                  profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>);
 
+  onTagsListed(tags: Array<string>);
+
   onImageUploadSuccess(imageUrl: string);
 
 }
