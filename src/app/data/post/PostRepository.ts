@@ -36,8 +36,8 @@ export default class PostRepository implements PostsOfTopicsInterestGateway, Pub
     });
   }
 
-  getImageUploader(): FileUploader {
-    return this.postApiDataSource.getImageUploader();
+  getImageUploader(authKey: string): FileUploader {
+    return this.postApiDataSource.getImageUploader(authKey);
   }
 
 

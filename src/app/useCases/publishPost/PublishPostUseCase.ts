@@ -17,9 +17,10 @@ export default class PublishPostUseCase implements PublishPostInputBoundary {
    * Create an file uploader
    * @param {PublishPostOutputBoundary} outputBoundary
    */
-  buildBannerUploader(outputBoundary: PublishPostOutputBoundary) {
+  async buildBannerUploader(outputBoundary: PublishPostOutputBoundary) {
     const outputModel = new ImageUploaderOutputModel();
-    outputModel.imageUploader = this.publishPostRepository.getImageUploader();
+    let tokenKey = await this.authRepository.getKey();
+    outputModel.imageUploader = this.publishPostRepository.getImageUploader(tokenKey);
     outputBoundary.onImageUploaderBuilt(outputModel);
   }
 

@@ -3,5 +3,5 @@ import {FileUploader} from "ng2-file-upload";
 
 export interface PostDataSource{
   getPostsFromTag(authKey: string, tagId: string): Promise<DataSourcePost[]>;
-  getImageUploader(): FileUploader;
+  getImageUploader(authKey: string): FileUploader;
 }

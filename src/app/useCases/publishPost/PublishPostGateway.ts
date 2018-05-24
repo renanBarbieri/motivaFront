@@ -7,7 +7,7 @@ export interface PublishPostGateway {
    * Cria um controlador para upload de imagem
    * @returns {FileUploader}
    */
-  getImageUploader(): FileUploader;
+  getImageUploader(authKey: string): FileUploader;
 
   /**
    * Publica a imagem

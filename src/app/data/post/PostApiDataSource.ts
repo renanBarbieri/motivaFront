@@ -13,14 +13,7 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
 
   fileUploader: FileUploader;
 
-  constructor(protected http: HttpClient){
-    super();
-    let allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
-    this.fileUploader = new FileUploader({
-      url: `${PostApiDataSource.dataSourceURL}/upload/post_image'`,
-      allowedMimeType: allowedMimeType
-    });
-  }
+  constructor(protected http: HttpClient){ super(); }
 
   get(id: string): Promise<Post> {
     return new Promise<Post>(async (resolve, reject) => {
@@ -60,7 +53,30 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
    *
    * @returns {FileUploader}
    */
-  getImageUploader(): FileUploader {
+  getImageUploader(authKey: string): FileUploader {
+    if(!this.fileUploader){
+      let allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
+      this.fileUploader = new FileUploader({
+        // url: `${PostApiDataSource.dataSourceURL}/upload/post_image'`,
+        // url: `http://179.174.5.138:8000/app/v1/upload/post_image'`,
+        url: `http://138.68.249.148:8000/app/v1/upload/post_image`,
+        allowedMimeType: allowedMimeType,
+        headers: [
+          {
+            name: 'Authorization',
+            value: `Bearer ${authKey}`
+          },
+          {
+            name: 'Access-Control-Allow-Origin',
+            value: '*'
+          },
+          {
+            name: 'Access-Control-Allow-Credentials',
+            value: 'true'
+          }
+        ]
+      });
+    }
     return this.fileUploader;
   }
 
@@ -70,14 +86,22 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
    */
   publishImage(): Promise<string>{
     return new Promise<string>(async (resolve, reject) => {
-      resolve("http://www.imgglobalinfotech.com/images/single-pages/banner-design.png");
+      // resolve("http://www.imgglobalinfotech.com/images/single-pages/banner-design.png");
       //TODO: descomentar quando estiver pronto
-      // this.fileUploader.uploadItem(this.getLastFile());
-      // this.fileUploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      //   const responsePath = JSON.parse(response);
-      //   // console.log(response, responsePath);// the url will be in the response
-      //   resolve(responsePath);
-      // };
+      this.fileUploader.onBuildItemForm = (fileItem: any, form: any) => {
+        fileItem.alias = "image_file";
+        form.append('post_id', '2');
+      };
+      this.fileUploader.uploadItem(this.getLastFile());
+      this.fileUploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        // {"message": "Upload realizado com sucesso", "filename": "/media/post_2_image.jpg"}}
+        // const responsePath = JSON.parse(response);
+        console.log(response);// the url will be in the response
+        // resolve(responsePath);
+      };
+      this.fileUploader.onErrorItem = (item: any, response: any, status: any, headers: any) => {
+        console.log(response);
+      }
     });
   }
 
