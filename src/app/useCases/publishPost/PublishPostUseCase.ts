@@ -2,10 +2,11 @@ import {Injectable} from "@angular/core";
 import {PublishPostInputBoundary, PublishPostInputModel} from "@app/useCases/publishPost/PublishPostInputBoundary";
 import {
   BannerOutputModel, ImageUploaderOutputModel,
-  PublishPostOutputBoundary
+  PublishPostOutputBoundary, PublishPostOutputModel
 } from "@app/useCases/publishPost/PublishPostOutputBoundary";
 import PostRepository from "@app/data/post/PostRepository";
 import AuthRepository from "@app/data/auth/AuthRepository";
+import Post from "@app/entity/Post";
 
 @Injectable()
 export default class PublishPostUseCase implements PublishPostInputBoundary {
@@ -42,10 +43,26 @@ export default class PublishPostUseCase implements PublishPostInputBoundary {
 
   /**
    * Publish post
-   * @param {PublishPostInputModel} post
+   * @param {PublishPostInputModel} postInput
    * @param {PublishPostOutputBoundary} outputBoundary
    */
-  publishPost(post: PublishPostInputModel, outputBoundary: PublishPostOutputBoundary) {
-
+  async publishPost(postInput: PublishPostInputModel, outputBoundary: PublishPostOutputBoundary) {
+    try {
+      let tokenKey = await this.authRepository.getKey();
+      let post: Post = new Post();
+      post.title = postInput.title;
+      post.subtitle = postInput.text.substr(0, 250);
+      post.content = postInput.text;
+      // post.tags = ["android"];
+      post.headerImage = postInput.bannerURL;
+      let postId: number = await this.publishPostRepository.publishPost(tokenKey, post);
+      let outputModel: PublishPostOutputModel = new PublishPostOutputModel();
+      outputModel.postId = postId;
+      console.log(outputModel);
+      outputBoundary.onPublishSuccess(outputModel);
+    } catch (error){
+      console.log(error);
+      outputBoundary.onPublishError(error);
+    }
   }
 }

@@ -7,6 +7,7 @@ import LoggedPageController from "@app/ui/logged/LoggedPageController";
 import PublishPostUseCase from "@app/useCases/publishPost/PublishPostUseCase";
 import {PublishPostOutputBoundary} from "@app/useCases/publishPost/PublishPostOutputBoundary";
 import ManageTagUseCase from "@app/useCases/tag/ManageTagUseCase";
+import {PublishPostInputModel} from "@app/useCases/publishPost/PublishPostInputBoundary";
 
 @Injectable()
 export default class PostController extends LoggedPageController{
@@ -31,9 +32,12 @@ export default class PostController extends LoggedPageController{
     this.publishPostUseCase.uploadBanner(outputBoundary);
   }
 
-  //TODO: publish tags
-
-  publishPost(title: string, tags: Array<string>, text: string, bannerURL: string){
-
+  publishPost(title: string, tags: Array<string>, text: string, bannerURL: string, outputBoundary: PublishPostOutputBoundary){
+    let inputModel = new PublishPostInputModel();
+    inputModel.title = title;
+    inputModel.tags = tags;
+    inputModel.text = text;
+    inputModel.bannerURL = bannerURL;
+    this.publishPostUseCase.publishPost(inputModel, outputBoundary);
   }
 }

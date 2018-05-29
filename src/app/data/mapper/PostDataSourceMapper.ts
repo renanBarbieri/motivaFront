@@ -1,25 +1,38 @@
 import {DataSourceMapper} from "./DataSourceMapper";
 import Post from "@app/entity/Post";
-import DataSourcePost from "@app/data/model/DataSourcePost";
+import DataSourcePostCard from "@app/data/model/DataSourcePostCard";
 import User from "@app/entity/User";
 import DataSourcePostOwner from "@app/data/model/DataSourceUserProfile";
+import DataSourcePost from "@app/data/model/DataSourcePost";
+import PostCardDataSourceMapper from "@app/data/mapper/PostCardDataSourceMapper";
 
 export default class PostDataSourceMapper implements DataSourceMapper<DataSourcePost, Post>{
 
+
   toEntity(dataSource: DataSourcePost): Post {
-    let post = new Post();
+      let post = new Post();
 
-    post.id = dataSource.id.toString();
-    post.title = dataSource.title;
-    post.subtitle = dataSource.subtitle;
-    post.favorites = dataSource.views;
-    post.likes = dataSource.likes;
-    post.headerImage = dataSource.image_url;
-    post.owner = PostDataSourceMapper.fromOwnerToUser(dataSource.author);
-    post.publishDate = new Date(dataSource.date);
-    post.editedDate = new Date(dataSource.edited_at);
+      post.id = dataSource.id.toString();
+      post.title = dataSource.title;
+      post.subtitle = dataSource.description;
+      post.favorites = dataSource.views;
+      post.likes = dataSource.likes;
+      post.headerImage = dataSource.image_url;
+      post.owner = PostDataSourceMapper.fromOwnerToUser(dataSource.author);
+      post.publishDate = new Date(dataSource.date);
+      post.editedDate = new Date(dataSource.edited_at);
 
-    return post;
+      return post;
+  }
+
+  toDataSource(entity: Post): DataSourcePost {
+    let dataSoucePost = new DataSourcePost();
+    dataSoucePost.title = entity.title;
+    dataSoucePost.description = entity.subtitle;
+    dataSoucePost.text = entity.content;
+    dataSoucePost.image_url = entity.headerImage;
+
+    return dataSoucePost;
   }
 
   private static fromOwnerToUser(owner: DataSourcePostOwner): User{
@@ -29,10 +42,5 @@ export default class PostDataSourceMapper implements DataSourceMapper<DataSource
     user.username = owner.first_name+" "+owner.last_name;
 
     return user;
-  }
-
-
-  toDataSource(entity: Post): DataSourcePost {
-    throw new Error("Method not implemented.");
   }
 }

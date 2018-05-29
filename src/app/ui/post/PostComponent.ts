@@ -7,7 +7,7 @@ import PostController from "@app/ui/post/PostController";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import PostPresenter from "@app/ui/post/PostPresenter";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
-import {FileItem, FileLikeObject, FileUploader} from 'ng2-file-upload';
+import {FileLikeObject, FileUploader} from 'ng2-file-upload';
 import {DomSanitizer} from '@angular/platform-browser';
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
 import {map, startWith} from "rxjs/operators";
@@ -258,7 +258,8 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
       this.postViewModel.title,
       this.postViewModel.tags,
       this.postViewModel.postHtmlText,
-      imageUrl
+      imageUrl,
+      this.postPresenter
     )
   }
 

@@ -4,7 +4,7 @@ import DataSourceSearch from "@app/data/model/DataSourceSearch";
 import Tag from "@app/entity/Tag";
 import Post from "@app/entity/Post";
 import UserProfileDataSourceMapper from "@app/data/mapper/UserProfileDataSourceMapper";
-import PostDataSourceMapper from "@app/data/mapper/PostDataSourceMapper";
+import PostDataSourceMapper from "@app/data/mapper/PostCardDataSourceMapper";
 
 export default class SearchDataSourceMapper{
 
