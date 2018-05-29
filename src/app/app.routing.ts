@@ -5,6 +5,7 @@ import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {PostComponent} from "@app/ui/post/PostComponent";
 import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
+import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
 
 export const appRoutes: Routes = [
   {
@@ -21,7 +22,11 @@ export const appRoutes: Routes = [
     component: PostComponent
   },
   {
-    path: 'profilePic/:username',
+    path: 'post/:postId',
+    component: ViewPostComponent
+  },
+  {
+    path: 'profile/:username',
     component: ProfileComponent
   },
   {

@@ -1,0 +1,44 @@
+<div class="pageContent" fxLayout="row">
+  <div class="leftSideBar">
+    <app-left-sidebar
+      [username]="viewPostViewModel.username"
+      [levelCompleted]="viewPostViewModel.levelCompleted"
+      [levelName]="viewPostViewModel.levelName"
+      [profileImage]="viewPostViewModel.profileImage"
+      [rewards]="viewPostViewModel.rewards"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
+      (onLogoutClick)="logout()"
+    >
+    </app-left-sidebar>
+  </div>
+  <div class="pageCenter">
+    <app-toolbar
+      [toolbarState]="viewPostViewModel.postToolbarState"
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"></app-toolbar>
+    <div class="content">
+      <div class="post-header-image">
+        <div class="post-header-frame">
+          <img [src]="viewPostViewModel.postImageUrl" class="post-image"/>
+        </div>
+      </div>
+      <div class="postTitleBox">
+        {{viewPostViewModel.title}}
+      </div>
+      <div class="postTagsBox">
+        <mat-chip-list #chipList>
+          <mat-chip
+            *ngFor="let tag of viewPostViewModel.tags">
+            {{tag}}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="postContentBox">
+
+      </div>
+    </div>
+  </div>
+</div>

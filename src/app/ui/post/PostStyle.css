@@ -5,7 +5,7 @@
 
 .drop-zone {
    border: dotted 3px lightgray;
-   height: 18em;
+   height: 22em;
    justify-content: center;
    display: flex;
    flex-direction: column;
