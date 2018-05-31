@@ -30,19 +30,28 @@
 }
 
 .postTitleBox {
-  flex: 1;
+  flex: 0.1;
   /*height: 2em;*/
   justify-content: flex-start;
   align-items: center;
   display: flex;
-  flex-direction: row;
-  font-weight: bold;
+  flex-direction: column;
 }
 
 .postTitle {
   flex: 1;
-  height: 100%;
-  font-size: 1.5em;
+  font-size: 2.8em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+}
+
+.postReadTime {
+  font-size: 0.8em;
+}
+
+h1 {
+  font-size: 2.2em;
 }
 
 .postTagsBox {
@@ -62,4 +71,5 @@
 .postContentBox {
   flex: 1;
   display: flex;
+  flex-direction: column;
 }

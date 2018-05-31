@@ -26,7 +26,12 @@
         </div>
       </div>
       <div class="postTitleBox">
-        {{viewPostViewModel.title}}
+        <div class="postTitle">
+          {{viewPostViewModel.title}}
+        </div>
+        <div class="postReadTime">
+          Tempo de leitura: {{viewPostViewModel.estimatedMinutes}} min
+        </div>
       </div>
       <div class="postTagsBox">
         <mat-chip-list #chipList>
@@ -36,8 +41,7 @@
           </mat-chip>
         </mat-chip-list>
       </div>
-      <div class="postContentBox">
-
+      <div class="postContentBox" [innerHTML]="viewPostViewModel.postHtmlText">
       </div>
     </div>
   </div>
