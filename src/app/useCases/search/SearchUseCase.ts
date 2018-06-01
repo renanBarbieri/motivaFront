@@ -45,6 +45,7 @@ export default class SearchUseCase implements SearchInputBoundary {
     searchOutput.posts = posts.map(function (it) {
       let postView = new PostItem();
       postView.entityReference = it.id.toString();
+      postView.authorId = it.owner.id;
       postView.articleImage = it.headerImage;
       postView.authorImage = it.owner.avatar;
       postView.author = it.owner.username;

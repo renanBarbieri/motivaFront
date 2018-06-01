@@ -22,7 +22,8 @@
       <div *ngFor="let topicName of homeViewModel.topicsKeys">
         <app-topic-articles
           [topicName]="topicName"
-          [articles]="homeViewModel.topicsList.get(topicName)">
+          [articles]="homeViewModel.topicsList.get(topicName)"
+          (onCardClick)="onCardClick($event)">
         </app-topic-articles>
       </div>
     </div>

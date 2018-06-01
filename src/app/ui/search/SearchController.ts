@@ -24,4 +24,8 @@ export default class SearchController extends LoggedPageController {
     this.routerSearch.navigate(["/profile/".concat(username)]);
   }
 
+  openPost(postId: string, username: string) {
+    this.routerSearch.navigate(["/post/".concat(username, "/", postId)]);
+  }
+
 }

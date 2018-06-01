@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import PostItem from "app/ui/models/PostItem";
 
 @Component({
@@ -6,18 +6,25 @@ import PostItem from "app/ui/models/PostItem";
   templateUrl: './topicArticlesView.html',
   styleUrls: ['./topicArticlesStyle.css']
 })
-export class TopicArticlesComponent implements OnInit {
+export class TopicArticlesComponent implements OnInit{
   @Input()
   topicName: string;
 
   @Input()
   articles: PostItem[];
 
+
+  @Output() onCardClick = new EventEmitter();
+
   public articleIndexes: Array<number> = [];
 
   ngOnInit(): void {
-    for (let idx = 0; idx < this.articles.length; idx++) {
+    for(let idx = 0; idx < this.articles.length; idx++){
       this.articleIndexes.push(idx)
     }
+  }
+
+  onAppCardClick(postId: string, username: string) {
+    this.onCardClick.emit({post: postId, username: username});
   }
 }

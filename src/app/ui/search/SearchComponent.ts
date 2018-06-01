@@ -149,8 +149,8 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
     console.log(`cliquei no tópico ${topicId}`)
   }
 
-  onPostClick() {
-    console.log(`cliquei no post`)
+  onPostClick(postId: string, username: string) {
+    this.searchController.openPost(postId, username);
   }
 
   logout() {

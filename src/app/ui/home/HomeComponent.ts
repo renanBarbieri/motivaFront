@@ -85,12 +85,18 @@ export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView
     this.homeController.getResultsOfSearch($textToSearch)
   }
 
+  onCardClick($postValues) {
+    console.log($postValues.post);
+    console.log($postValues.username);
+    this.homeController.openPost($postValues.post, $postValues.username);
+  }
+
   logout() {
     super.logout(this.homePresenter);
   }
 
   showErrorAlert(message: String) {
-
+    alert(message);
   }
 
   private clearHomeViewLists() {

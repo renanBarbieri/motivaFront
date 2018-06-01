@@ -27,4 +27,8 @@ export default class HomeController extends LoggedPageController {
     console.log(searchText);
     this.routerHome.navigate(['/search', {q: searchText}]);
   }
+
+  openPost(postId: string, username: string) {
+    this.routerHome.navigate(["/post/".concat(username, "/", postId)]);
+  }
 }

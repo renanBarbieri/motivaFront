@@ -31,6 +31,8 @@ export default class PostsOfTopicsInterestUseCase implements PostsOfTopicsIntere
           let cardPost = new PostItem();
           cardPost.articleImage = it.headerImage;
           cardPost.authorImage = it.owner.avatar;
+          cardPost.authorId = it.owner.id;
+          cardPost.entityReference = it.id;
           cardPost.author = it.owner.username;
           cardPost.title = it.title;
           cardPost.views = it.favorites;

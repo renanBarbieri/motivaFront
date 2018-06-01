@@ -1,12 +1,12 @@
 export abstract class Entity {
 
-  protected _id: String;
+  protected _id: string;
 
-  get id(): String {
+  get id(): string {
     return this._id;
   }
 
-  set id(value: String) {
+  set id(value: string) {
     this._id = value;
   }
 }
