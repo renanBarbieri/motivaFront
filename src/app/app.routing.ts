@@ -22,7 +22,7 @@ export const appRoutes: Routes = [
     component: PostComponent
   },
   {
-    path: 'post/:postId',
+    path: 'post/:username/:postId',
     component: ViewPostComponent
   },
   {

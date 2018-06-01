@@ -17,15 +17,27 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
 
   constructor(protected http: HttpClient){ super(); }
 
-  get(id: string): Promise<Post> {
-    return new Promise<Post>(async (resolve, reject) => {
+  get(authKey: string, username: string, id: string): Promise<DataSourcePost> {
+    let headers = new HttpHeaders({
+      "Authorization": `Bearer ${authKey}`
+    });
 
-      let article = new Post();
+    let url = `${PostApiDataSource.dataSourceURL}/post/${username}/${id}`;
+    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePostResponse>>(url, {headers});
 
-      article.title = "Sucesso";
-      article.publishDate = new Date();
+    return new Promise<DataSourcePost>(async (resolve, reject) => {
 
-      resolve(article);
+      getPostsRequest.subscribe( response => {
+          console.log(response);
+          if(response.status){
+            resolve(response.result.post)
+          }
+        },
+        error => {
+          console.log("erro http");
+          reject(error);
+        }
+      );
     });
   }
 
@@ -41,8 +53,6 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
     return new Promise<DataSourcePostCard[]>(async (resolve, reject) => {
 
       getPostsRequest.subscribe( response => {
-          console.log(response);
-
           if(response.status){
             resolve(response.result.posts)
           }

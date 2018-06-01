@@ -12,6 +12,7 @@ export default class Post extends Entity{
   private _editedDate: Date;
   private _owner: User;
   private _headerImage: string;
+  private _estimatedTime: number;
 
 
   get title(): string {
@@ -86,5 +87,14 @@ export default class Post extends Entity{
 
   set likes(value: number) {
     this._likes = value;
+  }
+
+
+  get estimatedTime(): number {
+    return this._estimatedTime;
+  }
+
+  set estimatedTime(value: number) {
+    this._estimatedTime = value;
   }
 }

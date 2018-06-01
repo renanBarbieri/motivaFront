@@ -4,12 +4,12 @@ import RewardItem from "@app/ui/models/RewardItem";
 import {ScreenState} from "@app/ui/ScreenState";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import LoggedComponent from "@app/ui/logged/LoggedComponent";
-import PublishPostUseCase from "@app/useCases/publishPost/PublishPostUseCase";
-import ManageTagUseCase from "@app/useCases/tag/ManageTagUseCase";
 import ViewPostController from "@app/ui/viewPost/ViewPostController";
 import ViewPostPresenter from "@app/ui/viewPost/ViewPostPresenter";
 import ViewPostViewModel from "@app/ui/viewPost/ViewPostViewModel";
 import {ViewPostUiView} from "@app/ui/viewPost/ViewPostUIView";
+import {ActivatedRoute} from "@angular/router";
+import PostUseCase from "@app/useCases/post/PostUseCase";
 
 @Component({
   selector: 'app-post',
@@ -21,8 +21,7 @@ import {ViewPostUiView} from "@app/ui/viewPost/ViewPostUIView";
     { provide: ViewPostViewModel, useClass: ViewPostViewModel },
     { provide: UserDataUseCase, useClass: UserDataUseCase },
     { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: PublishPostUseCase, useClass: PublishPostUseCase },
-    { provide: ManageTagUseCase, useClass: ManageTagUseCase }
+    { provide: PostUseCase, useClass: PostUseCase },
   ]
 })
 export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPostUiView{
@@ -33,8 +32,10 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
   @Output()
   authStateLogged = new EventEmitter<boolean>();
 
-  constructor( private viewPostPresenter: ViewPostPresenter, private viewPostController: ViewPostController,
-               private viewPostViewModel: ViewPostViewModel){
+  constructor( private viewPostPresenter: ViewPostPresenter,
+               private viewPostController: ViewPostController,
+               private viewPostViewModel: ViewPostViewModel,
+               private route: ActivatedRoute){
     super(viewPostController);
   }
 
@@ -56,6 +57,11 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     if(logged){
       this.authStateLogged.emit(true);
       this.viewPostController.getUserData(this.viewPostPresenter);
+      this.viewPostController.getPostData(
+        this.route.snapshot.params.username,
+        this.route.snapshot.params.postId,
+        this.viewPostPresenter
+      );
     }
     else {
       this.authStateLogged.emit(false);
@@ -90,6 +96,15 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     newRewards.forEach((it) => {
       this.viewPostViewModel.rewards.push(it);
     });
+  }
+
+
+  updatePostData(title: string, estimateTime: string, tags: Array<string>, text: string, bannerImage: string) {
+    this.viewPostViewModel.title = title;
+    this.viewPostViewModel.estimatedMinutes = estimateTime;
+    this.viewPostViewModel.tags = tags;
+    this.viewPostViewModel.postImageUrl = bannerImage;
+    this.viewPostViewModel.postHtmlText = text;
   }
 
   /**
