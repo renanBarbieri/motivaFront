@@ -8,7 +8,7 @@ import {PostOutputBoundary, PostOutputModel} from "@app/useCases/post/PostOutput
 
 @Injectable()
 export default class ViewPostPresenter extends AuthPresenter implements PostOutputBoundary, UserDataOutputBoundary,
-    AuthOutputBoundary{
+  AuthOutputBoundary {
   private viewPostUiView: ViewPostUiView;
 
   onViewInit(view: ViewPostUiView) {
@@ -17,9 +17,9 @@ export default class ViewPostPresenter extends AuthPresenter implements PostOutp
   }
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-    this.viewPostUiView.updateUserData( responseData.username, responseData.levelCompleted,
-                              responseData.levelName, responseData.profileImage,
-                              responseData.rewards, responseData.tags);
+    this.viewPostUiView.updateUserData(responseData.username, responseData.levelCompleted,
+      responseData.levelName, responseData.profileImage,
+      responseData.rewards, responseData.tags);
   }
 
   onUserDataError(errorData: any) {
@@ -29,13 +29,13 @@ export default class ViewPostPresenter extends AuthPresenter implements PostOutp
   onGetPostDataSuccess(postOutput: PostOutputModel) {
 
     let estimatedRead: string;
-    const decimalTime = (postOutput.estimateTime)%1;
+    const decimalTime = (postOutput.estimateTime) % 1;
 
-    if(decimalTime < 0.5 && (postOutput.estimateTime) >= 1){
+    if (decimalTime < 0.5 && (postOutput.estimateTime) >= 1) {
       estimatedRead = (postOutput.estimateTime).toFixed(0);
     }
     else {
-      if(postOutput.estimateTime < 1){
+      if (postOutput.estimateTime < 1) {
         estimatedRead = "menos de ".concat((postOutput.estimateTime + 1).toFixed(0));
       }
       else {

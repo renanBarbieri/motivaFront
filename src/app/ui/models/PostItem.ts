@@ -1,4 +1,3 @@
-
 export default class PostItem {
   entityReference: string;
   author: string;

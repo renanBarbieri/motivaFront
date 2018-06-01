@@ -6,9 +6,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import DataSourceLogin from "@app/data/model/DataSourceLogin";
 
 @Injectable()
-export default class AuthApiDataSource extends DataSourceConfig implements AuthApiSource{
+export default class AuthApiDataSource extends DataSourceConfig implements AuthApiSource {
 
-  constructor(protected http: HttpClient){
+  constructor(protected http: HttpClient) {
     super();
   }
 
@@ -22,10 +22,10 @@ export default class AuthApiDataSource extends DataSourceConfig implements AuthA
 
     return new Promise<DataSourceLogin>(async (resolve, reject) => {
 
-      getRequest.subscribe( response => {
+      getRequest.subscribe(response => {
           console.log(response);
 
-          if(response.status){
+          if (response.status) {
             resolve(response.result)
           }
         }

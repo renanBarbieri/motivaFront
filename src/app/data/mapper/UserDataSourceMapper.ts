@@ -5,7 +5,7 @@ import LevelDataSourceMapper from "@app/data/mapper/LevelDataSourceMapper";
 import RewardDataSourceMapper from "@app/data/mapper/RewardDataSourceMapper";
 import TagDataSourceMapper from "@app/data/mapper/TagDataSourceMapper";
 
-export default class UserDataSourceMapper implements DataSourceMapper<DataSourceUser, User>{
+export default class UserDataSourceMapper implements DataSourceMapper<DataSourceUser, User> {
 
   toEntity(dataSource: DataSourceUser): User {
     let user = new User();
@@ -13,7 +13,7 @@ export default class UserDataSourceMapper implements DataSourceMapper<DataSource
     let rewardMapper = new RewardDataSourceMapper();
     let tagMapper = new TagDataSourceMapper();
 
-    user.name = dataSource.first_name+" "+dataSource.last_name;
+    user.name = dataSource.first_name + " " + dataSource.last_name;
     user.description = dataSource.description;
     user.username = dataSource.username;
     user.avatar = dataSource.avatar_url;
@@ -32,7 +32,6 @@ export default class UserDataSourceMapper implements DataSourceMapper<DataSource
 
     return user;
   }
-
 
 
   toDataSource(entity: User): DataSourceUser {

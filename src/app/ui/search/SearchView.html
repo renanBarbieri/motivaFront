@@ -1,73 +1,73 @@
 <div class="pageContent" fxLayout="row">
   <div class="leftSideBar">
-      <app-left-sidebar
-        [username]="searchViewModel.username"
-        [levelCompleted]="searchViewModel.levelCompleted"
-        [levelName]="searchViewModel.levelName"
-        [profileImage]="searchViewModel.profileImage"
-        [rewards]="searchViewModel.rewards"
-        (onProfileClick)="openProfilePage()"
-        (onFavoritesClick)="openFavoritesPage()"
-        (onSettingsClick)="openSettingsPage()"
-        (onLogoutClick)="logout()"
-      >
-      </app-left-sidebar>
+    <app-left-sidebar
+      [username]="searchViewModel.username"
+      [levelCompleted]="searchViewModel.levelCompleted"
+      [levelName]="searchViewModel.levelName"
+      [profileImage]="searchViewModel.profileImage"
+      [rewards]="searchViewModel.rewards"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
+      (onLogoutClick)="logout()"
+    >
+    </app-left-sidebar>
   </div>
   <div class="pageCenter">
-      <app-toolbar
-        [toolbarState]="searchToolbarState"
-        (searchInputEvent)="onSearchInput($event)"
-        (homeClickEvent)="openHomePage()"
-        (searchClickEvent)="openSearchPage()"
-        (newPostClickEvent)="openNewPostPage()"
+    <app-toolbar
+      [toolbarState]="searchToolbarState"
+      (searchInputEvent)="onSearchInput($event)"
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"
       [previousSearch]="searchQuery"></app-toolbar>
-      <div class="content">
-        <mat-tab-group>
-          <mat-tab label="Usuários">
-            <div class="tabContent">
-              <div class="listUserResult" fxLayout="row">
-                <div *ngFor="let index of userIndexes">
-                  <profile-pic
-                    (click)="onProfileClick()"
-                    [id]="searchViewModel.userResultList[index].entityReference"
-                    [name] = "searchViewModel.userResultList[index].username"
-                    [avatar] = "searchViewModel.userResultList[index].avatar" >
-                  </profile-pic>
-                </div>
+    <div class="content">
+      <mat-tab-group>
+        <mat-tab label="Usuários">
+          <div class="tabContent">
+            <div class="listUserResult" fxLayout="row">
+              <div *ngFor="let index of userIndexes">
+                <profile-pic
+                  (click)="onProfileClick()"
+                  [id]="searchViewModel.userResultList[index].entityReference"
+                  [name]="searchViewModel.userResultList[index].username"
+                  [avatar]="searchViewModel.userResultList[index].avatar">
+                </profile-pic>
               </div>
             </div>
-          </mat-tab>
-          <mat-tab label="Tópicos">
-            <div class="tabContent">
-              <mat-chip-list class="listTopicResult" fxLayout="row">
-                <mat-chip color="primary" class="chipTopic" *ngFor="let index of topicIndexes"
-                          title="{{searchViewModel.topicResultList[index].name}}"
-                          (click)="onTopicClick(searchViewModel.topicResultList[index].entityReference)">
-                    {{searchViewModel.topicResultList[index].name}}
-                </mat-chip>
-              </mat-chip-list>
-            </div>
-          </mat-tab>
-          <mat-tab label="Posts">
-            <div class="tabContent">
-              <div class="listPostResult" fxLayout="row">
-                <div *ngFor="let index of postIndexes">
-                  <app-card
-                    (click)="onPostClick()"
-                    [title]="searchViewModel.postResultList[index].title"
-                    [thumbnail] = "searchViewModel.postResultList[index].articleImage"
-                    [avatar] = "searchViewModel.postResultList[index].authorImage"
-                    [subtitle] = "searchViewModel.postResultList[index].author"
-                    [starCount] = "searchViewModel.postResultList[index].likes"
-                    [favCount] = "searchViewModel.postResultList[index].views"
-                    [date] = "searchViewModel.postResultList[index].publishDate" >
-                  </app-card>
-                </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Tópicos">
+          <div class="tabContent">
+            <mat-chip-list class="listTopicResult" fxLayout="row">
+              <mat-chip color="primary" class="chipTopic" *ngFor="let index of topicIndexes"
+                        title="{{searchViewModel.topicResultList[index].name}}"
+                        (click)="onTopicClick(searchViewModel.topicResultList[index].entityReference)">
+                {{searchViewModel.topicResultList[index].name}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-tab>
+        <mat-tab label="Posts">
+          <div class="tabContent">
+            <div class="listPostResult" fxLayout="row">
+              <div *ngFor="let index of postIndexes">
+                <app-card
+                  (click)="onPostClick()"
+                  [title]="searchViewModel.postResultList[index].title"
+                  [thumbnail]="searchViewModel.postResultList[index].articleImage"
+                  [avatar]="searchViewModel.postResultList[index].authorImage"
+                  [subtitle]="searchViewModel.postResultList[index].author"
+                  [starCount]="searchViewModel.postResultList[index].likes"
+                  [favCount]="searchViewModel.postResultList[index].views"
+                  [date]="searchViewModel.postResultList[index].publishDate">
+                </app-card>
               </div>
             </div>
-          </mat-tab>
-        </mat-tab-group>
-      </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
   </div>
   <div class="rightSideBar">
 

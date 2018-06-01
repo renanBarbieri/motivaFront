@@ -6,7 +6,7 @@ import RewardItem from "@app/ui/models/RewardItem";
   templateUrl: './LeftSideBarView.html',
   styleUrls: ['./LeftSideBarStyle.css']
 })
-export class LeftSideBarComponent implements OnChanges{
+export class LeftSideBarComponent implements OnChanges {
 
   @Input()
   username: string;
@@ -62,13 +62,13 @@ export class LeftSideBarComponent implements OnChanges{
 
 
   ngOnChanges(): void {
-    for(let idx = 0; idx < this.rewards.length; idx++){
+    for (let idx = 0; idx < this.rewards.length; idx++) {
       this.rewardIndexes.push(idx)
     }
   }
 
-  openMenuItemClick(id:string) {
-    switch(id){
+  openMenuItemClick(id: string) {
+    switch (id) {
       case 'profile':
         console.log("open profilePic click");
         this.onProfileClick.emit();

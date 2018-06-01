@@ -1,3 +1,3 @@
-export interface UIContract{
+export interface UIContract {
   showErrorAlert(message: String);
 }

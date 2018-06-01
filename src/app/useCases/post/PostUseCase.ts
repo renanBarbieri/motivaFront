@@ -8,7 +8,8 @@ import {PostOutputBoundary, PostOutputModel} from "@app/useCases/post/PostOutput
 export default class PostUseCase implements PostInputBoundary {
 
   constructor(private publishPostRepository: PostRepository,
-              private authRepository: AuthRepository){}
+              private authRepository: AuthRepository) {
+  }
 
 
   async retrievePostData(postInputModel: PostInputModel, outputBoundary: PostOutputBoundary) {
@@ -26,7 +27,7 @@ export default class PostUseCase implements PostInputBoundary {
       outputModel.text = post.content;
       outputModel.bannerImage = post.headerImage;
       outputBoundary.onGetPostDataSuccess(outputModel);
-    } catch (err){
+    } catch (err) {
       outputBoundary.onGetPostDataError(err);
     }
 

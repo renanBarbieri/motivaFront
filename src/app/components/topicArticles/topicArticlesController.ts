@@ -6,7 +6,7 @@ import PostItem from "app/ui/models/PostItem";
   templateUrl: './topicArticlesView.html',
   styleUrls: ['./topicArticlesStyle.css']
 })
-export class TopicArticlesComponent implements OnInit{
+export class TopicArticlesComponent implements OnInit {
   @Input()
   topicName: string;
 
@@ -16,7 +16,7 @@ export class TopicArticlesComponent implements OnInit{
   public articleIndexes: Array<number> = [];
 
   ngOnInit(): void {
-    for(let idx = 0; idx < this.articles.length; idx++){
+    for (let idx = 0; idx < this.articles.length; idx++) {
       this.articleIndexes.push(idx)
     }
   }

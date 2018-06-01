@@ -8,26 +8,26 @@ import DataSourceLoggedUserResponse from "@app/data/model/DataSourceLoggedUserRe
 import DataSourcePublicUserResponse from "@app/data/model/DataSourcePublicUserResponse";
 
 @Injectable()
-export default class UserApiDataSource extends DataSourceConfig implements UserDataSource{
+export default class UserApiDataSource extends DataSourceConfig implements UserDataSource {
 
-  constructor(protected http: HttpClient){
+  constructor(protected http: HttpClient) {
     super();
   }
 
-  getData(authKey: string): Promise<DataSourceUser>{
+  getData(authKey: string): Promise<DataSourceUser> {
     let headers = new HttpHeaders({
       "Authorization": `Bearer ${authKey}`
     });
 
     let getRequest = this.http.get<DataSourceResponse<DataSourceLoggedUserResponse>>(
-        UserApiDataSource.dataSourceURL.concat("/user"), {headers});
+      UserApiDataSource.dataSourceURL.concat("/user"), {headers});
 
     return new Promise<DataSourceUser>(async (resolve, reject) => {
 
-      getRequest.subscribe( response => {
+      getRequest.subscribe(response => {
           console.log(response);
 
-          if(response.status){
+          if (response.status) {
             resolve(response.result.logged_in_user)
           }
         },
@@ -50,10 +50,10 @@ export default class UserApiDataSource extends DataSourceConfig implements UserD
 
     return new Promise<DataSourceUser>(async (resolve, reject) => {
 
-      getRequest.subscribe( response => {
+      getRequest.subscribe(response => {
           console.log(response);
 
-          if(response.status){
+          if (response.status) {
             resolve(response.result.user)
           }
         },

@@ -1,6 +1,6 @@
 import {PostsOfTopicsInterestOutputBoundary} from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 
-export interface PostsOfTopicsInterestInputBoundary{
+export interface PostsOfTopicsInterestInputBoundary {
   getPosts(requestData: PostsOfTopicsInterestInputModel, presenter: PostsOfTopicsInterestOutputBoundary)
 }
 

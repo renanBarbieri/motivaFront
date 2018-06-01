@@ -12,11 +12,11 @@ export default class SearchController extends LoggedPageController {
   constructor(private searchUseCase: SearchUseCase,
               private userSearch: UserDataUseCase,
               private authSearch: AuthUseCase,
-              private routerSearch: Router){
+              private routerSearch: Router) {
     super(userSearch, authSearch, routerSearch);
   }
 
-  getResultsOfSearch(searchText: string, outputBoundary: SearchOutputBoundary){
+  getResultsOfSearch(searchText: string, outputBoundary: SearchOutputBoundary) {
     this.searchUseCase.searchInput(searchText, outputBoundary);
   }
 

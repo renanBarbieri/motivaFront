@@ -11,9 +11,9 @@ import TopicItem from "@app/ui/models/TopicItem";
 import AuthRepository from "@app/data/auth/AuthRepository";
 
 @Injectable()
-export default class SearchUseCase implements SearchInputBoundary{
+export default class SearchUseCase implements SearchInputBoundary {
 
-  constructor(private searchRepository: SearchRepository, private authRepository: AuthRepository){
+  constructor(private searchRepository: SearchRepository, private authRepository: AuthRepository) {
 
   }
 
@@ -27,14 +27,14 @@ export default class SearchUseCase implements SearchInputBoundary{
 
     let searchOutput = new SearchOutputModel();
 
-    searchOutput.tags = tags.map(function(it){
+    searchOutput.tags = tags.map(function (it) {
       let tagView = new TopicItem();
       tagView.entityReference = it.id.toString();
       tagView.name = it.name;
       return tagView;
     });
 
-    searchOutput.users = users.map(function(it){
+    searchOutput.users = users.map(function (it) {
       let userView = new UserItem();
       userView.entityReference = it.username;
       userView.username = it.username;
@@ -42,7 +42,7 @@ export default class SearchUseCase implements SearchInputBoundary{
       return userView;
     });
 
-    searchOutput.posts = posts.map(function(it){
+    searchOutput.posts = posts.map(function (it) {
       let postView = new PostItem();
       postView.entityReference = it.id.toString();
       postView.articleImage = it.headerImage;

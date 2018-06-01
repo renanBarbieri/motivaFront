@@ -1,11 +1,12 @@
 import RewardItem from "@app/ui/models/RewardItem";
 
-export interface UserDataOutputBoundary{
+export interface UserDataOutputBoundary {
   onUserDataSuccess(responseData: UserDataOutputModel);
+
   onUserDataError(errorData: any);
 }
 
-export class UserDataOutputModel{
+export class UserDataOutputModel {
   public username: string;
   public levelCompleted: number;
   public levelName: string;

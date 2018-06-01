@@ -18,13 +18,13 @@ import PostsOfTopicsInterestUseCase from "@app/useCases/postsOfTopicsInterest/Po
   templateUrl: './ProfileView.html',
   styleUrls: ['./ProfileStyle.css'],
   providers: [
-    { provide: ProfileController, useClass: ProfileController },
-    { provide: ProfilePresenter, useClass: ProfilePresenter },
-    { provide: ProfileViewModel, useClass: ProfileViewModel },
-    { provide: UserDataUseCase, useClass: UserDataUseCase },
-    { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: SearchUseCase, useClass: SearchUseCase},
-    { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase }
+    {provide: ProfileController, useClass: ProfileController},
+    {provide: ProfilePresenter, useClass: ProfilePresenter},
+    {provide: ProfileViewModel, useClass: ProfileViewModel},
+    {provide: UserDataUseCase, useClass: UserDataUseCase},
+    {provide: AuthUseCase, useClass: AuthUseCase},
+    {provide: SearchUseCase, useClass: SearchUseCase},
+    {provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase}
   ]
 })
 export class ProfileComponent extends LoggedComponent implements OnInit, ProfileUIView {
@@ -38,18 +38,18 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
   constructor(private profilePresenter: ProfilePresenter,
               private profileController: ProfileController,
               public profileViewModel: ProfileViewModel,
-              private route: ActivatedRoute){
+              private route: ActivatedRoute) {
     super(profileController);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.profilePresenter.onViewInit(this);
     this.profileController.verifyAuthorization(this.profilePresenter);
   }
 
   updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
-    if(logged){
+    if (logged) {
       this.authStateLogged.emit(true);
       this.profileController.getUserData(this.profilePresenter);
       this.profileController.getProfileData(this.profilePresenter, this.route.snapshot.params.username);
@@ -75,7 +75,7 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
     this.profileViewModel.userLevelName = levelName;
     this.profileViewModel.userProfileImage = profileImageUrl;
     this.updateRewardsList(rewards);
-    this.updateTopicsOfInterestList(Array.from( tags.values()) );
+    this.updateTopicsOfInterestList(Array.from(tags.values()));
     this.profileController.getPostsOfTopics(this.profilePresenter, tags);
   }
 

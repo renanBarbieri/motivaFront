@@ -1,5 +1,3 @@
-import {FileUploader} from "ng2-file-upload";
-
 export interface ManageTagOutputBoundary {
 
   /**

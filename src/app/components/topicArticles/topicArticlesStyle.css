@@ -1,9 +1,9 @@
-.topicName{
-    padding: 0.7em;
-    font-size: 1.5em
+.topicName {
+  padding: 0.7em;
+  font-size: 1.5em
 }
 
-.listArticles{
+.listArticles {
   justify-content: flex-start;
   flex-wrap: wrap;
 }

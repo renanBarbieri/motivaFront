@@ -4,8 +4,9 @@ import {AuthInputBoundary, AuthInputModel} from "@app/useCases/auth/AuthInputBou
 import AuthRepository from "@app/data/auth/AuthRepository";
 
 @Injectable()
-export default class AuthUseCase implements AuthInputBoundary{
-  constructor(private authRepository: AuthRepository){}
+export default class AuthUseCase implements AuthInputBoundary {
+  constructor(private authRepository: AuthRepository) {
+  }
 
   /**
    *
@@ -15,7 +16,7 @@ export default class AuthUseCase implements AuthInputBoundary{
   async performAuthValidation(outputBoundary: AuthOutputBoundary) {
     try {
       let authKey = await this.authRepository.getKey();
-      if(authKey){
+      if (authKey) {
         let authResponse = new AuthOutputModel();
         authResponse.code = 200;
         authResponse.message = authKey;
@@ -36,7 +37,7 @@ export default class AuthUseCase implements AuthInputBoundary{
   async performLogin(input: AuthInputModel, outputBoundary: AuthOutputBoundary) {
     try {
       let tokenKey = await this.authRepository.generateKey(input.username, input.password);
-      if(tokenKey){
+      if (tokenKey) {
         await this.authRepository.setKey(tokenKey);
         let authResponse = new AuthOutputModel();
         authResponse.code = 200;

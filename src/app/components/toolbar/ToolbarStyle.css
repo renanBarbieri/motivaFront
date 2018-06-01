@@ -1,4 +1,4 @@
-.topBar{
+.topBar {
   z-index: 2;
   background: whitesmoke;
   padding: 1%;
@@ -7,13 +7,13 @@
   flex: 100%;
 }
 
-.searchInput{
+.searchInput {
   margin-top: 1em;
   margin-bottom: .0em;
   flex: 1 1 100%;
 }
 
-#searchAll{
+#searchAll {
   color: black;
 }
 

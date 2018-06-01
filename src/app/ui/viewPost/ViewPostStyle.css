@@ -8,9 +8,9 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
- }
+}
 
-.post-header-frame{
+.post-header-frame {
   height: 100%;
   width: auto;
   position: relative;
@@ -24,9 +24,9 @@
   width: auto;
   min-height: 100%;
   min-width: 100%;
-  -webkit-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .postTitleBox {

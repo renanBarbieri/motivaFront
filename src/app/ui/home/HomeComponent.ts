@@ -17,16 +17,16 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
   templateUrl: './HomeView.html',
   styleUrls: ['./HomeStyle.css'],
   providers: [
-    { provide: HomeController, useClass: HomeController },
-    { provide: HomePresenter, useClass: HomePresenter },
-    { provide: HomeViewModel, useClass: HomeViewModel },
-    { provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase },
-    { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: UserDataUseCase, useClass: UserDataUseCase },
-    { provide: SearchUseCase, useClass: SearchUseCase}
+    {provide: HomeController, useClass: HomeController},
+    {provide: HomePresenter, useClass: HomePresenter},
+    {provide: HomeViewModel, useClass: HomeViewModel},
+    {provide: PostsOfTopicsInterestUseCase, useClass: PostsOfTopicsInterestUseCase},
+    {provide: AuthUseCase, useClass: AuthUseCase},
+    {provide: UserDataUseCase, useClass: UserDataUseCase},
+    {provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
-export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView{
+export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView {
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -34,21 +34,20 @@ export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView
   @Output()
   authStateLogged = new EventEmitter<boolean>();
 
-  constructor(
-      private homePresenter: HomePresenter,
-      private homeController: HomeController,
-      public homeViewModel: HomeViewModel){
+  constructor(private homePresenter: HomePresenter,
+              private homeController: HomeController,
+              public homeViewModel: HomeViewModel) {
     super(homeController);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.homePresenter.onViewInit(this);
     this.homeController.verifyAuthorization(this.homePresenter);
   }
 
   updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
-    if(logged){
+    if (logged) {
       this.authStateLogged.emit(true);
       this.homeController.getUserData(this.homePresenter);
     }
@@ -82,12 +81,7 @@ export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView
     });
   }
 
-  private clearHomeViewLists(){
-    this.homeViewModel.topicsList.clear();
-    this.homeViewModel.topicsKeys.length = 0;
-  }
-
-  onSearchInput($textToSearch: string){
+  onSearchInput($textToSearch: string) {
     this.homeController.getResultsOfSearch($textToSearch)
   }
 
@@ -97,5 +91,10 @@ export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView
 
   showErrorAlert(message: String) {
 
+  }
+
+  private clearHomeViewLists() {
+    this.homeViewModel.topicsList.clear();
+    this.homeViewModel.topicsKeys.length = 0;
   }
 }

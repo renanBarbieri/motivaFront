@@ -4,7 +4,7 @@
                     (toolbarState == thisToolbarState.ALL_ITEMS || toolbarState == thisToolbarState.HIDE_SEARCH)?
                       'cVisible' : 'cHidden'
                   }}"
-                  [floatLabel]="'always'" >
+                  [floatLabel]="'always'">
     <mat-label>O que você quer encontrar?</mat-label>
     <input matInput
            #searchAll
@@ -14,11 +14,11 @@
     />
   </mat-form-field>
   <button mat-icon-button class="bar-button" *ngIf="toolbarState != thisToolbarState.HIDE_SEARCH"
-            (click)="openSearch()" matTooltip="Ir para pesquisa">
+          (click)="openSearch()" matTooltip="Ir para pesquisa">
     <mat-icon>search</mat-icon>
   </button>
   <button mat-icon-button class="bar-button" *ngIf="toolbarState != thisToolbarState.HIDE_QUERY_AND_CREATE"
-            (click)="openCreatePost()" matTooltip="Criar novo post">
+          (click)="openCreatePost()" matTooltip="Criar novo post">
     <mat-icon>rate_review</mat-icon>
   </button>
   <button mat-icon-button class="bar-button" (click)="openHome()" matTooltip="Ir para home">

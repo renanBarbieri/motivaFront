@@ -27,7 +27,7 @@ export default class ProfileController extends LoggedPageController {
   }
 
 
-  getPostsOfTopics(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>){
+  getPostsOfTopics(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>) {
     let requestData = new PostsOfTopicsInterestInputModel();
     requestData.tags = topics;
     this.postsOfTopicsInterestUseCase.getPosts(requestData, responseHandler);

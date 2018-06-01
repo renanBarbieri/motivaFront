@@ -6,12 +6,13 @@ import TagApiDataSource from "@app/data/tag/TagApiDataSource";
 import {ManageTagGateway} from "@app/useCases/tag/ManageTagGateway";
 
 @Injectable()
-export default class TagRepository implements ManageTagGateway{
+export default class TagRepository implements ManageTagGateway {
 
-  constructor(private tagApiDataSource: TagApiDataSource){}
+  constructor(private tagApiDataSource: TagApiDataSource) {
+  }
 
-  getTags(auth: string): Promise< Array<Tag> > {
-    return new Promise< Array<Tag> >(async (resolve, reject) => {
+  getTags(auth: string): Promise<Array<Tag>> {
+    return new Promise<Array<Tag>>(async (resolve, reject) => {
       let tagMapper = new TagDataSourceMapper();
       let dataSourceTags: DataSourceTag[] = await this.tagApiDataSource.getTags(auth);
       resolve(dataSourceTags.map(it =>

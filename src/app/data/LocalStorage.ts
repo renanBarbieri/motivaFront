@@ -1,4 +1,3 @@
-
 export namespace LocalStorage {
 
   function storageAvailable(type) {
@@ -9,7 +8,7 @@ export namespace LocalStorage {
       storage.removeItem(x);
       return true;
     }
-    catch(e) {
+    catch (e) {
       return e instanceof DOMException && (
           // everything except Firefox
         e.code === 22 ||
@@ -26,7 +25,7 @@ export namespace LocalStorage {
   }
 
   export function set(key: string, value: any) {
-    if(storageAvailable("localStorage")){
+    if (storageAvailable("localStorage")) {
       window.localStorage.setItem(key, value);
     }
     else {
@@ -35,7 +34,7 @@ export namespace LocalStorage {
   }
 
   export function get(key: string): string {
-    if(storageAvailable("localStorage")){
+    if (storageAvailable("localStorage")) {
       return window.localStorage.getItem(key);
     }
     else {
@@ -44,7 +43,7 @@ export namespace LocalStorage {
   }
 
   export function erase(key: string) {
-    if(storageAvailable("localStorage")){
+    if (storageAvailable("localStorage")) {
       return window.localStorage.removeItem(key);
     }
     else {

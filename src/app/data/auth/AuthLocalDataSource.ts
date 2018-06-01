@@ -5,12 +5,12 @@ import {AuthCacheSource} from "@app/data/auth/AuthCacheSource";
 import {LocalStorage} from "@app/data/LocalStorage";
 
 @Injectable()
-export default class AuthLocalDataSource implements AuthCacheSource{
+export default class AuthLocalDataSource implements AuthCacheSource {
   static STORAGE_KEY_AUTH = "authkey";
 
   setAuthKey(auth: string): Promise<DataSourceResponse<string>> {
     return new Promise<DataSourceResponse<string>>(async (resolve, reject) => {
-      try{
+      try {
         LocalStorage.set(AuthLocalDataSource.STORAGE_KEY_AUTH, auth);
         let response = new DataSourceResponse("SUCCESS", "");
         resolve(response);
@@ -25,7 +25,7 @@ export default class AuthLocalDataSource implements AuthCacheSource{
       try {
         let result = LocalStorage.get(AuthLocalDataSource.STORAGE_KEY_AUTH);
         let response = new DataSourceAuth();
-        if(result){
+        if (result) {
           response.authkey = result;
         }
         resolve(response);
@@ -40,7 +40,7 @@ export default class AuthLocalDataSource implements AuthCacheSource{
       try {
         LocalStorage.erase(AuthLocalDataSource.STORAGE_KEY_AUTH);
         resolve(true);
-      } catch(error) {
+      } catch (error) {
         reject(error);
       }
     });

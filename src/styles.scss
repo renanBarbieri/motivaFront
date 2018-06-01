@@ -5,8 +5,8 @@
 @include mat-core();
 
 $primary: mat-palette($mat-indigo);
-$accent:  mat-palette($mat-pink, A200, A100, A400);
-$warn:    mat-palette($mat-red);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
 
 $motivaTheme: mat-light-theme($primary, $accent, $warn);
 
@@ -14,9 +14,9 @@ $motivaTheme: mat-light-theme($primary, $accent, $warn);
 
 // Define an alternate dark theme.
 $dark-primary: mat-palette($mat-cyan);
-$dark-accent:  mat-palette($mat-red, A200, A100, A400);
-$dark-warn:    mat-palette($mat-deep-orange);
-$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+$dark-accent: mat-palette($mat-red, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 // Include the alternative theme styles inside of a block with a CSS class. You can make this
 // CSS class whatever you want. In this example, any component inside of an element with
@@ -25,40 +25,40 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($dark-theme);
 }
 
-.matchParentWidth{
-    min-width: 100%;
-    max-width: 100%;
+.matchParentWidth {
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .fillHeight, .overflowContent,
-  html, body, #contentDiv,
-  app-root, app-auth, app-404,
-  app-home, app-login, app-search,
-  app-post, app-profile{
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 100%;
-    height: auto;
-    min-height: 100%;
-    font-family: 'Roboto', sans-serif;
+html, body, #contentDiv,
+app-root, app-auth, app-404,
+app-home, app-login, app-search,
+app-post, app-profile {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  height: auto;
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
-.overflowContent{
+.overflowContent {
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed !important;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
 }
 
-.pageContent{
+.pageContent {
   flex: 1 1 auto;
 }
 
-.leftSideBar{
+.leftSideBar {
   padding: 1%;
   flex: 0.5;
   flex-direction: column;
@@ -71,7 +71,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   flex: 3;
 }
 
-.content{
+.content {
   background-color: whitesmoke;
   flex: 1 1 auto;
   padding: 2%;
@@ -103,7 +103,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
     font-size: 0.6em;
   }
 
-  .leftSideBar{
+  .leftSideBar {
     width: 4.2em;
     display: flex;
   }
@@ -116,24 +116,24 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 /* fallback */
 @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url("/assets/fonts/material_fonts.woff2") format('woff2');
-  }
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/material_fonts.woff2") format('woff2');
+}
 
-  .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-  }
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

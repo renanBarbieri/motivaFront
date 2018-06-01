@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ToolbarState} from "@app/components/toolbar/TollbarState";
-import {ScreenState} from "@app/ui/ScreenState";
 
 @Component({
   selector: 'app-toolbar',
@@ -12,7 +11,7 @@ export class ToolbarComponent {
   public thisToolbarState = ToolbarState;
 
   @Input() previousSearch = "";
-  @Input() toolbarState:ToolbarState = ToolbarState.ALL_ITEMS;
+  @Input() toolbarState: ToolbarState = ToolbarState.ALL_ITEMS;
 
   @Output() searchInputEvent = new EventEmitter();
 
@@ -20,7 +19,7 @@ export class ToolbarComponent {
   @Output() homeClickEvent = new EventEmitter();
   @Output() searchClickEvent = new EventEmitter();
 
-  searchInput(inputText: string){
+  searchInput(inputText: string) {
     this.searchInputEvent.emit(inputText);
   }
 

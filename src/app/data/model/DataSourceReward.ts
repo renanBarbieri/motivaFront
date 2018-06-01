@@ -1,5 +1,4 @@
-
-export default class DataSourceReward{
+export default class DataSourceReward {
   id: number;
   image_url: string;
   name: string;

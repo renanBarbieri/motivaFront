@@ -13,13 +13,13 @@ import LoginViewModel from "@app/ui/login/LoginViewModel";
   templateUrl: './LoginView.html',
   styleUrls: ['./LoginStyle.css'],
   providers: [
-    { provide: LoginViewModel, useClass: LoginViewModel },
-    { provide: LoginController, useClass: LoginController },
-    { provide: LoginPresenter, useClass: LoginPresenter },
-    { provide: UserDataUseCase, useClass: UserDataUseCase },
+    {provide: LoginViewModel, useClass: LoginViewModel},
+    {provide: LoginController, useClass: LoginController},
+    {provide: LoginPresenter, useClass: LoginPresenter},
+    {provide: UserDataUseCase, useClass: UserDataUseCase},
   ]
 })
-export class LoginComponent implements OnInit, LoginUiView{
+export class LoginComponent implements OnInit, LoginUiView {
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -31,14 +31,15 @@ export class LoginComponent implements OnInit, LoginUiView{
 
   constructor(private loginController: LoginController,
               private loginPresenter: LoginPresenter,
-              private loginViewModel: LoginViewModel){}
+              private loginViewModel: LoginViewModel) {
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loginPresenter.onViewInit(this);
   }
 
-  onSubmit(form: NgForm){
-    if(form.valid){
+  onSubmit(form: NgForm) {
+    if (form.valid) {
       console.log(this.loginModel);
       this.loginController.makeLogin(this.loginModel.username, this.loginModel.password, this.loginPresenter);
       this.screenStateChange.emit(ScreenState.LOADING);

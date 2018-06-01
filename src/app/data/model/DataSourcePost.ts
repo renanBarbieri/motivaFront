@@ -1,7 +1,7 @@
 import DataSourceUserProfile from "@app/data/model/DataSourceUserProfile";
 import DataSourceTag from "@app/data/model/DataSourceTag";
 
-export default class DataSourcePost{
+export default class DataSourcePost {
   id: number;
   title: string;
   description: string;

@@ -3,7 +3,7 @@ import {AuthUiView} from "@app/ui/auth/AuthUIView";
 import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/auth/AuthOutputBoundary";
 
 @Injectable()
-export default class AuthPresenter implements AuthOutputBoundary{
+export default class AuthPresenter implements AuthOutputBoundary {
   private view: AuthUiView;
 
   onViewInit(view: AuthUiView) {
@@ -11,13 +11,13 @@ export default class AuthPresenter implements AuthOutputBoundary{
   }
 
   onAuthSuccess(responseData: AuthOutputModel) {
-    if(responseData.logged) this.view.updateLoggedStatus(true);
+    if (responseData.logged) this.view.updateLoggedStatus(true);
     else this.view.updateLoggedStatus(false);
   }
 
   onAuthError(errorData: any) {
     this.view.updateLoggedStatus(false);
-    if(errorData) this.view.showErrorAlert(errorData);
+    if (errorData) this.view.showErrorAlert(errorData);
   }
 
 }

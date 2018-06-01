@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {PublishPostInputBoundary, PublishPostInputModel} from "@app/useCases/publishPost/PublishPostInputBoundary";
 import {
-  BannerOutputModel, ImageUploaderOutputModel,
-  PublishPostOutputBoundary, PublishPostOutputModel
+  BannerOutputModel, ImageUploaderOutputModel, PublishPostOutputBoundary,
+  PublishPostOutputModel
 } from "@app/useCases/publishPost/PublishPostOutputBoundary";
 import PostRepository from "@app/data/post/PostRepository";
 import AuthRepository from "@app/data/auth/AuthRepository";
@@ -12,7 +12,8 @@ import Post from "@app/entity/Post";
 export default class PublishPostUseCase implements PublishPostInputBoundary {
 
   constructor(private publishPostRepository: PostRepository,
-              private authRepository: AuthRepository){}
+              private authRepository: AuthRepository) {
+  }
 
   /**
    * Create an file uploader
@@ -36,7 +37,7 @@ export default class PublishPostUseCase implements PublishPostInputBoundary {
       let outputModel: BannerOutputModel = new BannerOutputModel();
       outputModel.url = imageURL;
       outputBoundary.onBannerUploaded(outputModel);
-    } catch (error){
+    } catch (error) {
       outputBoundary.onBannerUploadError(error);
     }
   }
@@ -60,7 +61,7 @@ export default class PublishPostUseCase implements PublishPostInputBoundary {
       outputModel.postId = postId;
       console.log(outputModel);
       outputBoundary.onPublishSuccess(outputModel);
-    } catch (error){
+    } catch (error) {
       console.log(error);
       outputBoundary.onPublishError(error);
     }

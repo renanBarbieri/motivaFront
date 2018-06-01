@@ -8,7 +8,7 @@ import {ToolbarState} from "@app/components/toolbar/TollbarState";
 import {FileUploader} from "ng2-file-upload";
 
 @Injectable()
-export default class PostViewModel{
+export default class PostViewModel {
 
   postToolbarState = ToolbarState.HIDE_QUERY_AND_CREATE;
 
@@ -24,18 +24,18 @@ export default class PostViewModel{
   /**
    * Post
    */
-  //quill editor
+    //quill editor
   editor;
   editorOptions = {
     modules: {
       formula: true,
       toolbar: [
-        ['bold', 'italic', 'underline', 'strike', { 'color': [] }],
+        ['bold', 'italic', 'underline', 'strike', {'color': []}],
         ['blockquote', 'code-block', 'formula'],
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
-        [{ 'script': 'sub' }, { 'script': 'super' }],
-        [{ 'indent': '-1' }, { 'indent': '+1' }],
-        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'align': []}],
+        [{'script': 'sub'}, {'script': 'super'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+        [{'size': ['small', false, 'large', 'huge']}],
       ]
     },
     placeholder: "Insira seu texto aqui",
@@ -45,7 +45,7 @@ export default class PostViewModel{
   //dropzone and photo uploador
   hasBaseDropZoneOver = false;
   public filePreviewPath: SafeUrl;
-  public uploader:FileUploader;
+  public uploader: FileUploader;
 
   //chips autocomplete
   tags: Array<string> = [];

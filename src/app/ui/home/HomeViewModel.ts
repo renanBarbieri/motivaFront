@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import RewardItem from "@app/ui/models/RewardItem";
 
 @Injectable()
-export default class HomeViewModel{
+export default class HomeViewModel {
   username: string;
   levelCompleted: number;
   levelName: string;

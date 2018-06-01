@@ -1,6 +1,6 @@
 import DataSourceUserProfile from "@app/data/model/DataSourceUserProfile";
 
-export default class DataSourcePostCard{
+export default class DataSourcePostCard {
   id: number;
   title: string;
   subtitle: string;

@@ -6,7 +6,7 @@ export interface SearchOutputBoundary {
   onSearchSuccess(result: SearchOutputModel);
 }
 
-export class SearchOutputModel{
+export class SearchOutputModel {
   public tags: Array<TopicItem>;
   public users: Array<UserItem>;
   public posts: Array<PostItem>;

@@ -6,16 +6,16 @@ import {Router} from "@angular/router";
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import {
-  BannerOutputModel, ImageUploaderOutputModel, PublishPostOutputBoundary,
-  PublishPostOutputModel, TagListOutputModel
+  BannerOutputModel, ImageUploaderOutputModel, PublishPostOutputBoundary, PublishPostOutputModel,
+  TagListOutputModel
 } from "@app/useCases/publishPost/PublishPostOutputBoundary";
 
 @Injectable()
 export default class PostPresenter extends AuthPresenter implements UserDataOutputBoundary,
-    AuthOutputBoundary, PublishPostOutputBoundary{
+  AuthOutputBoundary, PublishPostOutputBoundary {
   private postUiView: PostUiView;
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
     super();
   }
 
@@ -25,9 +25,9 @@ export default class PostPresenter extends AuthPresenter implements UserDataOutp
   }
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-    this.postUiView.updateUserData( responseData.username, responseData.levelCompleted,
-                              responseData.levelName, responseData.profileImage,
-                              responseData.rewards, responseData.tags);
+    this.postUiView.updateUserData(responseData.username, responseData.levelCompleted,
+      responseData.levelName, responseData.profileImage,
+      responseData.rewards, responseData.tags);
   }
 
   onImageUploaderBuilt(imageUploaderOutputModel: ImageUploaderOutputModel) {

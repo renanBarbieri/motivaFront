@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import AuthViewModel from "@app/ui/auth/AuthViewModel";
 import {ScreenState} from "@app/ui/ScreenState";
 import AuthController from "@app/ui/auth/AuthController";
@@ -11,28 +11,29 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
   templateUrl: './AuthView.html',
   styleUrls: ['./AuthStyle.css'],
   providers: [
-    { provide: AuthViewModel, useClass: AuthViewModel },
-    { provide: AuthController, useClass: AuthController },
-    { provide: AuthPresenter, useClass: AuthPresenter },
-    { provide: AuthUseCase, useClass: AuthUseCase },
+    {provide: AuthViewModel, useClass: AuthViewModel},
+    {provide: AuthController, useClass: AuthController},
+    {provide: AuthPresenter, useClass: AuthPresenter},
+    {provide: AuthUseCase, useClass: AuthUseCase},
   ]
 })
 
-export class AuthComponent implements AuthUiView, OnInit{
+export class AuthComponent implements AuthUiView, OnInit {
 
   public thisState = ScreenState;
 
   constructor(private authViewModel: AuthViewModel,
               private authController: AuthController,
-              private authPresenter: AuthPresenter){}
+              private authPresenter: AuthPresenter) {
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.authViewModel.state = ScreenState.LOADING_STATE;
     this.authPresenter.onViewInit(this);
     this.authController.verifyAuthorization(this.authPresenter);
   }
 
-  updateScreenState(state: ScreenState){
+  updateScreenState(state: ScreenState) {
     this.authViewModel.state = state;
   }
 

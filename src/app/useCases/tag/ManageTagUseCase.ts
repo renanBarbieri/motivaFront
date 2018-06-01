@@ -5,10 +5,11 @@ import TagRepository from "@app/data/tag/TagRepository";
 import {ManageTagInputBoundary} from "@app/useCases/tag/ManageTagInputBoundary";
 
 @Injectable()
-export default class ManageTagUseCase implements ManageTagInputBoundary{
+export default class ManageTagUseCase implements ManageTagInputBoundary {
 
   constructor(private tagsRepository: TagRepository,
-              private authRepository: AuthRepository){}
+              private authRepository: AuthRepository) {
+  }
 
   /**
    * Get tags registered
@@ -24,7 +25,7 @@ export default class ManageTagUseCase implements ManageTagInputBoundary{
         return it.name;
       });
       outputBoundary.onTagsListed(outputModel);
-    } catch (error){
+    } catch (error) {
 
     }
   }

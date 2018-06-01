@@ -1,9 +1,10 @@
-export interface AuthOutputBoundary{
+export interface AuthOutputBoundary {
   onAuthSuccess(responseData: AuthOutputModel);
+
   onAuthError(errorData: any);
 }
 
-export class AuthOutputModel{
+export class AuthOutputModel {
   public code: number;
   public message: string;
   public logged: boolean;

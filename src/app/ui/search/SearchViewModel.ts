@@ -5,7 +5,7 @@ import TopicItem from "@app/ui/models/TopicItem";
 import RewardItem from "@app/ui/models/RewardItem";
 
 @Injectable()
-export default class SearchViewModel{
+export default class SearchViewModel {
   username: string;
   levelCompleted: number;
   levelName: string;

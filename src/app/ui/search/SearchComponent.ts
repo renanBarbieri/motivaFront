@@ -24,15 +24,15 @@ import {ToolbarState} from "@app/components/toolbar/TollbarState";
   templateUrl: './SearchView.html',
   styleUrls: ['./SearchStyle.css'],
   providers: [
-    { provide: SearchViewModel, useClass: SearchViewModel },
-    { provide: SearchController, useClass: SearchController },
-    { provide: SearchPresenter, useClass: SearchPresenter },
-    { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: UserDataUseCase, useClass: UserDataUseCase },
-    { provide: SearchUseCase, useClass: SearchUseCase}
+    {provide: SearchViewModel, useClass: SearchViewModel},
+    {provide: SearchController, useClass: SearchController},
+    {provide: SearchPresenter, useClass: SearchPresenter},
+    {provide: AuthUseCase, useClass: AuthUseCase},
+    {provide: UserDataUseCase, useClass: UserDataUseCase},
+    {provide: SearchUseCase, useClass: SearchUseCase}
   ]
 })
-export class SearchComponent extends LoggedComponent implements SearchUiView, OnInit{
+export class SearchComponent extends LoggedComponent implements SearchUiView, OnInit {
 
   searchToolbarState = ToolbarState.HIDE_SEARCH;
 
@@ -52,11 +52,11 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
               private searchController: SearchController,
               private searchPresenter: SearchPresenter,
               private location: Location,
-              private route: ActivatedRoute){
+              private route: ActivatedRoute) {
     super(searchController);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.searchQuery = this.route.snapshot.paramMap.get('q');
     this.searchPresenter.onViewInit(this);
     this.searchController.verifyAuthorization(this.searchPresenter);
@@ -65,7 +65,7 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
 
   updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
-    if(logged){
+    if (logged) {
       this.authStateLogged.emit(true);
       this.searchController.getUserData(this.searchPresenter);
       this.searchController.getResultsOfSearch(this.searchQuery, this.searchPresenter);
@@ -84,7 +84,7 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
     this.updateRewardsList(rewards);
   }
 
-  updateResultList(result:  [Array<UserItem>, Array<TopicItem>, Array<PostItem>]){
+  updateResultList(result: [Array<UserItem>, Array<TopicItem>, Array<PostItem>]) {
     this.searchViewModel.userResultList = result[0];
     this.searchViewModel.topicResultList = result[1];
     this.searchViewModel.postResultList = result[2];
@@ -93,7 +93,7 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
     this.updateTopicIndexes();
     this.updatePostIndexes();
 
-    if(this.searchQuery) this.location.replaceState(`/search;q=${this.searchQuery}`)
+    if (this.searchQuery) this.location.replaceState(`/search;q=${this.searchQuery}`)
   }
 
   updateRewardsList(newRewards: Array<RewardItem>) {
@@ -104,28 +104,28 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
     });
   }
 
-  updatePostIndexes(){
+  updatePostIndexes() {
     this.postIndexes = [];
-    for(let idx = 0; idx < this.searchViewModel.postResultList.length; idx++){
+    for (let idx = 0; idx < this.searchViewModel.postResultList.length; idx++) {
       this.postIndexes.push(idx)
     }
   }
 
-  updateUserIndexes(){
+  updateUserIndexes() {
     this.userIndexes = [];
-    for(let idx = 0; idx < this.searchViewModel.userResultList.length; idx++){
+    for (let idx = 0; idx < this.searchViewModel.userResultList.length; idx++) {
       this.userIndexes.push(idx)
     }
   }
 
-  updateTopicIndexes(){
-    this.topicIndexes= [];
-    for(let idx = 0; idx < this.searchViewModel.topicResultList.length; idx++){
+  updateTopicIndexes() {
+    this.topicIndexes = [];
+    for (let idx = 0; idx < this.searchViewModel.topicResultList.length; idx++) {
       this.topicIndexes.push(idx)
     }
   }
 
-  clearAllResults(){
+  clearAllResults() {
     this.searchViewModel.userResultList = [];
     this.searchViewModel.topicResultList = [];
     this.searchViewModel.postResultList = [];
@@ -135,17 +135,17 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
     this.updatePostIndexes();
   }
 
-  onSearchInput(textToSearch: string){
+  onSearchInput(textToSearch: string) {
     this.searchQuery = textToSearch;
     this.searchController.getResultsOfSearch(textToSearch, this.searchPresenter);
     this.clearAllResults();
   }
 
-  onProfileClick(){
+  onProfileClick() {
     console.log(`cliquei no perfil`)
   }
 
-  onTopicClick(topicId: number){
+  onTopicClick(topicId: number) {
     console.log(`cliquei no tópico ${topicId}`)
   }
 

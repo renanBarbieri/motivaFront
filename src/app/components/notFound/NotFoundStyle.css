@@ -1,6 +1,6 @@
-.pageContent{
+.pageContent {
   background: url("../../../assets/wally.jpg");
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center center;
   margin: 0;
   display: flex;
@@ -12,42 +12,47 @@
   color: white;
   justify-content: center;
 }
-.c{
+
+.c {
   text-align: center;
   display: flex;
   flex-direction: column;
   position: relative;
-  width:100%;
+  width: 100%;
   height: 100%;
   justify-content: center;
 }
-._404{
+
+._404 {
   font-size: 10rem;
   position: relative;
   display: inline-block;
   z-index: 2;
   letter-spacing: 15px;
 }
-._1{
+
+._1 {
   background-color: white;
-  color:deeppink;
-  text-align:center;
-  display:block;
-  position:relative;
+  color: deeppink;
+  text-align: center;
+  display: block;
+  position: relative;
   font-size: 4em;
   line-height: 80%;
   margin-top: 2em;
   padding-top: 0.25em;
 }
-._2{
+
+._2 {
   background-color: white;
-  color:deeppink;
-  text-align:center;
-  display:block;
+  color: deeppink;
+  text-align: center;
+  display: block;
   position: relative;
   font-size: 20px;
 }
-.text{
+
+.text {
   font-size: 70px;
   text-align: center;
   position: relative;
@@ -60,25 +65,25 @@
   display: inline-block;
 }
 
-
-.btn{
+.btn {
   background-color: deeppink;
-  color:white;
+  color: white;
   position: relative;
   display: inline-block;
   z-index: 5;
   font-size: 25px;
-  margin:0 auto;
+  margin: 0 auto;
   text-decoration: none;
   margin-top: 1em;
   padding: 0.5em;
 }
-.right{
-  float:right;
-  width:60%;
+
+.right {
+  float: right;
+  width: 60%;
 }
 
-hr{
+hr {
   padding: 0;
   border: none;
   border-top: 5px solid #fff;
@@ -86,5 +91,5 @@ hr{
   text-align: center;
   margin: 0 auto;
   width: 90%;
-  height:1em;
+  height: 1em;
 }

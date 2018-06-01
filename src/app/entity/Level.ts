@@ -2,9 +2,6 @@ import {Entity} from "./Entity";
 
 export default class Level extends Entity {
   private _name: string;
-  private _description: string;
-  private _experience: number;
-  private _nextLevelName: string;
 
   get name(): string {
     return this._name;
@@ -14,6 +11,8 @@ export default class Level extends Entity {
     this._name = value;
   }
 
+  private _description: string;
+
   get description(): string {
     return this._description;
   }
@@ -21,6 +20,8 @@ export default class Level extends Entity {
   set description(value: string) {
     this._description = value;
   }
+
+  private _experience: number;
 
   get experience(): number {
     return this._experience;
@@ -30,6 +31,7 @@ export default class Level extends Entity {
     this._experience = value;
   }
 
+  private _nextLevelName: string;
 
   get nextLevelName(): string {
     return this._nextLevelName;

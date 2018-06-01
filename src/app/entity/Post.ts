@@ -2,20 +2,9 @@ import {Entity} from "@app/entity/Entity";
 import User from "@app/entity/User";
 import Tag from "@app/entity/Tag";
 
-export default class Post extends Entity{
+export default class Post extends Entity {
 
   private _title: string;
-  private _subtitle: string;
-  private _favorites: number;
-  private _likes: number;
-  private _content: string;
-  private _publishDate: Date;
-  private _editedDate: Date;
-  private _owner: User;
-  private _headerImage: string;
-  private _estimatedTime: number;
-  private _tags: Array<Tag>;
-
 
   get title(): string {
     return this._title;
@@ -25,6 +14,8 @@ export default class Post extends Entity{
     this._title = value;
   }
 
+  private _subtitle: string;
+
   get subtitle(): string {
     return this._subtitle;
   }
@@ -33,47 +24,7 @@ export default class Post extends Entity{
     this._subtitle = value;
   }
 
-  get content(): string {
-    return this._content;
-  }
-
-  set content(value: string) {
-    this._content = value;
-  }
-
-  get publishDate(): Date {
-    return this._publishDate;
-  }
-
-  set publishDate(value: Date) {
-    this._publishDate = value;
-  }
-
-  get editedDate(): Date {
-    return this._editedDate;
-  }
-
-  set editedDate(value: Date) {
-    this._editedDate = value;
-  }
-
-  get owner(): User {
-    return this._owner;
-  }
-
-  set owner(value: User) {
-    this._owner = value;
-  }
-
-
-  get headerImage(): string {
-    return this._headerImage;
-  }
-
-  set headerImage(value: string) {
-    this._headerImage = value;
-  }
-
+  private _favorites: number;
 
   get favorites(): number {
     return this._favorites;
@@ -83,6 +34,8 @@ export default class Post extends Entity{
     this._favorites = value;
   }
 
+  private _likes: number;
+
   get likes(): number {
     return this._likes;
   }
@@ -91,6 +44,57 @@ export default class Post extends Entity{
     this._likes = value;
   }
 
+  private _content: string;
+
+  get content(): string {
+    return this._content;
+  }
+
+  set content(value: string) {
+    this._content = value;
+  }
+
+  private _publishDate: Date;
+
+  get publishDate(): Date {
+    return this._publishDate;
+  }
+
+  set publishDate(value: Date) {
+    this._publishDate = value;
+  }
+
+  private _editedDate: Date;
+
+  get editedDate(): Date {
+    return this._editedDate;
+  }
+
+  set editedDate(value: Date) {
+    this._editedDate = value;
+  }
+
+  private _owner: User;
+
+  get owner(): User {
+    return this._owner;
+  }
+
+  set owner(value: User) {
+    this._owner = value;
+  }
+
+  private _headerImage: string;
+
+  get headerImage(): string {
+    return this._headerImage;
+  }
+
+  set headerImage(value: string) {
+    this._headerImage = value;
+  }
+
+  private _estimatedTime: number;
 
   get estimatedTime(): number {
     return this._estimatedTime;
@@ -100,6 +104,7 @@ export default class Post extends Entity{
     this._estimatedTime = value;
   }
 
+  private _tags: Array<Tag>;
 
   get tags(): Tag[] {
     return this._tags;

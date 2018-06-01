@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import UserDataUseCase from "app/useCases/userData/UserDataUseCase";
 
 @Injectable()
-export default class LoggedPageController extends LeftSideBarController implements ToolbarController{
+export default class LoggedPageController extends LeftSideBarController implements ToolbarController {
 
   constructor(private userDataUseCaseChild: UserDataUseCase,
               private authUseCaseChild: AuthUseCase,

@@ -1,4 +1,4 @@
-.leftSideContent{
+.leftSideContent {
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.profilePic{
+.profilePic {
   display: flex;
   border-radius: 50%;
   margin: 1em;
@@ -23,21 +23,21 @@
   margin-top: 0.5em;
 }
 
-.chipIcon{
+.chipIcon {
   border-radius: 50%;
   margin: 0.3em;
   width: 1.5em;
   height: 1.5em;
 }
 
-.userProgress{
+.userProgress {
   display: flex;
   width: 8em;
   max-width: 90%;
   margin: 2%;
 }
 
-.chipLevel{
+.chipLevel {
   display: flex;
   max-width: 90%;
   min-width: 0;
@@ -47,17 +47,17 @@
   text-overflow: ellipsis;
 }
 
-.listMenu{
+.listMenu {
   max-width: 100%;
 }
 
-.listMenuItem{
+.listMenuItem {
   display: flex;
   flex-direction: row;
   justify-items: flex-start;
 }
 
-.listMenu mat-icon{
+.listMenu mat-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,7 +75,6 @@ mat-grid-tile {
 .mat-list-text {
   padding: 0 !important;
 }
-
 
 @media screen and (max-width: 700px) {
 

@@ -6,7 +6,7 @@ import {
   PostsOfTopicsInterestOutputBoundary
 } from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
 
-export default class ProfilePresenter extends AuthPresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary{
+export default class ProfilePresenter extends AuthPresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary {
 
   private profileUiView: ProfileUIView;
 
@@ -16,18 +16,18 @@ export default class ProfilePresenter extends AuthPresenter implements UserDataO
   }
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-    if(responseData.publicProfile){
+    if (responseData.publicProfile) {
       this.onProfileDataSuccess(responseData);
     }
     else {
-      this.profileUiView.updateUserData( responseData.username, responseData.levelCompleted,
+      this.profileUiView.updateUserData(responseData.username, responseData.levelCompleted,
         responseData.levelName, responseData.profileImage,
         responseData.rewards, responseData.tags);
     }
   }
 
   onProfileDataSuccess(responseData: UserDataOutputModel) {
-    this.profileUiView.updateProfileData( responseData.username, responseData.levelName, responseData.profileImage,
+    this.profileUiView.updateProfileData(responseData.username, responseData.levelName, responseData.profileImage,
       responseData.rewards, responseData.tags);
   }
 

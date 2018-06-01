@@ -20,16 +20,16 @@ import ManageTagUseCase from "@app/useCases/tag/ManageTagUseCase";
   templateUrl: './PostView.html',
   styleUrls: ['./PostStyle.css'],
   providers: [
-    { provide: PostController, useClass: PostController },
-    { provide: PostPresenter, useClass: PostPresenter },
-    { provide: PostViewModel, useClass: PostViewModel },
-    { provide: UserDataUseCase, useClass: UserDataUseCase },
-    { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: PublishPostUseCase, useClass: PublishPostUseCase },
-    { provide: ManageTagUseCase, useClass: ManageTagUseCase }
+    {provide: PostController, useClass: PostController},
+    {provide: PostPresenter, useClass: PostPresenter},
+    {provide: PostViewModel, useClass: PostViewModel},
+    {provide: UserDataUseCase, useClass: UserDataUseCase},
+    {provide: AuthUseCase, useClass: AuthUseCase},
+    {provide: PublishPostUseCase, useClass: PublishPostUseCase},
+    {provide: ManageTagUseCase, useClass: ManageTagUseCase}
   ]
 })
-export class PostComponent extends LoggedComponent implements OnInit, PostUiView{
+export class PostComponent extends LoggedComponent implements OnInit, PostUiView {
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -40,8 +40,8 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
   @ViewChild('tagInput')
   tagInput: ElementRef;
 
-  constructor( private postPresenter: PostPresenter, private postController: PostController,
-               private postViewModel: PostViewModel, private sanitizer: DomSanitizer){
+  constructor(private postPresenter: PostPresenter, private postController: PostController,
+              private postViewModel: PostViewModel, private sanitizer: DomSanitizer) {
     super(postController);
 
     this.configureTagsAutocomplete()
@@ -52,9 +52,9 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     this.configureUploader();
   }
 
-  configureUploader(){
+  configureUploader() {
     this.postViewModel.uploader.onAfterAddingFile = (fileItem) => {
-      this.postViewModel.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
+      this.postViewModel.filePreviewPath = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
     };
 
     this.postViewModel.uploader.onWhenAddingFileFailed = (item: FileLikeObject, filter: any, options: any) => {
@@ -68,14 +68,14 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     }
   }
 
-  configureTagsAutocomplete(){
+  configureTagsAutocomplete() {
     this.postViewModel.tagsFiltered = this.postViewModel.tagsFormCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => tag ? this.filter(tag) : this.postViewModel.allTags.slice())
     );
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.postPresenter.onViewInit(this);
     this.postController.verifyAuthorization(this.postPresenter);
     this.postController.getFileUploader(this.postPresenter);
@@ -98,7 +98,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    */
   updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
-    if(logged){
+    if (logged) {
       this.authStateLogged.emit(true);
       this.postController.getUserData(this.postPresenter);
     }
@@ -155,7 +155,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    * @param {any} html
    * @param {any} text
    */
-  onContentChanged({ quill, html, text }) {
+  onContentChanged({quill, html, text}) {
     this.postViewModel.postHtmlText = html;
   }
 
@@ -167,7 +167,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    *
    * @param e
    */
-  fileOverBase(e:any):void {
+  fileOverBase(e: any): void {
     this.postViewModel.hasBaseDropZoneOver = e;
   }
 
@@ -185,7 +185,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
 
     // Add our tag
     if ((value || '').trim()) {
-      this.postViewModel.tags.push( value.trim() );
+      this.postViewModel.tags.push(value.trim());
     }
 
     // Reset the input value
@@ -221,7 +221,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    * @param {MatAutocompleteSelectedEvent} event
    */
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.postViewModel.tags.push( event.option.viewValue );
+    this.postViewModel.tags.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
   }
 
@@ -238,7 +238,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
    *
    */
   savePost() {
-    if(this.postViewModel.title && this.postViewModel.postHtmlText){
+    if (this.postViewModel.title && this.postViewModel.postHtmlText) {
       this.postController.publishImage(this.postPresenter);
       //console.log(this.getLastFile());
       // this.postViewModel.uploader.uploadItem(this.getLastFile());

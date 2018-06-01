@@ -7,4 +7,5 @@ import {Component} from "@angular/core";
   styleUrls: ['./NotFoundStyle.css'],
   providers: []
 })
-export class NotFoundComponent {}
+export class NotFoundComponent {
+}

@@ -6,7 +6,7 @@ export interface ManageTagGateway {
    * Pega todas as tags cadastradas
    * @returns {Promise<Array<Tag>>}
    */
-  getTags(auth: string): Promise< Array<Tag> >;
+  getTags(auth: string): Promise<Array<Tag>>;
 
   /**
    * Salva as tags localmente
@@ -18,6 +18,6 @@ export interface ManageTagGateway {
    * Pega as tags do cache
    * @returns {Promise<Array<Tag>>}
    */
-  getCacheTags(): Promise< Array<Tag> >
+  getCacheTags(): Promise<Array<Tag>>
 
 }

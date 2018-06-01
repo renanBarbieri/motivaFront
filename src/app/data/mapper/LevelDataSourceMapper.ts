@@ -3,7 +3,7 @@ import Level from "@app/entity/Level";
 import DataSourceLevel from "@app/data/model/DataSourceLevel";
 
 
-export default class LevelDataSourceMapper implements DataSourceMapper<DataSourceLevel, Level>{
+export default class LevelDataSourceMapper implements DataSourceMapper<DataSourceLevel, Level> {
 
   toEntity(dataSource: DataSourceLevel): Level {
     let level = new Level();

@@ -1,14 +1,21 @@
 import {DataSourceMapper} from "./DataSourceMapper";
 import Post from "@app/entity/Post";
-import DataSourcePostCard from "@app/data/model/DataSourcePostCard";
 import User from "@app/entity/User";
 import DataSourcePostOwner from "@app/data/model/DataSourceUserProfile";
 import DataSourcePost from "@app/data/model/DataSourcePost";
-import PostCardDataSourceMapper from "@app/data/mapper/PostCardDataSourceMapper";
 import TagDataSourceMapper from "@app/data/mapper/TagDataSourceMapper";
 
 export default class PostDataSourceMapper implements DataSourceMapper<DataSourcePost, Post> {
 
+
+  private static fromOwnerToUser(owner: DataSourcePostOwner): User {
+    let user = new User();
+    user.id = owner.username;
+    user.avatar = owner.avatar_url;
+    user.username = owner.first_name + " " + owner.last_name;
+
+    return user;
+  }
 
   toEntity(dataSource: DataSourcePost): Post {
     let tagMapper = new TagDataSourceMapper();
@@ -38,14 +45,5 @@ export default class PostDataSourceMapper implements DataSourceMapper<DataSource
     dataSoucePost.image_url = entity.headerImage;
 
     return dataSoucePost;
-  }
-
-  private static fromOwnerToUser(owner: DataSourcePostOwner): User {
-    let user = new User();
-    user.id = owner.username;
-    user.avatar = owner.avatar_url;
-    user.username = owner.first_name + " " + owner.last_name;
-
-    return user;
   }
 }

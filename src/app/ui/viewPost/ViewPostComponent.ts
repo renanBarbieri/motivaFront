@@ -16,15 +16,15 @@ import PostUseCase from "@app/useCases/post/PostUseCase";
   templateUrl: './ViewPostView.html',
   styleUrls: ['./ViewPostStyle.css'],
   providers: [
-    { provide: ViewPostController, useClass: ViewPostController },
-    { provide: ViewPostPresenter, useClass: ViewPostPresenter },
-    { provide: ViewPostViewModel, useClass: ViewPostViewModel },
-    { provide: UserDataUseCase, useClass: UserDataUseCase },
-    { provide: AuthUseCase, useClass: AuthUseCase },
-    { provide: PostUseCase, useClass: PostUseCase },
+    {provide: ViewPostController, useClass: ViewPostController},
+    {provide: ViewPostPresenter, useClass: ViewPostPresenter},
+    {provide: ViewPostViewModel, useClass: ViewPostViewModel},
+    {provide: UserDataUseCase, useClass: UserDataUseCase},
+    {provide: AuthUseCase, useClass: AuthUseCase},
+    {provide: PostUseCase, useClass: PostUseCase},
   ]
 })
-export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPostUiView{
+export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPostUiView {
 
   @Output()
   screenStateChange = new EventEmitter<ScreenState>();
@@ -32,14 +32,14 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
   @Output()
   authStateLogged = new EventEmitter<boolean>();
 
-  constructor( private viewPostPresenter: ViewPostPresenter,
-               private viewPostController: ViewPostController,
-               private viewPostViewModel: ViewPostViewModel,
-               private route: ActivatedRoute){
+  constructor(private viewPostPresenter: ViewPostPresenter,
+              private viewPostController: ViewPostController,
+              private viewPostViewModel: ViewPostViewModel,
+              private route: ActivatedRoute) {
     super(viewPostController);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.viewPostPresenter.onViewInit(this);
     this.viewPostController.verifyAuthorization(this.viewPostPresenter);
   }
@@ -54,7 +54,7 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
    */
   updateLoggedStatus(logged: boolean) {
     this.screenStateChange.emit(ScreenState.LOADING);
-    if(logged){
+    if (logged) {
       this.authStateLogged.emit(true);
       this.viewPostController.getUserData(this.viewPostPresenter);
       this.viewPostController.getPostData(

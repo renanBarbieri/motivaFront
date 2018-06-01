@@ -2,7 +2,8 @@ import LoggedPageController from "@app/ui/logged/LoggedPageController";
 import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
 
 export default class LoggedComponent {
-  constructor(private loggedController: LoggedPageController){}
+  constructor(private loggedController: LoggedPageController) {
+  }
 
   openProfilePage(): void {
     this.loggedController.goToProfile()

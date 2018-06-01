@@ -43,7 +43,7 @@ describe('Teste dos casos de uso GetDadosUsuario', () => {
 
 });
 
-class PresenterSpy implements UserDataOutputBoundary{
+class PresenterSpy implements UserDataOutputBoundary {
 
   responseData: UserDataOutputModel;
 

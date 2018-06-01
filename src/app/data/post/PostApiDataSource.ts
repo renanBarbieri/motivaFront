@@ -1,4 +1,3 @@
-import Post from "app/entity/Post";
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {PostDataSource} from "app/data/post/PostDataSource";
@@ -11,11 +10,13 @@ import DataSourcePostResponse from "@app/data/model/DataSourcePostResponse";
 import DataSourcePostCard from "@app/data/model/DataSourcePostCard";
 
 @Injectable()
-export default class PostApiDataSource extends DataSourceConfig implements PostDataSource{
+export default class PostApiDataSource extends DataSourceConfig implements PostDataSource {
 
   fileUploader: FileUploader;
 
-  constructor(protected http: HttpClient){ super(); }
+  constructor(protected http: HttpClient) {
+    super();
+  }
 
   get(authKey: string, username: string, id: string): Promise<DataSourcePost> {
     let headers = new HttpHeaders({
@@ -27,9 +28,9 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
 
     return new Promise<DataSourcePost>(async (resolve, reject) => {
 
-      getPostsRequest.subscribe( response => {
+      getPostsRequest.subscribe(response => {
           console.log(response);
-          if(response.status){
+          if (response.status) {
             resolve(response.result.post)
           }
         },
@@ -52,8 +53,8 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
 
     return new Promise<DataSourcePostCard[]>(async (resolve, reject) => {
 
-      getPostsRequest.subscribe( response => {
-          if(response.status){
+      getPostsRequest.subscribe(response => {
+          if (response.status) {
             resolve(response.result.posts)
           }
         }
@@ -66,7 +67,7 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
    * @returns {FileUploader}
    */
   getImageUploader(authKey: string): FileUploader {
-    if(!this.fileUploader){
+    if (!this.fileUploader) {
       let allowedMimeType: string[] = ['image/png', 'image/jpg', 'image/jpeg'];
       this.fileUploader = new FileUploader({
         // url: `${PostApiDataSource.dataSourceURL}/upload/post_image'`,
@@ -97,8 +98,8 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
    * @returns {FileItem}
    */
   getLastFile(): FileItem {
-    if(this.fileUploader.queue.length < 1) return null;
-    return this.fileUploader.queue[this.fileUploader.queue.length-1];
+    if (this.fileUploader.queue.length < 1) return null;
+    return this.fileUploader.queue[this.fileUploader.queue.length - 1];
   }
 
   /**
@@ -139,14 +140,14 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
     params.append("imageUrl", post.image_url);
 
     let postRequest = this.http.post<DataSourceResponse<DataSourcePostResponse>>(
-      PostApiDataSource.dataSourceURL.concat("/post"), null, { headers: headers, params: params});
+      PostApiDataSource.dataSourceURL.concat("/post"), null, {headers: headers, params: params});
 
     return new Promise<DataSourcePost>(async (resolve, reject) => {
 
-      postRequest.subscribe( response => {
+      postRequest.subscribe(response => {
           console.log(response);
 
-          if(response.status){
+          if (response.status) {
             resolve(response.result.post)
           }
         },

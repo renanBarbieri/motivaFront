@@ -8,7 +8,7 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import LoggedPageController from "@app/ui/logged/LoggedPageController";
 
 @Injectable()
-export default class HomeController extends LoggedPageController{
+export default class HomeController extends LoggedPageController {
 
   constructor(private postsOfTopicsInterestUseCase: PostsOfTopicsInterestUseCase,
               private userHome: UserDataUseCase,
@@ -17,14 +17,14 @@ export default class HomeController extends LoggedPageController{
     super(userHome, authHome, routerHome);
   }
 
-  getPostsOfTopicsOfInterest(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>){
+  getPostsOfTopicsOfInterest(responseHandler: PostsOfTopicsInterestOutputBoundary, topics: Map<number, string>) {
     let requestData = new PostsOfTopicsInterestInputModel();
     requestData.tags = topics;
     this.postsOfTopicsInterestUseCase.getPosts(requestData, responseHandler);
   }
 
-  getResultsOfSearch(searchText: string){
+  getResultsOfSearch(searchText: string) {
     console.log(searchText);
-    this.routerHome.navigate(['/search', { q: searchText}]);
+    this.routerHome.navigate(['/search', {q: searchText}]);
   }
 }

@@ -4,11 +4,12 @@ import {AuthInputModel} from "@app/useCases/auth/AuthInputBoundary";
 import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
 
 @Injectable()
-export default class LoginController{
+export default class LoginController {
 
-  constructor(private authUseCase: AuthUseCase) {}
+  constructor(private authUseCase: AuthUseCase) {
+  }
 
-  makeLogin(username: string, password: string, responseHandler: AuthOutputBoundary){
+  makeLogin(username: string, password: string, responseHandler: AuthOutputBoundary) {
     let requestData = new AuthInputModel();
     requestData.username = username;
     requestData.password = password;

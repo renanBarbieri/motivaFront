@@ -5,12 +5,12 @@
   <div *ngFor="let index of articleIndexes">
     <app-card
       [title]="articles[index].title"
-      [thumbnail] = "articles[index].articleImage"
-      [avatar] = "articles[index].authorImage"
-      [subtitle] = "articles[index].author"
-      [starCount] = "articles[index].likes"
-      [favCount] = "articles[index].views"
-      [date] = "articles[index].publishDate"
+      [thumbnail]="articles[index].articleImage"
+      [avatar]="articles[index].authorImage"
+      [subtitle]="articles[index].author"
+      [starCount]="articles[index].likes"
+      [favCount]="articles[index].views"
+      [date]="articles[index].publishDate"
     >
     </app-card>
   </div>

@@ -1,6 +1,6 @@
 import {UserDataOutputBoundary} from "./UserDataOutputBoundary";
 
-export interface UserDataInputBoundary{
+export interface UserDataInputBoundary {
   getUser(requestData: UserDataInputModel, presenter: UserDataOutputBoundary);
 }
 

@@ -3,7 +3,7 @@ import RewardItem from "@app/ui/models/RewardItem";
 import {ToolbarState} from "@app/components/toolbar/TollbarState";
 
 @Injectable()
-export default class ViewPostViewModel{
+export default class ViewPostViewModel {
 
   postToolbarState = ToolbarState.ALL_ITEMS;
 

@@ -7,7 +7,7 @@ import AuthController from "@app/ui/auth/AuthController";
 import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 
 @Injectable()
-export default abstract class LeftSideBarController extends AuthController{
+export default abstract class LeftSideBarController extends AuthController {
 
   constructor(private userDataUseCase: UserDataUseCase,
               private authParent: AuthUseCase,
@@ -15,7 +15,7 @@ export default abstract class LeftSideBarController extends AuthController{
     super(authParent, routerParent);
   }
 
-  getUserData(responseHandler: UserDataOutputBoundary){
+  getUserData(responseHandler: UserDataOutputBoundary) {
     let requestData = new UserDataInputModel();
     this.userDataUseCase.getUser(requestData, responseHandler);
   }

@@ -6,9 +6,10 @@ import UserDataSourceMapper from "app/data/mapper/UserDataSourceMapper";
 import {UserDataGateway} from "app/useCases/userData/UserDataGateway";
 
 @Injectable()
-export default class UserRepository implements UserDataGateway{
+export default class UserRepository implements UserDataGateway {
 
-  constructor(private userApiDataSource: UserApiDataSource){}
+  constructor(private userApiDataSource: UserApiDataSource) {
+  }
 
   get(authKey: string): Promise<User> {
     return new Promise<User>(async (resolve) => {

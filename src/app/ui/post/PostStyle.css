@@ -4,12 +4,12 @@
 }
 
 .drop-zone {
-   border: dotted 3px lightgray;
-   height: 22em;
-   justify-content: center;
-   display: flex;
-   flex-direction: column;
- }
+  border: dotted 3px lightgray;
+  height: 22em;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
 
 .drop-zone-empty {
   justify-content: center;
@@ -17,7 +17,7 @@
   flex-direction: column;
 }
 
-.drop-zone-frame{
+.drop-zone-frame {
   height: 100%;
   width: auto;
   position: relative;
@@ -31,9 +31,9 @@
   width: auto;
   min-height: 100%;
   min-width: 100%;
-  -webkit-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .drop-text {
@@ -55,7 +55,12 @@
   width: 1em;
   color: darkgray;
 }
-.nv-file-over { border: dotted 3px #FF007B; } /* Default class applied to drop zones on over */
+
+.nv-file-over {
+  border: dotted 3px #FF007B;
+}
+
+/* Default class applied to drop zones on over */
 
 .postTitleBox {
   flex: 1;

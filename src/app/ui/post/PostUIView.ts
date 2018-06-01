@@ -2,7 +2,7 @@ import RewardItem from "app/ui/models/RewardItem";
 import {AuthUiView} from "@app/ui/auth/AuthUIView";
 import {FileUploader} from "ng2-file-upload";
 
-export interface PostUiView extends AuthUiView{
+export interface PostUiView extends AuthUiView {
 
   uploaderReady(imageUploader: FileUploader);
 

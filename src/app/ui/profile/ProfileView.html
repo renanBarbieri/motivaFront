@@ -35,10 +35,10 @@
           <div fxLayout="column">
             Conquistas
             <div class="rewardsList">
-              <img  class="chipIcon" *ngFor="let index of profileViewModel.userRewardsIndexes"
-                    src="{{profileViewModel.userRewards[index].icon}}"
-                    alt="{{profileViewModel.userRewards[index].name}}"
-                    matTooltip="{{profileViewModel.userRewards[index].name}}"/>
+              <img class="chipIcon" *ngFor="let index of profileViewModel.userRewardsIndexes"
+                   src="{{profileViewModel.userRewards[index].icon}}"
+                   alt="{{profileViewModel.userRewards[index].name}}"
+                   matTooltip="{{profileViewModel.userRewards[index].name}}"/>
             </div>
           </div>
         </div>
@@ -53,8 +53,8 @@
       </div>
       <div *ngFor="let topicName of profileViewModel.topicsKeys">
         <app-topic-articles
-          [topicName] = "topicName"
-          [articles] = "profileViewModel.topicsList.get(topicName)">
+          [topicName]="topicName"
+          [articles]="profileViewModel.topicsList.get(topicName)">
         </app-topic-articles>
       </div>
     </div>

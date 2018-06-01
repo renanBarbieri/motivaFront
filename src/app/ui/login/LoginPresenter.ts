@@ -3,7 +3,7 @@ import {LoginUiView} from "@app/ui/login/LoginUIView";
 import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/auth/AuthOutputBoundary";
 
 @Injectable()
-export default class LoginPresenter implements AuthOutputBoundary{
+export default class LoginPresenter implements AuthOutputBoundary {
   private view: LoginUiView;
 
   onViewInit(view: LoginUiView) {

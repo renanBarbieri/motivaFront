@@ -3,19 +3,8 @@ import Reward from './Reward';
 import Tag from './Tag';
 import {Entity} from "./Entity";
 
-export default class User extends Entity{
+export default class User extends Entity {
   private _name: string;
-  private _description: string;
-  private _username: string;
-  private _avatar: string;
-  private _email: string;
-  private _experience: number;
-  private _facebook: string;
-  private _github: string;
-  private _linkedin: string;
-  private _level: Level;
-  private _rewards: Reward[];
-  private _interests: Tag[];
 
   get name(): string {
     return this._name;
@@ -25,6 +14,8 @@ export default class User extends Entity{
     this._name = value;
   }
 
+  private _description: string;
+
   get description(): string {
     return this._description;
   }
@@ -32,6 +23,8 @@ export default class User extends Entity{
   set description(value: string) {
     this._description = value;
   }
+
+  private _username: string;
 
   get username(): string {
     return this._username;
@@ -41,6 +34,8 @@ export default class User extends Entity{
     this._username = value;
   }
 
+  private _avatar: string;
+
   get avatar(): string {
     return this._avatar;
   }
@@ -48,6 +43,8 @@ export default class User extends Entity{
   set avatar(value: string) {
     this._avatar = value;
   }
+
+  private _email: string;
 
   get email(): string {
     return this._email;
@@ -57,6 +54,8 @@ export default class User extends Entity{
     this._email = value;
   }
 
+  private _experience: number;
+
   get experience(): number {
     return this._experience;
   }
@@ -64,6 +63,8 @@ export default class User extends Entity{
   set experience(value: number) {
     this._experience = value;
   }
+
+  private _facebook: string;
 
   get facebook(): string {
     return this._facebook;
@@ -73,6 +74,8 @@ export default class User extends Entity{
     this._facebook = value;
   }
 
+  private _github: string;
+
   get github(): string {
     return this._github;
   }
@@ -80,6 +83,8 @@ export default class User extends Entity{
   set github(value: string) {
     this._github = value;
   }
+
+  private _linkedin: string;
 
   get linkedin(): string {
     return this._linkedin;
@@ -89,6 +94,8 @@ export default class User extends Entity{
     this._linkedin = value;
   }
 
+  private _level: Level;
+
   get level(): Level {
     return this._level;
   }
@@ -97,6 +104,8 @@ export default class User extends Entity{
     this._level = value;
   }
 
+  private _rewards: Reward[];
+
   get rewards(): Reward[] {
     return this._rewards;
   }
@@ -104,6 +113,8 @@ export default class User extends Entity{
   set rewards(value: Reward[]) {
     this._rewards = value;
   }
+
+  private _interests: Tag[];
 
   get interests(): Tag[] {
     return this._interests;

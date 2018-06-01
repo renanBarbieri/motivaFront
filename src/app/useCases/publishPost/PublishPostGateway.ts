@@ -1,5 +1,4 @@
 import {FileUploader} from "ng2-file-upload";
-import Tag from "@app/entity/Tag";
 import Post from "@app/entity/Post";
 
 export interface PublishPostGateway {

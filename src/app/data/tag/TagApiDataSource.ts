@@ -7,9 +7,11 @@ import DataSourceTag from "@app/data/model/DataSourceTag";
 import {TagDataSource} from "@app/data/tag/TagDataSource";
 
 @Injectable()
-export default class TagApiDataSource extends DataSourceConfig implements TagDataSource{
+export default class TagApiDataSource extends DataSourceConfig implements TagDataSource {
 
-  constructor(protected http: HttpClient){ super(); }
+  constructor(protected http: HttpClient) {
+    super();
+  }
 
   /**
    * Pega as tags registradas no servidor
@@ -26,10 +28,10 @@ export default class TagApiDataSource extends DataSourceConfig implements TagDat
 
     return new Promise<DataSourceTag[]>(async (resolve, reject) => {
 
-      getTagsRequest.subscribe( response => {
+      getTagsRequest.subscribe(response => {
           console.log(response);
 
-          if(response.status){
+          if (response.status) {
             resolve(response.result.tags)
           }
         }

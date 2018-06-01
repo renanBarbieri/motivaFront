@@ -1,6 +1,4 @@
-
-
-export default class DataSourceTag{
+export default class DataSourceTag {
   name: string;
   id: number;
 }

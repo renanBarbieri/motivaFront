@@ -1,5 +1,5 @@
+export default class DataSourceResponse<T> {
 
-export default class DataSourceResponse<T>{
-
-  constructor(public status: String, public result: T){}
+  constructor(public status: String, public result: T) {
+  }
 }

@@ -5,11 +5,11 @@ import {SearchUiView} from "app/ui/search/SearchUIView";
 import AuthPresenter from "app/ui/auth/AuthPresenter";
 
 @Injectable()
-export default class SearchPresenter extends AuthPresenter implements SearchOutputBoundary, UserDataOutputBoundary{
+export default class SearchPresenter extends AuthPresenter implements SearchOutputBoundary, UserDataOutputBoundary {
 
   private searchUiView: SearchUiView;
 
-  onViewInit(viewInstance: SearchUiView){
+  onViewInit(viewInstance: SearchUiView) {
     this.searchUiView = viewInstance;
     super.onViewInit(viewInstance);
   }
@@ -19,9 +19,9 @@ export default class SearchPresenter extends AuthPresenter implements SearchOutp
   }
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-    this.searchUiView.updateUserData( responseData.username, responseData.levelCompleted,
-                              responseData.levelName, responseData.profileImage,
-                              responseData.rewards, responseData.tags);
+    this.searchUiView.updateUserData(responseData.username, responseData.levelCompleted,
+      responseData.levelName, responseData.profileImage,
+      responseData.rewards, responseData.tags);
   }
 
   onUserDataError(errorData: any) {

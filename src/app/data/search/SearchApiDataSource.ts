@@ -6,9 +6,9 @@ import DataSourceSearch from "app/data/model/DataSourceSearch";
 import DataSourceResponse from "app/data/model/DataSourceResponse";
 
 @Injectable()
-export default class SearchApiDataSource extends DataSourceConfig implements SearchDataSource{
+export default class SearchApiDataSource extends DataSourceConfig implements SearchDataSource {
 
-  constructor(protected http: HttpClient){
+  constructor(protected http: HttpClient) {
     super();
   }
 
@@ -23,12 +23,12 @@ export default class SearchApiDataSource extends DataSourceConfig implements Sea
 
     return new Promise<DataSourceSearch>(async (resolve, reject) => {
 
-      getRequest.subscribe( response => {
+      getRequest.subscribe(response => {
           console.log(response);
-          if(response.status){
+          if (response.status) {
             resolve(response.result);
           }
-          else{
+          else {
             reject();
           }
         }

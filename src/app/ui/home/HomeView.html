@@ -1,16 +1,16 @@
 <div class="pageContent" fxLayout="row">
   <div class="leftSideBar">
-      <app-left-sidebar
-        [username]="homeViewModel.username"
-        [levelCompleted]="homeViewModel.levelCompleted"
-        [levelName]="homeViewModel.levelName"
-        [profileImage]="homeViewModel.profileImage"
-        [rewards]="homeViewModel.rewards"
-        (onProfileClick)="openProfilePage()"
-        (onFavoritesClick)="openFavoritesPage()"
-        (onSettingsClick)="openSettingsPage()"
-        (onLogoutClick)="logout()"
-      ></app-left-sidebar>
+    <app-left-sidebar
+      [username]="homeViewModel.username"
+      [levelCompleted]="homeViewModel.levelCompleted"
+      [levelName]="homeViewModel.levelName"
+      [profileImage]="homeViewModel.profileImage"
+      [rewards]="homeViewModel.rewards"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
+      (onLogoutClick)="logout()"
+    ></app-left-sidebar>
   </div>
   <div class="pageCenter">
     <app-toolbar
@@ -18,14 +18,14 @@
       (homeClickEvent)="openHomePage()"
       (searchClickEvent)="openSearchPage()"
       (newPostClickEvent)="openNewPostPage()"></app-toolbar>
-      <div class="content">
-        <div *ngFor="let topicName of homeViewModel.topicsKeys">
-          <app-topic-articles
-            [topicName] = "topicName"
-            [articles] = "homeViewModel.topicsList.get(topicName)">
-          </app-topic-articles>
-        </div>
+    <div class="content">
+      <div *ngFor="let topicName of homeViewModel.topicsKeys">
+        <app-topic-articles
+          [topicName]="topicName"
+          [articles]="homeViewModel.topicsList.get(topicName)">
+        </app-topic-articles>
       </div>
+    </div>
   </div>
   <div class="rightSideBar">
 

@@ -7,7 +7,7 @@ import {PostsOfTopicsInterestOutputBoundary} from "@app/useCases/postsOfTopicsIn
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 
 @Injectable()
-export default class HomePresenter extends AuthPresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary{
+export default class HomePresenter extends AuthPresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary {
   private homeUiView: HomeUiView;
 
   onViewInit(view: HomeUiView) {
@@ -16,9 +16,9 @@ export default class HomePresenter extends AuthPresenter implements UserDataOutp
   }
 
   onUserDataSuccess(responseData: UserDataOutputModel) {
-    this.homeUiView.updateUserData( responseData.username, responseData.levelCompleted,
-                              responseData.levelName, responseData.profileImage,
-                              responseData.rewards, responseData.tags);
+    this.homeUiView.updateUserData(responseData.username, responseData.levelCompleted,
+      responseData.levelName, responseData.profileImage,
+      responseData.rewards, responseData.tags);
   }
 
   onUserDataError(errorData: any) {

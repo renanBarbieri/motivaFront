@@ -6,7 +6,7 @@ import Post from "@app/entity/Post";
 import UserProfileDataSourceMapper from "@app/data/mapper/UserProfileDataSourceMapper";
 import PostDataSourceMapper from "@app/data/mapper/PostCardDataSourceMapper";
 
-export default class SearchDataSourceMapper{
+export default class SearchDataSourceMapper {
 
   toEntity(dataSource: DataSourceSearch): [Array<User>, Array<Tag>, Array<Post>] {
 
@@ -27,7 +27,6 @@ export default class SearchDataSourceMapper{
 
     return [users, tags, posts];
   }
-
 
 
   toDataSource(entity: [Array<User>, Array<Tag>, Array<Post>]): DataSourceSearch {

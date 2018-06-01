@@ -12,13 +12,13 @@ import {TopicArticlesComponent} from './components/topicArticles/topicArticlesCo
 import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfilePicComponent} from "@app/components/profilePic/ProfilePicComponent";
-import { QuillEditorModule } from 'ngx-quill-editor';
+import {QuillEditorModule} from 'ngx-quill-editor';
 import {FileUploadModule} from "ng2-file-upload";
 // MATERIAL DESIGN
 import {
-  MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatGridListModule,
-  MatIconModule, MatInputModule, MatProgressBarModule, MatProgressSpinnerModule, MatTabsModule, MatToolbarModule,
-  MatTooltipModule, MatListModule, MatAutocompleteModule
+  MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule,
+  MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatProgressBarModule, MatProgressSpinnerModule,
+  MatTabsModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 //DEPENDENCY INJECTION
 import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
@@ -90,22 +90,23 @@ import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
   ],
   providers: [
     //Repositories
-    { provide: AuthRepository, useClass: AuthRepository },
-    { provide: PostRepository, useClass: PostRepository },
-    { provide: SearchRepository, useClass: SearchRepository},
-    { provide: TagRepository, useClass: TagRepository },
-    { provide: UserRepository, useClass: UserRepository },
+    {provide: AuthRepository, useClass: AuthRepository},
+    {provide: PostRepository, useClass: PostRepository},
+    {provide: SearchRepository, useClass: SearchRepository},
+    {provide: TagRepository, useClass: TagRepository},
+    {provide: UserRepository, useClass: UserRepository},
     //DataSources
-    { provide: AuthLocalDataSource, useClass: AuthLocalDataSource },
-    { provide: AuthApiDataSource, useClass: AuthApiDataSource },
-    { provide: PostApiDataSource, useClass: PostApiDataSource },
-    { provide: SearchApiDataSource, useClass: SearchApiDataSource },
-    { provide: TagApiDataSource, useClass: TagApiDataSource },
-    { provide: UserApiDataSource, useClass: UserApiDataSource },
+    {provide: AuthLocalDataSource, useClass: AuthLocalDataSource},
+    {provide: AuthApiDataSource, useClass: AuthApiDataSource},
+    {provide: PostApiDataSource, useClass: PostApiDataSource},
+    {provide: SearchApiDataSource, useClass: SearchApiDataSource},
+    {provide: TagApiDataSource, useClass: TagApiDataSource},
+    {provide: UserApiDataSource, useClass: UserApiDataSource},
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     // SimpleTextDialogComponent,
   ],
 })
-export class AppModule { }
+export class AppModule {
+}
