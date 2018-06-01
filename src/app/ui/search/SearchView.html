@@ -28,7 +28,7 @@
             <div class="listUserResult" fxLayout="row">
               <div *ngFor="let index of userIndexes">
                 <profile-pic
-                  (click)="onProfileClick()"
+                  (click)="onProfileClick(searchViewModel.userResultList[index].username)"
                   [id]="searchViewModel.userResultList[index].entityReference"
                   [name]="searchViewModel.userResultList[index].username"
                   [avatar]="searchViewModel.userResultList[index].avatar">

@@ -141,8 +141,8 @@ export class SearchComponent extends LoggedComponent implements SearchUiView, On
     this.clearAllResults();
   }
 
-  onProfileClick() {
-    console.log(`cliquei no perfil`)
+  onProfileClick(username: string) {
+    this.searchController.openProfile(username);
   }
 
   onTopicClick(topicId: number) {

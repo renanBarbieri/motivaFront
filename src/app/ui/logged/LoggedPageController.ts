@@ -15,7 +15,7 @@ export default class LoggedPageController extends LeftSideBarController implemen
   }
 
   goToProfile(): void {
-    this.routerChild.navigate(['/user']);
+    this.routerChild.navigate(['/profile']);
   }
 
   goToFavorites(): void {

@@ -20,4 +20,8 @@ export default class SearchController extends LoggedPageController {
     this.searchUseCase.searchInput(searchText, outputBoundary);
   }
 
+  openProfile(username: string){
+    this.routerSearch.navigate(["/profile/".concat(username)]);
+  }
+
 }
