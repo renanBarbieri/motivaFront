@@ -18,10 +18,10 @@ export default class PostUseCase implements PostInputBoundary {
       const authkey = await this.authRepository.getKey();
       const post = await this.publishPostRepository.getPost(authkey, postInputModel.username, postInputModel.postId);
 
-      console.log(post);
+      const outputTags: Array<string> = post.tags.map(it => it.name);
 
       outputModel.title = post.title;
-      outputModel.tags = ["Tag 1", "Tag 2", "Tag 3", "Tag 4"];
+      outputModel.tags = outputTags;
       outputModel.estimateTime = post.estimatedTime;
       outputModel.text = post.content;
       outputModel.bannerImage = post.headerImage;

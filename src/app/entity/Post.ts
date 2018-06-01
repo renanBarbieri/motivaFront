@@ -1,5 +1,6 @@
 import {Entity} from "@app/entity/Entity";
 import User from "@app/entity/User";
+import Tag from "@app/entity/Tag";
 
 export default class Post extends Entity{
 
@@ -13,6 +14,7 @@ export default class Post extends Entity{
   private _owner: User;
   private _headerImage: string;
   private _estimatedTime: number;
+  private _tags: Array<Tag>;
 
 
   get title(): string {
@@ -96,5 +98,14 @@ export default class Post extends Entity{
 
   set estimatedTime(value: number) {
     this._estimatedTime = value;
+  }
+
+
+  get tags(): Tag[] {
+    return this._tags;
+  }
+
+  set tags(value: Tag[]) {
+    this._tags = value;
   }
 }
