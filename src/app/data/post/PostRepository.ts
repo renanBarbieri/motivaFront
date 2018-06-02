@@ -8,19 +8,20 @@ import {PublishPostGateway} from "@app/useCases/publishPost/PublishPostGateway";
 import {FileUploader} from "ng2-file-upload";
 import PostDataSourceMapper from "@app/data/mapper/PostDataSourceMapper";
 import {PostGateway} from "@app/useCases/post/PostGateway";
+import {ListPostsGateway} from "@app/useCases/listPosts/ListPostsGateway";
 
 @Injectable()
-export default class PostRepository implements PostsOfTopicsInterestGateway, PublishPostGateway, PostGateway {
+export default class PostRepository implements PostsOfTopicsInterestGateway, PublishPostGateway, PostGateway, ListPostsGateway {
 
   constructor(private postApiDataSource: PostApiDataSource) {
   }
 
 
-  getPostsFromTag(auth: string, tagId: string): Promise<Post[]> {
+  getPostsFromTag(auth: string, tagName: string): Promise<Post[]> {
 
     return new Promise<Post[]>(async (resolve, reject) => {
       let postMapper = new PostCardDataSourceMapper();
-      let dataSourcePosts: DataSourcePostCard[] = await this.postApiDataSource.getPostsFromTag(auth, tagId);
+      let dataSourcePosts: DataSourcePostCard[] = await this.postApiDataSource.getPostsFromTag(auth, tagName);
 
       resolve(dataSourcePosts.map(it =>
         postMapper.toEntity(it)

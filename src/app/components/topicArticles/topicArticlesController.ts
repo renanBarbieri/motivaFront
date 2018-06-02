@@ -13,7 +13,6 @@ export class TopicArticlesComponent implements OnInit{
   @Input()
   articles: PostItem[];
 
-
   @Output() onCardClick = new EventEmitter();
 
   public articleIndexes: Array<number> = [];

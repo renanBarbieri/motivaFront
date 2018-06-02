@@ -1,0 +1,42 @@
+<div class="pageContent" fxLayout="row">
+  <div class="leftSideBar">
+    <app-left-sidebar
+      [username]="listPostsViewModel.username"
+      [levelCompleted]="listPostsViewModel.levelCompleted"
+      [levelName]="listPostsViewModel.levelName"
+      [profileImage]="listPostsViewModel.profileImage"
+      [rewards]="listPostsViewModel.rewards"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
+      (onLogoutClick)="logout()"
+    ></app-left-sidebar>
+  </div>
+  <div class="pageCenter">
+    <app-toolbar
+      (searchInputEvent)="onSearchInput($event)"
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"></app-toolbar>
+    <div class="content">
+      <div class="topicName">
+        {{ listPostsViewModel.title }}
+      </div>
+      <div class="listArticles" fxLayout="row">
+        <div *ngFor="let index of listPostsViewModel.postIndexes">
+          <app-card
+            [title]="listPostsViewModel.postList[index].title"
+            [thumbnail] = "listPostsViewModel.postList[index].articleImage"
+            [avatar] = "listPostsViewModel.postList[index].authorImage"
+            [subtitle] = "listPostsViewModel.postList[index].author"
+            [starCount] = "listPostsViewModel.postList[index].likes"
+            [favCount] = "listPostsViewModel.postList[index].views"
+            [date] = "listPostsViewModel.postList[index].publishDate"
+            (onCardClick)="onCardClick(searchViewModel.postResultList[index].entityReference,
+                                        searchViewModel.postResultList[index].authorId)" >
+          </app-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
