@@ -33,4 +33,9 @@ export default class ProfileController extends LoggedPageController {
     this.postsOfTopicsInterestUseCase.getPosts(requestData, responseHandler);
   }
 
+
+  getResultsOfSearch(searchText: string) {
+    this.routerProfile.navigate(['/search', {q: searchText}]);
+  }
+
 }

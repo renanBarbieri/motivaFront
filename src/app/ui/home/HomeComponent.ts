@@ -77,7 +77,7 @@ export class HomeComponent extends LoggedComponent implements OnInit, HomeUiView
     this.clearHomeViewLists();
     topicList.forEach((value: PostItem[], key: string) => {
       this.homeViewModel.topicsKeys.push(key);
-      this.homeViewModel.topicsList.set(key, value)
+      this.homeViewModel.topicsList.set(key, value);
     });
   }
 

@@ -107,6 +107,12 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     this.viewPostViewModel.postHtmlText = text;
   }
 
+
+  onSearchInput($textToSearch: string) {
+    this.viewPostController.getResultsOfSearch($textToSearch)
+  }
+
+
   /**
    *
    */

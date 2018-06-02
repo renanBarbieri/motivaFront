@@ -16,6 +16,7 @@
   <div class="pageCenter">
     <app-toolbar
       [toolbarState]="viewPostViewModel.postToolbarState"
+      (searchInputEvent)="onSearchInput($event)"
       (homeClickEvent)="openHomePage()"
       (searchClickEvent)="openSearchPage()"
       (newPostClickEvent)="openNewPostPage()"></app-toolbar>

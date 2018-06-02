@@ -125,6 +125,11 @@ export class ProfileComponent extends LoggedComponent implements OnInit, Profile
     });
   }
 
+  onSearchInput($textToSearch: string) {
+    this.profileController.getResultsOfSearch($textToSearch)
+  }
+
   showErrorAlert(message: String) {
+    alert(message);
   }
 }

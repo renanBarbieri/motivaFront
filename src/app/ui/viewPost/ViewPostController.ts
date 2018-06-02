@@ -10,11 +10,11 @@ import {PostInputModel} from "@app/useCases/post/PostInputBoundary";
 @Injectable()
 export default class ViewPostController extends LoggedPageController {
 
-  constructor(private userCreatePost: UserDataUseCase,
-              private authCreatePost: AuthUseCase,
-              private routerCreatePost: Router,
+  constructor(private userViewPost: UserDataUseCase,
+              private authViewPost: AuthUseCase,
+              private routerViewPost: Router,
               private postUseCase: PostUseCase) {
-    super(userCreatePost, authCreatePost, routerCreatePost);
+    super(userViewPost, authViewPost, routerViewPost);
   }
 
   getPostData(username: string, postId: number, outputBoudary: PostOutputBoundary) {
@@ -22,5 +22,10 @@ export default class ViewPostController extends LoggedPageController {
     postInputModel.postId = postId;
     postInputModel.username = username;
     this.postUseCase.retrievePostData(postInputModel, outputBoudary);
+  }
+
+
+  getResultsOfSearch(searchText: string) {
+    this.routerViewPost.navigate(['/search', {q: searchText}]);
   }
 }

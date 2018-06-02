@@ -15,6 +15,7 @@
   </div>
   <div class="pageCenter">
     <app-toolbar
+      (searchInputEvent)="onSearchInput($event)"
       (homeClickEvent)="openHomePage()"
       (searchClickEvent)="openSearchPage()"
       (newPostClickEvent)="openNewPostPage()"></app-toolbar>
