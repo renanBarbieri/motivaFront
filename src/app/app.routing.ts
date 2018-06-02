@@ -6,6 +6,7 @@ import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {PostComponent} from "@app/ui/post/PostComponent";
 import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
+import {ViewPostsComponent} from "@app/ui/viewPosts/ViewPostsComponent";
 
 export const appRoutes: Routes = [
   {
@@ -23,6 +24,14 @@ export const appRoutes: Routes = [
   },
   {
     path: 'post/:username/:postId',
+    component: ViewPostComponent
+  },
+  {
+    path: 'post/:username', //todos os posts do usuário. Pode conter query param
+    component: ViewPostsComponent
+  },
+  {
+    path: 'post/tag/:tagId', //todos os posts de uma tag
     component: ViewPostComponent
   },
   {

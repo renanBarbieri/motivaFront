@@ -1,0 +1,29 @@
+<div class="pageContent" fxLayout="row">
+  <div class="leftSideBar">
+    <app-left-sidebar
+      [username]="viewPostsViewModel.username"
+      [levelCompleted]="viewPostsViewModel.levelCompleted"
+      [levelName]="viewPostsViewModel.levelName"
+      [profileImage]="viewPostsViewModel.profileImage"
+      [rewards]="viewPostsViewModel.rewards"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
+      (onLogoutClick)="logout()"
+    ></app-left-sidebar>
+  </div>
+  <div class="pageCenter">
+    <app-toolbar
+      (searchInputEvent)="onSearchInput($event)"
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"></app-toolbar>
+    <div class="content">
+      <app-topic-articles
+        [topicName]="title"
+        [articles]="viewPostsViewModel.postList"
+        (onCardClick)="onCardClick($event)">
+      </app-topic-articles>
+    </div>
+  </div>
+</div>

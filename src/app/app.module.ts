@@ -42,6 +42,7 @@ import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
 import {PostComponent} from "@app/ui/post/PostComponent";
 import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
+import {ViewPostsComponent} from "@app/ui/viewPosts/ViewPostsComponent";
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
     SearchComponent,
     PostComponent,
     ViewPostComponent,
+    ViewPostsComponent,
     ProfileComponent,
     //COMPONENTS
     NotFoundComponent,
