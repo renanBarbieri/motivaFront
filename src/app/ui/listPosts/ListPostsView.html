@@ -32,8 +32,8 @@
             [starCount] = "listPostsViewModel.postList[index].likes"
             [favCount] = "listPostsViewModel.postList[index].views"
             [date] = "listPostsViewModel.postList[index].publishDate"
-            (onCardClick)="onCardClick(searchViewModel.postResultList[index].entityReference,
-                                        searchViewModel.postResultList[index].authorId)" >
+            (onCardClick)="onCardClick(listPostsViewModel.postList[index].entityReference,
+                                        listPostsViewModel.postList[index].authorId)" >
           </app-card>
         </div>
       </div>

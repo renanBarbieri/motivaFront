@@ -11,10 +11,10 @@ import {ListPostsOutputBoundary} from "@app/useCases/listPosts/ListPostsOutputBo
 export default class ListPostsController extends LoggedPageController {
 
   constructor(private listPostsUseCase: ListPostsUseCase,
-              private userHome: UserDataUseCase,
-              private authHome: AuthUseCase,
-              private routerHome: Router) {
-    super(userHome, authHome, routerHome);
+              private userListPosts: UserDataUseCase,
+              private authListPosts: AuthUseCase,
+              private routerListPosts: Router) {
+    super(userListPosts, authListPosts, routerListPosts);
   }
 
   getTagPosts(responseHandler: ListPostsOutputBoundary, tag: string) {
@@ -25,10 +25,10 @@ export default class ListPostsController extends LoggedPageController {
 
   getResultsOfSearch(searchText: string) {
     console.log(searchText);
-    this.routerHome.navigate(['/search', {q: searchText}]);
+    this.routerListPosts.navigate(['/search', {q: searchText}]);
   }
 
   openPost(postId: string, username: string) {
-    this.routerHome.navigate(["/post/".concat(username, "/", postId)]);
+    this.routerListPosts.navigate(["/post/".concat(username, "/", postId)]);
   }
 }
