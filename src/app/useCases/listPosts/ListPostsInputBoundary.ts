@@ -7,5 +7,5 @@ export interface ListPostsInputBoundary {
 }
 
 export class ListPostsInputModel {
-  public tag: string;
+  public identfier: string;
 }

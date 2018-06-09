@@ -42,7 +42,7 @@
             <mat-chip-list class="listTopicResult" fxLayout="row">
               <mat-chip color="primary" class="chipTopic" *ngFor="let index of topicIndexes"
                         title="{{searchViewModel.topicResultList[index].name}}"
-                        (click)="onTopicClick(searchViewModel.topicResultList[index].entityReference)">
+                        (click)="onTopicClick(searchViewModel.topicResultList[index].name)">
                 {{searchViewModel.topicResultList[index].name}}
               </mat-chip>
             </mat-chip-list>

@@ -19,8 +19,14 @@ export default class ListPostsController extends LoggedPageController {
 
   getTagPosts(responseHandler: ListPostsOutputBoundary, tag: string) {
     let requestData = new ListPostsInputModel();
-    requestData.tag = tag;
+    requestData.identfier = tag;
     this.listPostsUseCase.getTagPosts(requestData, responseHandler);
+  }
+
+  getUserPosts(responseHandler: ListPostsOutputBoundary, username: string) {
+    let requestData = new ListPostsInputModel();
+    requestData.identfier = username;
+    this.listPostsUseCase.getUserPosts(requestData, responseHandler);
   }
 
   getResultsOfSearch(searchText: string) {

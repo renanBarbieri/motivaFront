@@ -62,6 +62,26 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
     });
   }
 
+
+  getPostsFromUser(authKey: string, username: string): Promise<DataSourcePostCard[]> {
+    let headers = new HttpHeaders({
+      "Authorization": `Bearer ${authKey}`
+    });
+
+    let url = `${PostApiDataSource.dataSourceURL}/user/${username}/posts?order_by=date`;
+    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePostsResponse>>(url, {headers});
+
+    return new Promise<DataSourcePostCard[]>(async (resolve, reject) => {
+
+      getPostsRequest.subscribe(response => {
+          if (response.status) {
+            resolve(response.result.posts)
+          }
+        }
+      );
+    });
+  }
+
   /**
    *
    * @returns {FileUploader}

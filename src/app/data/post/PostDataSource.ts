@@ -7,6 +7,8 @@ export interface PostDataSource {
 
   getPostsFromTag(authKey: string, tagId: string): Promise<DataSourcePostCard[]>;
 
+  getPostsFromUser(authKey: string, username: string): Promise<DataSourcePostCard[]>;
+
   getImageUploader(authKey: string): FileUploader;
 
   uploadImage(): Promise<string>;

@@ -23,19 +23,19 @@ export const appRoutes: Routes = [
     component: PostComponent
   },
   {
-    path: 'post/:username/:postId',
+    path: ':username/post/:postId',
     component: ViewPostComponent
   },
   {
-    path: 'post/:username', //todos os posts do usuário. Pode conter query param
+    path: ':username/post', //todos os posts do usuário. Pode conter query param
     component: ListPostsComponent
   },
   {
-    path: 'post/tag/:tagId', //todos os posts de uma tag
-    component: ViewPostComponent
+    path: 'tag/:tagId', //todos os posts de uma tag
+    component: ListPostsComponent
   },
   {
-    path: 'profile/:username',
+    path: ':username/profile',
     component: ProfileComponent
   },
   {

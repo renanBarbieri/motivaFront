@@ -18,10 +18,20 @@ export default class PostRepository implements PostsOfTopicsInterestGateway, Pub
 
 
   getPostsFromTag(auth: string, tagName: string): Promise<Post[]> {
-
     return new Promise<Post[]>(async (resolve, reject) => {
       let postMapper = new PostCardDataSourceMapper();
       let dataSourcePosts: DataSourcePostCard[] = await this.postApiDataSource.getPostsFromTag(auth, tagName);
+
+      resolve(dataSourcePosts.map(it =>
+        postMapper.toEntity(it)
+      ));
+    });
+  }
+
+  getPostsFromUser(auth: string, username: string): Promise<Post[]> {
+    return new Promise<Post[]>(async (resolve, reject) => {
+      let postMapper = new PostCardDataSourceMapper();
+      let dataSourcePosts: DataSourcePostCard[] = await this.postApiDataSource.getPostsFromUser(auth, username);
 
       resolve(dataSourcePosts.map(it =>
         postMapper.toEntity(it)

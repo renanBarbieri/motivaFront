@@ -29,6 +29,6 @@ export default class HomeController extends LoggedPageController {
   }
 
   openPost(postId: string, username: string) {
-    this.routerHome.navigate(["/post/".concat(username, "/", postId)]);
+    this.routerHome.navigate(["/"+username+"/post/"+postId]);
   }
 }

@@ -11,6 +11,7 @@ import ListPostsPresenter from "./ListPostsPresenter";
 import ListPostsViewModel from "./ListPostsViewModel";
 import {ListPostsUiView} from "./ListPostsUIView";
 import ListPostsUseCase from "@app/useCases/listPosts/ListPostsUseCase";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-view-posts',
@@ -36,8 +37,19 @@ export class ListPostsComponent extends LoggedComponent implements OnInit, ListP
 
   constructor(private listPostsPresenter: ListPostsPresenter,
               private listPostsController: ListPostsController,
-              public listPostsViewModel: ListPostsViewModel) {
+              public listPostsViewModel: ListPostsViewModel,
+              private route: ActivatedRoute) {
     super(listPostsController);
+    this.route.params.subscribe( params => {
+      if(params.tagId){
+        this.listPostsViewModel.title = `Posts com a tag ${params.tagId}`;
+        this.listPostsController.getTagPosts(this.listPostsPresenter, params.tagId);
+      }
+      else if(params.username) {
+        this.listPostsViewModel.title = `Posts de ${params.username}`;
+        this.listPostsController.getUserPosts(this.listPostsPresenter, params.username);
+      }
+    });
   }
 
   ngOnInit() {
@@ -64,10 +76,6 @@ export class ListPostsComponent extends LoggedComponent implements OnInit, ListP
     this.listPostsViewModel.profileImage = profileImageUrl;
     this.updateRewardsList(rewards);
 
-
-    //TODO: Identificar quando é post de usuário e quando é tag
-    this.listPostsViewModel.title = "Posts de Vini";
-    this.listPostsController.getTagPosts(this.listPostsPresenter, "tag exemplo");
   }
 
   updateRewardsList(newRewards: Array<RewardItem>) {
@@ -95,8 +103,9 @@ export class ListPostsComponent extends LoggedComponent implements OnInit, ListP
     this.listPostsController.getResultsOfSearch($textToSearch)
   }
 
-  onCardClick($postValues) {
-    this.listPostsController.openPost($postValues.post, $postValues.username);
+  onCardClick(postId, username) {
+    console.log(this.listPostsViewModel.postList);
+    this.listPostsController.openPost(postId, username);
   }
 
   logout() {

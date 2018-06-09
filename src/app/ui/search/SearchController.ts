@@ -21,11 +21,15 @@ export default class SearchController extends LoggedPageController {
   }
 
   openProfile(username: string){
-    this.routerSearch.navigate(["/profile/".concat(username)]);
+    this.routerSearch.navigate(["/"+username+"/profile/"]);
   }
 
   openPost(postId: string, username: string) {
-    this.routerSearch.navigate(["/post/".concat(username, "/", postId)]);
+    this.routerSearch.navigate(["/"+username+"/post/"+postId]);
+  }
+
+  openTagList(tagId: string) {
+    this.routerSearch.navigate(["/tag/"+tagId]);
   }
 
 }
