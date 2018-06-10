@@ -19,8 +19,7 @@ mat-card-content {
 }
 
 mat-card {
-  width: 12em;
-  margin: 1em;
+  margin-bottom: 1em;
 }
 
 @media screen and (max-width: 700px) {

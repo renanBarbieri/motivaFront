@@ -10,6 +10,7 @@ import {ToolbarComponent} from './components/toolbar/ToolbarComponent';
 import {CardComponent} from './components/card/cardController';
 import {TopicArticlesComponent} from './components/topicArticles/topicArticlesController';
 import {LeftSideBarComponent} from './components/leftSideBar/LeftSideBarComponent';
+import {CommentComponent} from "@app/components/comment/commentController";
 import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfilePicComponent} from "@app/components/profilePic/ProfilePicComponent";
 import {QuillEditorModule} from 'ngx-quill-editor';
@@ -18,7 +19,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import {
   MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule,
   MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatProgressBarModule, MatProgressSpinnerModule,
-  MatTabsModule, MatToolbarModule, MatTooltipModule
+  MatTabsModule, MatToolbarModule, MatTooltipModule, MatDividerModule
 } from '@angular/material';
 //DEPENDENCY INJECTION
 import AuthLocalDataSource from "@app/data/auth/AuthLocalDataSource";
@@ -30,6 +31,8 @@ import SearchRepository from "@app/data/search/SearchRepository";
 import SearchApiDataSource from "@app/data/search/SearchApiDataSource";
 import TagRepository from "@app/data/tag/TagRepository";
 import TagApiDataSource from "@app/data/tag/TagApiDataSource";
+import AuthRepository from "@app/data/auth/AuthRepository";
+import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
 // PAGES
 import {AppComponent} from "@app/app.component";
 import {AppRoutingModule} from "./app.routing";
@@ -37,13 +40,10 @@ import {AuthComponent} from "@app/ui/auth/AuthComponent";
 import {HomeComponent} from './ui/home/HomeComponent';
 import {LoginComponent} from "@app/ui/login/LoginComponent";
 import {SearchComponent} from "@app/ui/search/SearchComponent";
-import AuthRepository from "@app/data/auth/AuthRepository";
-import AuthApiDataSource from "@app/data/auth/AuthApiDataSource";
 import {PostComponent} from "@app/ui/post/PostComponent";
 import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
 import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
-import {CommentComponent} from "@app/components/comment/commentController";
 
 @NgModule({
   declarations: [
@@ -90,7 +90,8 @@ import {CommentComponent} from "@app/components/comment/commentController";
     MatProgressSpinnerModule,
     MatAutocompleteModule,
     QuillEditorModule,
-    FileUploadModule
+    FileUploadModule,
+    MatDividerModule
   ],
   providers: [
     //Repositories
