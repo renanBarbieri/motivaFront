@@ -43,6 +43,7 @@ import {PostComponent} from "@app/ui/post/PostComponent";
 import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
 import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
+import {CommentComponent} from "@app/components/comment/commentController";
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
     NotFoundComponent,
     ToolbarComponent,
     CardComponent,
+    CommentComponent,
     TopicArticlesComponent,
     LeftSideBarComponent,
     ProfilePicComponent,

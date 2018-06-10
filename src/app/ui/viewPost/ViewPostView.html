@@ -44,6 +44,15 @@
       </div>
       <div class="postContentBox" [innerHTML]="viewPostViewModel.postHtmlText">
       </div>
+      <div class="postComments">
+        <user-comment
+          [avatar]="'url'"
+          [text]="'Ola, eu sou um comentarios'"
+          [date]="'22/02/2002'"
+          [username]="'Renan teste'"
+        ></user-comment>
+      </div>
+      <div class="newComment"></div>
     </div>
   </div>
 </div>
