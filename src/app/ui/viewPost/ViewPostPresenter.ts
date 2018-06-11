@@ -5,10 +5,12 @@ import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 import {ViewPostUiView} from "@app/ui/viewPost/ViewPostUIView";
 import {PostOutputBoundary, PostOutputModel} from "@app/useCases/post/PostOutputBoundary";
+import {PostCommentOutputBoundary, PostCommentOutputModel} from "@app/useCases/post/PostCommentOutputBoundary";
+import CommentItem from "@app/ui/models/CommentItem";
 
 @Injectable()
-export default class ViewPostPresenter extends AuthPresenter implements PostOutputBoundary, UserDataOutputBoundary,
-  AuthOutputBoundary {
+export default class ViewPostPresenter extends AuthPresenter implements PostOutputBoundary, PostCommentOutputBoundary,
+  UserDataOutputBoundary, AuthOutputBoundary {
   private viewPostUiView: ViewPostUiView;
 
   onViewInit(view: ViewPostUiView) {
@@ -50,6 +52,27 @@ export default class ViewPostPresenter extends AuthPresenter implements PostOutp
       postOutput.text,
       postOutput.bannerImage
     );
+  }
+
+  onGetPostCommentSuccess(postOutput: PostCommentOutputModel) {
+    let listComments: Array<CommentItem> = postOutput.comments.map(it => {
+
+      console.log(it.date);
+
+      let item = new CommentItem();
+      item.entityReference = it.username;
+      item.authorName = it.user;
+      item.date = (new Date(it.date)).toLocaleString();
+      item.text = it.text;
+      item.authorAvatar = it.avatar;
+      return item;
+    });
+
+    this.viewPostUiView.updateCommentList(listComments);
+  }
+
+  onGetPostCommentError(err: any) {
+    this.viewPostUiView.showErrorAlert(err.message);
   }
 
   onGetPostDataError(errorData: any) {

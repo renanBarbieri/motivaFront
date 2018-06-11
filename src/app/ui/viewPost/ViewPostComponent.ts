@@ -10,6 +10,7 @@ import ViewPostViewModel from "@app/ui/viewPost/ViewPostViewModel";
 import {ViewPostUiView} from "@app/ui/viewPost/ViewPostUIView";
 import {ActivatedRoute} from "@angular/router";
 import PostUseCase from "@app/useCases/post/PostUseCase";
+import CommentItem from "@app/ui/models/CommentItem";
 
 @Component({
   selector: 'app-post',
@@ -60,6 +61,7 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
       this.viewPostController.getPostData(
         this.route.snapshot.params.username,
         this.route.snapshot.params.postId,
+        this.viewPostPresenter,
         this.viewPostPresenter
       );
     }
@@ -93,9 +95,7 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
    */
   updateRewardsList(newRewards: Array<RewardItem>) {
     this.viewPostViewModel.rewards.length = 0;
-    newRewards.forEach((it) => {
-      this.viewPostViewModel.rewards.push(it);
-    });
+    newRewards.forEach((it) => this.viewPostViewModel.rewards.push(it));
   }
 
 
@@ -105,6 +105,16 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     this.viewPostViewModel.tags = tags;
     this.viewPostViewModel.postImageUrl = bannerImage;
     this.viewPostViewModel.postHtmlText = text;
+  }
+
+  updateCommentList(comments: Array<CommentItem>) {
+    this.viewPostViewModel.postComments.length = 0;
+    this.viewPostViewModel.commentsIndexes.length = 0;
+
+    comments.forEach((it, index) => {
+      this.viewPostViewModel.postComments.push(it);
+      this.viewPostViewModel.commentsIndexes.push(index)
+    });
   }
 
 

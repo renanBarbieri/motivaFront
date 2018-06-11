@@ -6,6 +6,7 @@ import LoggedPageController from "@app/ui/logged/LoggedPageController";
 import PostUseCase from "@app/useCases/post/PostUseCase";
 import {PostOutputBoundary} from "@app/useCases/post/PostOutputBoundary";
 import {PostInputModel} from "@app/useCases/post/PostInputBoundary";
+import {PostCommentOutputBoundary} from "@app/useCases/post/PostCommentOutputBoundary";
 
 @Injectable()
 export default class ViewPostController extends LoggedPageController {
@@ -17,11 +18,12 @@ export default class ViewPostController extends LoggedPageController {
     super(userViewPost, authViewPost, routerViewPost);
   }
 
-  getPostData(username: string, postId: number, outputBoudary: PostOutputBoundary) {
+  getPostData(username: string, postId: number, postOutputBoudary: PostOutputBoundary, commentOutputBoundary: PostCommentOutputBoundary) {
     const postInputModel = new PostInputModel();
     postInputModel.postId = postId;
     postInputModel.username = username;
-    this.postUseCase.retrievePostData(postInputModel, outputBoudary);
+    this.postUseCase.retrievePostData(postInputModel, postOutputBoudary);
+    this.postUseCase.retrievePostComments(postInputModel, commentOutputBoundary);
   }
 
 

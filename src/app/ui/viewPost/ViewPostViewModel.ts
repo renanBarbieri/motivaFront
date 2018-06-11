@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import RewardItem from "@app/ui/models/RewardItem";
 import {ToolbarState} from "@app/components/toolbar/TollbarState";
+import CommentItem from "@app/ui/models/CommentItem";
 
 @Injectable()
 export default class ViewPostViewModel {
@@ -24,6 +25,9 @@ export default class ViewPostViewModel {
   tags: Array<string>;
   estimatedMinutes: string;
   postHtmlText: string;
+
+  postComments: Array<CommentItem> = [];
+  commentsIndexes: Array<number> = [];
 
 }
 

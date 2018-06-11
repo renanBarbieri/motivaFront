@@ -1,5 +1,6 @@
 import RewardItem from "app/ui/models/RewardItem";
 import {AuthUiView} from "@app/ui/auth/AuthUIView";
+import CommentItem from "@app/ui/models/CommentItem";
 
 export interface ViewPostUiView extends AuthUiView {
 
@@ -7,5 +8,7 @@ export interface ViewPostUiView extends AuthUiView {
                  profileImageUrl: string, rewards: Array<RewardItem>, tags: Map<number, string>);
 
   updatePostData(title: string, estimateTime: string, tags: Array<string>, text: string, bannerImage: string);
+
+  updateCommentList(comments: Array<CommentItem>);
 
 }

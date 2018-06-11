@@ -88,14 +88,12 @@ export class ListPostsComponent extends LoggedComponent implements OnInit, ListP
   }
 
   updateViewList(contentArray: Array<any>, toPopulateArray: Array<any>, indexes: Array<number>) {
-    let count = 0;
     toPopulateArray.length = 0;
     indexes.length = 0;
 
-    contentArray.forEach((it) => {
+    contentArray.forEach((it, index) => {
       toPopulateArray.push(it);
-      indexes.push(count);
-      count++;
+      indexes.push(index);
     });
   }
 

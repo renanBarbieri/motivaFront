@@ -8,6 +8,8 @@ import DataSourcePostsResponse from "@app/data/model/DataSourcePostsCardResponse
 import {FileItem, FileUploader} from "ng2-file-upload";
 import DataSourcePostResponse from "@app/data/model/DataSourcePostResponse";
 import DataSourcePostCard from "@app/data/model/DataSourcePostCard";
+import DataSourcePostComment from "@app/data/model/DataSourcePostComment";
+import DataSourcePostCommentResponse from "@app/data/model/DataSourcePostCommentResponse";
 
 @Injectable()
 export default class PostApiDataSource extends DataSourceConfig implements PostDataSource {
@@ -42,6 +44,29 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
     });
   }
 
+  getPostComments(authKey: string, username: string, postId: string): Promise<DataSourcePostComment[]> {
+    let headers = new HttpHeaders({
+      "Authorization": `Bearer ${authKey}`
+    });
+
+    let url = `${PostApiDataSource.dataSourceURL}/post/${username}/${postId}/comment`;
+    let getPostsRequest = this.http.get<DataSourceResponse<DataSourcePostCommentResponse>>(url, {headers});
+
+    return new Promise<DataSourcePostComment[]>(async (resolve, reject) => {
+
+      getPostsRequest.subscribe(response => {
+          console.log(response);
+          if (response.status) {
+            resolve(response.result.comments)
+          }
+        },
+        error => {
+          console.log(error);
+          reject(error);
+        }
+      );
+    });
+  }
 
   getPostsFromTag(authKey: string, tagId: string): Promise<DataSourcePostCard[]> {
     let headers = new HttpHeaders({

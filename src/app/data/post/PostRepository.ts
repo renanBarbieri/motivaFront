@@ -9,6 +9,8 @@ import {FileUploader} from "ng2-file-upload";
 import PostDataSourceMapper from "@app/data/mapper/PostDataSourceMapper";
 import {PostGateway} from "@app/useCases/post/PostGateway";
 import {ListPostsGateway} from "@app/useCases/listPosts/ListPostsGateway";
+import Comment from "@app/entity/Comment";
+import PostCommentDataSourceMapper from "@app/data/mapper/PostCommentDataSourceMapper";
 
 @Injectable()
 export default class PostRepository implements PostsOfTopicsInterestGateway, PublishPostGateway, PostGateway, ListPostsGateway {
@@ -66,5 +68,14 @@ export default class PostRepository implements PostsOfTopicsInterestGateway, Pub
       resolve(post);
     });
 
+  }
+
+  getPostComments(authKey: string, username: string, postId: number): Promise<Array<Comment>> {
+    return new Promise<Array<Comment>>(async (resolve) => {
+      let commentMapper = new PostCommentDataSourceMapper();
+      let dataSourceComments = await this.postApiDataSource.getPostComments(authKey, username, postId.toString());
+      let dataResponse: Array<Comment> = dataSourceComments.map(it => commentMapper.toEntity(it));
+      resolve(dataResponse);
+    });
   }
 }

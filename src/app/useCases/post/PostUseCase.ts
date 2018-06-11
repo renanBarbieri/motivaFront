@@ -3,6 +3,11 @@ import PostRepository from "@app/data/post/PostRepository";
 import AuthRepository from "@app/data/auth/AuthRepository";
 import {PostInputBoundary, PostInputModel} from "@app/useCases/post/PostInputBoundary";
 import {PostOutputBoundary, PostOutputModel} from "@app/useCases/post/PostOutputBoundary";
+import {
+  PostComment,
+  PostCommentOutputBoundary,
+  PostCommentOutputModel
+} from "@app/useCases/post/PostCommentOutputBoundary";
 
 @Injectable()
 export default class PostUseCase implements PostInputBoundary {
@@ -17,7 +22,7 @@ export default class PostUseCase implements PostInputBoundary {
     "<br/>" +
     "Aliquam vitae lectus maximus magna dapibus pretium. In velit lacus, ornare at turpis sit amet, pellentesque vulputate ante. Proin ac lectus enim. Sed ac elit tristique, elementum elit non, vehicula mauris. Phasellus commodo lorem tristique consectetur vestibulum. Mauris et justo nec quam bibendum sodales. Sed nec consectetur mauris. Aenean vitae sem a sapien malesuada blandit. Mauris non auctor mauris. Quisque cursus pretium imperdiet. Pellentesque facilisis justo vitae velit dapibus laoreet. Morbi id tortor ac lorem viverra egestas.";
 
-  constructor(private publishPostRepository: PostRepository,
+  constructor(private postRepository: PostRepository,
               private authRepository: AuthRepository) {
   }
 
@@ -27,7 +32,7 @@ export default class PostUseCase implements PostInputBoundary {
 
     try {
       const authkey = await this.authRepository.getKey();
-      const post = await this.publishPostRepository.getPost(authkey, postInputModel.username, postInputModel.postId);
+      const post = await this.postRepository.getPost(authkey, postInputModel.username, postInputModel.postId);
 
       const outputTags: Array<string> = post.tags.map(it => it.name);
 
@@ -40,6 +45,31 @@ export default class PostUseCase implements PostInputBoundary {
     } catch (err) {
       outputBoundary.onGetPostDataError(err);
     }
+
+  }
+
+  async retrievePostComments(postInputModel: PostInputModel, outputBoundary: PostCommentOutputBoundary) {
+    const outputModel: PostCommentOutputModel = new PostCommentOutputModel();
+    try {
+      const authkey = await this.authRepository.getKey();
+      const comments = await this.postRepository.getPostComments(authkey, postInputModel.username, postInputModel.postId);
+
+      outputModel.comments = comments.map(it => {
+        let output = new PostComment();
+
+        output.avatar = it.author.avatar;
+        output.user = it.author.username;
+        output.username = it.author.id;
+        output.date = it.publish;
+        output.text = it.text;
+
+        return output;
+      });
+      outputBoundary.onGetPostCommentSuccess(outputModel);
+    } catch (err) {
+      outputBoundary.onGetPostCommentError(err);
+    }
+
 
   }
 }
