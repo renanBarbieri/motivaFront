@@ -9,7 +9,7 @@
 
 .cardDate {
   color: rgba(0, 0, 0, .54);
-  font-size: 0.8vw;
+  font-size: 0.8rem;
   align-self: center;
 }
 
@@ -24,12 +24,7 @@ mat-card {
 
 @media screen and (max-width: 700px) {
   mat-card {
-    width: 7em;
-    margin: 0.5em;
-  }
-
-  .cardDate {
-    font-size: 3vw;
+    margin: 0.6rem;
   }
 
   .cardStatus {
