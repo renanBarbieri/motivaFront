@@ -122,6 +122,10 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     this.viewPostController.getResultsOfSearch($textToSearch)
   }
 
+  textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (25+o.scrollHeight)+"px";
+  }
 
   /**
    *

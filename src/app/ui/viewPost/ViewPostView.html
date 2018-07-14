@@ -56,7 +56,18 @@
           ></user-comment>
         </div>
       </div>
-      <div class="newComment"></div>
+      <mat-card class="newComment">
+        <!--<mat-card-header>-->
+          <mat-form-field color="accent" class="newCommentForm">
+            <mat-label>Escreva um comentário ...</mat-label>
+            <textarea autosize matInput
+                      #newCommentText
+                      onkeyup="textAreaAdjust(this)"
+                      id="newCommentText"></textarea>
+          </mat-form-field>
+        <button mat-raised-button color="primary" >Enviar</button>
+        <!--</mat-card-header>-->
+      </mat-card>
     </div>
   </div>
 </div>
