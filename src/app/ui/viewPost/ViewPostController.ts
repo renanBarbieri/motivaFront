@@ -5,7 +5,7 @@ import AuthUseCase from "@app/useCases/auth/AuthUseCase";
 import LoggedPageController from "@app/ui/logged/LoggedPageController";
 import PostUseCase from "@app/useCases/post/PostUseCase";
 import {PostOutputBoundary} from "@app/useCases/post/PostOutputBoundary";
-import {PostInputModel} from "@app/useCases/post/PostInputBoundary";
+import {PostCommentInputModel, PostInputModel} from "@app/useCases/post/PostInputBoundary";
 import {PostCommentOutputBoundary} from "@app/useCases/post/PostCommentOutputBoundary";
 
 @Injectable()
@@ -26,8 +26,25 @@ export default class ViewPostController extends LoggedPageController {
     this.postUseCase.retrievePostComments(postInputModel, commentOutputBoundary);
   }
 
+  getPostComments(username: string, postId: number, commentOutputBoundary: PostCommentOutputBoundary) {
+    const postInputModel = new PostInputModel();
+    postInputModel.postId = postId;
+    postInputModel.username = username;
+    this.postUseCase.retrievePostComments(postInputModel, commentOutputBoundary);
+  }
+
 
   getResultsOfSearch(searchText: string) {
     this.routerViewPost.navigate(['/search', {q: searchText}]);
+  }
+
+  sendComment(comment: string, postOwner: string, postId: number, commentOutputBoundary: PostCommentOutputBoundary) {
+    console.log(comment);
+    const postCommentModel = new PostCommentInputModel();
+    postCommentModel.postId = postId;
+    postCommentModel.username = postOwner;
+    postCommentModel.comment = comment;
+
+    this.postUseCase.addPostComment(postCommentModel, commentOutputBoundary);
   }
 }

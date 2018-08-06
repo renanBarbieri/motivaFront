@@ -78,4 +78,11 @@ export default class PostRepository implements PostsOfTopicsInterestGateway, Pub
       resolve(dataResponse);
     });
   }
+
+  publishPostComment(comment: string, authKey: string, username: string, postId: number): Promise<any> {
+    return new Promise<any>( async (resolve) => {
+       let response = await this.postApiDataSource.publishPostComment(comment, authKey, username, postId.toString());
+       resolve(response);
+    });
+  }
 }

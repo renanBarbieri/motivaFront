@@ -49,6 +49,14 @@
   font-style: italic;
 }
 
+.postOwner {
+  font-size: 0.8em;
+  color: grey;
+}
+.postOwnerLink {
+  color: grey;
+}
+
 h1 {
   font-size: 2.2em;
 }
@@ -73,4 +81,12 @@ h1 {
   flex-direction: column;
   padding-top: 1em;
   margin-bottom: 1em;
+}
+
+#newCommentText {
+  resize: none;
+}
+
+.newCommentForm {
+  width: 100%;
 }

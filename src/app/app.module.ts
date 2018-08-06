@@ -15,6 +15,7 @@ import {NotFoundComponent} from "@app/components/notFound/NotFoundComponent";
 import {ProfilePicComponent} from "@app/components/profilePic/ProfilePicComponent";
 import {QuillEditorModule} from 'ngx-quill-editor';
 import {FileUploadModule} from "ng2-file-upload";
+import {TextareaAutosizeModule} from "ngx-textarea-autosize";
 // MATERIAL DESIGN
 import {
   MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule,
@@ -91,7 +92,8 @@ import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
     MatAutocompleteModule,
     QuillEditorModule,
     FileUploadModule,
-    MatDividerModule
+    MatDividerModule,
+    TextareaAutosizeModule
   ],
   providers: [
     //Repositories

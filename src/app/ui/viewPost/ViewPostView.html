@@ -33,6 +33,9 @@
         <div class="postReadTime">
           (Leitura de {{viewPostViewModel.estimatedMinutes}} min)
         </div>
+        <div class="postOwner">
+          Por <a class="postOwnerLink" href="{{viewPostViewModel.postOwner}}/profile">{{viewPostViewModel.postOwner}}</a>
+        </div>
       </div>
       <div class="postTagsBox">
         <mat-chip-list #chipList>
@@ -56,7 +59,23 @@
           ></user-comment>
         </div>
       </div>
-      <div class="newComment"></div>
+      <mat-card class="newComment">
+        <!--<mat-card-header>-->
+          <mat-form-field color="accent" class="newCommentForm">
+            <mat-label>Escreva um comentário ...</mat-label>
+            <textarea autosize matInput
+                      #newCommentText
+                      value="{{viewPostViewModel.userComment}}"
+                      (focusout)="saveComment(newCommentText.value)"
+                      id="newCommentText"></textarea>
+          </mat-form-field>
+        <button mat-raised-button
+                color="primary"
+                (click)="onSendCommentClick()">
+          Enviar
+        </button>
+        <!--</mat-card-header>-->
+      </mat-card>
     </div>
   </div>
 </div>

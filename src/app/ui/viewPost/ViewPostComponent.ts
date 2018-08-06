@@ -45,9 +45,9 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     this.viewPostController.verifyAuthorization(this.viewPostPresenter);
   }
 
-  /**********************************************************
-   ******************* Dados do usuário *********************
-   **********************************************************/
+  /* ******************************************************** *
+   * ****************** Dados do usuário ******************** *
+   * ******************************************************** */
 
   /**
    *
@@ -64,6 +64,7 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
         this.viewPostPresenter,
         this.viewPostPresenter
       );
+      this.viewPostViewModel.postOwner = this.route.snapshot.params.username;
     }
     else {
       this.authStateLogged.emit(false);
@@ -108,6 +109,13 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
   }
 
   updateCommentList(comments: Array<CommentItem>) {
+    console.log("updateCommentList");
+    if(this.viewPostViewModel.clearCommentBeforeUpdateList) {
+      console.log("updateCommentList2");
+      this.viewPostViewModel.userComment = "";
+      this.viewPostViewModel.clearCommentBeforeUpdateList = false;
+    }
+
     this.viewPostViewModel.postComments.length = 0;
     this.viewPostViewModel.commentsIndexes.length = 0;
 
@@ -117,11 +125,32 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     });
   }
 
+  saveComment(comment: string) {
+    this.viewPostViewModel.userComment = comment;
+  }
+
+  onSendCommentClick() {
+    this.viewPostController.sendComment(
+      this.viewPostViewModel.userComment,
+      this.route.snapshot.params.username,
+      this.route.snapshot.params.postId,
+      this.viewPostPresenter
+    );
+  }
+
+  updateCommentListAfterAddComment() {
+    console.log("updateCommentListAfterAddComment");
+    this.viewPostViewModel.clearCommentBeforeUpdateList = true;
+    this.viewPostController.getPostComments(
+      this.route.snapshot.params.username,
+      this.route.snapshot.params.postId,
+      this.viewPostPresenter
+    );
+  }
 
   onSearchInput($textToSearch: string) {
     this.viewPostController.getResultsOfSearch($textToSearch)
   }
-
 
   /**
    *
