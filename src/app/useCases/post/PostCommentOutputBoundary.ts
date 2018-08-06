@@ -1,8 +1,10 @@
 export interface PostCommentOutputBoundary {
 
   onGetPostCommentSuccess(postOutput: PostCommentOutputModel);
+  onAddCommentSuccess();
 
   onGetPostCommentError(err: any);
+  onAddCommentError(err:any);
 }
 
 export class PostCommentOutputModel {

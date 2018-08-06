@@ -10,6 +10,7 @@ import DataSourcePostResponse from "@app/data/model/DataSourcePostResponse";
 import DataSourcePostCard from "@app/data/model/DataSourcePostCard";
 import DataSourcePostComment from "@app/data/model/DataSourcePostComment";
 import DataSourcePostCommentResponse from "@app/data/model/DataSourcePostCommentResponse";
+import DataSourceMessageResponse from "@app/data/model/DataSourceMessageResponse";
 
 @Injectable()
 export default class PostApiDataSource extends DataSourceConfig implements PostDataSource {
@@ -61,6 +62,37 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
           }
         },
         error => {
+          console.log(error);
+          reject(error);
+        }
+      );
+    });
+  }
+
+  publishPostComment(comment: string, authKey: string, username: string, postId: string): Promise<string> {
+    let headers = new HttpHeaders({
+      "Authorization": `Bearer ${authKey}`
+    });
+
+    let params = new HttpParams();
+    params.append("text", comment);
+
+    let url = `${PostApiDataSource.dataSourceURL}/post/${username}/${postId}/comment`;
+    let postRequest = this.http.post<DataSourceResponse<DataSourceMessageResponse>>(
+      url, {headers: headers, params: params});
+
+    return new Promise<string>(async (resolve, reject) => {
+
+      postRequest.subscribe(response => {
+          console.log(response);
+
+          if (response.status) {
+            console.log("resolvi");
+            resolve(response.result.message)
+          }
+        },
+        error => {
+          console.log("erro http");
           console.log(error);
           reject(error);
         }

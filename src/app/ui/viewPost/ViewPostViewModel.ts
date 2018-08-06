@@ -7,6 +7,7 @@ import CommentItem from "@app/ui/models/CommentItem";
 export default class ViewPostViewModel {
 
   postToolbarState = ToolbarState.ALL_ITEMS;
+  clearCommentBeforeUpdateList: boolean = false;
 
   /**
    * Left Bar
@@ -25,10 +26,14 @@ export default class ViewPostViewModel {
   tags: Array<string>;
   estimatedMinutes: string;
   postHtmlText: string;
+  postOwner: string;
 
+  /**
+   * Comments
+   */
   postComments: Array<CommentItem> = [];
   commentsIndexes: Array<number> = [];
-
+  userComment: string;
 }
 
 

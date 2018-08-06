@@ -71,11 +71,21 @@ export default class ViewPostPresenter extends AuthPresenter implements PostOutp
     this.viewPostUiView.updateCommentList(listComments);
   }
 
+  onAddCommentSuccess() {
+    console.log("onAddCommentSuccess");
+    this.viewPostUiView.updateCommentListAfterAddComment()
+  }
+
+
   onGetPostCommentError(err: any) {
     this.viewPostUiView.showErrorAlert(err.message);
   }
 
   onGetPostDataError(errorData: any) {
     this.viewPostUiView.showErrorAlert(errorData.message);
+  }
+
+  onAddCommentError(err: any) {
+    this.viewPostUiView.showErrorAlert(err.message);
   }
 }

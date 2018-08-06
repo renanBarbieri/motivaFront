@@ -11,4 +11,6 @@ export interface ViewPostUiView extends AuthUiView {
 
   updateCommentList(comments: Array<CommentItem>);
 
+  updateCommentListAfterAddComment();
+
 }
