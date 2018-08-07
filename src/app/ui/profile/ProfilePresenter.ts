@@ -5,8 +5,10 @@ import {
   GetPostsOfTopicsInterestOutputModel,
   PostsOfTopicsInterestOutputBoundary
 } from "@app/useCases/postsOfTopicsInterest/PostsOfTopicsInterestOutputBoundary";
+import {AuthOutputBoundary} from "@app/useCases/auth/AuthOutputBoundary";
 
-export default class ProfilePresenter extends AuthPresenter implements UserDataOutputBoundary, PostsOfTopicsInterestOutputBoundary {
+export default class ProfilePresenter extends AuthPresenter implements UserDataOutputBoundary,
+  PostsOfTopicsInterestOutputBoundary, AuthOutputBoundary {
 
   private profileUiView: ProfileUIView;
 

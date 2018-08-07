@@ -6,7 +6,10 @@ import {Router} from "@angular/router";
 import AuthPresenter from "@app/ui/auth/AuthPresenter";
 import {PostUiView} from "@app/ui/post/PostUIView";
 import {
-  BannerOutputModel, ImageUploaderOutputModel, PublishPostOutputBoundary, PublishPostOutputModel,
+  BannerOutputModel,
+  ImageUploaderOutputModel,
+  PublishPostOutputBoundary,
+  PublishPostOutputModel,
   TagListOutputModel
 } from "@app/useCases/publishPost/PublishPostOutputBoundary";
 

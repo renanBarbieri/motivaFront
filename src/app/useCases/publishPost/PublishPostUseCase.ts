@@ -1,7 +1,9 @@
 import {Injectable} from "@angular/core";
 import {PublishPostInputBoundary, PublishPostInputModel} from "@app/useCases/publishPost/PublishPostInputBoundary";
 import {
-  BannerOutputModel, ImageUploaderOutputModel, PublishPostOutputBoundary,
+  BannerOutputModel,
+  ImageUploaderOutputModel,
+  PublishPostOutputBoundary,
   PublishPostOutputModel
 } from "@app/useCases/publishPost/PublishPostOutputBoundary";
 import PostRepository from "@app/data/post/PostRepository";
