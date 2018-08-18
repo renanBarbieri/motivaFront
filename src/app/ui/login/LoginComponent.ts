@@ -6,6 +6,8 @@ import LoginPresenter from "@app/ui/login/LoginPresenter";
 import {ScreenState} from "@app/ui/ScreenState";
 import {LoginUiView} from "@app/ui/login/LoginUIView";
 import LoginViewModel from "@app/ui/login/LoginViewModel";
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {NewPasswordDialogComponent} from "@app/components/newPasswordDialog/newPasswordDialogController";
 
 
 @Component({
@@ -31,7 +33,8 @@ export class LoginComponent implements OnInit, LoginUiView {
 
   constructor(private loginController: LoginController,
               private loginPresenter: LoginPresenter,
-              private loginViewModel: LoginViewModel) {
+              private loginViewModel: LoginViewModel,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -51,7 +54,20 @@ export class LoginComponent implements OnInit, LoginUiView {
     this.authStateLogged.emit(true);
   }
 
+  onFirstLogin() {
+    this.screenStateChange.emit(ScreenState.DONE);
+    console.log("aqui deu certo");
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(NewPasswordDialogComponent, dialogConfig);
+  }
+
   showErrorAlert(message: String) {
+    this.screenStateChange.emit(ScreenState.DONE);
     alert(message);
   }
 }

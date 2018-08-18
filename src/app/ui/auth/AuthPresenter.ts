@@ -17,7 +17,12 @@ export default class AuthPresenter implements AuthOutputBoundary {
 
   onAuthError(errorData: any) {
     this.view.updateLoggedStatus(false);
-    if (errorData) this.view.showErrorAlert(errorData);
+    if (errorData){
+      this.view.showErrorAlert(errorData);
+    }
+    else {
+      console.log(`deu isso aqui: ${errorData}`);
+    }
   }
 
 }

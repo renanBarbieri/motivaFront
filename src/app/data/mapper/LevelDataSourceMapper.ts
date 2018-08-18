@@ -6,6 +6,8 @@ import DataSourceLevel from "@app/data/model/DataSourceLevel";
 export default class LevelDataSourceMapper implements DataSourceMapper<DataSourceLevel, Level> {
 
   toEntity(dataSource: DataSourceLevel): Level {
+    console.log(dataSource);
+
     let level = new Level();
     level.name = dataSource.name;
     level.experience = dataSource.completetion;

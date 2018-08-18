@@ -30,8 +30,12 @@ export default class AuthRepository implements AuthGateway {
 
   generateKey(username: string, password: string): Promise<string> {
     return new Promise<string>(async (resolve, reject) => {
-      let login: DataSourceLogin = await this.authApiDataSource.getAuthKey(username, password);
-      resolve(login.token);
+      try {
+        let login: DataSourceLogin = await this.authApiDataSource.getAuthKey(username, password);
+        resolve(login.token);
+      } catch (e) {
+        reject(e);
+      }
     });
   }
 

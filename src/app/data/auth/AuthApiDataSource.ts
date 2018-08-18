@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {AuthApiSource} from "@app/data/auth/AuthApiSource";
 import DataSourceResponse from "@app/data/model/DataSourceResponse";
 import DataSourceConfig from "@app/data/DataSourceConfig";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import DataSourceLogin from "@app/data/model/DataSourceLogin";
 
 @Injectable()
@@ -16,18 +16,37 @@ export default class AuthApiDataSource extends DataSourceConfig implements AuthA
     let headers = new HttpHeaders({
       "Content-Type": "application/json"
     });
+    console.log("oi");
 
-    let getRequest = this.http.post<DataSourceResponse<DataSourceLogin>>(
-      AuthApiDataSource.dataSourceURL.concat("/login"), {headers});
+
+    let params = new HttpParams()
+                  .append("username", username)
+                  .append("password", password);
+
+    let postRequest = this.http.post<DataSourceResponse<DataSourceLogin>>(
+      `${AuthApiDataSource.dataSourceURL}/login`,
+      {
+        headers: headers,
+        username: username,
+        password: password
+      }
+    );
+
 
     return new Promise<DataSourceLogin>(async (resolve, reject) => {
 
-      getRequest.subscribe(response => {
+      postRequest.subscribe(response => {
           console.log(response);
 
           if (response.status) {
+            console.log("resolvi");
             resolve(response.result)
           }
+        },
+        error => {
+          console.log("erro http");
+          console.log(error);
+          reject(`Ocorreu o erro ${error.status}`);
         }
       );
     });

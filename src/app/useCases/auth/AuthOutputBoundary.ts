@@ -8,4 +8,5 @@ export class AuthOutputModel {
   public code: number;
   public message: string;
   public logged: boolean;
+  public firstLogin: boolean;
 }

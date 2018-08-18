@@ -23,7 +23,10 @@ export default class AuthUseCase implements AuthInputBoundary {
         authResponse.logged = true;
         outputBoundary.onAuthSuccess(authResponse);
       }
-      else outputBoundary.onAuthError(null);
+      else {
+        console.log("Nenhuma chave encontrada.");
+        outputBoundary.onAuthError(null);
+      }
     } catch (error) {
       outputBoundary.onAuthError(error.message ? `Erro ao realizar a autenticação: ${error.message}` : error);
     }
@@ -38,15 +41,19 @@ export default class AuthUseCase implements AuthInputBoundary {
     try {
       let tokenKey = await this.authRepository.generateKey(input.username, input.password);
       if (tokenKey) {
-        await this.authRepository.setKey(tokenKey);
+        // if(!tokenKey.firstLogin) {
+        //   await this.authRepository.setKey(tokenKey);
+        // }
         let authResponse = new AuthOutputModel();
         authResponse.code = 200;
         authResponse.message = tokenKey;
         authResponse.logged = true;
+        authResponse.firstLogin = true; //TODO: TRAZER ISSO DO BANCO
         outputBoundary.onAuthSuccess(authResponse);
       }
       else throw "Não foi encontrada uma atenticação";
     } catch (error) {
+      console.log(`Não foi possível realizar o login: ${error}`);
       outputBoundary.onAuthError(`Não foi possível realizar o login: ${error}`);
     }
   }

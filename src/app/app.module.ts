@@ -16,6 +16,7 @@ import {ProfilePicComponent} from "@app/components/profilePic/ProfilePicComponen
 import {QuillEditorModule} from 'ngx-quill-editor';
 import {FileUploadModule} from "ng2-file-upload";
 import {TextareaAutosizeModule} from "ngx-textarea-autosize";
+import {NewPasswordDialogComponent} from "@app/components/newPasswordDialog/newPasswordDialogController";
 // MATERIAL DESIGN
 import {
   MatAutocompleteModule,
@@ -79,6 +80,7 @@ import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
     TopicArticlesComponent,
     LeftSideBarComponent,
     ProfilePicComponent,
+    NewPasswordDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -125,6 +127,7 @@ import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    NewPasswordDialogComponent
     // SimpleTextDialogComponent,
   ],
 })

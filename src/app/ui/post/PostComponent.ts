@@ -104,6 +104,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
     }
     else {
       this.authStateLogged.emit(false);
+      this.postController.redirectToLogin();
     }
   }
 
@@ -254,6 +255,7 @@ export class PostComponent extends LoggedComponent implements OnInit, PostUiView
 
 
   onImageUploadSuccess(imageUrl: string) {
+    console.log(this.postViewModel.postHtmlText);
     this.postController.publishPost(
       this.postViewModel.title,
       this.postViewModel.tags,

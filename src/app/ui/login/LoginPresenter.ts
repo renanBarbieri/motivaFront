@@ -12,11 +12,16 @@ export default class LoginPresenter implements AuthOutputBoundary {
 
 
   onAuthSuccess(responseData: AuthOutputModel) {
-    this.view.onLoggingSuccess();
+    if(responseData.firstLogin){
+      this.view.onFirstLogin()
+    }
+    else {
+      this.view.onLoggingSuccess();
+    }
   }
 
   onAuthError(errorData: any) {
-    this.view.showErrorAlert(errorData.message);
+    this.view.showErrorAlert(errorData);
   }
 
 }

@@ -68,6 +68,7 @@ export class ViewPostComponent extends LoggedComponent implements OnInit, ViewPo
     }
     else {
       this.authStateLogged.emit(false);
+      this.viewPostController.redirectToLogin();
     }
   }
 

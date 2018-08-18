@@ -3,4 +3,5 @@ export default class DataSourceLogin {
   username: string;
   user_id: number;
   active: boolean;
+  first_access: boolean;
 }
