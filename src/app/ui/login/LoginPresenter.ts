@@ -1,9 +1,10 @@
 import {Injectable} from "@angular/core";
 import {LoginUiView} from "@app/ui/login/LoginUIView";
 import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/auth/AuthOutputBoundary";
+import {AuthPasswordOutputBoundary, AuthPasswordOutputModel} from "@app/useCases/auth/AuthPasswordOutputBoundary";
 
 @Injectable()
-export default class LoginPresenter implements AuthOutputBoundary {
+export default class LoginPresenter implements AuthOutputBoundary, AuthPasswordOutputBoundary {
   private view: LoginUiView;
 
   onViewInit(view: LoginUiView) {
@@ -18,6 +19,9 @@ export default class LoginPresenter implements AuthOutputBoundary {
     else {
       this.view.onLoggingSuccess();
     }
+  }
+
+  onAuthPasswordSuccess(responseData: AuthPasswordOutputModel) {
   }
 
   onAuthError(errorData: any) {

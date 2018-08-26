@@ -6,8 +6,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export default class AuthController {
 
-  constructor(private authUseCase: AuthUseCase, private router: Router) {
-  }
+  constructor(private authUseCase: AuthUseCase, private router: Router) {}
 
   verifyAuthorization(responseHandler: AuthOutputBoundary) {
     this.authUseCase.performAuthValidation(responseHandler);

@@ -4,6 +4,9 @@ import DataSourceResponse from "@app/data/model/DataSourceResponse";
 import DataSourceConfig from "@app/data/DataSourceConfig";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import DataSourceLogin from "@app/data/model/DataSourceLogin";
+import DataSourceUser from "@app/data/model/DataSourceUser";
+import UserApiDataSource from "@app/data/user/UserApiDataSource";
+import DataSourceLoggedUserResponse from "@app/data/model/DataSourceLoggedUserResponse";
 
 @Injectable()
 export default class AuthApiDataSource extends DataSourceConfig implements AuthApiSource {
@@ -16,12 +19,6 @@ export default class AuthApiDataSource extends DataSourceConfig implements AuthA
     let headers = new HttpHeaders({
       "Content-Type": "application/json"
     });
-    console.log("oi");
-
-
-    let params = new HttpParams()
-                  .append("username", username)
-                  .append("password", password);
 
     let postRequest = this.http.post<DataSourceResponse<DataSourceLogin>>(
       `${AuthApiDataSource.dataSourceURL}/login`,
@@ -39,14 +36,37 @@ export default class AuthApiDataSource extends DataSourceConfig implements AuthA
           console.log(response);
 
           if (response.status) {
-            console.log("resolvi");
             resolve(response.result)
           }
         },
         error => {
-          console.log("erro http");
-          console.log(error);
           reject(`Ocorreu o erro ${error.status}`);
+        }
+      );
+    });
+  }
+
+  changePassword(password: string, authKey: string): Promise<any> {
+    let headers = new HttpHeaders({
+      "Authorization": `Bearer ${authKey}`
+    });
+
+    let postRequest = this.http.post<DataSourceResponse<any>>(
+      `${AuthApiDataSource.dataSourceURL}/system/change_password`,
+      {
+        new_password: password
+      },
+      {
+        headers: headers
+      });
+
+    return new Promise<any>(async (resolve, reject) => {
+
+      postRequest.subscribe(response => {
+          resolve();
+        },
+        error => {
+          reject(error);
         }
       );
     });

@@ -128,7 +128,6 @@ import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
   bootstrap: [AppComponent],
   entryComponents: [
     NewPasswordDialogComponent
-    // SimpleTextDialogComponent,
   ],
 })
 export class AppModule {

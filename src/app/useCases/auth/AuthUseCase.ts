@@ -2,11 +2,14 @@ import {Injectable} from "@angular/core";
 import {AuthOutputBoundary, AuthOutputModel} from "@app/useCases/auth/AuthOutputBoundary";
 import {AuthInputBoundary, AuthInputModel} from "@app/useCases/auth/AuthInputBoundary";
 import AuthRepository from "@app/data/auth/AuthRepository";
+import {AuthPasswordOutputBoundary} from "@app/useCases/auth/AuthPasswordOutputBoundary";
 
 @Injectable()
 export default class AuthUseCase implements AuthInputBoundary {
-  constructor(private authRepository: AuthRepository) {
-  }
+
+  private tempAuthKey;
+
+  constructor(private authRepository: AuthRepository) {}
 
   /**
    *
@@ -39,16 +42,19 @@ export default class AuthUseCase implements AuthInputBoundary {
    */
   async performLogin(input: AuthInputModel, outputBoundary: AuthOutputBoundary) {
     try {
-      let tokenKey = await this.authRepository.generateKey(input.username, input.password);
-      if (tokenKey) {
-        // if(!tokenKey.firstLogin) {
-        //   await this.authRepository.setKey(tokenKey);
-        // }
+      let authToken = await this.authRepository.generateKey(input.username, input.password);
+      if (authToken) {
+        if(!authToken.isFirstLogin) {
+          await this.authRepository.setKey(authToken.token);
+        }
+        else {
+          this.tempAuthKey = authToken.token;
+        }
         let authResponse = new AuthOutputModel();
         authResponse.code = 200;
-        authResponse.message = tokenKey;
+        authResponse.message = authToken.token;
         authResponse.logged = true;
-        authResponse.firstLogin = true; //TODO: TRAZER ISSO DO BANCO
+        authResponse.firstLogin = authToken.isFirstLogin;
         outputBoundary.onAuthSuccess(authResponse);
       }
       else throw "Não foi encontrada uma atenticação";
@@ -72,6 +78,17 @@ export default class AuthUseCase implements AuthInputBoundary {
       outputBoundary.onAuthSuccess(response);
     } catch (error) {
       outputBoundary.onAuthError(error.message);
+    }
+  }
+
+  performChangePassword(input: AuthInputModel, outputBoundary: AuthPasswordOutputBoundary){
+    try {
+      console.log(`Temp Key: ${this.tempAuthKey}`);
+      let response = this.authRepository.changePassword(this.tempAuthKey, input.password);
+      console.log("resolveu");
+    } catch (e) {
+      console.log("não resolveu");
+      console.log(e);
     }
   }
 }

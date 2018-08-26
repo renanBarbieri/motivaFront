@@ -56,14 +56,16 @@ export class LoginComponent implements OnInit, LoginUiView {
 
   onFirstLogin() {
     this.screenStateChange.emit(ScreenState.DONE);
-    console.log("aqui deu certo");
 
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    this.dialog.open(NewPasswordDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(NewPasswordDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.loginController.updatePassword(result, this.loginPresenter);
+    });
   }
 
   showErrorAlert(message: String) {
