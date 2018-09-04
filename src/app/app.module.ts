@@ -59,6 +59,7 @@ import {PostComponent} from "@app/ui/post/PostComponent";
 import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
 import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
+import {PostEditComponent} from "@app/ui/postEdit/PostEditComponent";
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
     HomeComponent,
     SearchComponent,
     PostComponent,
+    PostEditComponent,
     ViewPostComponent,
     ListPostsComponent,
     ProfileComponent,

@@ -68,4 +68,24 @@ export default class PublishPostUseCase implements PublishPostInputBoundary {
       outputBoundary.onPublishError(error);
     }
   }
+
+  async updatePost(postInput: PublishPostInputModel, outputBoundary: PublishPostOutputBoundary) {
+    try {
+      let tokenKey = await this.authRepository.getKey();
+      let post: Post = new Post();
+      post.title = postInput.title;
+      post.subtitle = postInput.text.substr(0, 250);
+      post.content = postInput.text;
+      // post.tags = ["android"];
+      post.headerImage = postInput.bannerURL;
+      let postId: number = await this.publishPostRepository.updatePost(tokenKey, post);
+      let outputModel: PublishPostOutputModel = new PublishPostOutputModel();
+      outputModel.postId = postId;
+      console.log(outputModel);
+      outputBoundary.onPublishSuccess(outputModel);
+    } catch (error) {
+      console.log(error);
+      outputBoundary.onPublishError(error);
+    }
+  }
 }

@@ -21,6 +21,12 @@ export default class PostUseCase implements PostInputBoundary {
 
     try {
       const authkey = await this.authRepository.getKey();
+
+      if(postInputModel.username == null){
+        const jwtKey = this.authRepository.parseJwt(authkey);
+        postInputModel.username = jwtKey.username;
+      }
+
       const post = await this.postRepository.getPost(authkey, postInputModel.username, postInputModel.postId);
 
       const outputTags: Array<string> = post.tags.map(it => it.name);
@@ -34,7 +40,6 @@ export default class PostUseCase implements PostInputBoundary {
     } catch (err) {
       outputBoundary.onGetPostDataError(err);
     }
-
   }
 
   async retrievePostComments(postInputModel: PostInputModel, outputBoundary: PostCommentOutputBoundary) {

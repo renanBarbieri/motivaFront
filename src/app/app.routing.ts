@@ -7,6 +7,7 @@ import {PostComponent} from "@app/ui/post/PostComponent";
 import {ProfileComponent} from "@app/ui/profile/ProfileComponent";
 import {ViewPostComponent} from "@app/ui/viewPost/ViewPostComponent";
 import {ListPostsComponent} from "@app/ui/listPosts/ListPostsComponent";
+import {PostEditComponent} from "@app/ui/postEdit/PostEditComponent";
 
 export const appRoutes: Routes = [
   {
@@ -21,6 +22,10 @@ export const appRoutes: Routes = [
   {
     path: 'post',
     component: PostComponent
+  },
+  {
+    path: 'post/:postId',
+    component: PostEditComponent
   },
   {
     path: ':username/post/:postId',

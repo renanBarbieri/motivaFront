@@ -1,0 +1,91 @@
+<div class="pageContent" fxLayout="row">
+  <div class="leftSideBar">
+    <app-left-sidebar
+      [username]="postEditViewModel.username"
+      [levelCompleted]="postEditViewModel.levelCompleted"
+      [levelName]="postEditViewModel.levelName"
+      [profileImage]="postEditViewModel.profileImage"
+      [rewards]="postEditViewModel.rewards"
+      (onProfileClick)="openProfilePage()"
+      (onFavoritesClick)="openFavoritesPage()"
+      (onSettingsClick)="openSettingsPage()"
+      (onLogoutClick)="logout()"
+    >
+    </app-left-sidebar>
+  </div>
+  <div class="pageCenter">
+    <app-toolbar
+      [toolbarState]="postEditViewModel.postToolbarState"
+      (homeClickEvent)="openHomePage()"
+      (searchClickEvent)="openSearchPage()"
+      (newPostClickEvent)="openNewPostPage()"></app-toolbar>
+    <div class="content">
+      <div ng2FileDrop
+           [ngClass]="{'nv-file-over': postEditViewModel.hasBaseDropZoneOver }"
+           [uploader]="postEditViewModel.uploader"
+           (fileOver)="fileOverBase($event)"
+           class="well drop-zone">
+        <div class="drop-zone-empty {{ !postEditViewModel.filePreviewPath ? 'cVisible' : 'cGone'}}">
+          <input id="fileToUpload" type="file" ng2FileSelect [uploader]="postEditViewModel.uploader" style="display:none;">
+          <mat-icon class="drop-icon">panorama</mat-icon>
+          <span class="drop-text">Esta é a capa do seu post</span>
+          <span class="drop-subtext">Arraste um arquivo aqui ou clique no botão</span>
+        </div>
+        <div class="drop-zone-frame" *ngIf="postEditViewModel.filePreviewPath">
+          <img [src]="postEditViewModel.filePreviewPath" class="drop-zone-image"/>
+        </div>
+        <div class="fabColumn">
+          <button mat-fab
+                  class="fabUpload"
+                  onclick="document.getElementById('fileToUpload').click()"
+                  matTooltip="Adicionar capa">
+            <mat-icon>file_upload</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="postTitleBox">
+        <input matInput class="postTitle" id="postTitleInput" (change)="onTitleChanged($event)"
+               placeholder="Insira um título pra seu post" *ngIf="postEditViewModel.title" [value]="postEditViewModel.title"/>
+      </div>
+      <div class="postTagsBox">
+        <mat-form-field class="postTagsField">
+          <mat-chip-list #chipList>
+            <mat-chip
+              *ngFor="let tag of postEditViewModel.tags"
+              [selectable]="postEditViewModel.tagsSelectable"
+              [removable]="postEditViewModel.tagsRemovable"
+              (remove)="remove(tag)">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="postEditViewModel.tagsRemovable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Tags"
+              #tagInput
+              [formControl]="postEditViewModel.tagsFormCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="postEditViewModel.tagsSeparatorKeysCodes"
+              [matChipInputAddOnBlur]="postEditViewModel.tagsAddOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let tag of postEditViewModel.tagsFiltered | async" [value]="tag">
+              {{ tag }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="postContentBox">
+        <quill-editor [options]="postEditViewModel.editorOptions"
+                      [(ngModel)]="postEditViewModel.editorContent"
+                      (ready)="onEditorCreated($event)"
+                      (change)="onContentChanged($event)">
+        </quill-editor>
+      </div>
+      <div class="postActions">
+        <button class="saveButton" mat-raised-button color="primary" (click)="savePost()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

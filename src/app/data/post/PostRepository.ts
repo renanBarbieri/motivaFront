@@ -58,6 +58,12 @@ export default class PostRepository implements PostsOfTopicsInterestGateway, Pub
     return postPublished.id;
   }
 
+  async updatePost(auth: string, post: Post): Promise<number> {
+    let postMapper = new PostDataSourceMapper();
+    let publishDataSource = postMapper.toDataSource(post);
+    let postPublished = await this.postApiDataSource.updatePost(auth, publishDataSource);
+    return postPublished.id;
+  }
 
   getPost(auth: string, username: string, postId: number): Promise<Post> {
     return new Promise<Post>(async (resolve) => {

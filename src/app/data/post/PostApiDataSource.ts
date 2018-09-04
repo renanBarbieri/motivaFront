@@ -185,22 +185,22 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
    */
   uploadImage(): Promise<string> {
     return new Promise<string>(async (resolve, reject) => {
-      resolve("http://www.imgglobalinfotech.com/images/single-pages/banner-design.png");
+      // resolve("http://www.imgglobalinfotech.com/images/single-pages/banner-design.png");
       // //TODO: descomentar quando estiver pronto
-      // this.fileUploader.onBuildItemForm = (fileItem: any, form: any) => {
-      //   fileItem.alias = "image_file";
-      //   form.append('post_id', '2');
-      // };
-      // this.fileUploader.uploadItem(this.getLastFile());
-      // this.fileUploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      //   // {"message": "Upload realizado com sucesso", "filename": "/media/post_2_image.jpg"}}
-      //   // const responsePath = JSON.parse(response);
-      //   console.log(response);// the url will be in the response
-      //   // resolve(responsePath);
-      // };
-      // this.fileUploader.onErrorItem = (item: any, response: any, status: any, headers: any) => {
-      //   console.log(response);
-      // }
+      this.fileUploader.onBuildItemForm = (fileItem: any, form: any) => {
+        fileItem.alias = "image_file";
+        form.append('post_id', '2');
+      };
+      this.fileUploader.uploadItem(this.getLastFile());
+      this.fileUploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+        // {"message": "Upload realizado com sucesso", "filename": "/media/post_2_image.jpg"}}
+        // const responsePath = JSON.parse(response);
+        console.log(response);// the url will be in the response
+        // resolve(responsePath);
+      };
+      this.fileUploader.onErrorItem = (item: any, response: any, status: any, headers: any) => {
+        console.log(response);
+      }
     });
   }
 
@@ -222,6 +222,38 @@ export default class PostApiDataSource extends DataSourceConfig implements PostD
     return new Promise<DataSourcePost>(async (resolve, reject) => {
 
       postRequest.subscribe(response => {
+          console.log(response);
+
+          if (response.status) {
+            resolve(response.result.post)
+          }
+        },
+        error => {
+          console.log("erro http");
+          reject(error);
+        }
+      );
+    });
+  }
+
+  updatePost(authKey: string, post: DataSourcePost): Promise<DataSourcePost> {
+    let headers = new HttpHeaders({
+      "Authorization": `Bearer ${authKey}`
+    });
+
+    let params = new HttpParams();
+    params.append("title", post.title);
+    params.append("description", post.description);
+    params.append("text", post.text);
+    // params.append("tags", post.tags.toString());
+    params.append("imageUrl", post.image_url);
+
+    let putRequest = this.http.put<DataSourceResponse<DataSourcePostResponse>>(
+      PostApiDataSource.dataSourceURL.concat("/post"), null, {headers: headers, params: params});
+
+    return new Promise<DataSourcePost>(async (resolve, reject) => {
+
+      putRequest.subscribe(response => {
           console.log(response);
 
           if (response.status) {
